@@ -1,0 +1,298 @@
+alter table growers                   drop constraint fk1_growers;                   
+alter table relationships             drop constraint fk1_relationships;             
+alter table relationships             drop constraint fk2_relationships;             
+alter table relationships_temp        drop constraint fk1_relationships_temp;             
+alter table relationships_temp        drop constraint fk2_relationships_temp;             
+alter table grower_notes              drop constraint fk1_grower_notes;              
+alter table grower_notes              drop constraint fk2_grower_notes;              
+alter table grower_commodities        drop constraint fk1_grower_commodities;        
+alter table grower_commodities        drop constraint fk2_grower_commodities;        
+alter table vendor_commodities        drop constraint fk1_vendor_commodities; 
+alter table vendor_commodities        drop constraint fk2_vendor_commodities;        
+alter table grower_does_business_with drop constraint fk1_grower_does_business_with; 
+alter table grower_does_business_with drop constraint fk2_grower_does_business_with; 
+alter table vendor_does_business_with drop constraint fk1_vendor_does_business_with; 
+alter table vendor_does_business_with drop constraint fk2_vendor_does_business_with; 
+alter table vendor_sales_volume       drop constraint fk1_sales_volumne;             
+alter table vendor_sales_volume       drop constraint fk2_sales_volumne;             
+alter table vendor_sales_volume       drop constraint fk3_sales_volumne;             
+alter table storage                   drop constraint fk1_storage;                   
+alter table storage                   drop constraint fk2_storage;                   
+alter table users                     drop constraint fk1_users;                     
+alter table crop_years                drop constraint fk1_crop_years;                
+
+
+
+drop table relationships ;
+drop table relationships_temp ;
+drop table grower_notes ;
+drop table vendor_does_business_with ;
+drop table grower_does_business_with ;
+drop table vendor_commodities ;
+drop table grower_commodities ;
+drop table vendor_sales_volume ;
+drop table crop_years ;
+drop table growers ;
+drop table growers_temp ;
+drop table vendors ;
+drop table vendors_temp ;
+drop table facilities ;
+drop table commodities ;
+drop table storage ;
+drop table users ;
+
+
+
+
+
+
+
+----------------------------------------------------------------
+-- Tables...
+----------------------------------------------------------------
+
+create table growers   -- people we interact with e.g. farmer Jones
+(
+grower_id 			integer identity(1,1) not null,
+grower_first_name  	 	varchar(250),
+grower_last_name  	 	varchar(250),
+grower_address_line_1 		varchar(250),
+grower_address_line_2 		varchar(250),
+grower_city 			varchar(250),
+grower_county			varchar(250),
+grower_state 			varchar(250),
+grower_zip 			varchar(250),
+grower_country 			varchar(250),
+grower_phone1			varchar(250),
+grower_phone2			varchar(250),
+grower_fax			varchar(250),
+grower_email			varchar(250),
+grower_date_created             datetime,
+grower_created_by		integer,
+agtech_name_and_address_id      varchar(10),
+agtech_contact_person_id        integer
+) ;
+
+
+----------------------------------------------------------------
+create table vendors   -- farms  e.g. Jones Farm
+(
+vendor_id 		integer identity(1,1) not null,
+vendor_name  		varchar(250),
+vendor_address_line_1	varchar(250),
+vendor_address_line_2	varchar(250),
+vendor_city		varchar(250),
+vendor_county           varchar(250),
+vendor_state		varchar(250),
+vendor_zip		varchar(250),
+vendor_country		varchar(250),
+vendor_phone1		varchar(250),
+vendor_phone2		varchar(250),
+vendor_email		varchar(250),
+agtech_vendor_id        varchar(10)
+) ;
+
+
+----------------------------------------------------------------
+create table growers_vendors   -- the relationship of an grower to a farm entity, e.g.  The Jones Farm relates to Mr Jones, Mrs Jones, master Jones, miss Jones
+(
+grower_id 	integer not null,
+vendor_id 	integer not null
+) ;
+
+
+----------------------------------------------------------------
+create table grower_notes   -- notes on an interaction between a user (CGI staff) and an grower (farmer)
+(
+grower_note_id 			integer identity(1,1) not null,
+grower_note_subject 		varchar(250),
+groser_note_method              varchar(250),
+grower_note_text 		varchar(250),
+grower_note_creation_date 	datetime,
+grower_note_created_by 		integer not null,    -- foreign key to the users table
+grower_id           		integer not null  -- foreign key to the growers table
+) ;
+
+
+----------------------------------------------------------------
+create table facilities   -- our facilities e.g. Chinook
+(
+facility_id 			integer identity(1,1) not null,
+facility_name			varchar(250),	
+facility_address_line_1		varchar(250),
+facility_address_line_2		varchar(250),
+facility_city			varchar(250),
+facility_state			varchar(250),
+facility_zip			varchar(250),
+facility_country		varchar(250),
+agtech_facility_id              varchar(10)
+) ;
+
+
+----------------------------------------------------------------
+
+create table users   -- CGI staff e.g. Scott Johnson
+(
+user_id 		integer identity(1,1) not null,   -- a sequential number
+user_first_name         varchar(250),  -- Paul
+user_last_name          varchar(250),
+user_login              varchar(250), -- Plangton
+user_job_title 		varchar(250),
+user_role               integer,
+User_facility_id        integer
+);
+
+
+----------------------------------------------------------------
+create table vendors_facilities
+(
+vendor_id   integer not null,
+facility_id integer not null
+) ;
+
+
+----------------------------------------------------------------
+create table commodities
+(
+commodity_id varchar(10) not null,
+commodity_name varchar(250)
+)
+;
+
+
+
+create table storage
+(
+storage_id 			integer identity(1,1) not null,
+storage_grower_id 		integer not null,
+storage_commodity_id 		varchar(10) not null,
+storage_name			varchar(250),	
+storage_address_line_1		varchar(250),
+storage_address_line_2		varchar(250),
+storage_city			varchar(250),
+storage_state			varchar(250),
+storage_zip			varchar(250),
+storage_country		        varchar(250),
+storage_volume                  decimal,
+storage_volume_UOM		varchar(250)
+)
+
+;
+
+
+create table growers_commodities
+( grower_id integer not null,
+  commodity_id varchar(10) not null
+)
+;
+
+create table vendors_commodities
+( vendor_id integer not null,
+  commodity_id varchar(10) not null
+)
+;
+
+create table vendor_sales_volume
+(
+vendor_id    integer not null,
+commodity_id varchar(10) not null,
+crop_year    varchar(250) not null,
+volume       decimal,
+UOM          varchar(250)
+)
+;
+
+create table crop_years
+(
+crop_year    varchar(250) not null,
+commodity_id varchar(10) not null,
+start_date   date not null,
+end_date     date not null
+)
+;
+
+
+-- How to create a dummy temp table
+select *
+into growers_temp 
+from growers where 1=2
+
+-- How to create a dummy temp table
+select *
+into vendors_temp 
+from vendors where 1=2
+
+
+
+
+
+----------------------------------------------------------------
+-- Primary Keys...
+----------------------------------------------------------------
+alter table growers add constraint pk_growers primary key (grower_id) ;
+alter table vendors add constraint pk_vendors primary key (vendor_id) ;
+alter table growers_vendors add constraint pk_growers_vendors primary key (grower_id, vendor_id) ;
+alter table grower_notes add constraint pk_grower_notes primary key (grower_note_id) ;
+alter table facilities add constraint pk_facilities primary key (facility_id) ;
+alter table users add constraint pk_users primary key (user_id) ;
+alter table vendors_facilities add constraint pk_vendors_facilities primary key (vendor_id, facility_id) ;
+alter table commodities add constraint pk_commodities primary key (commodity_id) ;
+alter table storage add constraint pk_storage primary key (storage_id) ;
+alter table growers_commodities add constraint pk_growers_commodities primary key (grower_id, commodity_id) ;
+alter table vendors_commodities add constraint pk_vendors_commodities primary key (vendor_id, commodity_id) ;
+alter table vendor_sales_volume add constraint pk_sales_volume primary key (vendor_id, commodity_id, crop_year) ;
+alter table crop_years add constraint pk_crop_years primary key (crop_year, commodity_id) ;
+
+
+----------------------------------------------------------------
+-- Foreign Keys...
+----------------------------------------------------------------
+
+alter table growers                   add constraint fk1_growers                   foreign key (grower_created_by)      references users (user_id) ;
+alter table growers_vendors           add constraint fk1_growers_vendors           foreign key (grower_id)              references growers (grower_id) ;
+alter table growers_vendors           add constraint fk2_growers_vendors           foreign key (vendor_id)              references vendors (vendor_id) ;
+alter table grower_notes              add constraint fk1_grower_notes              foreign key (grower_id)              references growers (grower_id) ;
+alter table grower_notes              add constraint fk2_grower_notes              foreign key (grower_note_created_by) references users (user_id) ;
+alter table growers_commodities       add constraint fk1_growers_commodities       foreign key (grower_id)              references growers (grower_id) ;
+alter table growers_commodities       add constraint fk2_growers_commodities       foreign key (commodity_id)           references commodities (commodity_id) ;
+alter table vendors_commodities       add constraint fk1_vendors_commodities       foreign key (vendor_id)              references vendors (vendor_id) ;
+alter table vendors_commodities       add constraint fk2_vendors_commodities       foreign key (commodity_id)           references commodities (commodity_id) ;
+alter table vendors_facilities        add constraint fk1_vendors_facilities        foreign key (vendor_id)              references vendors (vendor_id) ;
+alter table vendors_facilities        add constraint fk2_vendors_facilities        foreign key (facility_id)            references facilities (facility_id) ;
+alter table vendor_sales_volume       add constraint fk1_sales_volumne             foreign key (vendor_id)              references vendors (vendor_id) ;
+alter table vendor_sales_volume       add constraint fk2_sales_volumne             foreign key (commodity_id)           references commodities (commodity_id) ;
+alter table vendor_sales_volume       add constraint fk3_sales_volumne             foreign key (crop_year, commodity_id)references crop_years (crop_year, commodity_id) ;
+alter table storage                   add constraint fk1_storage                   foreign key (storage_grower_id)      references growers (grower_id) ;
+alter table storage                   add constraint fk2_storage                   foreign key (storage_commodity_id)   references commodities (commodity_id) ;
+alter table users                     add constraint fk1_users                     foreign key (user_facility_id)       references facilities (facility_id) ;
+alter table crop_years                add constraint fk1_crop_years                foreign key (commodity_id)           references commodities (commodity_id) ;
+
+
+
+
+------------------------------------------------------
+Temp table
+------------------------------------------------------
+
+create table growers_temp   -- people we interact with e.g. farmer Jones
+(
+grower_id 			integer identity(1,1) not null,
+grower_first_name  	 	varchar(250),
+grower_last_name  	 	varchar(250),
+grower_address_line_1 		varchar(250),
+grower_address_line_2 		varchar(250),
+grower_city 			varchar(250),
+grower_county			varchar(250),
+grower_state 			varchar(250),
+grower_zip 			varchar(250),
+grower_country 			varchar(250),
+grower_phone1			varchar(250),
+grower_phone2			varchar(250),
+grower_fax			varchar(250),
+grower_email			varchar(250),
+grower_date_created             datetime,
+grower_created_by		integer,
+agtech_name_and_address_id      varchar(10),
+agtech_contact_person_id        integer
+) ;
+

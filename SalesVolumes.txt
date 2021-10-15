@@ -1,0 +1,116 @@
+------------------------------------------------------------------------------------------------------
+create or alter function is_current_crop_year(@var_commodity_id          as varchar(max), 
+                                              @var_sched_ship_end_date   as date,
+                                              @var_today                 as date)
+returns integer
+as
+  begin
+    declare @the_return_value integer ;
+    declare c1 cursor for select 1
+                          from  crop_years
+                          where commodity_id = @var_commodity_id
+                          and   @var_sched_ship_end_date between start_date and end_date
+                          and   @var_today between start_date and end_date ;
+    open c1 ; 
+      fetch c1 into @the_return_value ;
+    close c1 ; 
+    deallocate c1  ;
+    return isnull(@the_return_value,0) ; 
+  end  ;
+-----------------------------------------------------------------------------------------------------
+create or alter function is_previous_crop_year(@var_commodity_id          as varchar(max), 
+                                               @var_sched_ship_end_date   as date,
+                                               @var_today                 as date)
+returns integer
+as
+  begin
+    declare @the_return_value integer ;
+    declare c1 cursor for select 1
+                          from  crop_years
+                          where commodity_id = @var_commodity_id
+                          and   @var_sched_ship_end_date between start_date and end_date
+                          and   @var_today between DATEADD(year,1,start_date) and DATEADD(year,1,end_date);
+    open c1 ; 
+      fetch c1 into @the_return_value ;
+    close c1 ; 
+    deallocate c1  ;
+    return isnull(@the_return_value,0) ; 
+  end  ;
+-----------------------------------------------------------------------------------------------------
+create or alter function is_previous2_crop_year(@var_commodity_id          as varchar(max), 
+                                               @var_sched_ship_end_date   as date,
+                                               @var_today                 as date)
+returns integer
+as
+  begin
+    declare @the_return_value integer ;
+    declare c1 cursor for select 1
+                          from  crop_years
+                          where commodity_id = @var_commodity_id
+                          and   @var_sched_ship_end_date between start_date and end_date
+                          and   @var_today between DATEADD(year,2,start_date) and DATEADD(year,2,end_date);
+    open c1 ; 
+      fetch c1 into @the_return_value ;
+    close c1 ; 
+    deallocate c1  ;
+    return isnull(@the_return_value,0) ; 
+  end  ;
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+create or alter function get_crop_year(@var_commodity_id          as varchar(max), 
+                                       @var_sched_ship_end_date   as date)
+returns varchar(250)
+as
+  begin
+    declare @the_return_value varchar(250) ;
+    declare c1 cursor for select crop_year
+                          from crop_years
+                          where commodity_id = @var_commodity_id
+                          and  @var_sched_ship_end_date between start_date and end_date ;
+    open c1 ; 
+      fetch c1 into @the_return_value ;
+    close c1 ; 
+    deallocate c1  ;
+    return isnull(@the_return_value,'unk') ; 
+  end  ;
+
+
+
+
+
+-- Signin as saturndba/saturndba and run from the SATURN_DEV database.
+
+with x as
+(select d.grower_id,
+       d.grower_first_name,
+       a.vendor_customer_id,
+       a.commodity_id,
+	   a.quantity,
+	   a.quantity_uom,
+	   a.sched_ship_start_date,
+	   a.sched_ship_end_date
+ from agtech_dbct.dbo.s1_contract a,
+      vendors b,
+	  growers_vendors c,
+	  growers d
+where a.vendor_customer_id = b.agtech_vendor_id
+and b.vendor_id = c.vendor_id
+and d.grower_id = c.grower_id
+)
+select x.grower_id, 
+       x.vendor_customer_id,
+	   x.commodity_id,
+	   x.quantity_uom,
+	   sum(case when saturndba.is_current_crop_year(x.commodity_id, x.sched_ship_end_date, getdate())   = 1 then x.quantity end) current_total_qty,
+	   sum(case when saturndba.is_previous_crop_year(x.commodity_id, x.sched_ship_end_date, getdate())  = 1 then x.quantity end) previous_total_qty,
+	   sum(case when saturndba.is_previous2_crop_year(x.commodity_id, x.sched_ship_end_date, getdate()) = 1 then x.quantity end) previous2_total_qty
+from x
+group by x.grower_id, 
+       x.vendor_customer_id,
+	   x.commodity_id,
+	   x.quantity_uom
+--having sum(x.quantity) <> 0 

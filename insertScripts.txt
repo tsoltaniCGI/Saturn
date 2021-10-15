@@ -1,0 +1,122 @@
+-- create commodities...
+insert into commodities (commodity_id, commodity_name)
+select commodity_id, name
+from agtech_dbct.dbo.s1_commodity
+
+-- create facilities...
+insert into facilities (facility_name,
+                        facility_ADDRESS_LINE_1,
+			facility_ADDRESS_LINE_2,
+			facility_city,
+			facility_state,
+			facility_zip,
+			facility_country,
+			agtech_facility_id
+                        )
+                 select full_name,
+                        ADDRESS_LINE_1,
+	                ADDRESS_LINE_2,
+	                city,
+	                state_province_code,
+	                zip_postal_code,
+	                country_code,
+                        name_and_address_id 
+                 from agtech_dbct.dbo.s1_name_and_address
+                 where plc_flag = 'Y'
+; 
+
+
+-- create users...
+insert into users (user_first_name, user_last_name, user_login)
+select  substring(full_name,1,charindex(' ',full_name,1)) as first_name,
+	    substring(full_name,charindex(' ',full_name,1)+1, 20) as last_name,
+        user_id
+from agtech_dbct.dbo.a1_user
+where inactive_flag = 'N'
+and user_id not like 'GSBAT%'
+
+
+
+-- How to create a dummy temp table
+--select *
+--into vendors_temp 
+--from vendors where 1=2
+
+
+-- populate the vendors table
+insert into vendors (agtech_vendor_id, 
+                          vendor_name, 
+                          vendor_address_line_1, 
+                          vendor_address_line_2,
+                          vendor_city,
+                          vendor_county,
+                          vendor_state,
+                          vendor_zip,
+                          vendor_country,
+                          vendor_phone1,
+                          vendor_phone2,
+                          vendor_email)
+select a.name_and_address_id,
+       a.full_name,
+	   a.address_line_1,
+	   a.address_line_2,
+	   a.city,
+	   null,
+	   a.state_province_code,
+	   a.zip_postal_code,
+	   a.country_code,
+	   c.phone_nbr,
+	   null,
+	   c.e_mail
+from agtech_dbct.dbo.s1_name_and_address a,
+     agtech_dbct.dbo.s1_producer b,
+	 agtech_dbct.dbo.s1_contact_person c
+where a.name_and_address_id = b.producer_id
+and (a.name_and_address_id = c.name_and_address_id and c.contact_person_id = 1)
+and (a.country_code in ('USA','Canada') or a.country_code is null)
+and a.inactive_flag = 'N'
+and ISNUMERIC(a.name_and_Address_id) = 1 -- exclude any bad records in Agtech
+
+
+
+-- populate the growers_temp table
+insert into growers_temp ( 
+                          grower_first_name,
+                          grower_last_name, 
+                          grower_address_line_1, 
+                          grower_address_line_2,
+                          grower_city,
+                          grower_county,
+                          grower_state,
+                          grower_zip,
+                          grower_country,
+                          grower_phone1,
+                          grower_phone2,
+                          grower_email,
+                          grower_date_created,
+                          grower_created_by,
+                          agtech_name_and_address_id,
+                          agtech_contact_person_id)
+select 
+       c.name,
+       c.name,
+       a.address_line_1,
+	   a.address_line_2,
+	   a.city,
+	   null,
+	   a.state_province_code,
+	   a.zip_postal_code,
+	   a.country_code,
+	   c.phone_nbr,
+	   null,
+	   c.e_mail,
+           c.add_Date,
+           196,
+           a.name_and_address_id,
+           c.contact_person_id
+from agtech_dbct.dbo.s1_name_and_address a,
+     agtech_dbct.dbo.s1_contact_person c   
+where a.name_and_address_id = c.name_and_address_id
+and (a.country_code in ('USA','Canada') or a.country_code is null)
+and a.inactive_flag = 'N'
+and ISNUMERIC(a.name_and_Address_id) = 1 -- exclude any bad records in Agtech
