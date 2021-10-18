@@ -70,6 +70,7 @@ Partial Class Form1
         Me.ListView2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
         Me.ListView2.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ListView2.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.ListView2.GridLines = True
         Me.ListView2.HideSelection = False
         Me.ListView2.Location = New System.Drawing.Point(196, 70)
         Me.ListView2.Margin = New System.Windows.Forms.Padding(7)

@@ -49,8 +49,9 @@ Public Class Form1
         myCmd = oConn.CreateCommand
         sSql = "SELECT growers.grower_id, vendors.vendor_id, ISNULL(grower_first_name,''), ISNULL(grower_address_line_1,''), "
         sSql = sSql & "ISNULL(grower_city,''), ISNULL(grower_county,''), ISNULL(grower_state,''), ISNULL(grower_zip,''), ISNULL(grower_country,''), ISNULL(grower_phone1,''), "
-        sSql = sSql & "ISNULL(vendor_name,''), ISNULL(commodities.commodity_id,''), ISNULL(commodity_name,'') "
-        sSql = sSql & "FROM growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities "
+        sSql = sSql & "ISNULL(vendor_name,''), ISNULL(commodities.commodity_id,''), ISNULL(commodity_name,''), "
+        sSql = sSql & "ISNULL(current_crop_year_volume, 0), ISNULL(previous_crop_year_volume, 0), ISNULL(previous2_crop_year_volume, 0) "
+        sSql = sSql & "FROM growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities, vendor_sales_volume "
         sSql = sSql & "WHERE user_id = 339 " 'Using User ID 339 as a TEST
         sSql = sSql & "AND vendors_facilities.facility_id = User_facility_id "
         sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
@@ -58,6 +59,8 @@ Public Class Form1
         sSql = sSql & "AND vendors.vendor_id = growers_vendors.vendor_id "
         sSql = sSql & "AND commodities.commodity_id = vendors_commodities.commodity_id "
         sSql = sSql & "AND vendors.vendor_id = vendors_commodities.vendor_id "
+        sSql = sSql & "AND commodities.commodity_id = vendor_sales_volume.commodity_id "
+        sSql = sSql & "AND vendors.agtech_vendor_id= vendor_sales_volume.agtech_vendor_id "
         sSql = sSql & "ORDER BY growers.grower_id, vendors.vendor_id, commodity_name"
 
         myCmd.CommandText = sSql
@@ -82,6 +85,9 @@ Public Class Form1
                 oGVC.VendorName = oReader.GetString(10)
                 oGVC.CommID = oReader.GetString(11)
                 oGVC.CommName = oReader.GetString(12)
+                oGVC.CurrentCropYear = oReader.GetDecimal(13)
+                oGVC.PreviousCropYear = oReader.GetDecimal(14)
+                oGVC.Previous2CropYear = oReader.GetDecimal(15)
                 oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & "|" & oGVC.VendorId.ToString() & "|" & oGVC.CommID)
             Loop
         End If
@@ -121,6 +127,9 @@ Public Class Form1
                             Dim oComm As New Commodity
                             oComm.CommID = sCommID
                             oComm.CommName = oCollGrowVendComm(iCnt).CommName
+                            oComm.CurrentCropYear = oCollGrowVendComm(iCnt).CurrentCropYear
+                            oComm.PreviousCropYear = oCollGrowVendComm(iCnt).PreviousCropYear
+                            oComm.Previous2CropYear = oCollGrowVendComm(iCnt).Previous2CropYear
                             oVendor.CollCommodities.Add(oComm)
                             iCnt = iCnt + 1
                             If iCnt >= iMax Then
@@ -347,6 +356,10 @@ Public Class Form1
         Dim lbCommFound As Boolean
         Dim lsCurCommId As String
         Dim lsCurCommName As String
+        Dim lsCurCropYear As String
+        Dim lsPrevCropYear As String
+        Dim lsPrev2CropYear As String
+
 
         lbCommFound = False
 
@@ -360,10 +373,16 @@ Public Class Form1
                 Do While liCommCnt <= liCommMax
                     lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
                     lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
+                    lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurCropYear.ToString()
+                    lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PrevCropYear.ToString()
+                    lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Prev2CropYear.ToString()
                     If Not loCollCommList.Contains(lsCurCommId) Then
                         Dim loNewComm As New Commodity
                         loNewComm.CommID = lsCurCommId
                         loNewComm.CommName = lsCurCommName
+                        loNewComm.CurrentCropYear = lsCurCropYear
+                        loNewComm.PreviousCropYear = lsPrevCropYear
+                        loNewComm.Previous2CropYear = lsPrev2CropYear
                         loCollCommList.Add(loNewComm, loNewComm.CommID)
                     End If
                     liCommCnt = liCommCnt + 1
@@ -376,9 +395,10 @@ Public Class Form1
         For Each loCurComm In loCollCommList
             Dim oLVI As New ListViewItem
             oLVI.SubItems(0).Text = loCurComm.CommName
-            oLVI.SubItems.Add("20,453")
-            oLVI.SubItems.Add("432,903")
-            oLVI.SubItems.Add("94,451")
+
+            oLVI.SubItems.Add(loCurComm.CurrentCropYear)
+            oLVI.SubItems.Add(loCurComm.PreviousCropYear)
+            oLVI.SubItems.Add(loCurComm.Previous2CropYear)
             oLVI.SubItems.Add("CGI")
             ListView2.Items.Add(oLVI)
         Next
@@ -435,6 +455,10 @@ Public Class Form1
         Dim lbCommFound As Boolean
         Dim lsCurCommId As String
         Dim lsCurCommName As String
+        Dim lsCurCropYear As String
+        Dim lsPrevCropYear As String
+        Dim lsPrev2CropYear As String
+
 
         lbCommFound = False
 
@@ -448,10 +472,16 @@ Public Class Form1
                 Do While liCommCnt <= liCommMax
                     lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
                     lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
+                    lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurrentCropYear.ToString()
+                    lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PreviousCropYear.ToString()
+                    lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Previous2CropYear.ToString()
                     If Not loCollCommList.Contains(lsCurCommId) Then
                         Dim loNewComm As New Commodity
                         loNewComm.CommID = lsCurCommId
                         loNewComm.CommName = lsCurCommName
+                        loNewComm.CurrentCropYear = lsCurCropYear
+                        loNewComm.PreviousCropYear = lsPrevCropYear
+                        loNewComm.Previous2CropYear = lsPrev2CropYear
                         loCollCommList.Add(loNewComm, loNewComm.CommID)
                     End If
                     liCommCnt = liCommCnt + 1
@@ -461,16 +491,49 @@ Public Class Form1
         Loop
         ListView2.View = View.Details
         ListView2.Items.Clear()
-
         For Each loCurComm In loCollCommList
             Dim oLVI As New ListViewItem
             oLVI.SubItems(0).Text = loCurComm.CommName
-            oLVI.SubItems.Add("20,453")
-            oLVI.SubItems.Add("432,903")
-            oLVI.SubItems.Add("94,451")
+
+            oLVI.SubItems.Add(loCurComm.CurrentCropYear)
+            oLVI.SubItems.Add(loCurComm.PreviousCropYear)
+            oLVI.SubItems.Add(loCurComm.Previous2CropYear)
             oLVI.SubItems.Add("CGI")
             ListView2.Items.Add(oLVI)
         Next
+        'ListView2.Columns.Add("Commodity", 100, HorizontalAlignment.Center) 'Column 1
+        'ListView2.Columns.Add("Current Crop Year", 100, HorizontalAlignment.Left) 'Column 2
+        'ListView2.Columns.Add("Previous Crop Year", 100, HorizontalAlignment.Right) 'Column 3
+        'ListView2.Columns.Add("Crop Year Previous", 100, HorizontalAlignment.Right) 'Column 4
+
+
+
+        'Dim oHeader As New ColumnHeader
+        'oHeader.Text = "Commodity"
+        'oHeader.Width = 100
+        'oHeader.TextAlign = HorizontalAlignment.Center
+        'ListView1.Columns.Add(oHeader)
+        'Dim oHeader1 As New ColumnHeader
+        'oHeader1.Text = "Current Crop Year"
+        'oHeader1.Width = 100
+        'oHeader1.TextAlign = HorizontalAlignment.Center
+        'ListView1.Columns.Add(oHeader1)
+        'Dim oHeader2 As New ColumnHeader
+        'oHeader2.Text = "Previous Crop Year"
+        'oHeader2.Width = 100
+        'oHeader2.TextAlign = HorizontalAlignment.Center
+        'ListView1.Columns.Add(oHeader2)
+        'Dim oHeader3 As New ColumnHeader
+        'oHeader3.Text = "Crop Year 2 yrs Previous"
+        'oHeader3.Width = 100
+        'oHeader3.TextAlign = HorizontalAlignment.Center
+        'ListView1.Columns.Add(oHeader3)
+        'For Each loCurComm In loCollCommList
+        ' Dim oLVI As New ListViewItem
+        ' oLVI.SubItems(0).Text = loCurComm.CommName
+        ' ListView2.Items.Add(oLVI)
+        ' Next
+
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -497,6 +560,8 @@ Public Class Form1
     Private Sub ListView2_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles ListView2.SelectedIndexChanged
 
     End Sub
+
+
 End Class
 
 

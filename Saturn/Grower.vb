@@ -41,12 +41,21 @@ Public Class GrowVendCom
     Public Property VendorName As String
     Public Property CommID As String
     Public Property CommName As String
+    Public Property CurrentCropYear As Decimal
+    Public Property PreviousCropYear As Decimal
+
+    Public Property Previous2CropYear As Decimal
 
 
 End Class
 Public Class Commodity
     Public Property CommID As String
     Public Property CommName As String
+    Public Property CurrentCropYear As Decimal
+    Public Property PreviousCropYear As Decimal
+
+    Public Property Previous2CropYear As Decimal
+
 End Class
 Public Class Vendor
     Public Property VendorName As String
