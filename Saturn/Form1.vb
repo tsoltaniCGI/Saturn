@@ -44,7 +44,7 @@ Public Class Form1
 
 
 
-
+        Me.Text = "Saturn"
         oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         myCmd = oConn.CreateCommand
         sSql = "SELECT growers.grower_id, vendors.vendor_id, ISNULL(grower_first_name,''), ISNULL(grower_address_line_1,''), "
