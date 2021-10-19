@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 
 
-Public Class Form1
+Public Class FormMain
 
     Inherits System.Windows.Forms.Form
 
@@ -558,6 +558,10 @@ Public Class Form1
         e.Graphics.FillRectangle(Brushes.Red, e.Bounds)
         e.DrawText()
 
+    End Sub
+
+    Private Sub FormMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Application.Exit()
     End Sub
 End Class
 

@@ -2,6 +2,8 @@
     Public Property bAppExit As Boolean
     Private Sub FormLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.bAppExit = True
+        Me.AcceptButton = btnLogin
+        btnLogin.NotifyDefault(True)
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -12,6 +14,7 @@
             Me.Close()
             Dim oFormMain As New FormMain
             oFormMain.Show()
+            oFormMain.TopMost = True
         Else
             Label4.Text = "Not Validated"
         End If
