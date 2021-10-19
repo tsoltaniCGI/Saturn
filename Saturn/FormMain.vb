@@ -5,6 +5,8 @@ Imports System.Data.SqlClient
 Public Class Form1
 
     Inherits System.Windows.Forms.Form
+
+
     Dim oConn As New SqlConnection
     Dim myCmd As SqlCommand
     Dim oGrwoerCmd As SqlCommand
@@ -34,6 +36,8 @@ Public Class Form1
     End Function
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+
         Dim sSql As String
         Dim iGrowerID As Integer
         Dim iVendorID As Integer
@@ -324,13 +328,8 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
 
-    End Sub
 
-    Private Sub ListBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles ListBox1.MouseClick
-
-    End Sub
 
     Private Sub cbxVendors_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles cbxVendors.ItemCheck
 
@@ -378,8 +377,8 @@ Public Class Form1
             Next
             liCnt = liCnt + 1
         Loop
-        ListView2.View = View.Details
-        ListView2.Items.Clear()
+        lvCommoditySales.View = View.Details
+        lvCommoditySales.Items.Clear()
         For Each loCurComm In loCollCommList
             Dim oLVI As New ListViewItem
             oLVI.SubItems(0).Text = loCurComm.CommName
@@ -388,7 +387,7 @@ Public Class Form1
             oLVI.SubItems.Add(loCurComm.PreviousCropYear)
             oLVI.SubItems.Add(loCurComm.Previous2CropYear)
             oLVI.SubItems.Add("CGI")
-            ListView2.Items.Add(oLVI)
+            lvCommoditySales.Items.Add(oLVI)
         Next
         'ListView2.Columns.Add("Commodity", 100, HorizontalAlignment.Center) 'Column 1
         'ListView2.Columns.Add("Current Crop Year", 100, HorizontalAlignment.Left) 'Column 2
@@ -425,9 +424,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub ListView2_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-    End Sub
 
     Private Sub cbxVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxVendors.SelectedIndexChanged
 
@@ -477,8 +473,8 @@ Public Class Form1
             Next
             liCnt = liCnt + 1
         Loop
-        ListView2.View = View.Details
-        ListView2.Items.Clear()
+        lvCommoditySales.View = View.Details
+        lvCommoditySales.Items.Clear()
         For Each loCurComm In loCollCommList
             Dim oLVI As New ListViewItem
             oLVI.SubItems(0).Text = loCurComm.CommName
@@ -487,7 +483,7 @@ Public Class Form1
             oLVI.SubItems.Add(loCurComm.PreviousCropYear)
             oLVI.SubItems.Add(loCurComm.Previous2CropYear)
             oLVI.SubItems.Add("CGI")
-            ListView2.Items.Add(oLVI)
+            lvCommoditySales.Items.Add(oLVI)
         Next
         'ListView2.Columns.Add("Commodity", 100, HorizontalAlignment.Center) 'Column 1
         'ListView2.Columns.Add("Current Crop Year", 100, HorizontalAlignment.Left) 'Column 2
@@ -524,13 +520,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs)
-
-    End Sub
 
     Private Sub ListBox1_DrawItem(sender As Object, e As DrawItemEventArgs) Handles ListBox1.DrawItem
         Dim mybrush As New System.Drawing.SolidBrush(Color.FromArgb(25, 25, 25))
@@ -545,11 +534,31 @@ Public Class Form1
         e.DrawFocusRectangle()
     End Sub
 
-    Private Sub ListView2_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles ListView2.SelectedIndexChanged
+
+    Private Sub lvCommoditySales_DrawItem(sender As Object, e As DrawListViewItemEventArgs) Handles lvCommoditySales.DrawItem
+        e.DrawDefault = True
 
     End Sub
 
+    Private Sub lvCommoditySales_DrawColumnHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs) Handles lvCommoditySales.DrawColumnHeader
+        'Dim strFormat As New StringFormat()
 
+        'If e.Header.TextAlign = HorizontalAlignment.Center Then
+        '    strFormat.Alignment = StringAlignment.Center
+        'ElseIf e.Header.TextAlign = HorizontalAlignment.Right Then
+        '    strFormat.Alignment = StringAlignment.Far
+        'End If
+
+        'e.DrawBackground()
+        'e.Graphics.FillRectangle(Brushes.Red, e.Bounds)
+        'Dim headerFont As New Font("Arial", 8, FontStyle.Bold)
+
+        'e.Graphics.DrawString(e.Header.Text, headerFont, Brushes.Red, e.Bounds, strFormat)
+
+        e.Graphics.FillRectangle(Brushes.Red, e.Bounds)
+        e.DrawText()
+
+    End Sub
 End Class
 
 

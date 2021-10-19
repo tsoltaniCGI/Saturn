@@ -25,7 +25,7 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ListView2 = New System.Windows.Forms.ListView()
+        Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader2 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader3 = New System.Windows.Forms.ColumnHeader()
@@ -57,48 +57,48 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.Panel1.Controls.Add(Me.ListView2)
+        Me.Panel1.Controls.Add(Me.lvCommoditySales)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.cbxVendors)
-        Me.Panel1.Location = New System.Drawing.Point(231, 271)
+        Me.Panel1.Location = New System.Drawing.Point(341, 382)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1126, 302)
+        Me.Panel1.Size = New System.Drawing.Size(1502, 493)
         Me.Panel1.TabIndex = 14
         '
-        'ListView2
+        'lvCommoditySales
         '
-        Me.ListView2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
-        Me.ListView2.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.ListView2.ForeColor = System.Drawing.SystemColors.WindowFrame
-        Me.ListView2.GridLines = True
-        Me.ListView2.HideSelection = False
-        Me.ListView2.Location = New System.Drawing.Point(196, 70)
-        Me.ListView2.Margin = New System.Windows.Forms.Padding(7)
-        Me.ListView2.Name = "ListView2"
-        Me.ListView2.Scrollable = False
-        Me.ListView2.Size = New System.Drawing.Size(543, 220)
-        Me.ListView2.TabIndex = 20
-        Me.ListView2.UseCompatibleStateImageBehavior = False
+        Me.lvCommoditySales.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
+        Me.lvCommoditySales.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lvCommoditySales.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.lvCommoditySales.GridLines = True
+        Me.lvCommoditySales.HideSelection = False
+        Me.lvCommoditySales.Location = New System.Drawing.Point(597, 55)
+        Me.lvCommoditySales.Margin = New System.Windows.Forms.Padding(7)
+        Me.lvCommoditySales.Name = "lvCommoditySales"
+        Me.lvCommoditySales.Scrollable = False
+        Me.lvCommoditySales.Size = New System.Drawing.Size(876, 414)
+        Me.lvCommoditySales.TabIndex = 20
+        Me.lvCommoditySales.UseCompatibleStateImageBehavior = False
         '
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "Commodity"
-        Me.ColumnHeader1.Width = 130
+        Me.ColumnHeader1.Width = 300
         '
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "Cur Crop Year"
-        Me.ColumnHeader2.Width = 100
+        Me.ColumnHeader2.Width = 150
         '
         'ColumnHeader3
         '
         Me.ColumnHeader3.Text = "Prev Crop Year"
-        Me.ColumnHeader3.Width = 100
+        Me.ColumnHeader3.Width = 150
         '
         'ColumnHeader4
         '
         Me.ColumnHeader4.Text = "2 Yrs Prev"
-        Me.ColumnHeader4.Width = 100
+        Me.ColumnHeader4.Width = 150
         '
         'ColumnHeader5
         '
@@ -155,23 +155,23 @@ Partial Class Form1
         '
         Me.cbxVendors.CheckOnClick = True
         Me.cbxVendors.FormattingEnabled = True
-        Me.cbxVendors.Location = New System.Drawing.Point(7, 70)
+        Me.cbxVendors.Location = New System.Drawing.Point(87, 144)
         Me.cbxVendors.Name = "cbxVendors"
-        Me.cbxVendors.Size = New System.Drawing.Size(180, 220)
+        Me.cbxVendors.Size = New System.Drawing.Size(237, 220)
         Me.cbxVendors.TabIndex = 16
         '
         'TextBox12
         '
         Me.TextBox12.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox12.Location = New System.Drawing.Point(675, 50)
+        Me.TextBox12.Location = New System.Drawing.Point(881, 82)
         Me.TextBox12.Multiline = True
         Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(675, 202)
+        Me.TextBox12.Size = New System.Drawing.Size(962, 237)
         Me.TextBox12.TabIndex = 19
         '
         'Panel8
         '
-        Me.Panel8.Location = New System.Drawing.Point(675, 12)
+        Me.Panel8.Location = New System.Drawing.Point(881, 38)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(675, 35)
         Me.Panel8.TabIndex = 20
@@ -208,7 +208,7 @@ Partial Class Form1
         Me.ListBox1.ItemHeight = 15
         Me.ListBox1.Location = New System.Drawing.Point(8, 91)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(215, 484)
+        Me.ListBox1.Size = New System.Drawing.Size(315, 784)
         Me.ListBox1.TabIndex = 32
         '
         'lblAddress
@@ -216,7 +216,7 @@ Partial Class Form1
         Me.lblAddress.AutoSize = True
         Me.lblAddress.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblAddress.Location = New System.Drawing.Point(281, 91)
+        Me.lblAddress.Location = New System.Drawing.Point(369, 91)
         Me.lblAddress.Name = "lblAddress"
         Me.lblAddress.Size = New System.Drawing.Size(110, 14)
         Me.lblAddress.TabIndex = 33
@@ -227,7 +227,7 @@ Partial Class Form1
         Me.lblGrowerCity.AutoSize = True
         Me.lblGrowerCity.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerCity.Location = New System.Drawing.Point(282, 116)
+        Me.lblGrowerCity.Location = New System.Drawing.Point(370, 116)
         Me.lblGrowerCity.Name = "lblGrowerCity"
         Me.lblGrowerCity.Size = New System.Drawing.Size(83, 14)
         Me.lblGrowerCity.TabIndex = 34
@@ -238,7 +238,7 @@ Partial Class Form1
         Me.lblGrowerCountry.AutoSize = True
         Me.lblGrowerCountry.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerCountry.Location = New System.Drawing.Point(282, 168)
+        Me.lblGrowerCountry.Location = New System.Drawing.Point(370, 168)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
         Me.lblGrowerCountry.Size = New System.Drawing.Size(109, 14)
         Me.lblGrowerCountry.TabIndex = 35
@@ -249,7 +249,7 @@ Partial Class Form1
         Me.lblGrowerZip.AutoSize = True
         Me.lblGrowerZip.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerZip.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerZip.Location = New System.Drawing.Point(382, 168)
+        Me.lblGrowerZip.Location = New System.Drawing.Point(461, 168)
         Me.lblGrowerZip.Name = "lblGrowerZip"
         Me.lblGrowerZip.Size = New System.Drawing.Size(77, 14)
         Me.lblGrowerZip.TabIndex = 37
@@ -260,7 +260,7 @@ Partial Class Form1
         Me.lblGrowerPhone1.AutoSize = True
         Me.lblGrowerPhone1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerPhone1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerPhone1.Location = New System.Drawing.Point(283, 193)
+        Me.lblGrowerPhone1.Location = New System.Drawing.Point(370, 193)
         Me.lblGrowerPhone1.Name = "lblGrowerPhone1"
         Me.lblGrowerPhone1.Size = New System.Drawing.Size(107, 14)
         Me.lblGrowerPhone1.TabIndex = 38
@@ -271,7 +271,7 @@ Partial Class Form1
         Me.lblGrowerState.AutoSize = True
         Me.lblGrowerState.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerState.Location = New System.Drawing.Point(283, 141)
+        Me.lblGrowerState.Location = New System.Drawing.Point(369, 141)
         Me.lblGrowerState.Name = "lblGrowerState"
         Me.lblGrowerState.Size = New System.Drawing.Size(92, 14)
         Me.lblGrowerState.TabIndex = 39
@@ -286,7 +286,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1367, 579)
+        Me.ClientSize = New System.Drawing.Size(1855, 887)
         Me.Controls.Add(Me.lblGrowerState)
         Me.Controls.Add(Me.lblGrowerPhone1)
         Me.Controls.Add(Me.lblGrowerZip)
@@ -331,7 +331,7 @@ Partial Class Form1
     Friend WithEvents lblGrowerPhone1 As Label
     Friend WithEvents lblGrowerState As Label
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ListView2 As ListView
+    Friend WithEvents lvCommoditySales As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
