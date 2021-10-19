@@ -1,6 +1,6 @@
 ﻿Module SaturnTraffic
     Sub Main()
-        Dim oForm As New Form1
+        Dim oForm As New FormMain
 
         oForm.ShowDialog()
 
