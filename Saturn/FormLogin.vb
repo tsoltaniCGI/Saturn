@@ -13,10 +13,10 @@
         'Dim oGrwoerCmd As SqlCommand
         Dim oReader As System.Data.SqlClient.SqlDataReader
         Dim sSql As String
-        Dim sUserName As String
+        Dim iUserId As Integer
 
         Label4.Text = ""
-        sUserName = ""
+
         Me.bAppExit = False
         Label4.Visible = False
 
@@ -36,7 +36,8 @@
 
             oReader = myCmd.ExecuteReader()
             If oReader.HasRows Then
-                sUserName = Trim(txtUserName.ToString())
+                oReader.Read()
+                iUserId = oReader.GetInt32(0)
             Else
                 Label4.Visible = True
                 Label4.Text = "There is NO **** way you are getting into Saturn with those credentials!"
