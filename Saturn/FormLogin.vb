@@ -8,11 +8,15 @@
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        Dim oConn As New SqlConnection
-        Dim myCmd As SqlCommand
-        Dim oGrwoerCmd As SqlCommand
-        Dim oReader As SqlDataReader
+        Dim oConn As New System.Data.SqlClient.SqlConnection
+        Dim myCmd As System.Data.SqlClient.SqlCommand
+        'Dim oGrwoerCmd As SqlCommand
+        Dim oReader As System.Data.SqlClient.SqlDataReader
+        Dim sSql As String
+        Dim sUserName As String
+
         Label4.Text = ""
+        sUserName = ""
         Me.bAppExit = False
         Label4.Visible = False
 
@@ -22,6 +26,22 @@
             Dim oFormMain As New FormMain
             oFormMain.Show()
             oFormMain.TopMost = True
+            oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+            myCmd = oConn.CreateCommand
+            sSql = "SELECT user_id "
+            sSql = sSql & "FROM users "
+            sSql = sSql & "WHERE user_first_name = '" & Trim(txtUserName.ToString()) & "'"
+            myCmd.CommandText = sSql
+            oConn.Open()
+
+            oReader = myCmd.ExecuteReader()
+            If oReader.HasRows Then
+                sUserName = Trim(txtUserName.ToString())
+            Else
+                Label4.Visible = True
+                Label4.Text = "There is NO **** way you are getting into Saturn with those credentials!"
+            End If
+
         Else
             Label4.Visible = True
             Label4.Text = "There is NO **** way you are getting into Saturn with those credentials!"
