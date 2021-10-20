@@ -30,10 +30,7 @@ Public Class FormMain
 
 
     Public Property DataGridView1 As Object
-    Private Function GetVendors(liGrowerID As Integer, liVendorID As Integer) As Collection
-        Dim loVendors As New Collection
-
-    End Function
+   
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -56,7 +53,7 @@ Public Class FormMain
         sSql = sSql & "ISNULL(vendor_name,''), ISNULL(commodities.commodity_id,''), ISNULL(commodity_name,''), "
         sSql = sSql & "ISNULL(current_crop_year_volume, 0), ISNULL(previous_crop_year_volume, 0), ISNULL(previous2_crop_year_volume, 0) "
         sSql = sSql & "FROM growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities, vendor_sales_volume "
-        sSql = sSql & "WHERE user_id = 339 " 'Using User ID 339 as a TEST
+        sSql = sSql & "WHERE user_id = " & GlobalVariables.UserId.ToString() & " "
         sSql = sSql & "AND vendors_facilities.facility_id = User_facility_id "
         sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
         sSql = sSql & "AND growers_vendors.grower_id = growers.grower_id "
