@@ -35,6 +35,7 @@
             If oReader.HasRows Then
                 oReader.Read()
                 iUserId = oReader.GetInt32(0)
+                GlobalVariables.UserId = iUserId
                 Label4.Text = "Validated"
                 Me.Close()
                 Dim oFormMain As New FormMain

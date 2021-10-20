@@ -62,3 +62,7 @@ Public Class Vendor
     Public Property VendorID As String
     Public Property CollCommodities As New Collection
 End Class
+Public Class GlobalVariables
+    Public Shared UserId As Integer
+
+End Class
