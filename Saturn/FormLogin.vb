@@ -5,6 +5,7 @@
         Me.bAppExit = True
         Me.AcceptButton = btnLogin
         btnLogin.NotifyDefault(True)
+        Label4.Visible = False
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -14,23 +15,19 @@
         Dim oReader As System.Data.SqlClient.SqlDataReader
         Dim sSql As String
         Dim iUserId As Integer
-
+        Dim bValidated As Boolean
         Label4.Text = ""
 
         Me.bAppExit = False
         Label4.Visible = False
-
+        bValidated = False
         If ValidateActiveDirectoryLogin("columbiagrain.com", txtUserName.Text.ToString(), txtPassword.Text.ToString()) Then
-            Label4.Text = "Validated"
-            Me.Close()
-            Dim oFormMain As New FormMain
-            oFormMain.Show()
-            oFormMain.TopMost = True
+
             oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
             myCmd = oConn.CreateCommand
             sSql = "SELECT user_id "
             sSql = sSql & "FROM users "
-            sSql = sSql & "WHERE user_first_name = '" & Trim(txtUserName.ToString()) & "'"
+            sSql = sSql & "WHERE user_login = '" & Trim(txtUserName.Text.ToString().ToUpper()) & "'"
             myCmd.CommandText = sSql
             oConn.Open()
 
@@ -38,6 +35,11 @@
             If oReader.HasRows Then
                 oReader.Read()
                 iUserId = oReader.GetInt32(0)
+                Label4.Text = "Validated"
+                Me.Close()
+                Dim oFormMain As New FormMain
+                oFormMain.Show()
+                oFormMain.TopMost = True
             Else
                 Label4.Visible = True
                 Label4.Text = "There is NO **** way you are getting into Saturn with those credentials!"
