@@ -9,6 +9,8 @@
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Label4.Text = ""
         Me.bAppExit = False
+        Label4.Visible = False
+
         If ValidateActiveDirectoryLogin("columbiagrain.com", txtUserName.Text.ToString(), txtPassword.Text.ToString()) Then
             Label4.Text = "Validated"
             Me.Close()
@@ -16,7 +18,8 @@
             oFormMain.Show()
             oFormMain.TopMost = True
         Else
-            Label4.Text = "Not Validated"
+            Label4.Visible = True
+            Label4.Text = "There is NO **** way you are getting into Saturn with those credentials!"
         End If
     End Sub
 
