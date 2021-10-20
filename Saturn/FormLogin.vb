@@ -1,5 +1,6 @@
 ﻿Public Class FormLogin
     Public Property bAppExit As Boolean
+
     Private Sub FormLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.bAppExit = True
         Me.AcceptButton = btnLogin
@@ -7,6 +8,10 @@
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        Dim oConn As New SqlConnection
+        Dim myCmd As SqlCommand
+        Dim oGrwoerCmd As SqlCommand
+        Dim oReader As SqlDataReader
         Label4.Text = ""
         Me.bAppExit = False
         Label4.Visible = False
