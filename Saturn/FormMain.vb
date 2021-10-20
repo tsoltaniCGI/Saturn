@@ -73,6 +73,7 @@ Public Class FormMain
         oReader = myCmd.ExecuteReader()
 
         iGrowerID = -1
+
         If oReader.HasRows Then
             Do While oReader.Read()
                 Dim oGVC As New GrowVendCom
