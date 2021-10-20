@@ -563,6 +563,10 @@ Public Class FormMain
     Private Sub FormMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         Application.Exit()
     End Sub
+
+    Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+
+    End Sub
 End Class
 
 

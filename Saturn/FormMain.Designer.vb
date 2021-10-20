@@ -23,21 +23,15 @@ Partial Class FormMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader2 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader3 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader4 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader5 = New System.Windows.Forms.ColumnHeader()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.cbxVendors = New System.Windows.Forms.CheckedListBox()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
-        Me.Panel8 = New System.Windows.Forms.Panel()
         Me.cmdSearch = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.txtGrowerName = New System.Windows.Forms.TextBox()
@@ -49,30 +43,25 @@ Partial Class FormMain
         Me.lblGrowerPhone1 = New System.Windows.Forms.Label()
         Me.lblGrowerState = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.Panel1.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pbContact = New System.Windows.Forms.PictureBox()
+        Me.pbGrowerPicture = New System.Windows.Forms.PictureBox()
+        Me.pbMainNotes = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbMainNotes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.Panel1.Controls.Add(Me.lvCommoditySales)
-        Me.Panel1.Controls.Add(Me.Panel3)
-        Me.Panel1.Controls.Add(Me.cbxVendors)
-        Me.Panel1.Location = New System.Drawing.Point(341, 382)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1502, 493)
-        Me.Panel1.TabIndex = 14
         '
         'lvCommoditySales
         '
+        Me.lvCommoditySales.BackColor = System.Drawing.Color.LightSeaGreen
         Me.lvCommoditySales.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
         Me.lvCommoditySales.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lvCommoditySales.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.lvCommoditySales.ForeColor = System.Drawing.Color.Snow
         Me.lvCommoditySales.GridLines = True
         Me.lvCommoditySales.HideSelection = False
-        Me.lvCommoditySales.Location = New System.Drawing.Point(597, 55)
+        Me.lvCommoditySales.Location = New System.Drawing.Point(909, 439)
         Me.lvCommoditySales.Margin = New System.Windows.Forms.Padding(7)
         Me.lvCommoditySales.Name = "lvCommoditySales"
         Me.lvCommoditySales.Scrollable = False
@@ -105,80 +94,20 @@ Partial Class FormMain
         Me.ColumnHeader5.Text = "Buyer"
         Me.ColumnHeader5.Width = 100
         '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.TextBox5)
-        Me.Panel3.Controls.Add(Me.PictureBox2)
-        Me.Panel3.Controls.Add(Me.TextBox3)
-        Me.Panel3.Location = New System.Drawing.Point(7, 9)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(431, 45)
-        Me.Panel3.TabIndex = 15
-        '
-        'TextBox5
-        '
-        Me.TextBox5.BackColor = System.Drawing.Color.Ivory
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.TextBox5.Location = New System.Drawing.Point(13, 6)
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(42, 32)
-        Me.TextBox5.TabIndex = 16
-        Me.TextBox5.Text = "Vndrs Icon"
-        Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Location = New System.Drawing.Point(8, 3)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(51, 37)
-        Me.PictureBox2.TabIndex = 15
-        Me.PictureBox2.TabStop = False
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.BackColor = System.Drawing.Color.Ivory
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox3.Font = New System.Drawing.Font("Cambria", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.TextBox3.Location = New System.Drawing.Point(80, 13)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 19)
-        Me.TextBox3.TabIndex = 12
-        Me.TextBox3.Text = "Vendors"
-        '
         'cbxVendors
         '
+        Me.cbxVendors.BackColor = System.Drawing.Color.LightSeaGreen
         Me.cbxVendors.CheckOnClick = True
+        Me.cbxVendors.ForeColor = System.Drawing.Color.Snow
         Me.cbxVendors.FormattingEnabled = True
-        Me.cbxVendors.Location = New System.Drawing.Point(87, 144)
+        Me.cbxVendors.Location = New System.Drawing.Point(421, 481)
         Me.cbxVendors.Name = "cbxVendors"
-        Me.cbxVendors.Size = New System.Drawing.Size(237, 220)
+        Me.cbxVendors.Size = New System.Drawing.Size(398, 148)
         Me.cbxVendors.TabIndex = 16
-        '
-        'TextBox12
-        '
-        Me.TextBox12.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox12.Location = New System.Drawing.Point(881, 82)
-        Me.TextBox12.Multiline = True
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(962, 237)
-        Me.TextBox12.TabIndex = 19
-        '
-        'Panel8
-        '
-        Me.Panel8.Location = New System.Drawing.Point(881, 38)
-        Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(675, 35)
-        Me.Panel8.TabIndex = 20
         '
         'cmdSearch
         '
-        Me.cmdSearch.Location = New System.Drawing.Point(148, 50)
+        Me.cmdSearch.Location = New System.Drawing.Point(243, 54)
         Me.cmdSearch.Name = "cmdSearch"
         Me.cmdSearch.Size = New System.Drawing.Size(75, 23)
         Me.cmdSearch.TabIndex = 22
@@ -188,9 +117,9 @@ Partial Class FormMain
         'txtSearch
         '
         Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtSearch.Location = New System.Drawing.Point(8, 50)
+        Me.txtSearch.Location = New System.Drawing.Point(12, 54)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(134, 23)
+        Me.txtSearch.Size = New System.Drawing.Size(225, 23)
         Me.txtSearch.TabIndex = 23
         '
         'txtGrowerName
@@ -216,7 +145,7 @@ Partial Class FormMain
         Me.lblAddress.AutoSize = True
         Me.lblAddress.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblAddress.Location = New System.Drawing.Point(369, 91)
+        Me.lblAddress.Location = New System.Drawing.Point(608, 151)
         Me.lblAddress.Name = "lblAddress"
         Me.lblAddress.Size = New System.Drawing.Size(110, 14)
         Me.lblAddress.TabIndex = 33
@@ -227,7 +156,7 @@ Partial Class FormMain
         Me.lblGrowerCity.AutoSize = True
         Me.lblGrowerCity.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerCity.Location = New System.Drawing.Point(370, 116)
+        Me.lblGrowerCity.Location = New System.Drawing.Point(609, 176)
         Me.lblGrowerCity.Name = "lblGrowerCity"
         Me.lblGrowerCity.Size = New System.Drawing.Size(83, 14)
         Me.lblGrowerCity.TabIndex = 34
@@ -238,7 +167,7 @@ Partial Class FormMain
         Me.lblGrowerCountry.AutoSize = True
         Me.lblGrowerCountry.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerCountry.Location = New System.Drawing.Point(370, 168)
+        Me.lblGrowerCountry.Location = New System.Drawing.Point(609, 228)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
         Me.lblGrowerCountry.Size = New System.Drawing.Size(109, 14)
         Me.lblGrowerCountry.TabIndex = 35
@@ -249,7 +178,7 @@ Partial Class FormMain
         Me.lblGrowerZip.AutoSize = True
         Me.lblGrowerZip.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerZip.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerZip.Location = New System.Drawing.Point(461, 168)
+        Me.lblGrowerZip.Location = New System.Drawing.Point(700, 228)
         Me.lblGrowerZip.Name = "lblGrowerZip"
         Me.lblGrowerZip.Size = New System.Drawing.Size(77, 14)
         Me.lblGrowerZip.TabIndex = 37
@@ -260,7 +189,7 @@ Partial Class FormMain
         Me.lblGrowerPhone1.AutoSize = True
         Me.lblGrowerPhone1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerPhone1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerPhone1.Location = New System.Drawing.Point(370, 193)
+        Me.lblGrowerPhone1.Location = New System.Drawing.Point(609, 253)
         Me.lblGrowerPhone1.Name = "lblGrowerPhone1"
         Me.lblGrowerPhone1.Size = New System.Drawing.Size(107, 14)
         Me.lblGrowerPhone1.TabIndex = 38
@@ -271,7 +200,7 @@ Partial Class FormMain
         Me.lblGrowerState.AutoSize = True
         Me.lblGrowerState.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerState.Location = New System.Drawing.Point(369, 141)
+        Me.lblGrowerState.Location = New System.Drawing.Point(608, 201)
         Me.lblGrowerState.Name = "lblGrowerState"
         Me.lblGrowerState.Size = New System.Drawing.Size(92, 14)
         Me.lblGrowerState.TabIndex = 39
@@ -282,11 +211,56 @@ Partial Class FormMain
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
+        'pbContact
+        '
+        Me.pbContact.Image = CType(resources.GetObject("pbContact.Image"), System.Drawing.Image)
+        Me.pbContact.Location = New System.Drawing.Point(344, -16)
+        Me.pbContact.Name = "pbContact"
+        Me.pbContact.Size = New System.Drawing.Size(568, 424)
+        Me.pbContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbContact.TabIndex = 40
+        Me.pbContact.TabStop = False
+        '
+        'pbGrowerPicture
+        '
+        Me.pbGrowerPicture.Image = CType(resources.GetObject("pbGrowerPicture.Image"), System.Drawing.Image)
+        Me.pbGrowerPicture.Location = New System.Drawing.Point(443, 151)
+        Me.pbGrowerPicture.Name = "pbGrowerPicture"
+        Me.pbGrowerPicture.Size = New System.Drawing.Size(119, 134)
+        Me.pbGrowerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.pbGrowerPicture.TabIndex = 41
+        Me.pbGrowerPicture.TabStop = False
+        '
+        'pbMainNotes
+        '
+        Me.pbMainNotes.Image = CType(resources.GetObject("pbMainNotes.Image"), System.Drawing.Image)
+        Me.pbMainNotes.Location = New System.Drawing.Point(1070, 72)
+        Me.pbMainNotes.Name = "pbMainNotes"
+        Me.pbMainNotes.Size = New System.Drawing.Size(264, 258)
+        Me.pbMainNotes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbMainNotes.TabIndex = 42
+        Me.pbMainNotes.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(1175, 201)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(89, 48)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 21
+        Me.PictureBox1.TabStop = False
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1855, 887)
+        Me.Controls.Add(Me.lvCommoditySales)
+        Me.Controls.Add(Me.cbxVendors)
+        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pbMainNotes)
+        Me.Controls.Add(Me.pbGrowerPicture)
         Me.Controls.Add(Me.lblGrowerState)
         Me.Controls.Add(Me.lblGrowerPhone1)
         Me.Controls.Add(Me.lblGrowerZip)
@@ -297,28 +271,19 @@ Partial Class FormMain
         Me.Controls.Add(Me.txtGrowerName)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.cmdSearch)
-        Me.Controls.Add(Me.Panel8)
-        Me.Controls.Add(Me.TextBox12)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.pbContact)
         Me.Name = "FormMain"
         Me.Text = "Saturn"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbContact, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbMainNotes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents FontDialog1 As FontDialog
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents TextBox3 As TextBox
     Friend WithEvents cbxVendors As CheckedListBox
-    Friend WithEvents TextBox12 As TextBox
-    Friend WithEvents Panel8 As Panel
     Friend WithEvents cmdSearch As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents txtGrowerName As TextBox
@@ -337,4 +302,8 @@ Partial Class FormMain
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents pbContact As PictureBox
+    Friend WithEvents pbGrowerPicture As PictureBox
+    Friend WithEvents pbMainNotes As PictureBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
