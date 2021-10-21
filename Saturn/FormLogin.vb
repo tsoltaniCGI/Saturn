@@ -25,9 +25,10 @@
 
             oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
             myCmd = oConn.CreateCommand
-            sSql = "SELECT user_id "
-            sSql = sSql & "FROM users "
-            sSql = sSql & "WHERE user_login = '" & Trim(txtUserName.Text.ToString().ToUpper()) & "'"
+            sSql = "SELECT user_id, user_first_name, user_last_name, facility_name "
+            sSql = sSql & "FROM users, facilities "
+            sSql = sSql & "WHERE user_login = '" & Trim(txtUserName.Text.ToString().ToUpper()) & "' "
+            sSql = sSql & "AND facilities.facility_id = ISNULL(User_facility_id, 158)"
             myCmd.CommandText = sSql
             oConn.Open()
 
@@ -37,6 +38,9 @@
                 oReader.Read()
                 iUserId = oReader.GetInt32(0)
                 GlobalVariables.UserId = iUserId
+                GlobalVariables.UserFirstName = oReader.GetString(1)
+                GlobalVariables.UserLastName = oReader.GetString(2)
+                GlobalVariables.UserFacility = oReader.GetString(3)
                 Label4.Text = "Validated"
                 Me.Close()
                 Dim oFormMain As New FormMain

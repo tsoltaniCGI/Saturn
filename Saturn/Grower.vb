@@ -64,5 +64,7 @@ Public Class Vendor
 End Class
 Public Class GlobalVariables
     Public Shared UserId As Integer
-
+    Public Shared UserFirstName As String
+    Public Shared UserLastName As String
+    Public Shared UserFacility As String
 End Class
