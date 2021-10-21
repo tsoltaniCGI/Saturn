@@ -18,7 +18,7 @@
         Dim bValidated As Boolean
         Label4.Text = ""
 
-        Me.bAppExit = False
+
         Label4.Visible = False
         bValidated = False
         If ValidateActiveDirectoryLogin("columbiagrain.com", txtUserName.Text.ToString(), txtPassword.Text.ToString()) Then
@@ -33,6 +33,7 @@
 
             oReader = myCmd.ExecuteReader()
             If oReader.HasRows Then
+                Me.bAppExit = False
                 oReader.Read()
                 iUserId = oReader.GetInt32(0)
                 GlobalVariables.UserId = iUserId
