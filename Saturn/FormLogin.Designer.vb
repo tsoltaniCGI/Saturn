@@ -85,7 +85,7 @@ Partial Class FormLogin
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(511, 525)
+        Me.ClientSize = New System.Drawing.Size(492, 525)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.txtPassword)
