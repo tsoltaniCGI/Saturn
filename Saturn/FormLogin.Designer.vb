@@ -22,64 +22,58 @@ Partial Class FormLogin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormLogin))
         Me.txtUserName = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label1.Location = New System.Drawing.Point(81, 103)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(105, 18)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "User Name:"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label2.Location = New System.Drawing.Point(94, 143)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 18)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Password:"
-        '
         'txtUserName
         '
-        Me.txtUserName.Location = New System.Drawing.Point(221, 101)
+        Me.txtUserName.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(117, Byte), Integer))
+        Me.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtUserName.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.txtUserName.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.txtUserName.Location = New System.Drawing.Point(123, 268)
         Me.txtUserName.Name = "txtUserName"
-        Me.txtUserName.Size = New System.Drawing.Size(97, 23)
+        Me.txtUserName.Size = New System.Drawing.Size(191, 20)
         Me.txtUserName.TabIndex = 2
+        Me.txtUserName.Text = "username"
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(221, 141)
+        Me.txtPassword.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(117, Byte), Integer))
+        Me.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.txtPassword.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.txtPassword.Location = New System.Drawing.Point(123, 345)
+        Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(97, 23)
+        Me.txtPassword.Size = New System.Drawing.Size(191, 31)
         Me.txtPassword.TabIndex = 3
+        Me.txtPassword.Text = "password"
         '
         'btnLogin
         '
-        Me.btnLogin.BackColor = System.Drawing.SystemColors.Menu
-        Me.btnLogin.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnLogin.Location = New System.Drawing.Point(182, 238)
+        Me.btnLogin.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(225, Byte), Integer))
+        Me.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.btnLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnLogin.Location = New System.Drawing.Point(66, 452)
+        Me.btnLogin.Margin = New System.Windows.Forms.Padding(0)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(90, 38)
+        Me.btnLogin.Size = New System.Drawing.Size(357, 48)
         Me.btnLogin.TabIndex = 4
-        Me.btnLogin.Text = "&Login"
+        Me.btnLogin.Text = "LOGIN"
         Me.btnLogin.UseVisualStyleBackColor = False
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(51, 199)
+        Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(117, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(66, 407)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 15)
         Me.Label4.TabIndex = 6
@@ -90,15 +84,14 @@ Partial Class FormLogin
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.ClientSize = New System.Drawing.Size(477, 332)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.ClientSize = New System.Drawing.Size(511, 525)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtUserName)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
         Me.ForeColor = System.Drawing.SystemColors.HighlightText
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Saturn Login"
@@ -106,9 +99,6 @@ Partial Class FormLogin
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents txtUserName As TextBox
     Friend WithEvents txtPassword As TextBox
     Friend WithEvents btnLogin As Button

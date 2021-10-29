@@ -1,4 +1,5 @@
 ﻿Public Class SaturnBackground
+    'inherits
     Private Sub SaturnBackground_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim formLogin As New FormLogin
         formLogin.TopLevel = True
