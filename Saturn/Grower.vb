@@ -13,6 +13,7 @@
     Public Property GrowerPhone2 As String
 
     Public Property Vendors As New Collection
+    Public Property Notes As New Collection
 
 
 
@@ -45,6 +46,15 @@ Public Class GrowVendCom
     Public Property PreviousCropYear As Decimal
 
     Public Property Previous2CropYear As Decimal
+    Public Property GrowerNoteId As Integer
+    Public Property GrowerNoteSubject As String
+
+    Public Property GrowerNoteMethod As String
+    Public Property GrowerNoteText As String
+
+    Public Property GrowerNoteCreationDate As Date
+    Public Property GrowerNoteCreatedBy As Integer
+
 
 
 End Class
@@ -62,6 +72,22 @@ Public Class Vendor
     Public Property VendorID As String
     Public Property CollCommodities As New Collection
 End Class
+
+Public Class Note
+    Public Property GrowerId As Integer
+    Public Property GrowerNoteId As Integer
+    Public Property GrowerNoteSubject As String
+
+    Public Property GrowerNoteMethod As String
+
+    Public Property GrowerNoteText As String
+
+    Public Property GrowerNoteCreationDate As Date
+    Public Property GrowerNoteCreatedBy As Integer
+
+End Class
+
+
 Public Class GlobalVariables
     Public Shared UserId As Integer
     Public Shared UserFirstName As String

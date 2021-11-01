@@ -45,12 +45,9 @@ Partial Class FormMain
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.pbContact = New System.Windows.Forms.PictureBox()
         Me.pbGrowerPicture = New System.Windows.Forms.PictureBox()
-        Me.pbMainNotes = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lvNotes = New System.Windows.Forms.ListView()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbMainNotes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvCommoditySales
@@ -231,35 +228,23 @@ Partial Class FormMain
         Me.pbGrowerPicture.TabIndex = 41
         Me.pbGrowerPicture.TabStop = False
         '
-        'pbMainNotes
+        'lvNotes
         '
-        Me.pbMainNotes.Image = CType(resources.GetObject("pbMainNotes.Image"), System.Drawing.Image)
-        Me.pbMainNotes.Location = New System.Drawing.Point(1070, 72)
-        Me.pbMainNotes.Name = "pbMainNotes"
-        Me.pbMainNotes.Size = New System.Drawing.Size(264, 258)
-        Me.pbMainNotes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbMainNotes.TabIndex = 42
-        Me.pbMainNotes.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(1175, 201)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(89, 48)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 21
-        Me.PictureBox1.TabStop = False
+        Me.lvNotes.HideSelection = False
+        Me.lvNotes.Location = New System.Drawing.Point(948, 23)
+        Me.lvNotes.Name = "lvNotes"
+        Me.lvNotes.Size = New System.Drawing.Size(458, 385)
+        Me.lvNotes.TabIndex = 42
+        Me.lvNotes.UseCompatibleStateImageBehavior = False
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1855, 887)
+        Me.Controls.Add(Me.lvNotes)
         Me.Controls.Add(Me.lvCommoditySales)
         Me.Controls.Add(Me.cbxVendors)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.pbMainNotes)
         Me.Controls.Add(Me.pbGrowerPicture)
         Me.Controls.Add(Me.lblGrowerState)
         Me.Controls.Add(Me.lblGrowerPhone1)
@@ -276,8 +261,6 @@ Partial Class FormMain
         Me.Text = "Saturn"
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbMainNotes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -304,6 +287,5 @@ Partial Class FormMain
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents pbContact As PictureBox
     Friend WithEvents pbGrowerPicture As PictureBox
-    Friend WithEvents pbMainNotes As PictureBox
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents lvNotes As ListView
 End Class

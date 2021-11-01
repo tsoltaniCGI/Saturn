@@ -42,6 +42,9 @@ Public Class FormMain
         Dim oCollGrowVendComm As New Collection
         Dim iMax As Integer
         Dim iCnt As Integer
+        'Dim iNoteId As Integer
+        Dim iNum As Integer
+        Dim bAddNote As Boolean
 
 
 
@@ -87,7 +90,8 @@ Public Class FormMain
         sSql = sSql & "ISNULL(GROWER_STATE, ''), ISNULL(GROWER_ZIP, ''), ISNULL(GROWER_COUNTRY, ''), "
         sSql = sSql & "ISNULL(GROWER_PHONE1, ''), ISNULL(VENDOR_NAME, ''), ISNULL(COM.COMMODITY_ID, ''), "
         sSql = sSql & "ISNULL(COMMODITY_NAME, ''), ISNULL(CURRENT_CROP_YEAR_VOLUME, 0), ISNULL(PREVIOUS_CROP_YEAR_VOLUME, 0), "
-        sSql = sSql & "ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0), ISNULL(GROWER_NOTE_ID, 0), ISNULL(GROWER_NOTE_TEXT, '') "
+        sSql = sSql & "ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0), ISNULL(GROWER_NOTE_ID, 0), ISNULL(GROWER_NOTE_CREATION_DATE, ''), ISNULL(GROWER_NOTE_SUBJECT, ''),  "
+        sSql = sSql & "ISNULL(GROWER_NOTE_METHOD, ''), ISNULL(GROWER_NOTE_TEXT, ''), ISNULL(GROWER_NOTE_CREATED_BY, 0) "
         sSql = sSql & "FROM GROWERS "
         sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
         sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
@@ -117,8 +121,6 @@ Public Class FormMain
         sSql = sSql & ") "
         sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, COMMODITY_NAME, GROWER_NOTE_ID"
 
-
-
         myCmd.CommandText = sSql
         oConn.Open()
 
@@ -127,6 +129,7 @@ Public Class FormMain
         iGrowerID = -1
 
         If oReader.HasRows Then
+            iNum = 1
             Do While oReader.Read()
                 Dim oGVC As New GrowVendCom
                 oGVC.GrowerID = oReader.GetInt32(0)
@@ -145,7 +148,15 @@ Public Class FormMain
                 oGVC.CurrentCropYear = oReader.GetDecimal(13)
                 oGVC.PreviousCropYear = oReader.GetDecimal(14)
                 oGVC.Previous2CropYear = oReader.GetDecimal(15)
-                oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & "|" & oGVC.VendorId.ToString() & "|" & oGVC.CommID)
+                oGVC.GrowerNoteId = oReader.GetInt32(16)
+                oGVC.GrowerNoteCreationDate = oReader.GetDateTime(17)
+                oGVC.GrowerNoteSubject = oReader.GetString(18)
+                oGVC.GrowerNoteMethod = oReader.GetString(19)
+                oGVC.GrowerNoteText = oReader.GetString(20)
+                oGVC.GrowerNoteCreatedBy = oReader.GetInt32(21)
+
+                oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & oGVC.VendorId.ToString() & oGVC.CommID.ToString() & iNum.ToString())
+                iNum = iNum + 1
             Loop
         End If
         oReader.Close()
@@ -158,7 +169,7 @@ Public Class FormMain
                 ListBox1.Items.Add(oCollGrowVendComm(iCnt).GrowerFirstName)
                 iGrowerID = oCollGrowVendComm(iCnt).GrowerId
                 Dim oGrower As New Grower()
-
+                oGrower.GrowerID = oCollGrowVendComm(iCnt).GrowerId
                 oGrower.GrowerAddress1 = oCollGrowVendComm(iCnt).GrowerAddress1
                 oGrower.GrowerCity = oCollGrowVendComm(iCnt).GrowerCity
                 oGrower.GrowerState = oCollGrowVendComm(iCnt).GrowerState
@@ -200,19 +211,53 @@ Public Class FormMain
                     End If
                     iCnt = iCnt + 1
                     If iCnt >= iMax Then
-                        oGrowerColl.Add(oGrower)
+                        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
                         Exit Do
                     End If
                 Loop
                 If iCnt <= iMax Then
                     If iGrowerID <> oCollGrowVendComm(iCnt).GrowerId Then
-                        oGrowerColl.Add(oGrower)
+                        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
                         'iCnt = iCnt - 1 'Move the pointer back one so the outside loop can advance to the next record
                     End If
                 End If
             Else
                 iCnt = iCnt + 1
             End If
+        Loop
+
+        iCnt = 1
+        iGrowerID = -1
+        Do While iCnt <= iMax
+            If oCollGrowVendComm(iCnt).GrowerId <> iGrowerID Then
+                iGrowerID = oCollGrowVendComm(iCnt).GrowerId
+                Do While iGrowerID = oCollGrowVendComm(iCnt).GrowerId
+                    Dim oNote As New Note
+                    bAddNote = False
+                    If oCollGrowVendComm(iCnt).GrowerNoteId <> 0 Then
+                        '                    iNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
+                        If Not oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Contains(oCollGrowVendComm(iCnt).GrowerNoteId.ToString()) Then
+                            bAddNote = True
+                            oNote.GrowerNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
+                            oNote.GrowerNoteCreationDate = oCollGrowVendComm(iCnt).GrowerNoteCreationDate
+                            oNote.GrowerNoteCreatedBy = oCollGrowVendComm(iCnt).GrowerNoteCreatedBy
+                            oNote.GrowerNoteSubject = oCollGrowVendComm(iCnt).GrowerNoteSubject
+                            oNote.GrowerNoteMethod = oCollGrowVendComm(iCnt).GrowerNoteMethod
+                            oNote.GrowerNoteText = oCollGrowVendComm(iCnt).GrowerNoteText
+                            oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+
+                        End If
+                    End If
+                    iCnt = iCnt + 1
+                    If iCnt > iMax Then
+                        If bAddNote Then
+                            oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Items.Add(oNote, oNote.GrowerNoteId.ToString())
+                        End If
+                        Exit Do
+                    End If
+                Loop
+            End If
+            iCnt = iCnt + 1
         Loop
         '                oGrowerAddressColl.Add(oReader.GetString(3))
         '            oGrowerCityColl.Add(oReader.GetString(4))
@@ -355,6 +400,8 @@ Public Class FormMain
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
         Dim iCnt As Integer
         Dim iMax As Integer
+        'Dim ilvCnt As Integer
+        'Dim iLvMax As Integer
         'Dim oCurVendor As Vendor
         'MessageBox.Show(ListBox1.SelectedIndex.ToString())
         If ListBox1.SelectedIndex >= 0 Then
@@ -374,11 +421,24 @@ Public Class FormMain
                 'cbxVendors.Items.Add(oCurVendor.VendorName)
                 iCnt = iCnt + 1
             Loop
+            lvNotes.Clear()
+            For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
+                Dim oLVI As New ListViewItem
+                oLVI.SubItems(0).Text = oNote.GrowerNoteText
+
+                oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)
+                oLVI.SubItems.Add(oNote.GrowerNoteCreatedBy)
+                oLVI.SubItems.Add(oNote.GrowerNoteSubject)
+                oLVI.SubItems.Add(oNote.GrowerNoteMethod)
+                lvNotes.Items.Add(oLVI)
+            Next
         End If
         If cbxVendors.Items.Count >= 1 Then
             cbxVendors.SetSelected(0, True)
 
         End If
+
+
     End Sub
 
 
@@ -406,30 +466,30 @@ Public Class FormMain
         liCnt = 1
         liMax = 2
 
-        Do While liCnt <= liMax
-            For Each liIndex In cbxVendors.CheckedIndices
-                liCommCnt = 1
-                liCommMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities.Count
-                Do While liCommCnt <= liCommMax
-                    lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
-                    lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
-                    lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurCropYear.ToString()
-                    lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PrevCropYear.ToString()
-                    lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Prev2CropYear.ToString()
-                    If Not loCollCommList.Contains(lsCurCommId) Then
-                        Dim loNewComm As New Commodity
-                        loNewComm.CommID = lsCurCommId
-                        loNewComm.CommName = lsCurCommName
-                        loNewComm.CurrentCropYear = lsCurCropYear
-                        loNewComm.PreviousCropYear = lsPrevCropYear
-                        loNewComm.Previous2CropYear = lsPrev2CropYear
-                        loCollCommList.Add(loNewComm, loNewComm.CommID)
-                    End If
-                    liCommCnt = liCommCnt + 1
-                Loop
-            Next
-            liCnt = liCnt + 1
-        Loop
+        'Do While liCnt <= liMax
+        For Each liIndex In cbxVendors.CheckedIndices
+            liCommCnt = 1
+            liCommMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities.Count
+            Do While liCommCnt <= liCommMax
+                lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
+                lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
+                lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurCropYear.ToString()
+                lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PrevCropYear.ToString()
+                lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Prev2CropYear.ToString()
+                If Not loCollCommList.Contains(lsCurCommId) Then
+                    Dim loNewComm As New Commodity
+                    loNewComm.CommID = lsCurCommId
+                    loNewComm.CommName = lsCurCommName
+                    loNewComm.CurrentCropYear = lsCurCropYear
+                    loNewComm.PreviousCropYear = lsPrevCropYear
+                    loNewComm.Previous2CropYear = lsPrev2CropYear
+                    loCollCommList.Add(loNewComm, loNewComm.CommID)
+                End If
+                liCommCnt = liCommCnt + 1
+            Loop
+        Next
+        liCnt = liCnt + 1
+        'Loop
         lvCommoditySales.View = View.Details
         lvCommoditySales.Items.Clear()
         For Each loCurComm In loCollCommList
@@ -502,8 +562,8 @@ Public Class FormMain
         liCnt = 1
         liMax = 2
 
-        Do While liCnt <= liMax
-            For Each liIndex In cbxVendors.CheckedIndices
+        'Do While liCnt <= liMax
+        For Each liIndex In cbxVendors.CheckedIndices
                 liCommCnt = 1
                 liCommMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities.Count
                 Do While liCommCnt <= liCommMax
@@ -525,7 +585,7 @@ Public Class FormMain
                 Loop
             Next
             liCnt = liCnt + 1
-        Loop
+        'Loop
         lvCommoditySales.View = View.Details
         lvCommoditySales.Items.Clear()
         For Each loCurComm In loCollCommList
