@@ -48,21 +48,76 @@ Public Class FormMain
         Me.Text = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facility: " & GlobalVariables.UserFacility
         oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         myCmd = oConn.CreateCommand
-        sSql = "SELECT growers.grower_id, vendors.vendor_id, ISNULL(grower_first_name,''), ISNULL(grower_address_line_1,''), "
-        sSql = sSql & "ISNULL(grower_city,''), ISNULL(grower_county,''), ISNULL(grower_state,''), ISNULL(grower_zip,''), ISNULL(grower_country,''), ISNULL(grower_phone1,''), "
-        sSql = sSql & "ISNULL(vendor_name,''), ISNULL(commodities.commodity_id,''), ISNULL(commodity_name,''), "
-        sSql = sSql & "ISNULL(current_crop_year_volume, 0), ISNULL(previous_crop_year_volume, 0), ISNULL(previous2_crop_year_volume, 0) "
-        sSql = sSql & "FROM growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities, vendor_sales_volume "
-        sSql = sSql & "WHERE user_id = " & GlobalVariables.UserId.ToString() & " "
-        sSql = sSql & "AND vendors_facilities.facility_id = User_facility_id "
-        sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
-        sSql = sSql & "AND growers_vendors.grower_id = growers.grower_id "
-        sSql = sSql & "AND vendors.vendor_id = growers_vendors.vendor_id "
-        sSql = sSql & "AND commodities.commodity_id = vendors_commodities.commodity_id "
-        sSql = sSql & "AND vendors.vendor_id = vendors_commodities.vendor_id "
-        sSql = sSql & "AND commodities.commodity_id = vendor_sales_volume.commodity_id "
-        sSql = sSql & "AND vendors.agtech_vendor_id= vendor_sales_volume.agtech_vendor_id "
-        sSql = sSql & "ORDER BY growers.grower_id, vendors.vendor_id, commodity_name"
+        'sSql = "SELECT growers.grower_id, vendors.vendor_id, ISNULL(grower_first_name,''), ISNULL(grower_address_line_1,''), "
+        'sSql = sSql & "ISNULL(grower_city,''), ISNULL(grower_county,''), ISNULL(grower_state,''), ISNULL(grower_zip,''), ISNULL(grower_country,''), ISNULL(grower_phone1,''), "
+        'sSql = sSql & "ISNULL(vendor_name,''), ISNULL(commodities.commodity_id,''), ISNULL(commodity_name,''), "
+        'sSql = sSql & "ISNULL(current_crop_year_volume, 0), ISNULL(previous_crop_year_volume, 0), ISNULL(previous2_crop_year_volume, 0) "
+        'sSql = sSql & "FROM growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities, vendor_sales_volume "
+        'sSql = sSql & "WHERE user_id = " & GlobalVariables.UserId.ToString() & " "
+        'sSql = sSql & "AND vendors_facilities.facility_id = User_facility_id "
+        'sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
+        'sSql = sSql & "AND growers_vendors.grower_id = growers.grower_id "
+        'sSql = sSql & "AND vendors.vendor_id = growers_vendors.vendor_id "
+        'sSql = sSql & "AND commodities.commodity_id = vendors_commodities.commodity_id "
+        'sSql = sSql & "AND vendors.vendor_id = vendors_commodities.vendor_id "
+        'sSql = sSql & "AND commodities.commodity_id = vendor_sales_volume.commodity_id "
+        'sSql = sSql & "AND vendors.agtech_vendor_id= vendor_sales_volume.agtech_vendor_id "
+        'sSql = sSql & "ORDER BY growers.grower_id, vendors.vendor_id, commodity_name"
+
+        'Select Case growers.grower_id, vendors.vendor_id, NVL(grower_first_name,''), NVL(grower_address_line_1,''),
+        'NVL(grower_city,''), NVL(grower_county,''), NVL(grower_state,''), NVL(grower_zip,''), NVL(grower_country,''), NVL(grower_phone1,''),
+        'NVL(vendor_name,''), NVL(commodities.commodity_id,''), NVL(commodity_name,''),
+        'NVL(current_crop_year_volume, 0), NVL(previous_crop_year_volume, 0), NVL(previous2_crop_year_volume, 0), NVL(grower_note_id, 0), NVL(grower_note_text, '')
+        'From growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities, vendor_sales_volume, facilities, grower_notes
+        'Where user_id = 339
+        'And facilities.facility_id = User_facility_id
+        'And vendors_facilities.facility_id (+)= facilities.facility_id
+        'And vendors_facilities.vendor_id (+)= vendors.vendor_id
+        'And growers_vendors.grower_id = growers.grower_id
+        'And vendors.vendor_id = growers_vendors.vendor_id
+        'And commodity_id = vendors_commodities.commodity_id
+        'And vendors.vendor_id = vendors_commodities.vendor_id
+        'And vendor_sales_volume.commodity_id (+)= commodity_id
+        'And vendor_sales_volume.agtech_vendor_id (+)= vendors.agtech_vendor_id
+        'And grower_notes.grower_id (+)= growers.grower_id
+        'ORDER BY growers.grower_id, vendors.vendor_id, commodity_name, grower_note_id
+
+        sSql = "SELECT GROWERS.GROWER_ID, VENDORS.VENDOR_ID, ISNULL(GROWER_FIRST_NAME, ''), "
+        sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_1, ''), ISNULL(GROWER_CITY, ''), ISNULL(GROWER_COUNTY, ''), "
+        sSql = sSql & "ISNULL(GROWER_STATE, ''), ISNULL(GROWER_ZIP, ''), ISNULL(GROWER_COUNTRY, ''), "
+        sSql = sSql & "ISNULL(GROWER_PHONE1, ''), ISNULL(VENDOR_NAME, ''), ISNULL(COM.COMMODITY_ID, ''), "
+        sSql = sSql & "ISNULL(COMMODITY_NAME, ''), ISNULL(CURRENT_CROP_YEAR_VOLUME, 0), ISNULL(PREVIOUS_CROP_YEAR_VOLUME, 0), "
+        sSql = sSql & "ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0), ISNULL(GROWER_NOTE_ID, 0), ISNULL(GROWER_NOTE_TEXT, '') "
+        sSql = sSql & "FROM GROWERS "
+        sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
+        sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
+        sSql = sSql & "INNER Join GROWERS_VENDORS "
+        sSql = sSql & "ON GROWERS_VENDORS.GROWER_ID = GROWERS.GROWER_ID "
+        sSql = sSql & "INNER JOIN( "
+        sSql = sSql & "VENDORS "
+        sSql = sSql & "LEFT OUTER JOIN VENDOR_SALES_VOLUME "
+        sSql = sSql & "ON VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
+        sSql = sSql & "INNER JOIN VENDORS_COMMODITIES "
+        sSql = sSql & "ON VENDORS.VENDOR_ID = VENDORS_COMMODITIES.VENDOR_ID "
+        sSql = sSql & "LEFT OUTER JOIN ( "
+        sSql = sSql & "VENDORS_FACILITIES "
+        sSql = sSql & "RIGHT OUTER JOIN FACILITIES "
+        sSql = sSql & "ON VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        sSql = sSql & ") "
+        sSql = sSql & "ON VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        sSql = sSql & ") "
+        sSql = sSql & "ON VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID "
+        sSql = sSql & "CROSS Join USERS "
+        sSql = sSql & "CROSS Join COMMODITIES com "
+        sSql = sSql & "WHERE( "
+        sSql = sSql & "USER_ID = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "AND FACILITIES.FACILITY_ID = USER_FACILITY_ID "
+        sSql = sSql & "AND com.COMMODITY_ID = VENDORS_COMMODITIES.COMMODITY_ID "
+        sSql = sSql & "AND VENDOR_SALES_VOLUME.COMMODITY_ID = com.COMMODITY_ID "
+        sSql = sSql & ") "
+        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, COMMODITY_NAME, GROWER_NOTE_ID"
+
+
 
         myCmd.CommandText = sSql
         oConn.Open()
