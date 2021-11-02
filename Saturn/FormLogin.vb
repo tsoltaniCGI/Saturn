@@ -48,12 +48,12 @@
                 oFormMain.TopMost = True
             Else
                 Label4.Visible = True
-                Label4.Text = "There is NO **** way you are getting into Saturn with those credentials!"
+                Label4.Text = "You are not authorized for access to Saturn.  Please contact your supervisor."
             End If
 
         Else
             Label4.Visible = True
-            Label4.Text = "There is NO **** way you are getting into Saturn with those credentials!"
+            Label4.Text = "Invalid Username/Password.  Try Again."
         End If
     End Sub
 

@@ -169,6 +169,7 @@ Public Class FormMain
                 ListBox1.Items.Add(oCollGrowVendComm(iCnt).GrowerFirstName)
                 iGrowerID = oCollGrowVendComm(iCnt).GrowerId
                 Dim oGrower As New Grower()
+                oGrower.GrowerFirstName = oCollGrowVendComm(iCnt).GrowerFirstName
                 oGrower.GrowerID = oCollGrowVendComm(iCnt).GrowerId
                 oGrower.GrowerAddress1 = oCollGrowVendComm(iCnt).GrowerAddress1
                 oGrower.GrowerCity = oCollGrowVendComm(iCnt).GrowerCity
@@ -405,6 +406,7 @@ Public Class FormMain
         'Dim oCurVendor As Vendor
         'MessageBox.Show(ListBox1.SelectedIndex.ToString())
         If ListBox1.SelectedIndex >= 0 Then
+            lblName.Text = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerFirstName.ToString()
             lblAddress.Text = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerAddress1.ToString()
             lblGrowerCity.Text = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerCity.ToString()
             lblGrowerState.Text = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerState.ToString()
@@ -678,6 +680,30 @@ Public Class FormMain
     End Sub
 
     Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+
+    End Sub
+
+    Private Sub lblGrowerCity_Click(sender As Object, e As EventArgs) Handles lblGrowerCity.Click
+
+    End Sub
+
+    Private Sub lblAddress_Click(sender As Object, e As EventArgs) Handles lblAddress.Click
+
+    End Sub
+
+    Private Sub lblGrowerState_Click(sender As Object, e As EventArgs) Handles lblGrowerState.Click
+
+    End Sub
+
+    Private Sub pbContact_Click(sender As Object, e As EventArgs) Handles pbContact.Click
+
+    End Sub
+
+    Private Sub lblGrowerCountry_Click(sender As Object, e As EventArgs) Handles lblGrowerCountry.Click
+
+    End Sub
+
+    Private Sub lblGrowerZip_Click(sender As Object, e As EventArgs) Handles lblGrowerZip.Click
 
     End Sub
 End Class
