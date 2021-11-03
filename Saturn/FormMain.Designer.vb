@@ -47,8 +47,10 @@ Partial Class FormMain
         Me.pbGrowerPicture = New System.Windows.Forms.PictureBox()
         Me.lvNotes = New System.Windows.Forms.ListView()
         Me.lblName = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvCommoditySales
@@ -59,11 +61,11 @@ Partial Class FormMain
         Me.lvCommoditySales.ForeColor = System.Drawing.Color.Snow
         Me.lvCommoditySales.GridLines = True
         Me.lvCommoditySales.HideSelection = False
-        Me.lvCommoditySales.Location = New System.Drawing.Point(909, 439)
+        Me.lvCommoditySales.Location = New System.Drawing.Point(342, 641)
         Me.lvCommoditySales.Margin = New System.Windows.Forms.Padding(7)
         Me.lvCommoditySales.Name = "lvCommoditySales"
         Me.lvCommoditySales.Scrollable = False
-        Me.lvCommoditySales.Size = New System.Drawing.Size(876, 414)
+        Me.lvCommoditySales.Size = New System.Drawing.Size(653, 230)
         Me.lvCommoditySales.TabIndex = 20
         Me.lvCommoditySales.UseCompatibleStateImageBehavior = False
         '
@@ -98,7 +100,7 @@ Partial Class FormMain
         Me.cbxVendors.CheckOnClick = True
         Me.cbxVendors.ForeColor = System.Drawing.Color.Snow
         Me.cbxVendors.FormattingEnabled = True
-        Me.cbxVendors.Location = New System.Drawing.Point(421, 481)
+        Me.cbxVendors.Location = New System.Drawing.Point(443, 472)
         Me.cbxVendors.Name = "cbxVendors"
         Me.cbxVendors.Size = New System.Drawing.Size(398, 148)
         Me.cbxVendors.TabIndex = 16
@@ -143,7 +145,7 @@ Partial Class FormMain
         Me.lblAddress.AutoSize = True
         Me.lblAddress.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblAddress.Location = New System.Drawing.Point(608, 173)
+        Me.lblAddress.Location = New System.Drawing.Point(608, 212)
         Me.lblAddress.Name = "lblAddress"
         Me.lblAddress.Size = New System.Drawing.Size(110, 14)
         Me.lblAddress.TabIndex = 33
@@ -154,7 +156,7 @@ Partial Class FormMain
         Me.lblGrowerCity.AutoSize = True
         Me.lblGrowerCity.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerCity.Location = New System.Drawing.Point(609, 198)
+        Me.lblGrowerCity.Location = New System.Drawing.Point(609, 237)
         Me.lblGrowerCity.Name = "lblGrowerCity"
         Me.lblGrowerCity.Size = New System.Drawing.Size(83, 14)
         Me.lblGrowerCity.TabIndex = 34
@@ -165,7 +167,7 @@ Partial Class FormMain
         Me.lblGrowerCountry.AutoSize = True
         Me.lblGrowerCountry.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerCountry.Location = New System.Drawing.Point(609, 250)
+        Me.lblGrowerCountry.Location = New System.Drawing.Point(609, 289)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
         Me.lblGrowerCountry.Size = New System.Drawing.Size(109, 14)
         Me.lblGrowerCountry.TabIndex = 35
@@ -176,7 +178,7 @@ Partial Class FormMain
         Me.lblGrowerZip.AutoSize = True
         Me.lblGrowerZip.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerZip.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerZip.Location = New System.Drawing.Point(700, 250)
+        Me.lblGrowerZip.Location = New System.Drawing.Point(700, 289)
         Me.lblGrowerZip.Name = "lblGrowerZip"
         Me.lblGrowerZip.Size = New System.Drawing.Size(77, 14)
         Me.lblGrowerZip.TabIndex = 37
@@ -187,7 +189,7 @@ Partial Class FormMain
         Me.lblGrowerPhone1.AutoSize = True
         Me.lblGrowerPhone1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerPhone1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerPhone1.Location = New System.Drawing.Point(609, 275)
+        Me.lblGrowerPhone1.Location = New System.Drawing.Point(609, 314)
         Me.lblGrowerPhone1.Name = "lblGrowerPhone1"
         Me.lblGrowerPhone1.Size = New System.Drawing.Size(107, 14)
         Me.lblGrowerPhone1.TabIndex = 38
@@ -198,7 +200,7 @@ Partial Class FormMain
         Me.lblGrowerState.AutoSize = True
         Me.lblGrowerState.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblGrowerState.Location = New System.Drawing.Point(608, 223)
+        Me.lblGrowerState.Location = New System.Drawing.Point(608, 262)
         Me.lblGrowerState.Name = "lblGrowerState"
         Me.lblGrowerState.Size = New System.Drawing.Size(92, 14)
         Me.lblGrowerState.TabIndex = 39
@@ -212,9 +214,9 @@ Partial Class FormMain
         'pbContact
         '
         Me.pbContact.Image = CType(resources.GetObject("pbContact.Image"), System.Drawing.Image)
-        Me.pbContact.Location = New System.Drawing.Point(344, -17)
+        Me.pbContact.Location = New System.Drawing.Point(362, 54)
         Me.pbContact.Name = "pbContact"
-        Me.pbContact.Size = New System.Drawing.Size(568, 424)
+        Me.pbContact.Size = New System.Drawing.Size(532, 346)
         Me.pbContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbContact.TabIndex = 40
         Me.pbContact.TabStop = False
@@ -222,7 +224,7 @@ Partial Class FormMain
         'pbGrowerPicture
         '
         Me.pbGrowerPicture.Image = CType(resources.GetObject("pbGrowerPicture.Image"), System.Drawing.Image)
-        Me.pbGrowerPicture.Location = New System.Drawing.Point(443, 151)
+        Me.pbGrowerPicture.Location = New System.Drawing.Point(453, 181)
         Me.pbGrowerPicture.Name = "pbGrowerPicture"
         Me.pbGrowerPicture.Size = New System.Drawing.Size(119, 134)
         Me.pbGrowerPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -232,9 +234,9 @@ Partial Class FormMain
         'lvNotes
         '
         Me.lvNotes.HideSelection = False
-        Me.lvNotes.Location = New System.Drawing.Point(948, 23)
+        Me.lvNotes.Location = New System.Drawing.Point(1377, 35)
         Me.lvNotes.Name = "lvNotes"
-        Me.lvNotes.Size = New System.Drawing.Size(458, 385)
+        Me.lvNotes.Size = New System.Drawing.Size(448, 798)
         Me.lvNotes.TabIndex = 42
         Me.lvNotes.UseCompatibleStateImageBehavior = False
         '
@@ -243,17 +245,27 @@ Partial Class FormMain
         Me.lblName.AutoSize = True
         Me.lblName.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblName.Location = New System.Drawing.Point(609, 142)
+        Me.lblName.Location = New System.Drawing.Point(609, 181)
         Me.lblName.Name = "lblName"
         Me.lblName.Size = New System.Drawing.Size(95, 14)
         Me.lblName.TabIndex = 43
         Me.lblName.Text = "GrowerName"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(864, 82)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(421, 807)
+        Me.PictureBox1.TabIndex = 44
+        Me.PictureBox1.TabStop = False
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1855, 887)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.lvNotes)
         Me.Controls.Add(Me.lvCommoditySales)
@@ -274,6 +286,7 @@ Partial Class FormMain
         Me.Text = "Saturn"
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -302,4 +315,5 @@ Partial Class FormMain
     Friend WithEvents pbGrowerPicture As PictureBox
     Friend WithEvents lvNotes As ListView
     Friend WithEvents lblName As Label
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

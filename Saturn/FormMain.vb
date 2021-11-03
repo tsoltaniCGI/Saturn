@@ -45,7 +45,7 @@ Public Class FormMain
         'Dim iNoteId As Integer
         Dim iNum As Integer
         Dim bAddNote As Boolean
-
+        'no fdg
 
 
         Me.Text = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facility: " & GlobalVariables.UserFacility
