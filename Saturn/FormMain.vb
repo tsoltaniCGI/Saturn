@@ -552,7 +552,7 @@ Public Class FormMain
         'cbxVendors.SetSelected(0, True)
 
         'End If
-
+        BuildCommodityList()
 
     End Sub
 
@@ -793,11 +793,35 @@ Public Class FormMain
     End Sub
 
     Private Sub ckVendor2_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor2.CheckedChanged
-
+        BuildCommodityList()
     End Sub
 
     Private Sub ckVendor6_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor6.CheckedChanged
+        BuildCommodityList()
+    End Sub
 
+    Private Sub ckVendor1_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor1.CheckedChanged
+        BuildCommodityList()
+    End Sub
+
+    Private Sub ckVendor3_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor3.CheckedChanged
+        BuildCommodityList()
+    End Sub
+
+    Private Sub ckVendor4_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor4.CheckedChanged
+        BuildCommodityList()
+    End Sub
+
+    Private Sub ckVendor5_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor5.CheckedChanged
+        BuildCommodityList()
+    End Sub
+
+    Private Sub ckVendor7_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor7.CheckedChanged
+        BuildCommodityList()
+    End Sub
+
+    Private Sub ckVendor8_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor8.CheckedChanged
+        BuildCommodityList()
     End Sub
 End Class
 

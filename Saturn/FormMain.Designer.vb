@@ -276,9 +276,9 @@ Partial Class FormMain
         Me.ckVendor1.AutoSize = True
         Me.ckVendor1.Location = New System.Drawing.Point(389, 430)
         Me.ckVendor1.Name = "ckVendor1"
-        Me.ckVendor1.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor1.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor1.TabIndex = 44
-        Me.ckVendor1.Text = "CheckBox1"
+        Me.ckVendor1.Text = "ckVendor1"
         Me.ckVendor1.UseVisualStyleBackColor = True
         '
         'ckVendor2
@@ -286,9 +286,9 @@ Partial Class FormMain
         Me.ckVendor2.AutoSize = True
         Me.ckVendor2.Location = New System.Drawing.Point(389, 457)
         Me.ckVendor2.Name = "ckVendor2"
-        Me.ckVendor2.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor2.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor2.TabIndex = 45
-        Me.ckVendor2.Text = "CheckBox1"
+        Me.ckVendor2.Text = "ckVendor2"
         Me.ckVendor2.UseVisualStyleBackColor = True
         '
         'ckVendor3
@@ -296,9 +296,9 @@ Partial Class FormMain
         Me.ckVendor3.AutoSize = True
         Me.ckVendor3.Location = New System.Drawing.Point(389, 487)
         Me.ckVendor3.Name = "ckVendor3"
-        Me.ckVendor3.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor3.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor3.TabIndex = 46
-        Me.ckVendor3.Text = "CheckBox1"
+        Me.ckVendor3.Text = "ckVendor3"
         Me.ckVendor3.UseVisualStyleBackColor = True
         '
         'ckVendor4
@@ -306,9 +306,9 @@ Partial Class FormMain
         Me.ckVendor4.AutoSize = True
         Me.ckVendor4.Location = New System.Drawing.Point(389, 513)
         Me.ckVendor4.Name = "ckVendor4"
-        Me.ckVendor4.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor4.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor4.TabIndex = 47
-        Me.ckVendor4.Text = "CheckBox1"
+        Me.ckVendor4.Text = "ckVendor4"
         Me.ckVendor4.UseVisualStyleBackColor = True
         '
         'ckVendor5
@@ -316,9 +316,9 @@ Partial Class FormMain
         Me.ckVendor5.AutoSize = True
         Me.ckVendor5.Location = New System.Drawing.Point(528, 430)
         Me.ckVendor5.Name = "ckVendor5"
-        Me.ckVendor5.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor5.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor5.TabIndex = 48
-        Me.ckVendor5.Text = "CheckBox1"
+        Me.ckVendor5.Text = "ckVendor5"
         Me.ckVendor5.UseVisualStyleBackColor = True
         '
         'ckVendor6
@@ -326,9 +326,9 @@ Partial Class FormMain
         Me.ckVendor6.AutoSize = True
         Me.ckVendor6.Location = New System.Drawing.Point(528, 457)
         Me.ckVendor6.Name = "ckVendor6"
-        Me.ckVendor6.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor6.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor6.TabIndex = 49
-        Me.ckVendor6.Text = "CheckBox1"
+        Me.ckVendor6.Text = "ckVendor6"
         Me.ckVendor6.UseVisualStyleBackColor = True
         '
         'ckVendor7
@@ -336,9 +336,9 @@ Partial Class FormMain
         Me.ckVendor7.AutoSize = True
         Me.ckVendor7.Location = New System.Drawing.Point(528, 487)
         Me.ckVendor7.Name = "ckVendor7"
-        Me.ckVendor7.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor7.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor7.TabIndex = 50
-        Me.ckVendor7.Text = "CheckBox1"
+        Me.ckVendor7.Text = "ckVendor7"
         Me.ckVendor7.UseVisualStyleBackColor = True
         '
         'ckVendor8
@@ -346,9 +346,9 @@ Partial Class FormMain
         Me.ckVendor8.AutoSize = True
         Me.ckVendor8.Location = New System.Drawing.Point(528, 513)
         Me.ckVendor8.Name = "ckVendor8"
-        Me.ckVendor8.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor8.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor8.TabIndex = 51
-        Me.ckVendor8.Text = "CheckBox1"
+        Me.ckVendor8.Text = "ckVendor8"
         Me.ckVendor8.UseVisualStyleBackColor = True
         '
         'FormMain
