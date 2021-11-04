@@ -31,7 +31,6 @@ Partial Class FormMain
         Me.ColumnHeader3 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader4 = New System.Windows.Forms.ColumnHeader()
         Me.ColumnHeader5 = New System.Windows.Forms.ColumnHeader()
-        Me.cbxVendors = New System.Windows.Forms.CheckedListBox()
         Me.cmdSearch = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.txtGrowerName = New System.Windows.Forms.TextBox()
@@ -46,12 +45,22 @@ Partial Class FormMain
         Me.pbContact = New System.Windows.Forms.PictureBox()
         Me.pbGrowerPicture = New System.Windows.Forms.PictureBox()
         Me.lvNotes = New System.Windows.Forms.ListView()
+        Me.ColumnHeader6 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader7 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader8 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader9 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader10 = New System.Windows.Forms.ColumnHeader()
         Me.lblName = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor1 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor2 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor3 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor4 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor5 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor6 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor7 = New System.Windows.Forms.CheckBox()
+        Me.ckVendor8 = New System.Windows.Forms.CheckBox()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvCommoditySales
@@ -94,17 +103,6 @@ Partial Class FormMain
         '
         Me.ColumnHeader5.Text = "Buyer"
         Me.ColumnHeader5.Width = 100
-        '
-        'cbxVendors
-        '
-        Me.cbxVendors.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.cbxVendors.CheckOnClick = True
-        Me.cbxVendors.ForeColor = System.Drawing.Color.Snow
-        Me.cbxVendors.FormattingEnabled = True
-        Me.cbxVendors.Location = New System.Drawing.Point(443, 472)
-        Me.cbxVendors.Name = "cbxVendors"
-        Me.cbxVendors.Size = New System.Drawing.Size(398, 148)
-        Me.cbxVendors.TabIndex = 16
         '
         'cmdSearch
         '
@@ -234,12 +232,33 @@ Partial Class FormMain
         '
         'lvNotes
         '
+        Me.lvNotes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10})
         Me.lvNotes.HideSelection = False
         Me.lvNotes.Location = New System.Drawing.Point(1377, 35)
         Me.lvNotes.Name = "lvNotes"
         Me.lvNotes.Size = New System.Drawing.Size(448, 798)
         Me.lvNotes.TabIndex = 42
         Me.lvNotes.UseCompatibleStateImageBehavior = False
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "GrowerNoteCreationDate"
+        '
+        'ColumnHeader7
+        '
+        Me.ColumnHeader7.Text = "GrowerNoteSubject"
+        '
+        'ColumnHeader8
+        '
+        Me.ColumnHeader8.Text = "GrowerNoteMethod"
+        '
+        'ColumnHeader9
+        '
+        Me.ColumnHeader9.Text = "GrowerNoteSubject"
+        '
+        'ColumnHeader10
+        '
+        Me.ColumnHeader10.Text = "GrowerNoteCreatedBy"
         '
         'lblName
         '
@@ -252,36 +271,102 @@ Partial Class FormMain
         Me.lblName.TabIndex = 43
         Me.lblName.Text = "GrowerName"
         '
-        'PictureBox1
+        'ckVendor1
         '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(864, 82)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(421, 807)
-        Me.PictureBox1.TabIndex = 44
-        Me.PictureBox1.TabStop = False
+        Me.ckVendor1.AutoSize = True
+        Me.ckVendor1.Location = New System.Drawing.Point(389, 430)
+        Me.ckVendor1.Name = "ckVendor1"
+        Me.ckVendor1.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor1.TabIndex = 44
+        Me.ckVendor1.Text = "CheckBox1"
+        Me.ckVendor1.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'ckVendor2
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(362, 422)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(85, 19)
-        Me.CheckBox1.TabIndex = 45
-        Me.CheckBox1.Text = "CheckBox1"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.ckVendor2.AutoSize = True
+        Me.ckVendor2.Location = New System.Drawing.Point(389, 457)
+        Me.ckVendor2.Name = "ckVendor2"
+        Me.ckVendor2.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor2.TabIndex = 45
+        Me.ckVendor2.Text = "CheckBox1"
+        Me.ckVendor2.UseVisualStyleBackColor = True
+        '
+        'ckVendor3
+        '
+        Me.ckVendor3.AutoSize = True
+        Me.ckVendor3.Location = New System.Drawing.Point(389, 487)
+        Me.ckVendor3.Name = "ckVendor3"
+        Me.ckVendor3.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor3.TabIndex = 46
+        Me.ckVendor3.Text = "CheckBox1"
+        Me.ckVendor3.UseVisualStyleBackColor = True
+        '
+        'ckVendor4
+        '
+        Me.ckVendor4.AutoSize = True
+        Me.ckVendor4.Location = New System.Drawing.Point(389, 513)
+        Me.ckVendor4.Name = "ckVendor4"
+        Me.ckVendor4.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor4.TabIndex = 47
+        Me.ckVendor4.Text = "CheckBox1"
+        Me.ckVendor4.UseVisualStyleBackColor = True
+        '
+        'ckVendor5
+        '
+        Me.ckVendor5.AutoSize = True
+        Me.ckVendor5.Location = New System.Drawing.Point(528, 430)
+        Me.ckVendor5.Name = "ckVendor5"
+        Me.ckVendor5.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor5.TabIndex = 48
+        Me.ckVendor5.Text = "CheckBox1"
+        Me.ckVendor5.UseVisualStyleBackColor = True
+        '
+        'ckVendor6
+        '
+        Me.ckVendor6.AutoSize = True
+        Me.ckVendor6.Location = New System.Drawing.Point(528, 457)
+        Me.ckVendor6.Name = "ckVendor6"
+        Me.ckVendor6.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor6.TabIndex = 49
+        Me.ckVendor6.Text = "CheckBox1"
+        Me.ckVendor6.UseVisualStyleBackColor = True
+        '
+        'ckVendor7
+        '
+        Me.ckVendor7.AutoSize = True
+        Me.ckVendor7.Location = New System.Drawing.Point(528, 487)
+        Me.ckVendor7.Name = "ckVendor7"
+        Me.ckVendor7.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor7.TabIndex = 50
+        Me.ckVendor7.Text = "CheckBox1"
+        Me.ckVendor7.UseVisualStyleBackColor = True
+        '
+        'ckVendor8
+        '
+        Me.ckVendor8.AutoSize = True
+        Me.ckVendor8.Location = New System.Drawing.Point(528, 513)
+        Me.ckVendor8.Name = "ckVendor8"
+        Me.ckVendor8.Size = New System.Drawing.Size(85, 19)
+        Me.ckVendor8.TabIndex = 51
+        Me.ckVendor8.Text = "CheckBox1"
+        Me.ckVendor8.UseVisualStyleBackColor = True
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1855, 887)
-        Me.Controls.Add(Me.CheckBox1)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.ckVendor8)
+        Me.Controls.Add(Me.ckVendor7)
+        Me.Controls.Add(Me.ckVendor6)
+        Me.Controls.Add(Me.ckVendor5)
+        Me.Controls.Add(Me.ckVendor4)
+        Me.Controls.Add(Me.ckVendor3)
+        Me.Controls.Add(Me.ckVendor2)
+        Me.Controls.Add(Me.ckVendor1)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.lvNotes)
         Me.Controls.Add(Me.lvCommoditySales)
-        Me.Controls.Add(Me.cbxVendors)
         Me.Controls.Add(Me.pbGrowerPicture)
         Me.Controls.Add(Me.lblGrowerState)
         Me.Controls.Add(Me.lblGrowerPhone1)
@@ -298,13 +383,11 @@ Partial Class FormMain
         Me.Text = "Saturn"
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents FontDialog1 As FontDialog
-    Friend WithEvents cbxVendors As CheckedListBox
     Friend WithEvents cmdSearch As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents txtGrowerName As TextBox
@@ -327,6 +410,17 @@ Partial Class FormMain
     Friend WithEvents pbGrowerPicture As PictureBox
     Friend WithEvents lvNotes As ListView
     Friend WithEvents lblName As Label
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents ColumnHeader7 As ColumnHeader
+    Friend WithEvents ColumnHeader8 As ColumnHeader
+    Friend WithEvents ColumnHeader9 As ColumnHeader
+    Friend WithEvents ColumnHeader10 As ColumnHeader
+    Friend WithEvents ckVendor1 As CheckBox
+    Friend WithEvents ckVendor2 As CheckBox
+    Friend WithEvents ckVendor3 As CheckBox
+    Friend WithEvents ckVendor4 As CheckBox
+    Friend WithEvents ckVendor5 As CheckBox
+    Friend WithEvents ckVendor6 As CheckBox
+    Friend WithEvents ckVendor7 As CheckBox
+    Friend WithEvents ckVendor8 As CheckBox
 End Class

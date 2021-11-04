@@ -30,7 +30,76 @@ Public Class FormMain
 
 
     Public Property DataGridView1 As Object
-   
+
+    Private Sub BuildCommodityList()
+        Dim liIndex As Integer
+        Dim loCollCommList As New Collection
+        Dim loCurComm As Commodity
+        Dim liCnt As Integer
+        Dim liCommCnt As Integer
+        Dim liCommMax As Integer
+        Dim liMax As Integer
+        Dim lbCommFound As Boolean
+        Dim lsCurCommId As String
+        Dim lsCurCommName As String
+        Dim lsCurCropYear As String
+        Dim lsPrevCropYear As String
+        Dim lsPrev2CropYear As String
+        Dim loCollCheckedIndices As New Collection
+
+
+        lbCommFound = False
+
+        liCnt = 1
+        liMax = 2
+        If ckVendor1.Checked Then loCollCheckedIndices.Add(1)
+        If ckVendor2.Checked Then loCollCheckedIndices.Add(2)
+        If ckVendor3.Checked Then loCollCheckedIndices.Add(3)
+        If ckVendor4.Checked Then loCollCheckedIndices.Add(4)
+        If ckVendor5.Checked Then loCollCheckedIndices.Add(5)
+        If ckVendor6.Checked Then loCollCheckedIndices.Add(6)
+        If ckVendor7.Checked Then loCollCheckedIndices.Add(7)
+        If ckVendor8.Checked Then loCollCheckedIndices.Add(8)
+
+
+        'Do While liCnt <= liMax
+        For Each liIndex In loCollCheckedIndices
+            liCommCnt = 1
+            liCommMax = oGrowerColl(Me.ListBox1.SelectedIndex + 1).Vendors(liIndex).CollCommodities.Count
+            Do While liCommCnt <= liCommMax
+                lsCurCommId = oGrowerColl(Me.ListBox1.SelectedIndex + 1).Vendors(liIndex).CollCommodities(liCommCnt).CommId
+                lsCurCommName = oGrowerColl(Me.ListBox1.SelectedIndex + 1).Vendors(liIndex).CollCommodities(liCommCnt).CommName
+                lsCurCropYear = oGrowerColl(Me.ListBox1.SelectedIndex + 1).Vendors(liIndex).CollCommodities(liCommCnt).CurrentCropYear.ToString()
+                lsPrevCropYear = oGrowerColl(Me.ListBox1.SelectedIndex + 1).Vendors(liIndex).CollCommodities(liCommCnt).PreviousCropYear.ToString()
+                lsPrev2CropYear = oGrowerColl(Me.ListBox1.SelectedIndex + 1).Vendors(liIndex).CollCommodities(liCommCnt).Previous2CropYear.ToString()
+                If Not loCollCommList.Contains(lsCurCommId) Then
+                    Dim loNewComm As New Commodity
+                    loNewComm.CommID = lsCurCommId
+                    loNewComm.CommName = lsCurCommName
+                    loNewComm.CurrentCropYear = lsCurCropYear
+                    loNewComm.PreviousCropYear = lsPrevCropYear
+                    loNewComm.Previous2CropYear = lsPrev2CropYear
+                    loCollCommList.Add(loNewComm, loNewComm.CommID)
+                End If
+                liCommCnt = liCommCnt + 1
+            Loop
+        Next
+        liCnt = liCnt + 1
+        'Loop
+        lvCommoditySales.View = View.Details
+        lvCommoditySales.Items.Clear()
+        For Each loCurComm In loCollCommList
+            Dim oLVI As New ListViewItem
+            oLVI.SubItems(0).Text = loCurComm.CommName
+
+            oLVI.SubItems.Add(loCurComm.CurrentCropYear)
+            oLVI.SubItems.Add(loCurComm.PreviousCropYear)
+            oLVI.SubItems.Add(loCurComm.Previous2CropYear)
+            oLVI.SubItems.Add("CGI")
+            lvCommoditySales.Items.Add(oLVI)
+        Next
+
+    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -415,15 +484,59 @@ Public Class FormMain
             lblGrowerPhone1.Text = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerPhone1.ToString()
             iCnt = 1
             iMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors.Count
-            cbxVendors.Items.Clear()
+            ckVendor1.Visible = False
+            ckVendor2.Visible = False
+            ckVendor3.Visible = False
+            ckVendor4.Visible = False
+            ckVendor5.Visible = False
+            ckVendor6.Visible = False
+            ckVendor7.Visible = False
+            ckVendor8.Visible = False
             Do While iCnt <= iMax
+                If iCnt > 8 Then Exit Do 'There are only 8 checkboxes
                 'oCurVendor = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt)
-                cbxVendors.Items.Add(oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName)
-                cbxVendors.SetItemChecked((iCnt - 1), True)
-                'cbxVendors.Items.Add(oCurVendor.VendorName)
+                Select Case iCnt
+                    Case 1
+                        ckVendor1.Visible = True
+                        ckVendor1.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor1.Checked = True
+                    Case 2
+                        ckVendor2.Visible = True
+                        ckVendor2.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor2.Checked = True
+                    Case 3
+                        ckVendor3.Visible = True
+                        ckVendor3.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor3.Checked = True
+                    Case 4
+                        ckVendor4.Visible = True
+                        ckVendor4.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor1.Checked = True
+                    Case 5
+                        ckVendor5.Visible = True
+                        ckVendor5.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor5.Checked = True
+                    Case 6
+                        ckVendor6.Visible = True
+                        ckVendor6.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor6.Checked = True
+                    Case 7
+                        ckVendor7.Visible = True
+                        ckVendor7.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor7.Checked = True
+                    Case 8
+                        ckVendor8.Visible = True
+                        ckVendor8.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                        ckVendor8.Checked = True
+                End Select
+
+
                 iCnt = iCnt + 1
             Loop
+
+
             lvNotes.Clear()
+
             For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
                 Dim oLVI As New ListViewItem
                 oLVI.SubItems(0).Text = oNote.GrowerNoteText
@@ -435,10 +548,10 @@ Public Class FormMain
                 lvNotes.Items.Add(oLVI)
             Next
         End If
-        If cbxVendors.Items.Count >= 1 Then
-            cbxVendors.SetSelected(0, True)
+        'If cbxVendors.Items.Count >= 1 Then
+        'cbxVendors.SetSelected(0, True)
 
-        End If
+        'End If
 
 
     End Sub
@@ -446,64 +559,64 @@ Public Class FormMain
 
 
 
-    Private Sub cbxVendors_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles cbxVendors.ItemCheck
+    Private Sub cbxVendors_ItemCheck(sender As Object, e As ItemCheckEventArgs)
 
-        Dim liIndex As Integer
-        Dim loCollCommList As New Collection
-        Dim loCurComm As Commodity
-        Dim liCnt As Integer
-        Dim liCommCnt As Integer
-        Dim liCommMax As Integer
-        Dim liMax As Integer
-        Dim lbCommFound As Boolean
-        Dim lsCurCommId As String
-        Dim lsCurCommName As String
-        Dim lsCurCropYear As String
-        Dim lsPrevCropYear As String
-        Dim lsPrev2CropYear As String
+        'Dim liIndex As Integer
+        'Dim loCollCommList As New Collection
+        'Dim loCurComm As Commodity
+        'Dim liCnt As Integer
+        'Dim liCommCnt As Integer
+        'Dim liCommMax As Integer
+        'Dim liMax As Integer
+        'Dim lbCommFound As Boolean
+        'Dim lsCurCommId As String
+        'Dim lsCurCommName As String
+        'Dim lsCurCropYear As String
+        'Dim lsPrevCropYear As String
+        'Dim lsPrev2CropYear As String
 
 
-        lbCommFound = False
+        'lbCommFound = False
 
-        liCnt = 1
-        liMax = 2
+        'liCnt = 1
+        'liMax = 2
 
-        'Do While liCnt <= liMax
-        For Each liIndex In cbxVendors.CheckedIndices
-            liCommCnt = 1
-            liCommMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities.Count
-            Do While liCommCnt <= liCommMax
-                lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
-                lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
-                lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurCropYear.ToString()
-                lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PrevCropYear.ToString()
-                lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Prev2CropYear.ToString()
-                If Not loCollCommList.Contains(lsCurCommId) Then
-                    Dim loNewComm As New Commodity
-                    loNewComm.CommID = lsCurCommId
-                    loNewComm.CommName = lsCurCommName
-                    loNewComm.CurrentCropYear = lsCurCropYear
-                    loNewComm.PreviousCropYear = lsPrevCropYear
-                    loNewComm.Previous2CropYear = lsPrev2CropYear
-                    loCollCommList.Add(loNewComm, loNewComm.CommID)
-                End If
-                liCommCnt = liCommCnt + 1
-            Loop
-        Next
-        liCnt = liCnt + 1
-        'Loop
-        lvCommoditySales.View = View.Details
-        lvCommoditySales.Items.Clear()
-        For Each loCurComm In loCollCommList
-            Dim oLVI As New ListViewItem
-            oLVI.SubItems(0).Text = loCurComm.CommName
+        ''Do While liCnt <= liMax
+        'For Each liIndex In cbxVendors.CheckedIndices
+        '    liCommCnt = 1
+        '    liCommMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities.Count
+        '    Do While liCommCnt <= liCommMax
+        '        lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
+        '        lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
+        '        lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurCropYear.ToString()
+        '        lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PrevCropYear.ToString()
+        '        lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Prev2CropYear.ToString()
+        '        If Not loCollCommList.Contains(lsCurCommId) Then
+        '            Dim loNewComm As New Commodity
+        '            loNewComm.CommID = lsCurCommId
+        '            loNewComm.CommName = lsCurCommName
+        '            loNewComm.CurrentCropYear = lsCurCropYear
+        '            loNewComm.PreviousCropYear = lsPrevCropYear
+        '            loNewComm.Previous2CropYear = lsPrev2CropYear
+        '            loCollCommList.Add(loNewComm, loNewComm.CommID)
+        '        End If
+        '        liCommCnt = liCommCnt + 1
+        '    Loop
+        'Next
+        'liCnt = liCnt + 1
+        ''Loop
+        'lvCommoditySales.View = View.Details
+        'lvCommoditySales.Items.Clear()
+        'For Each loCurComm In loCollCommList
+        '    Dim oLVI As New ListViewItem
+        '    oLVI.SubItems(0).Text = loCurComm.CommName
 
-            oLVI.SubItems.Add(loCurComm.CurrentCropYear)
-            oLVI.SubItems.Add(loCurComm.PreviousCropYear)
-            oLVI.SubItems.Add(loCurComm.Previous2CropYear)
-            oLVI.SubItems.Add("CGI")
-            lvCommoditySales.Items.Add(oLVI)
-        Next
+        '    oLVI.SubItems.Add(loCurComm.CurrentCropYear)
+        '    oLVI.SubItems.Add(loCurComm.PreviousCropYear)
+        '    oLVI.SubItems.Add(loCurComm.Previous2CropYear)
+        '    oLVI.SubItems.Add("CGI")
+        '    lvCommoditySales.Items.Add(oLVI)
+        'Next
         'ListView2.Columns.Add("Commodity", 100, HorizontalAlignment.Center) 'Column 1
         'ListView2.Columns.Add("Current Crop Year", 100, HorizontalAlignment.Left) 'Column 2
         'ListView2.Columns.Add("Previous Crop Year", 100, HorizontalAlignment.Right) 'Column 3
@@ -540,66 +653,66 @@ Public Class FormMain
     End Sub
 
 
-    Private Sub cbxVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxVendors.SelectedIndexChanged
+    Private Sub cbxVendors_SelectedIndexChanged(sender As Object, e As EventArgs)
 
-        cbxVendors.ClearSelected()
+        'cbxVendors.ClearSelected()
 
-        Dim liIndex As Integer
-        Dim loCollCommList As New Collection
-        Dim loCurComm As Commodity
-        Dim liCnt As Integer
-        Dim liCommCnt As Integer
-        Dim liCommMax As Integer
-        Dim liMax As Integer
-        Dim lbCommFound As Boolean
-        Dim lsCurCommId As String
-        Dim lsCurCommName As String
-        Dim lsCurCropYear As String
-        Dim lsPrevCropYear As String
-        Dim lsPrev2CropYear As String
+        'Dim liIndex As Integer
+        'Dim loCollCommList As New Collection
+        'Dim loCurComm As Commodity
+        'Dim liCnt As Integer
+        'Dim liCommCnt As Integer
+        'Dim liCommMax As Integer
+        'Dim liMax As Integer
+        'Dim lbCommFound As Boolean
+        'Dim lsCurCommId As String
+        'Dim lsCurCommName As String
+        'Dim lsCurCropYear As String
+        'Dim lsPrevCropYear As String
+        'Dim lsPrev2CropYear As String
 
 
-        lbCommFound = False
+        'lbCommFound = False
 
-        liCnt = 1
-        liMax = 2
+        'liCnt = 1
+        'liMax = 2
 
-        'Do While liCnt <= liMax
-        For Each liIndex In cbxVendors.CheckedIndices
-                liCommCnt = 1
-                liCommMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities.Count
-                Do While liCommCnt <= liCommMax
-                    lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
-                    lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
-                    lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurrentCropYear.ToString()
-                    lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PreviousCropYear.ToString()
-                    lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Previous2CropYear.ToString()
-                    If Not loCollCommList.Contains(lsCurCommId) Then
-                        Dim loNewComm As New Commodity
-                        loNewComm.CommID = lsCurCommId
-                        loNewComm.CommName = lsCurCommName
-                        loNewComm.CurrentCropYear = lsCurCropYear
-                        loNewComm.PreviousCropYear = lsPrevCropYear
-                        loNewComm.Previous2CropYear = lsPrev2CropYear
-                        loCollCommList.Add(loNewComm, loNewComm.CommID)
-                    End If
-                    liCommCnt = liCommCnt + 1
-                Loop
-            Next
-            liCnt = liCnt + 1
-        'Loop
-        lvCommoditySales.View = View.Details
-        lvCommoditySales.Items.Clear()
-        For Each loCurComm In loCollCommList
-            Dim oLVI As New ListViewItem
-            oLVI.SubItems(0).Text = loCurComm.CommName
+        ''Do While liCnt <= liMax
+        'For Each liIndex In cbxVendors.CheckedIndices
+        '    liCommCnt = 1
+        '    liCommMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities.Count
+        '    Do While liCommCnt <= liCommMax
+        '        lsCurCommId = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommId
+        '        lsCurCommName = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CommName
+        '        lsCurCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).CurrentCropYear.ToString()
+        '        lsPrevCropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).PreviousCropYear.ToString()
+        '        lsPrev2CropYear = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(liIndex + 1).CollCommodities(liCommCnt).Previous2CropYear.ToString()
+        '        If Not loCollCommList.Contains(lsCurCommId) Then
+        '            Dim loNewComm As New Commodity
+        '            loNewComm.CommID = lsCurCommId
+        '            loNewComm.CommName = lsCurCommName
+        '            loNewComm.CurrentCropYear = lsCurCropYear
+        '            loNewComm.PreviousCropYear = lsPrevCropYear
+        '            loNewComm.Previous2CropYear = lsPrev2CropYear
+        '            loCollCommList.Add(loNewComm, loNewComm.CommID)
+        '        End If
+        '        liCommCnt = liCommCnt + 1
+        '    Loop
+        'Next
+        'liCnt = liCnt + 1
+        ''Loop
+        'lvCommoditySales.View = View.Details
+        'lvCommoditySales.Items.Clear()
+        'For Each loCurComm In loCollCommList
+        '    Dim oLVI As New ListViewItem
+        '    oLVI.SubItems(0).Text = loCurComm.CommName
 
-            oLVI.SubItems.Add(loCurComm.CurrentCropYear)
-            oLVI.SubItems.Add(loCurComm.PreviousCropYear)
-            oLVI.SubItems.Add(loCurComm.Previous2CropYear)
-            oLVI.SubItems.Add("CGI")
-            lvCommoditySales.Items.Add(oLVI)
-        Next
+        '    oLVI.SubItems.Add(loCurComm.CurrentCropYear)
+        '    oLVI.SubItems.Add(loCurComm.PreviousCropYear)
+        '    oLVI.SubItems.Add(loCurComm.Previous2CropYear)
+        '    oLVI.SubItems.Add("CGI")
+        '    lvCommoditySales.Items.Add(oLVI)
+        'Next
         'ListView2.Columns.Add("Commodity", 100, HorizontalAlignment.Center) 'Column 1
         'ListView2.Columns.Add("Current Crop Year", 100, HorizontalAlignment.Left) 'Column 2
         'ListView2.Columns.Add("Previous Crop Year", 100, HorizontalAlignment.Right) 'Column 3
@@ -679,35 +792,11 @@ Public Class FormMain
         Application.Exit()
     End Sub
 
-    Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+    Private Sub ckVendor2_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor2.CheckedChanged
 
     End Sub
 
-    Private Sub lblGrowerCity_Click(sender As Object, e As EventArgs) Handles lblGrowerCity.Click
-
-    End Sub
-
-    Private Sub lblAddress_Click(sender As Object, e As EventArgs) Handles lblAddress.Click
-
-    End Sub
-
-    Private Sub lblGrowerState_Click(sender As Object, e As EventArgs) Handles lblGrowerState.Click
-
-    End Sub
-
-    Private Sub pbContact_Click(sender As Object, e As EventArgs) Handles pbContact.Click
-
-    End Sub
-
-    Private Sub lblGrowerCountry_Click(sender As Object, e As EventArgs) Handles lblGrowerCountry.Click
-
-    End Sub
-
-    Private Sub lblGrowerZip_Click(sender As Object, e As EventArgs) Handles lblGrowerZip.Click
-
-    End Sub
-
-    Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs) Handles PictureBox1.Click
+    Private Sub ckVendor6_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor6.CheckedChanged
 
     End Sub
 End Class
