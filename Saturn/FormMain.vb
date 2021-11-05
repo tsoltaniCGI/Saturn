@@ -23,7 +23,7 @@ Public Class FormMain
     'Dim oVendorNameColl As New Collection
     'Dim oVendorIDColl As New Collection
     'Dim Params As New List(Of SqlParameter)
-    Testing
+    'Testing
 
 
     Dim oGrowerColl As New Collection
