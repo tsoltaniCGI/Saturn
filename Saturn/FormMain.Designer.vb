@@ -59,6 +59,7 @@ Partial Class FormMain
         Me.ckVendor6 = New System.Windows.Forms.CheckBox()
         Me.ckVendor7 = New System.Windows.Forms.CheckBox()
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -351,11 +352,21 @@ Partial Class FormMain
         Me.ckVendor8.Text = "CheckBox1"
         Me.ckVendor8.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(988, 54)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 15)
+        Me.Label1.TabIndex = 52
+        Me.Label1.Text = "Label1"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1855, 887)
+        Me.ClientSize = New System.Drawing.Size(1797, 887)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ckVendor8)
         Me.Controls.Add(Me.ckVendor7)
         Me.Controls.Add(Me.ckVendor6)
@@ -423,4 +434,5 @@ Partial Class FormMain
     Friend WithEvents ckVendor6 As CheckBox
     Friend WithEvents ckVendor7 As CheckBox
     Friend WithEvents ckVendor8 As CheckBox
+    Friend WithEvents Label1 As Label
 End Class
