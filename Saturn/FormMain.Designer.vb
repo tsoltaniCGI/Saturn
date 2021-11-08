@@ -61,6 +61,7 @@ Partial Class FormMain
         Me.ckVendor7 = New System.Windows.Forms.CheckBox()
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnAddNote = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -362,11 +363,21 @@ Partial Class FormMain
         Me.Label1.TabIndex = 52
         Me.Label1.Text = "Label1"
         '
+        'btnAddNote
+        '
+        Me.btnAddNote.Location = New System.Drawing.Point(1279, 54)
+        Me.btnAddNote.Name = "btnAddNote"
+        Me.btnAddNote.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddNote.TabIndex = 53
+        Me.btnAddNote.Text = "Add Note..."
+        Me.btnAddNote.UseVisualStyleBackColor = True
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1797, 887)
+        Me.Controls.Add(Me.btnAddNote)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ckVendor8)
         Me.Controls.Add(Me.ckVendor7)
@@ -436,4 +447,5 @@ Partial Class FormMain
     Friend WithEvents ckVendor7 As CheckBox
     Friend WithEvents ckVendor8 As CheckBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents btnAddNote As Button
 End Class

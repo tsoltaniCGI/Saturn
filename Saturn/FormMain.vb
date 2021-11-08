@@ -30,7 +30,20 @@ Public Class FormMain
 
 
     Public Property DataGridView1 As Object
+    Private Sub ReloadNotes()
+        lvNotes.Clear()
 
+        For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
+            Dim oLVI As New ListViewItem
+            oLVI.SubItems(0).Text = oNote.GrowerNoteText
+
+            oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)
+            oLVI.SubItems.Add(oNote.GrowerNoteCreatedBy)
+            oLVI.SubItems.Add(oNote.GrowerNoteSubject)
+            oLVI.SubItems.Add(oNote.GrowerNoteMethod)
+            lvNotes.Items.Add(oLVI)
+        Next
+    End Sub
     Private Sub BuildCommodityList()
         Dim liIndex As Integer
         Dim loCollCommList As New Collection
@@ -115,7 +128,7 @@ Public Class FormMain
         Dim iNum As Integer
         Dim bAddNote As Boolean
         'no fdg
-
+        GlobalVariables.ResetNote = False
 
         Me.Text = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facility: " & GlobalVariables.UserFacility
         oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
@@ -160,7 +173,7 @@ Public Class FormMain
         sSql = sSql & "ISNULL(GROWER_PHONE1, ''), ISNULL(VENDOR_NAME, ''), ISNULL(COM.COMMODITY_ID, ''), "
         sSql = sSql & "ISNULL(COMMODITY_NAME, ''), ISNULL(CURRENT_CROP_YEAR_VOLUME, 0), ISNULL(PREVIOUS_CROP_YEAR_VOLUME, 0), "
         sSql = sSql & "ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0), ISNULL(GROWER_NOTE_ID, 0), ISNULL(GROWER_NOTE_CREATION_DATE, ''), ISNULL(GROWER_NOTE_SUBJECT, ''),  "
-        sSql = sSql & "ISNULL(GROWER_NOTE_METHOD, ''), ISNULL(GROWER_NOTE_TEXT, ''), ISNULL(GROWER_NOTE_CREATED_BY, 0) "
+        sSql = sSql & "ISNULL(GROWER_NOTE_METHOD_ID, 0), ISNULL(GROWER_NOTE_TEXT, ''), ISNULL(GROWER_NOTE_CREATED_BY, 0) "
         sSql = sSql & "FROM GROWERS "
         sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
         sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
@@ -220,7 +233,7 @@ Public Class FormMain
                 oGVC.GrowerNoteId = oReader.GetInt32(16)
                 oGVC.GrowerNoteCreationDate = oReader.GetDateTime(17)
                 oGVC.GrowerNoteSubject = oReader.GetString(18)
-                oGVC.GrowerNoteMethod = oReader.GetString(19)
+                oGVC.GrowerNoteMethod = oReader.GetInt32(19)
                 oGVC.GrowerNoteText = oReader.GetString(20)
                 oGVC.GrowerNoteCreatedBy = oReader.GetInt32(21)
 
@@ -822,6 +835,53 @@ Public Class FormMain
 
     Private Sub ckVendor8_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor8.CheckedChanged
         BuildCommodityList()
+    End Sub
+
+    Private Sub btnAddNote_Click(sender As Object, e As EventArgs) Handles btnAddNote.Click
+        Dim sSql As String
+        Dim oNewNote As New Note
+        Me.TopMost = False
+        Dim frmNote = New FormNote
+        Dim sDate As String
+        frmNote.ShowDialog()
+        'frmNote.TopMost = True
+        GlobalVariables.CurrentGrowerID = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerID
+        GlobalVariables.GrowerFirstName = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerFirstName
+        'Public Shared GrowerLastName As String
+        GlobalVariables.GrowerAddress1 = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerAddress1
+        GlobalVariables.GrowerCity = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerCity
+        GlobalVariables.GrowerState = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerState
+        If GlobalVariables.ResetNote Then
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+            myCmd = oConn.CreateCommand
+            sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
+            sSql = "INSERT INTO grower_notes "
+            sSql = sSql & "(grower_note_subject, grower_note_method_id, grower_note_text, grower_note_creation_date, grower_note_created_by, grower_id) "
+            sSql = sSql & "VALUES ('" & GlobalVariables.CurrentNoteSubject & "', " & GlobalVariables.CurrentNoteMethod.ToString() & ", "
+            sSql = sSql & "'" & GlobalVariables.CurrentNoteText & "', '" & sDate & "', "
+            sSql = sSql & GlobalVariables.UserId.ToString() & ", "
+            sSql = sSql & GlobalVariables.CurrentGrowerID.ToString() & ")"
+            myCmd.CommandText = sSql
+            oConn.Open()
+            myCmd.ExecuteNonQuery()
+            'oGrowerColl.ListBox1.SelectedIndex + 1).
+            oConn.Close()
+            oNewNote.GrowerNoteSubject = GlobalVariables.CurrentNoteSubject
+            oNewNote.GrowerNoteMethod = GlobalVariables.CurrentNoteMethod
+            oNewNote.GrowerNoteText = GlobalVariables.CurrentNoteText
+            Dim dDate As Date = Date.ParseExact(sDate, "yyyy-MM-dd hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
+            oNewNote.GrowerNoteCreationDate = dDate
+            oNewNote.GrowerNoteCreatedBy = GlobalVariables.UserId
+            oGrowerColl(ListBox1.SelectedIndex + 1).Notes.Add(oNewNote)
+            ReloadNotes()
+            GlobalVariables.ResetNote = False
+        End If
+        'Public Shared GrowerZip As String
+        ' Did the user click Save?
+        'If frmNote.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        ' Yes, so grab the values you want from the dialog here
+        'Dim textBoxValue As String = options.txtMyTextValue.Text
+        'End If
     End Sub
 End Class
 

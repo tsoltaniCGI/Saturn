@@ -49,7 +49,7 @@ Public Class GrowVendCom
     Public Property GrowerNoteId As Integer
     Public Property GrowerNoteSubject As String
 
-    Public Property GrowerNoteMethod As String
+    Public Property GrowerNoteMethod As Integer
     Public Property GrowerNoteText As String
 
     Public Property GrowerNoteCreationDate As Date
@@ -78,7 +78,7 @@ Public Class Note
     Public Property GrowerNoteId As Integer
     Public Property GrowerNoteSubject As String
 
-    Public Property GrowerNoteMethod As String
+    Public Property GrowerNoteMethod As Integer
 
     Public Property GrowerNoteText As String
 
@@ -93,4 +93,16 @@ Public Class GlobalVariables
     Public Shared UserFirstName As String
     Public Shared UserLastName As String
     Public Shared UserFacility As String
+    Public Shared CurrentGrowerID As Integer
+    Public Shared GrowerFirstName As String
+    Public Shared GrowerLastName As String
+    Public Shared GrowerAddress1 As String
+    Public Shared GrowerCity As String
+    Public Shared GrowerState As String
+    Public Shared GrowerZip As String
+    Public Shared ResetNote As Boolean
+    Public Shared CurrentNoteSubject As String
+    Public Shared CurrentNoteText As String
+    Public Shared CurrentNoteMethod As Integer
+
 End Class
