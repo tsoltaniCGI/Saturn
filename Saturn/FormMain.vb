@@ -415,6 +415,29 @@ Public Class FormMain
         If ListBox1.Items.Count >= 1 Then
             ListBox1.SetSelected(0, True)
         End If
+
+        TestDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+        TestDataGrid.Columns(0).ReadOnly = True
+        'DataGridView1.Rows.Add(New String(){Value1, Value2, Value3})
+        'TestDataGrid.Rows.Add(New String() {"Once, I was a wanderer.  I wandered the entire country."})
+
+        'set the WrapMode for the DataGridViewColumn to DataGridViewTriState.True
+
+        'make sure you Set a height For the row, Or set the DataGridView's AutoSizeRowsMode to DataGridViewAutoSizeRowsMode.AllCells
+
+        'If you Then don't want to edit that column - you can set DataGridView.Column.ReadOnly property to true.
+
+        'Update:     It took me a while to find this property with the above information. In VS C# 2017 the WrapMode property Is located in the datagridview DefaultCellSytle dialog.
+
+        '        Share
+        '       Follow
+        '      edited Jun 7 '19 at 14:48
+        '
+        '   MatthewD
+
+
+        'In addition to this you need to set the WrapMode for the DataGridViewColumn to DataGridViewTriState.True And make sure you set a height for the row, Or set the DataGridView's AutoSizeRowsMode to DataGridViewAutoSizeRowsMode.AllCells – 
+
     End Sub
 
 
@@ -551,7 +574,10 @@ Public Class FormMain
             lvNotes.Clear()
 
             For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
+
                 Dim oLVI As New ListViewItem
+                'sNote = "Subject: " & oNote.GrowerNoteSubject & " - " & oNote.GrowerNoteText & " - " & oNote.GrowerNoteCreatedBy
+                'TestDataGrid.Rows.Add(New String() {sNote})
                 oLVI.SubItems(0).Text = oNote.GrowerNoteText
 
                 oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)

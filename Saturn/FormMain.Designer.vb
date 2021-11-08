@@ -25,6 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -62,8 +63,11 @@ Partial Class FormMain
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAddNote = New System.Windows.Forms.Button()
+        Me.TestDataGrid = New System.Windows.Forms.DataGridView()
+        Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvCommoditySales
@@ -372,11 +376,35 @@ Partial Class FormMain
         Me.btnAddNote.Text = "Add Note..."
         Me.btnAddNote.UseVisualStyleBackColor = True
         '
+        'TestDataGrid
+        '
+        Me.TestDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Note})
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TestDataGrid.DefaultCellStyle = DataGridViewCellStyle1
+        Me.TestDataGrid.Location = New System.Drawing.Point(1056, 217)
+        Me.TestDataGrid.Name = "TestDataGrid"
+        Me.TestDataGrid.RowTemplate.Height = 25
+        Me.TestDataGrid.Size = New System.Drawing.Size(167, 110)
+        Me.TestDataGrid.TabIndex = 54
+        '
+        'Note
+        '
+        Me.Note.HeaderText = "Note"
+        Me.Note.Name = "Note"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1797, 887)
+        Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.btnAddNote)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ckVendor8)
@@ -406,6 +434,7 @@ Partial Class FormMain
         Me.Text = "Saturn"
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -448,4 +477,6 @@ Partial Class FormMain
     Friend WithEvents ckVendor8 As CheckBox
     Friend WithEvents Label1 As Label
     Friend WithEvents btnAddNote As Button
+    Friend WithEvents TestDataGrid As DataGridView
+    Friend WithEvents Note As DataGridViewTextBoxColumn
 End Class
