@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -65,6 +65,7 @@ Partial Class FormMain
         Me.btnAddNote = New System.Windows.Forms.Button()
         Me.TestDataGrid = New System.Windows.Forms.DataGridView()
         Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnAddGrower = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGrowerPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -380,14 +381,14 @@ Partial Class FormMain
         '
         Me.TestDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Note})
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.TestDataGrid.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.TestDataGrid.DefaultCellStyle = DataGridViewCellStyle2
         Me.TestDataGrid.Location = New System.Drawing.Point(1056, 217)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowTemplate.Height = 25
@@ -399,11 +400,21 @@ Partial Class FormMain
         Me.Note.HeaderText = "Note"
         Me.Note.Name = "Note"
         '
+        'btnAddGrower
+        '
+        Me.btnAddGrower.Location = New System.Drawing.Point(13, 895)
+        Me.btnAddGrower.Name = "btnAddGrower"
+        Me.btnAddGrower.Size = New System.Drawing.Size(95, 31)
+        Me.btnAddGrower.TabIndex = 55
+        Me.btnAddGrower.Text = "&Add Grower"
+        Me.btnAddGrower.UseVisualStyleBackColor = True
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1797, 887)
+        Me.ClientSize = New System.Drawing.Size(1797, 938)
+        Me.Controls.Add(Me.btnAddGrower)
         Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.btnAddNote)
         Me.Controls.Add(Me.Label1)
@@ -479,4 +490,5 @@ Partial Class FormMain
     Friend WithEvents btnAddNote As Button
     Friend WithEvents TestDataGrid As DataGridView
     Friend WithEvents Note As DataGridViewTextBoxColumn
+    Friend WithEvents btnAddGrower As Button
 End Class

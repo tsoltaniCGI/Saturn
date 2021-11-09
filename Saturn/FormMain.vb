@@ -909,6 +909,12 @@ Public Class FormMain
         'Dim textBoxValue As String = options.txtMyTextValue.Text
         'End If
     End Sub
+
+    Private Sub btnAddGrower_Click(sender As Object, e As EventArgs) Handles btnAddGrower.Click
+        Me.TopMost = False
+        Dim frmAG As New FormAddGrower
+        frmAG.Show()
+    End Sub
 End Class
 
 

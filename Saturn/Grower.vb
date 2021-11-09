@@ -104,5 +104,6 @@ Public Class GlobalVariables
     Public Shared CurrentNoteSubject As String
     Public Shared CurrentNoteText As String
     Public Shared CurrentNoteMethod As Integer
+    Public Shared oVendorCollection As New Collection
 
 End Class
