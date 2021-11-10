@@ -63,6 +63,7 @@ Partial Class FormMain
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnAddGrower = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -420,6 +421,15 @@ Partial Class FormMain
         Me.Note.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.Note.Width = 400
         '
+        'btnAddGrower
+        '
+        Me.btnAddGrower.Location = New System.Drawing.Point(13, 895)
+        Me.btnAddGrower.Name = "btnAddGrower"
+        Me.btnAddGrower.Size = New System.Drawing.Size(95, 31)
+        Me.btnAddGrower.TabIndex = 55
+        Me.btnAddGrower.Text = "&Add Grower"
+        Me.btnAddGrower.UseVisualStyleBackColor = True
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -505,4 +515,5 @@ Partial Class FormMain
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents Note As DataGridViewTextBoxColumn
+    Friend WithEvents btnAddGrower As Button
 End Class
