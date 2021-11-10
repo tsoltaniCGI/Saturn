@@ -35,7 +35,7 @@ Partial Class FormLogin
         Me.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtUserName.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.txtUserName.ForeColor = System.Drawing.SystemColors.HighlightText
-        Me.txtUserName.Location = New System.Drawing.Point(123, 268)
+        Me.txtUserName.Location = New System.Drawing.Point(123, 317)
         Me.txtUserName.Name = "txtUserName"
         Me.txtUserName.Size = New System.Drawing.Size(191, 20)
         Me.txtUserName.TabIndex = 2
@@ -47,7 +47,7 @@ Partial Class FormLogin
         Me.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.txtPassword.ForeColor = System.Drawing.SystemColors.HighlightText
-        Me.txtPassword.Location = New System.Drawing.Point(123, 345)
+        Me.txtPassword.Location = New System.Drawing.Point(123, 390)
         Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
@@ -57,11 +57,11 @@ Partial Class FormLogin
         '
         'btnLogin
         '
-        Me.btnLogin.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(225, Byte), Integer))
+        Me.btnLogin.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(153, Byte), Integer), CType(CType(188, Byte), Integer))
         Me.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.btnLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnLogin.Location = New System.Drawing.Point(66, 452)
+        Me.btnLogin.Location = New System.Drawing.Point(66, 472)
         Me.btnLogin.Margin = New System.Windows.Forms.Padding(0)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(357, 48)
@@ -73,7 +73,7 @@ Partial Class FormLogin
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(117, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(66, 407)
+        Me.Label4.Location = New System.Drawing.Point(66, 446)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 15)
         Me.Label4.TabIndex = 6
@@ -85,7 +85,7 @@ Partial Class FormLogin
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(492, 525)
+        Me.ClientSize = New System.Drawing.Size(471, 532)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.txtPassword)
@@ -93,7 +93,7 @@ Partial Class FormLogin
         Me.ForeColor = System.Drawing.SystemColors.HighlightText
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormLogin"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Saturn Login"
         Me.ResumeLayout(False)
         Me.PerformLayout()
