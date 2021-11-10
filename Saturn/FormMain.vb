@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 
 
 Public Class FormMain
-
+    'in
     Inherits System.Windows.Forms.Form
 
 
@@ -31,7 +31,7 @@ Public Class FormMain
 
     Public Property DataGridView1 As Object
     Private Sub ReloadNotes()
-        lvNotes.Clear()
+        'lvNotes.Clear()
 
         For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
             Dim oLVI As New ListViewItem
@@ -41,7 +41,7 @@ Public Class FormMain
             oLVI.SubItems.Add(oNote.GrowerNoteCreatedBy)
             oLVI.SubItems.Add(oNote.GrowerNoteSubject)
             oLVI.SubItems.Add(oNote.GrowerNoteMethod)
-            lvNotes.Items.Add(oLVI)
+            'lvNotes.Items.Add(oLVI)
         Next
     End Sub
     Private Sub BuildCommodityList()
@@ -506,6 +506,7 @@ Public Class FormMain
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
         Dim iCnt As Integer
         Dim iMax As Integer
+        Dim sNote As String
         'Dim ilvCnt As Integer
         'Dim iLvMax As Integer
         'Dim oCurVendor As Vendor
@@ -571,20 +572,20 @@ Public Class FormMain
             Loop
 
 
-            lvNotes.Clear()
+            'lvNotes.Clear()
 
             For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
 
                 Dim oLVI As New ListViewItem
-                'sNote = "Subject: " & oNote.GrowerNoteSubject & " - " & oNote.GrowerNoteText & " - " & oNote.GrowerNoteCreatedBy
-                'TestDataGrid.Rows.Add(New String() {sNote})
+                sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
+                TestDataGrid.Rows.Add(New String() {sNote})
                 oLVI.SubItems(0).Text = oNote.GrowerNoteText
 
                 oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)
                 oLVI.SubItems.Add(oNote.GrowerNoteCreatedBy)
                 oLVI.SubItems.Add(oNote.GrowerNoteSubject)
                 oLVI.SubItems.Add(oNote.GrowerNoteMethod)
-                lvNotes.Items.Add(oLVI)
+                'lvNotes.Items.Add(oLVI)
             Next
         End If
         'If cbxVendors.Items.Count >= 1 Then
@@ -908,6 +909,22 @@ Public Class FormMain
         ' Yes, so grab the values you want from the dialog here
         'Dim textBoxValue As String = options.txtMyTextValue.Text
         'End If
+    End Sub
+
+    Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
+
+    Private Sub pbContact_Click(sender As Object, e As EventArgs) Handles pbContact.Click
+
+    End Sub
+
+    Private Sub TestDataGrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles TestDataGrid.CellContentClick
+
     End Sub
 End Class
 
