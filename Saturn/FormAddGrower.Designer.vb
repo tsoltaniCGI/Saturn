@@ -49,7 +49,6 @@ Partial Class FormAddGrower
         Me.lstVendors = New System.Windows.Forms.ListBox()
         Me.btnOK = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.ckProspect = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
@@ -286,16 +285,6 @@ Partial Class FormAddGrower
         Me.Button1.Text = "&Cancel"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(0, 0)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(85, 19)
-        Me.CheckBox1.TabIndex = 27
-        Me.CheckBox1.Text = "CheckBox1"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'ckProspect
         '
         Me.ckProspect.AutoSize = True
@@ -312,7 +301,6 @@ Partial Class FormAddGrower
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 639)
         Me.Controls.Add(Me.ckProspect)
-        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.lstVendors)
@@ -374,6 +362,5 @@ Partial Class FormAddGrower
     Friend WithEvents lstVendors As ListBox
     Friend WithEvents btnOK As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents ckProspect As CheckBox
 End Class

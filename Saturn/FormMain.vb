@@ -31,18 +31,14 @@ Public Class FormMain
 
     Public Property DataGridView1 As Object
     Private Sub ReloadNotes()
-        'lvNotes.Clear()
+        Dim sNote As String
 
+        Me.TestDataGrid.Rows.Clear()
         For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
-            Dim oLVI As New ListViewItem
-            oLVI.SubItems(0).Text = oNote.GrowerNoteText
-
-            oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)
-            oLVI.SubItems.Add(oNote.GrowerNoteCreatedBy)
-            oLVI.SubItems.Add(oNote.GrowerNoteSubject)
-            oLVI.SubItems.Add(oNote.GrowerNoteMethod)
-            'lvNotes.Items.Add(oLVI)
+            sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
+            TestDataGrid.Rows.Add(New String() {sNote})
         Next
+
     End Sub
     Private Sub BuildCommodityList()
         Dim liIndex As Integer
@@ -625,18 +621,19 @@ Public Class FormMain
 
 
             'lvNotes.Clear()
-
+            TestDataGrid.Rows.Clear()
             For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
 
-                Dim oLVI As New ListViewItem
+                'Dim oLVI As New ListViewItem
+
                 sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
                 TestDataGrid.Rows.Add(New String() {sNote})
-                oLVI.SubItems(0).Text = oNote.GrowerNoteText
+                'oLVI.SubItems(0).Text = oNote.GrowerNoteText
 
-                oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)
-                oLVI.SubItems.Add(oNote.GrowerNoteCreatedBy)
-                oLVI.SubItems.Add(oNote.GrowerNoteSubject)
-                oLVI.SubItems.Add(oNote.GrowerNoteMethod)
+                'oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)
+                'oLVI.SubItems.Add(oNote.GrowerNoteCreatedBy)
+                'oLVI.SubItems.Add(oNote.GrowerNoteSubject)
+                'oLVI.SubItems.Add(oNote.GrowerNoteMethod)
                 'lvNotes.Items.Add(oLVI)
             Next
         End If
@@ -922,24 +919,28 @@ Public Class FormMain
         Me.TopMost = False
         Dim frmNote = New FormNote
         Dim sDate As String
+        Dim dDate As DateTime
         frmNote.ShowDialog()
         'frmNote.TopMost = True
         GlobalVariables.CurrentGrowerID = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerID
         GlobalVariables.GrowerFirstName = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerFirstName
-        'Public Shared GrowerLastName As String
         GlobalVariables.GrowerAddress1 = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerAddress1
         GlobalVariables.GrowerCity = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerCity
         GlobalVariables.GrowerState = oGrowerColl(ListBox1.SelectedIndex + 1).GrowerState
         If GlobalVariables.ResetNote Then
             oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
             myCmd = oConn.CreateCommand
-            sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
+            'sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
+            dDate = Now()
             sSql = "INSERT INTO grower_notes "
             sSql = sSql & "(grower_note_subject, grower_note_method_id, grower_note_text, grower_note_creation_date, grower_note_created_by, grower_id) "
             sSql = sSql & "VALUES ('" & GlobalVariables.CurrentNoteSubject & "', " & GlobalVariables.CurrentNoteMethod.ToString() & ", "
-            sSql = sSql & "'" & GlobalVariables.CurrentNoteText & "', '" & sDate & "', "
+            sSql = sSql & "'" & GlobalVariables.CurrentNoteText.Substring(0, 200) & "', CONVERT(datetime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
             sSql = sSql & GlobalVariables.UserId.ToString() & ", "
             sSql = sSql & GlobalVariables.CurrentGrowerID.ToString() & ")"
+            sSql = Replace(sSql, "&", "")
+            sSql = Replace(sSql, vbCrLf, "' + CHAR(13) + CHAR(10) + '")
+            sSql = sSql
             myCmd.CommandText = sSql
             oConn.Open()
             myCmd.ExecuteNonQuery()
@@ -948,7 +949,7 @@ Public Class FormMain
             oNewNote.GrowerNoteSubject = GlobalVariables.CurrentNoteSubject
             oNewNote.GrowerNoteMethod = GlobalVariables.CurrentNoteMethod
             oNewNote.GrowerNoteText = GlobalVariables.CurrentNoteText
-            Dim dDate As Date = Date.ParseExact(sDate, "yyyy-MM-dd hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
+            'Dim dDate As Date = Date.ParseExact(sDate, "yyyy-MM-dd hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
             oNewNote.GrowerNoteCreationDate = dDate
             oNewNote.GrowerNoteCreatedBy = GlobalVariables.UserId
             oGrowerColl(ListBox1.SelectedIndex + 1).Notes.Add(oNewNote)
@@ -976,6 +977,10 @@ Public Class FormMain
     End Sub
 
     Private Sub TestDataGrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles TestDataGrid.CellContentClick
+
+    End Sub
+
+    Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
     End Sub
 End Class

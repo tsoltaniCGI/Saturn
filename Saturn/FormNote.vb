@@ -1,6 +1,7 @@
 ﻿Public Class FormNote
     Private Sub FormNote_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Me.DialogResult = Windows.Forms.DialogResult.OK
+        GlobalVariables.ResetNote = False
         lblName.Text = GlobalVariables.GrowerFirstName
         lblAddress.Text = GlobalVariables.GrowerAddress1
         lblGrowerCity.Text = GlobalVariables.GrowerCity
@@ -35,7 +36,7 @@
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         GlobalVariables.ResetNote = True
-        GlobalVariables.CurrentNoteText = "Testing"
+        GlobalVariables.CurrentNoteText = txtNote.Text
         GlobalVariables.CurrentNoteMethod = cmbMethod.SelectedIndex
         If GlobalVariables.CurrentNoteMethod = -1 Then
             GlobalVariables.CurrentNoteMethod = 0
