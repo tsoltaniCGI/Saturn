@@ -153,10 +153,12 @@ Public Class FormMain
         'Select Case growers.grower_id, vendors.vendor_id, NVL(grower_first_name,''), NVL(grower_address_line_1,''),
         'NVL(grower_city,''), NVL(grower_county,''), NVL(grower_state,''), NVL(grower_zip,''), NVL(grower_country,''), NVL(grower_phone1,''),
         'NVL(vendor_name,''), NVL(commodities.commodity_id,''), NVL(commodity_name,''),
-        'NVL(current_crop_year_volume, 0), NVL(previous_crop_year_volume, 0), NVL(previous2_crop_year_volume, 0), NVL(grower_note_id, 0), NVL(grower_note_text, '')
-        'From growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities, vendor_sales_volume, facilities, grower_notes
+        'NVL(current_crop_year_volume, 0), NVL(previous_crop_year_volume, 0), NVL(previous2_crop_year_volume, 0), NVL(grower_note_id, 0), NVL(grower_note_creation_date, ''), NVL(grower_note_subject), ''),
+        'NVL(grower_note_method_id, 0), NVL(grower_note_text, ''), NVL(grower_note_created_by, 0)
+        'From growers, growers_vendors, vendors, vendors_facilities, users, commodities, vendors_commodities, vendor_sales_volume, facilities, grower_notes, users_facilities
         'Where user_id = 339
-        'And facilities.facility_id = User_facility_id
+        'And facilities.facility_id = users_facilities.facility_id
+        'and users.user_id = users_facilities.user_id
         'And vendors_facilities.facility_id (+)= facilities.facility_id
         'And vendors_facilities.vendor_id (+)= vendors.vendor_id
         'And growers_vendors.grower_id = growers.grower_id
@@ -168,41 +170,84 @@ Public Class FormMain
         'And grower_notes.grower_id (+)= growers.grower_id
         'ORDER BY growers.grower_id, vendors.vendor_id, commodity_name, grower_note_id
 
-        sSql = "SELECT GROWERS.GROWER_ID, VENDORS.VENDOR_ID, ISNULL(GROWER_FIRST_NAME, ''), "
-        sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_1, ''), ISNULL(GROWER_CITY, ''), ISNULL(GROWER_COUNTY, ''), "
-        sSql = sSql & "ISNULL(GROWER_STATE, ''), ISNULL(GROWER_ZIP, ''), ISNULL(GROWER_COUNTRY, ''), "
-        sSql = sSql & "ISNULL(GROWER_PHONE1, ''), ISNULL(VENDOR_NAME, ''), ISNULL(COM.COMMODITY_ID, ''), "
-        sSql = sSql & "ISNULL(COMMODITY_NAME, ''), ISNULL(CURRENT_CROP_YEAR_VOLUME, 0), ISNULL(PREVIOUS_CROP_YEAR_VOLUME, 0), "
-        sSql = sSql & "ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0), ISNULL(GROWER_NOTE_ID, 0), ISNULL(GROWER_NOTE_CREATION_DATE, ''), ISNULL(GROWER_NOTE_SUBJECT, ''),  "
-        sSql = sSql & "ISNULL(GROWER_NOTE_METHOD_ID, 0), ISNULL(GROWER_NOTE_TEXT, ''), ISNULL(GROWER_NOTE_CREATED_BY, 0) "
+        'sSql = "SELECT GROWERS.GROWER_ID, VENDORS.VENDOR_ID, ISNULL(GROWER_FIRST_NAME, ''), "
+        'sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_1, ''), ISNULL(GROWER_CITY, ''), ISNULL(GROWER_COUNTY, ''), "
+        'sSql = sSql & "ISNULL(GROWER_STATE, ''), ISNULL(GROWER_ZIP, ''), ISNULL(GROWER_COUNTRY, ''), "
+        'sSql = sSql & "ISNULL(GROWER_PHONE1, ''), ISNULL(VENDOR_NAME, ''), ISNULL(COM.COMMODITY_ID, ''), "
+        'sSql = sSql & "ISNULL(COMMODITY_NAME, ''), ISNULL(CURRENT_CROP_YEAR_VOLUME, 0), ISNULL(PREVIOUS_CROP_YEAR_VOLUME, 0), "
+        'sSql = sSql & "ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0), ISNULL(GROWER_NOTE_ID, 0), ISNULL(GROWER_NOTE_CREATION_DATE, ''), ISNULL(GROWER_NOTE_SUBJECT, ''),  "
+        'sSql = sSql & "ISNULL(GROWER_NOTE_METHOD_ID, 0), ISNULL(GROWER_NOTE_TEXT, ''), ISNULL(GROWER_NOTE_CREATED_BY, 0) "
+        'sSql = sSql & "FROM GROWERS "
+        'sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
+        'sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
+        'sSql = sSql & "INNER Join GROWERS_VENDORS "
+        'sSql = sSql & "ON GROWERS_VENDORS.GROWER_ID = GROWERS.GROWER_ID "
+        'sSql = sSql & "INNER JOIN( "
+        'sSql = sSql & "VENDORS "
+        'sSql = sSql & "LEFT OUTER JOIN VENDOR_SALES_VOLUME "
+        'sSql = sSql & "ON VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
+        'sSql = sSql & "INNER JOIN VENDORS_COMMODITIES "
+        'sSql = sSql & "ON VENDORS.VENDOR_ID = VENDORS_COMMODITIES.VENDOR_ID "
+        'sSql = sSql & "LEFT OUTER JOIN ( "
+        'sSql = sSql & "VENDORS_FACILITIES "
+        'sSql = sSql & "RIGHT OUTER JOIN FACILITIES "
+        'sSql = sSql & "ON VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        'sSql = sSql & ") "
+        'sSql = sSql & "ON VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        'sSql = sSql & ") "
+        'sSql = sSql & "ON VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID "
+        'sSql = sSql & "CROSS Join USERS "
+        'sSql = sSql & "CROSS Join COMMODITIES com "
+        'sSql = sSql & "WHERE( "
+        'sSql = sSql & "USER_ID = " & GlobalVariables.UserId.ToString() & " "
+        'sSql = sSql & "AND FACILITIES.FACILITY_ID = USER_FACILITY_ID "
+        'sSql = sSql & "AND com.COMMODITY_ID = VENDORS_COMMODITIES.COMMODITY_ID "
+        'sSql = sSql & "AND VENDOR_SALES_VOLUME.COMMODITY_ID = com.COMMODITY_ID "
+        'sSql = sSql & ") "
+        'sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, COMMODITY_NAME, GROWER_NOTE_ID"
+
+        sSql = "SELECT DISTINCT GROWERS.GROWER_ID, VENDORS.VENDOR_ID, ISNULL(GROWER_FIRST_NAME, '') AS 'First Name', ISNULL(GROWER_ADDRESS_LINE_1, '') AS Address, "
+        sSql = sSql & "ISNULL(GROWER_CITY, '') AS City, ISNULL(GROWER_COUNTY, '') AS County, ISNULL(GROWER_STATE, '') AS State, "
+        sSql = sSql & "ISNULL(GROWER_ZIP, '') AS 'Zip Code', ISNULL(GROWER_COUNTRY, '') AS Country, ISNULL(GROWER_PHONE1, '') AS 'Work Phone', "
+        sSql = sSql & "ISNULL(VENDOR_NAME, '') AS 'Vendor Name', ISNULL(COMMODITIES.COMMODITY_ID, '') AS CommID, "
+        sSql = sSql & "ISNULL(COMMODITIES.COMMODITY_NAME, '') AS Commodity, ISNULL(CURRENT_CROP_YEAR_VOLUME, 0) AS 'CCY Volume', "
+        sSql = sSql & "ISNULL(PREVIOUS_CROP_YEAR_VOLUME, 0) AS 'PCY Volume', ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0) AS 'P2CY Volume', "
+        sSql = sSql & "ISNULL(GROWER_NOTE_ID, 0) AS NoteID, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', "
+        sSql = sSql & "ISNULL(GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', "
+        sSql = sSql & "ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Note Creator' "
         sSql = sSql & "FROM GROWERS "
         sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
         sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
-        sSql = sSql & "INNER Join GROWERS_VENDORS "
+        sSql = sSql & "INNER JOIN GROWERS_VENDORS "
         sSql = sSql & "ON GROWERS_VENDORS.GROWER_ID = GROWERS.GROWER_ID "
-        sSql = sSql & "INNER JOIN( "
+        sSql = sSql & "INNER JOIN ( "
         sSql = sSql & "VENDORS "
-        sSql = sSql & "LEFT OUTER JOIN VENDOR_SALES_VOLUME "
-        sSql = sSql & "ON VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
-        sSql = sSql & "INNER JOIN VENDORS_COMMODITIES "
-        sSql = sSql & "ON VENDORS.VENDOR_ID = VENDORS_COMMODITIES.VENDOR_ID "
         sSql = sSql & "LEFT OUTER JOIN ( "
-        sSql = sSql & "VENDORS_FACILITIES "
-        sSql = sSql & "RIGHT OUTER JOIN FACILITIES "
-        sSql = sSql & "ON VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
-        sSql = sSql & ") "
-        sSql = sSql & "ON VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
-        sSql = sSql & ") "
+        sSql = sSql & "VENDOR_SALES_VOLUME "
+        sSql = sSql & "RIGHT OUTER JOIN COMMODITIES COM "
+        sSql = sSql & "ON VENDOR_SALES_VOLUME.COMMODITY_ID = COM.COMMODITY_ID "
+        sSql = sSql & " ) "
+        sSql = sSql & "ON VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
+        sSql = sSql & " ) "
         sSql = sSql & "ON VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID "
-        sSql = sSql & "CROSS Join USERS "
-        sSql = sSql & "CROSS Join COMMODITIES com "
-        sSql = sSql & "WHERE( "
-        sSql = sSql & "USER_ID = " & GlobalVariables.UserId.ToString() & " "
-        sSql = sSql & "AND FACILITIES.FACILITY_ID = USER_FACILITY_ID "
-        sSql = sSql & "AND com.COMMODITY_ID = VENDORS_COMMODITIES.COMMODITY_ID "
-        sSql = sSql & "AND VENDOR_SALES_VOLUME.COMMODITY_ID = com.COMMODITY_ID "
-        sSql = sSql & ") "
-        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, COMMODITY_NAME, GROWER_NOTE_ID"
+        sSql = sSql & "INNER JOIN ( "
+        sSql = sSql & "VENDORS_FACILITIES "
+        sSql = sSql & "INNER JOIN FACILITIES "
+        sSql = sSql & "ON VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        sSql = sSql & "INNER JOIN USERS_FACILITIES "
+        sSql = sSql & "ON FACILITIES.FACILITY_ID = USERS_FACILITIES.FACILITY_ID "
+        sSql = sSql & "INNER JOIN USERS "
+        sSql = sSql & "ON USERS.USER_ID = USERS_FACILITIES.USER_ID "
+        sSql = sSql & " ) "
+        sSql = sSql & "ON VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        sSql = sSql & "INNER JOIN ( "
+        sSql = sSql & "VENDORS_COMMODITIES "
+        sSql = sSql & "INNER JOIN COMMODITIES "
+        sSql = sSql & "ON commodities.COMMODITY_ID = VENDORS_COMMODITIES.COMMODITY_ID "
+        sSql = sSql & " ) "
+        sSql = sSql & "ON VENDORS.VENDOR_ID = VENDORS_COMMODITIES.VENDOR_ID "
+        sSql = sSql & "WHERE users.USER_ID = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, NoteID"
 
         myCmd.CommandText = sSql
         oConn.Open()
@@ -232,10 +277,10 @@ Public Class FormMain
                 oGVC.PreviousCropYear = oReader.GetDecimal(14)
                 oGVC.Previous2CropYear = oReader.GetDecimal(15)
                 oGVC.GrowerNoteId = oReader.GetInt32(16)
-                oGVC.GrowerNoteCreationDate = oReader.GetDateTime(17)
-                oGVC.GrowerNoteSubject = oReader.GetString(18)
-                oGVC.GrowerNoteMethod = oReader.GetInt32(19)
-                oGVC.GrowerNoteText = oReader.GetString(20)
+                oGVC.GrowerNoteSubject = oReader.GetString(17)
+                oGVC.GrowerNoteMethod = oReader.GetInt32(18)
+                oGVC.GrowerNoteText = oReader.GetString(19)
+                oGVC.GrowerNoteCreationDate = oReader.GetDateTime(20)
                 oGVC.GrowerNoteCreatedBy = oReader.GetInt32(21)
 
                 oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & oGVC.VendorId.ToString() & oGVC.CommID.ToString() & iNum.ToString())
@@ -276,13 +321,15 @@ Public Class FormMain
                         Do While iVendorID = oCollGrowVendComm(iCnt).VendorID And iGrowerID = oCollGrowVendComm(iCnt).GrowerId
 
                             sCommID = oCollGrowVendComm(iCnt).CommID
-                            Dim oComm As New Commodity
-                            oComm.CommID = sCommID
-                            oComm.CommName = oCollGrowVendComm(iCnt).CommName
-                            oComm.CurrentCropYear = oCollGrowVendComm(iCnt).CurrentCropYear
-                            oComm.PreviousCropYear = oCollGrowVendComm(iCnt).PreviousCropYear
-                            oComm.Previous2CropYear = oCollGrowVendComm(iCnt).Previous2CropYear
-                            oVendor.CollCommodities.Add(oComm)
+                            If Not oVendor.CollCommodities.Contains(sCommID) Then
+                                Dim oComm As New Commodity
+                                oComm.CommID = sCommID
+                                oComm.CommName = oCollGrowVendComm(iCnt).CommName
+                                oComm.CurrentCropYear = oCollGrowVendComm(iCnt).CurrentCropYear
+                                oComm.PreviousCropYear = oCollGrowVendComm(iCnt).PreviousCropYear
+                                oComm.Previous2CropYear = oCollGrowVendComm(iCnt).Previous2CropYear
+                                oVendor.CollCommodities.Add(oComm, oComm.CommID)
+                            End If
                             iCnt = iCnt + 1
                             If iCnt >= iMax Then
 
@@ -295,13 +342,18 @@ Public Class FormMain
                     End If
                     iCnt = iCnt + 1
                     If iCnt >= iMax Then
-                        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                        If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+                            oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+
+                        End If
                         Exit Do
                     End If
                 Loop
                 If iCnt <= iMax Then
                     If iGrowerID <> oCollGrowVendComm(iCnt).GrowerId Then
-                        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                        If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+                            oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                        End If
                         'iCnt = iCnt - 1 'Move the pointer back one so the outside loop can advance to the next record
                     End If
                 End If
