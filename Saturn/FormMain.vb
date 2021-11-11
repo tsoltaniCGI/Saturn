@@ -263,7 +263,7 @@ Public Class FormMain
 
         myCmd.CommandText = sSql
         oConn.Open()
-
+        'oComm
         oReader = myCmd.ExecuteReader()
 
         iGrowerID = -1
