@@ -106,6 +106,7 @@ Public Class GlobalVariables
     Public Shared GrowerState As String
     Public Shared GrowerZip As String
     Public Shared ResetNote As Boolean
+    Public Shared ResetGrower As Boolean
     Public Shared CurrentNoteSubject As String
     Public Shared CurrentNoteText As String
     Public Shared CurrentNoteMethod As Integer

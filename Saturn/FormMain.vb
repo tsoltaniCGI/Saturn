@@ -966,7 +966,7 @@ Public Class FormMain
         Dim oNewNote As New Note
         Me.TopMost = False
         Dim frmNote = New FormNote
-        Dim sDate As String
+        'Dim sDate As String
         Dim dDate As DateTime
         frmNote.ShowDialog()
         'frmNote.TopMost = True
@@ -1026,6 +1026,28 @@ Public Class FormMain
     End Sub
 
     Private Sub pbContact_Click(sender As Object, e As EventArgs) Handles pbContact.Click
+
+    End Sub
+
+    Private Sub btnAddGrower_ClientSizeChanged(sender As Object, e As EventArgs) Handles btnAddGrower.ClientSizeChanged
+
+    End Sub
+
+    Private Sub btnAddGrower_Click(sender As Object, e As EventArgs) Handles btnAddGrower.Click
+        Dim sSql As String
+        Dim oNewNote As New Note
+        Me.TopMost = False
+        Dim frmAddGrower = New FormAddGrower
+        'Dim sDate As String
+        Dim dDate As DateTime
+        GlobalVariables.ResetGrower = False
+        frmAddGrower.ShowDialog()
+
+
+
+    End Sub
+
+    Private Sub btnAddNote_ClientSizeChanged(sender As Object, e As EventArgs) Handles btnAddNote.ClientSizeChanged
 
     End Sub
 End Class
