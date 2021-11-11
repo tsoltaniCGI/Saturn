@@ -92,7 +92,8 @@ Public Class GlobalVariables
     Public Shared UserId As Integer
     Public Shared UserFirstName As String
     Public Shared UserLastName As String
-    Public Shared UserFacility As String
+    Public Shared UserFacilities As New Collection
+    Public Shared UserFacilityIDs As New Collection
     Public Shared CurrentGrowerID As Integer
     Public Shared GrowerFirstName As String
     Public Shared GrowerLastName As String
@@ -105,5 +106,10 @@ Public Class GlobalVariables
     Public Shared CurrentNoteText As String
     Public Shared CurrentNoteMethod As Integer
     Public Shared oVendorCollection As New Collection
+    Public Shared Function DQuot(lsConvStr As String) As String
+        Dim lsRetStr As String
 
+        lsRetStr = Replace(lsConvStr, "'", "''")
+        DQuot = lsRetStr
+    End Function
 End Class

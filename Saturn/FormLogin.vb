@@ -16,6 +16,8 @@
         Dim sSql As String
         Dim iUserId As Integer
         Dim bValidated As Boolean
+        Dim bUserLoaded As Boolean
+
         Label4.Text = ""
 
 
@@ -25,22 +27,30 @@
 
             oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
             myCmd = oConn.CreateCommand
-            sSql = "SELECT user_id, user_first_name, user_last_name, facility_name "
-            sSql = sSql & "FROM users, facilities "
-            sSql = sSql & "WHERE user_login = '" & Trim(txtUserName.Text.ToString().ToUpper()) & "' "
-            sSql = sSql & "AND facilities.facility_id = ISNULL(User_facility_id, 158)"
+            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id "
+            sSql = sSql & "FROM users, facilities, users_facilities "
+            sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
+            sSql = sSql & "AND users_facilities.user_id = users.user_id "
+            sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id"
+            'facilities.facility_id = ISNULL(User_facility_id, 158)"
             myCmd.CommandText = sSql
             oConn.Open()
 
             oReader = myCmd.ExecuteReader()
             If oReader.HasRows Then
                 Me.bAppExit = False
-                oReader.Read()
-                iUserId = oReader.GetInt32(0)
-                GlobalVariables.UserId = iUserId
-                GlobalVariables.UserFirstName = oReader.GetString(1)
-                GlobalVariables.UserLastName = oReader.GetString(2)
-                GlobalVariables.UserFacility = oReader.GetString(3)
+                bUserLoaded = False
+                Do While oReader.Read()
+                    If Not bUserLoaded Then
+                        iUserId = oReader.GetInt32(0)
+                        GlobalVariables.UserId = iUserId
+                        GlobalVariables.UserFirstName = oReader.GetString(1)
+                        GlobalVariables.UserLastName = oReader.GetString(2)
+                        bUserLoaded = True
+                    End If
+                    GlobalVariables.UserFacilityIDs.Add(oReader.GetInt32(4))
+                    GlobalVariables.UserFacilities.Add(oReader.GetString(3), oReader.GetString(3))
+                Loop
                 Label4.Text = "Validated"
                 Me.Close()
                 Dim oFormMain As New FormMain

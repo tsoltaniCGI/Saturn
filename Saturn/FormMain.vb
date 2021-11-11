@@ -123,10 +123,16 @@ Public Class FormMain
         'Dim iNoteId As Integer
         Dim iNum As Integer
         Dim bAddNote As Boolean
+        Dim sCaption As String
         'no fdg
         GlobalVariables.ResetNote = False
 
-        Me.Text = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facility: " & GlobalVariables.UserFacility
+        sCaption = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facilities: "
+        For Each sFacility In GlobalVariables.UserFacilities
+            sCaption = sCaption & sFacility & " "
+        Next
+        'Me.Text = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facility: " & GlobalVariables.UserFacility
+        Me.Text = Trim(sCaption)
         oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         myCmd = oConn.CreateCommand
         'sSql = "SELECT growers.grower_id, vendors.vendor_id, ISNULL(grower_first_name,''), ISNULL(grower_address_line_1,''), "
@@ -965,7 +971,7 @@ Public Class FormMain
     End Sub
 
 
-    End Sub
+
 
     Private Sub TestDataGrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles TestDataGrid.CellContentClick
 

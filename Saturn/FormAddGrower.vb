@@ -20,7 +20,17 @@ Public Class FormAddGrower
         Dim sSql As String
         Dim iCnt As Integer
 
-        sSql = "SELECT vendor_id, vendor_name FROM vendors"
+
+        sSql = "SELECT vendor_id, vendor_name "
+        sSql = sSql & "FROM vendors, vendors_facilities "
+        sSql = sSql & "WHERE vendors_facilities.facility_id IN ("
+        For Each iID In GlobalVariables.UserFacilityIDs
+            sSql = sSql & iID.ToString() & ", "
+        Next
+        sSql = sSql & ")"
+        sSql = Replace(sSql, ", )", " )")
+        sSql = sSql & " "
+        sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id"
         myCmd.CommandText = sSql
 
         Dim oReader = myCmd.ExecuteReader()
