@@ -104,6 +104,7 @@ Public Class FormMain
         Next
         liCnt = liCnt + 1
         'Loop
+        '
         lvCommoditySales.View = View.Details
         lvCommoditySales.Items.Clear()
         For Each loCurComm In loCollCommList
