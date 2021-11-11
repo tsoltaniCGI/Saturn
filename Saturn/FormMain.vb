@@ -941,7 +941,7 @@ Public Class FormMain
             sSql = "INSERT INTO grower_notes "
             sSql = sSql & "(grower_note_subject, grower_note_method_id, grower_note_text, grower_note_creation_date, grower_note_created_by, grower_id) "
             sSql = sSql & "VALUES ('" & GlobalVariables.CurrentNoteSubject & "', " & GlobalVariables.CurrentNoteMethod.ToString() & ", "
-            sSql = sSql & "'" & GlobalVariables.CurrentNoteText.Substring(0, 200) & "', CONVERT(datetime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
+            sSql = sSql & "'" & GlobalVariables.DQuot(GlobalVariables.CurrentNoteText.ToString()) & "', CONVERT(datetime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
             sSql = sSql & GlobalVariables.UserId.ToString() & ", "
             sSql = sSql & GlobalVariables.CurrentGrowerID.ToString() & ")"
             sSql = Replace(sSql, "&", "")
