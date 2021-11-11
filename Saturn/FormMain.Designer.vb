@@ -241,87 +241,97 @@ Partial Class FormMain
         'ckVendor1
         '
         Me.ckVendor1.AutoSize = True
+        Me.ckVendor1.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.ckVendor1.Font = New System.Drawing.Font("Bodoni MT", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.ckVendor1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(177, Byte), Integer))
         Me.ckVendor1.Location = New System.Drawing.Point(528, 601)
         Me.ckVendor1.Name = "ckVendor1"
-        Me.ckVendor1.Size = New System.Drawing.Size(81, 19)
+        Me.ckVendor1.Size = New System.Drawing.Size(100, 24)
         Me.ckVendor1.TabIndex = 44
         Me.ckVendor1.Text = "ckVendor1"
-        Me.ckVendor1.UseVisualStyleBackColor = True
+        Me.ckVendor1.UseVisualStyleBackColor = False
         '
         'ckVendor2
         '
         Me.ckVendor2.AutoSize = True
+        Me.ckVendor2.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ckVendor2.Location = New System.Drawing.Point(726, 601)
         Me.ckVendor2.Name = "ckVendor2"
         Me.ckVendor2.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor2.TabIndex = 45
         Me.ckVendor2.Text = "ckVendor2"
-        Me.ckVendor2.UseVisualStyleBackColor = True
+        Me.ckVendor2.UseVisualStyleBackColor = False
         '
         'ckVendor3
         '
         Me.ckVendor3.AutoSize = True
+        Me.ckVendor3.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ckVendor3.Location = New System.Drawing.Point(926, 601)
         Me.ckVendor3.Name = "ckVendor3"
         Me.ckVendor3.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor3.TabIndex = 46
         Me.ckVendor3.Text = "ckVendor3"
-        Me.ckVendor3.UseVisualStyleBackColor = True
+        Me.ckVendor3.UseVisualStyleBackColor = False
         '
         'ckVendor4
         '
         Me.ckVendor4.AutoSize = True
+        Me.ckVendor4.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ckVendor4.Location = New System.Drawing.Point(1100, 601)
         Me.ckVendor4.Name = "ckVendor4"
         Me.ckVendor4.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor4.TabIndex = 47
         Me.ckVendor4.Text = "ckVendor4"
-        Me.ckVendor4.UseVisualStyleBackColor = True
+        Me.ckVendor4.UseVisualStyleBackColor = False
         '
         'ckVendor5
         '
         Me.ckVendor5.AutoSize = True
+        Me.ckVendor5.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ckVendor5.Location = New System.Drawing.Point(528, 567)
         Me.ckVendor5.Name = "ckVendor5"
         Me.ckVendor5.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor5.TabIndex = 48
         Me.ckVendor5.Text = "ckVendor5"
-        Me.ckVendor5.UseVisualStyleBackColor = True
+        Me.ckVendor5.UseVisualStyleBackColor = False
         '
         'ckVendor6
         '
         Me.ckVendor6.AutoSize = True
+        Me.ckVendor6.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ckVendor6.Location = New System.Drawing.Point(726, 567)
         Me.ckVendor6.Name = "ckVendor6"
         Me.ckVendor6.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor6.TabIndex = 49
         Me.ckVendor6.Text = "ckVendor6"
-        Me.ckVendor6.UseVisualStyleBackColor = True
+        Me.ckVendor6.UseVisualStyleBackColor = False
         '
         'ckVendor7
         '
         Me.ckVendor7.AutoSize = True
+        Me.ckVendor7.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ckVendor7.Location = New System.Drawing.Point(926, 567)
         Me.ckVendor7.Name = "ckVendor7"
         Me.ckVendor7.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor7.TabIndex = 50
         Me.ckVendor7.Text = "ckVendor7"
-        Me.ckVendor7.UseVisualStyleBackColor = True
+        Me.ckVendor7.UseVisualStyleBackColor = False
         '
         'ckVendor8
         '
         Me.ckVendor8.AutoSize = True
+        Me.ckVendor8.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ckVendor8.Location = New System.Drawing.Point(1100, 567)
         Me.ckVendor8.Name = "ckVendor8"
         Me.ckVendor8.Size = New System.Drawing.Size(81, 19)
         Me.ckVendor8.TabIndex = 51
         Me.ckVendor8.Text = "ckVendor8"
-        Me.ckVendor8.UseVisualStyleBackColor = True
+        Me.ckVendor8.UseVisualStyleBackColor = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1182, 91)
+        Me.Label1.Location = New System.Drawing.Point(1005, 109)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(41, 15)
         Me.Label1.TabIndex = 52
@@ -329,7 +339,7 @@ Partial Class FormMain
         '
         'btnAddNote
         '
-        Me.btnAddNote.Location = New System.Drawing.Point(1173, 123)
+        Me.btnAddNote.Location = New System.Drawing.Point(1005, 198)
         Me.btnAddNote.Name = "btnAddNote"
         Me.btnAddNote.Size = New System.Drawing.Size(75, 23)
         Me.btnAddNote.TabIndex = 53
@@ -350,10 +360,10 @@ Partial Class FormMain
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.TestDataGrid.DefaultCellStyle = DataGridViewCellStyle2
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(112, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1244, 29)
+        Me.TestDataGrid.Location = New System.Drawing.Point(1254, 40)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowTemplate.Height = 25
-        Me.TestDataGrid.Size = New System.Drawing.Size(447, 846)
+        Me.TestDataGrid.Size = New System.Drawing.Size(447, 831)
         Me.TestDataGrid.TabIndex = 54
         '
         'Note
@@ -376,7 +386,7 @@ Partial Class FormMain
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(48, 82)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1684, 743)
+        Me.PictureBox1.Size = New System.Drawing.Size(1716, 743)
         Me.PictureBox1.TabIndex = 55
         Me.PictureBox1.TabStop = False
         '
@@ -384,9 +394,10 @@ Partial Class FormMain
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(669, 263)
+        Me.PictureBox2.Location = New System.Drawing.Point(674, 267)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(35, 36)
+        Me.PictureBox2.Size = New System.Drawing.Size(34, 23)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 56
         Me.PictureBox2.TabStop = False
         '
@@ -394,9 +405,10 @@ Partial Class FormMain
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(674, 362)
+        Me.PictureBox3.Location = New System.Drawing.Point(674, 365)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(35, 30)
+        Me.PictureBox3.Size = New System.Drawing.Size(34, 23)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox3.TabIndex = 57
         Me.PictureBox3.TabStop = False
         '
@@ -404,9 +416,10 @@ Partial Class FormMain
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(674, 400)
+        Me.PictureBox4.Location = New System.Drawing.Point(674, 403)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(35, 31)
+        Me.PictureBox4.Size = New System.Drawing.Size(34, 23)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox4.TabIndex = 58
         Me.PictureBox4.TabStop = False
         '
@@ -436,6 +449,7 @@ Partial Class FormMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1792, 887)
+        Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.PictureBox5)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.PictureBox3)
@@ -449,7 +463,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.ckVendor6)
         Me.Controls.Add(Me.ckVendor5)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.btnAddNote)
         Me.Controls.Add(Me.lvCommoditySales)
         Me.Controls.Add(Me.lblGrowerZip)
