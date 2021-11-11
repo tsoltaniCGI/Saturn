@@ -54,7 +54,6 @@ Partial Class FormMain
         Me.ckVendor6 = New System.Windows.Forms.CheckBox()
         Me.ckVendor7 = New System.Windows.Forms.CheckBox()
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAddNote = New System.Windows.Forms.Button()
         Me.TestDataGrid = New System.Windows.Forms.DataGridView()
         Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -76,6 +75,7 @@ Partial Class FormMain
         Me.PictureBox15 = New System.Windows.Forms.PictureBox()
         Me.btnEditGrower = New System.Windows.Forms.Button()
         Me.btnAddGrower1 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -350,15 +350,6 @@ Partial Class FormMain
         Me.ckVendor8.Text = "ckVendor8"
         Me.ckVendor8.UseVisualStyleBackColor = False
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1005, 109)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 15)
-        Me.Label1.TabIndex = 52
-        Me.Label1.Text = "Label1"
-        '
         'btnAddNote
         '
         Me.btnAddNote.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
@@ -596,12 +587,22 @@ Partial Class FormMain
         Me.btnAddGrower1.Text = "Add"
         Me.btnAddGrower1.UseVisualStyleBackColor = False
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(434, 714)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 15)
+        Me.Label1.TabIndex = 72
+        Me.Label1.Text = "Label1"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1792, 887)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnAddGrower1)
         Me.Controls.Add(Me.btnEditGrower)
         Me.Controls.Add(Me.TestDataGrid)
@@ -628,7 +629,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.ckVendor7)
         Me.Controls.Add(Me.ckVendor6)
         Me.Controls.Add(Me.ckVendor5)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lvCommoditySales)
         Me.Controls.Add(Me.lblGrowerZip)
         Me.Controls.Add(Me.lblGrowerCountry)
@@ -694,7 +694,6 @@ Partial Class FormMain
     Friend WithEvents ckVendor6 As CheckBox
     Friend WithEvents ckVendor7 As CheckBox
     Friend WithEvents ckVendor8 As CheckBox
-    Friend WithEvents Label1 As Label
     Friend WithEvents btnAddNote As Button
     Friend WithEvents TestDataGrid As DataGridView
     Friend WithEvents PictureBox1 As PictureBox
@@ -716,4 +715,5 @@ Partial Class FormMain
     Friend WithEvents PictureBox15 As PictureBox
     Friend WithEvents btnEditGrower As Button
     Friend WithEvents btnAddGrower1 As Button
+    Friend WithEvents Label1 As Label
 End Class
