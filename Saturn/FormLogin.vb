@@ -44,6 +44,7 @@
                     If Not bUserLoaded Then
                         iUserId = oReader.GetInt32(0)
                         GlobalVariables.UserId = iUserId
+                        GlobalVariables.CurrentUserLogin = GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper()))
                         GlobalVariables.UserFirstName = oReader.GetString(1)
                         GlobalVariables.UserLastName = oReader.GetString(2)
                         bUserLoaded = True

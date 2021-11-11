@@ -79,17 +79,21 @@ Public Class Note
     Public Property GrowerNoteSubject As String
 
     Public Property GrowerNoteMethod As Integer
+    Public Property GrowerNoteMethodText As String
 
     Public Property GrowerNoteText As String
 
     Public Property GrowerNoteCreationDate As Date
     Public Property GrowerNoteCreatedBy As Integer
+    Public Property GrowerNoteCreatedByLogin As String
 
 End Class
 
 
 Public Class GlobalVariables
+    Public Shared UserList As New Collection
     Public Shared UserId As Integer
+    Public Shared CurrentUserLogin As String
     Public Shared UserFirstName As String
     Public Shared UserLastName As String
     Public Shared UserFacilities As New Collection
@@ -105,6 +109,8 @@ Public Class GlobalVariables
     Public Shared CurrentNoteSubject As String
     Public Shared CurrentNoteText As String
     Public Shared CurrentNoteMethod As Integer
+    Public Shared CurrentNoteMethodText As String
+    Public Shared CurrentNoteCreationDate As DateTime
     Public Shared oVendorCollection As New Collection
     Public Shared Function DQuot(lsConvStr As String) As String
         Dim lsRetStr As String

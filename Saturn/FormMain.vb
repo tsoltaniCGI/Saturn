@@ -35,7 +35,16 @@ Public Class FormMain
 
         Me.TestDataGrid.Rows.Clear()
         For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
-            sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
+            'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " " & oNote.GrowerNoteCreationDate.ToString("yyyy-MM-dd hh:mm:ss")
+            'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+            'sNote = sNote & DateTime.ParseExact(oNote.GrowerNoteCreationDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
+            sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+            sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
+            sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
+            sNote = sNote & Year(oNote.GrowerNoteCreationDate).ToString() & " "
+            sNote = sNote & Hour(oNote.GrowerNoteCreationDate).ToString() & ":"
+            sNote = sNote & Minute(oNote.GrowerNoteCreationDate).ToString & ":"
+            sNote = sNote & Second(oNote.GrowerNoteCreationDate).ToString()
             TestDataGrid.Rows.Add(New String() {sNote})
         Next
 
@@ -118,6 +127,7 @@ Public Class FormMain
         Dim iVendorID As Integer
         Dim sCommID As String
         Dim oCollGrowVendComm As New Collection
+        Dim oNoteMethods As New Collection
         Dim iMax As Integer
         Dim iCnt As Integer
         'Dim iNoteId As Integer
@@ -248,7 +258,7 @@ Public Class FormMain
         sSql = sSql & " ) "
         sSql = sSql & "ON VENDORS.VENDOR_ID = VENDORS_COMMODITIES.VENDOR_ID "
         sSql = sSql & "WHERE users.USER_ID = " & GlobalVariables.UserId.ToString() & " "
-        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, NoteID"
+        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
 
         myCmd.CommandText = sSql
         oConn.Open()
@@ -288,8 +298,20 @@ Public Class FormMain
                 iNum = iNum + 1
             Loop
         End If
+        sSql = "SELECT grower_note_method_id, grower_note_method_short_name "
+        sSql = sSql & "FROM grower_note_methods "
+        sSql = sSql & "ORDER BY grower_note_method_id"
+
+        myCmd.CommandText = sSql
         oReader.Close()
-        oReader = Nothing
+        oReader = myCmd.ExecuteReader()
+        If oReader.HasRows() Then
+            Do While oReader.Read()
+                oNoteMethods.Add(oReader.GetString(1), oReader.GetInt32(0).ToString())
+            Loop
+        End If
+        oReader.Close()
+        'oReader = Nothing
         iMax = oCollGrowVendComm.Count
         iCnt = 1
 
@@ -365,6 +387,16 @@ Public Class FormMain
 
         iCnt = 1
         iGrowerID = -1
+        sSql = "SELECT user_id, user_login FROM users ORDER BY user_id"
+        myCmd.CommandText = sSql
+        oReader.Close()
+        oReader = myCmd.ExecuteReader()
+
+        If oReader.HasRows() Then
+            Do While oReader.Read()
+                GlobalVariables.UserList.Add(oReader.GetString(1), oReader.GetInt32(0).ToString())
+            Loop
+        End If
         Do While iCnt <= iMax
             If oCollGrowVendComm(iCnt).GrowerId <> iGrowerID Then
                 iGrowerID = oCollGrowVendComm(iCnt).GrowerId
@@ -378,8 +410,10 @@ Public Class FormMain
                             oNote.GrowerNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
                             oNote.GrowerNoteCreationDate = oCollGrowVendComm(iCnt).GrowerNoteCreationDate
                             oNote.GrowerNoteCreatedBy = oCollGrowVendComm(iCnt).GrowerNoteCreatedBy
+                            oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oNote.GrowerNoteCreatedBy)
                             oNote.GrowerNoteSubject = oCollGrowVendComm(iCnt).GrowerNoteSubject
                             oNote.GrowerNoteMethod = oCollGrowVendComm(iCnt).GrowerNoteMethod
+                            oNote.GrowerNoteMethodText = oNoteMethods(oNote.GrowerNoteMethod.ToString())
                             oNote.GrowerNoteText = oCollGrowVendComm(iCnt).GrowerNoteText
                             oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
 
@@ -465,7 +499,7 @@ Public Class FormMain
 
         'oReader.Close()
 
-        oConn.Close()
+        'oConn.Close()
         If ListBox1.Items.Count >= 1 Then
             ListBox1.SetSelected(0, True)
         End If
@@ -632,7 +666,15 @@ Public Class FormMain
 
                 'Dim oLVI As New ListViewItem
 
-                sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
+                'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
+                sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+                sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
+                sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
+                sNote = sNote & Year(oNote.GrowerNoteCreationDate).ToString() & " "
+                sNote = sNote & Hour(oNote.GrowerNoteCreationDate).ToString() & ":"
+                sNote = sNote & Minute(oNote.GrowerNoteCreationDate).ToString & ":"
+                sNote = sNote & Second(oNote.GrowerNoteCreationDate).ToString()
+                'DateTime.ParseExact(oNote.GrowerNoteCreationDate, "MM/dd/yyyy hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
                 TestDataGrid.Rows.Add(New String() {sNote})
                 'oLVI.SubItems(0).Text = oNote.GrowerNoteText
 
@@ -954,10 +996,12 @@ Public Class FormMain
             oConn.Close()
             oNewNote.GrowerNoteSubject = GlobalVariables.CurrentNoteSubject
             oNewNote.GrowerNoteMethod = GlobalVariables.CurrentNoteMethod
+            oNewNote.GrowerNoteMethodText = GlobalVariables.CurrentNoteMethodText
             oNewNote.GrowerNoteText = GlobalVariables.CurrentNoteText
             'Dim dDate As Date = Date.ParseExact(sDate, "yyyy-MM-dd hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
             oNewNote.GrowerNoteCreationDate = dDate
             oNewNote.GrowerNoteCreatedBy = GlobalVariables.UserId
+            oNewNote.GrowerNoteCreatedByLogin = GlobalVariables.CurrentUserLogin
             oGrowerColl(ListBox1.SelectedIndex + 1).Notes.Add(oNewNote)
             ReloadNotes()
             GlobalVariables.ResetNote = False
@@ -978,6 +1022,10 @@ Public Class FormMain
     End Sub
 
     Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    Private Sub pbContact_Click(sender As Object, e As EventArgs) Handles pbContact.Click
 
     End Sub
 End Class

@@ -242,11 +242,11 @@ Partial Class FormMain
         '
         Me.ckVendor1.AutoSize = True
         Me.ckVendor1.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.ckVendor1.Font = New System.Drawing.Font("Bodoni MT", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.ckVendor1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(108, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(177, Byte), Integer))
         Me.ckVendor1.Location = New System.Drawing.Point(528, 601)
         Me.ckVendor1.Name = "ckVendor1"
-        Me.ckVendor1.Size = New System.Drawing.Size(100, 24)
+        Me.ckVendor1.Size = New System.Drawing.Size(114, 24)
         Me.ckVendor1.TabIndex = 44
         Me.ckVendor1.Text = "ckVendor1"
         Me.ckVendor1.UseVisualStyleBackColor = False
