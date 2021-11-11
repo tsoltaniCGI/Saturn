@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 
 
 Public Class FormMain
-    'in
+
     Inherits System.Windows.Forms.Form
 
 
@@ -23,7 +23,7 @@ Public Class FormMain
     'Dim oVendorNameColl As New Collection
     'Dim oVendorIDColl As New Collection
     'Dim Params As New List(Of SqlParameter)
-    'Testing
+
 
 
     Dim oGrowerColl As New Collection
@@ -32,6 +32,7 @@ Public Class FormMain
     Public Property DataGridView1 As Object
     Private Sub ReloadNotes()
         'lvNotes.Clear()
+        TestDataGrid.ClearSelection()
 
         For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
             Dim oLVI As New ListViewItem
@@ -573,6 +574,7 @@ Public Class FormMain
 
 
             'lvNotes.Clear()
+            TestDataGrid.ClearSelection()
 
             For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
 
@@ -911,21 +913,7 @@ Public Class FormMain
         'End If
     End Sub
 
-    Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
 
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
-    End Sub
-
-    Private Sub pbContact_Click(sender As Object, e As EventArgs) Handles pbContact.Click
-
-    End Sub
-
-    Private Sub TestDataGrid_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles TestDataGrid.CellContentClick
-
-    End Sub
 End Class
 
 
