@@ -226,7 +226,8 @@ Public Class FormMain
         sSql = sSql & "ISNULL(PREVIOUS_CROP_YEAR_VOLUME, 0) AS 'PCY Volume', ISNULL(PREVIOUS2_CROP_YEAR_VOLUME, 0) AS 'P2CY Volume', "
         sSql = sSql & "ISNULL(GROWER_NOTE_ID, 0) AS NoteID, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', "
         sSql = sSql & "ISNULL(GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', "
-        sSql = sSql & "ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Note Creator' "
+        sSql = sSql & "ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Note Creator', "
+        sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?' "
         sSql = sSql & "FROM GROWERS "
         sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
         sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
@@ -294,6 +295,7 @@ Public Class FormMain
                 oGVC.GrowerNoteText = oReader.GetString(19)
                 oGVC.GrowerNoteCreationDate = oReader.GetDateTime(20)
                 oGVC.GrowerNoteCreatedBy = oReader.GetInt32(21)
+                oGVC.VendorDummy = oReader.GetString(22)
 
                 oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & oGVC.VendorId.ToString() & oGVC.CommID.ToString() & iNum.ToString())
                 iNum = iNum + 1
@@ -339,6 +341,7 @@ Public Class FormMain
 
                         Dim oVendor As New Vendor()
                         oVendor.VendorName = oCollGrowVendComm(iCnt).VendorName
+                        oVendor.VendorDummy = oCollGrowVendComm(iCnt).VendorDummy
                         oVendor.VendorID = iVendorID
                         'oGrower.Vendors.Add(oVendor)
                         sCommID = ""
@@ -618,49 +621,51 @@ Public Class FormMain
             ckVendor6.Visible = False
             ckVendor7.Visible = False
             ckVendor8.Visible = False
-            Do While iCnt <= iMax
-                If iCnt > 8 Then Exit Do 'There are only 8 checkboxes
-                'oCurVendor = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt)
-                Select Case iCnt
-                    Case 1
-                        ckVendor1.Visible = True
-                        ckVendor1.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor1.Checked = True
-                    Case 2
-                        ckVendor2.Visible = True
-                        ckVendor2.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor2.Checked = True
-                    Case 3
-                        ckVendor3.Visible = True
-                        ckVendor3.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor3.Checked = True
-                    Case 4
-                        ckVendor4.Visible = True
-                        ckVendor4.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor1.Checked = True
-                    Case 5
-                        ckVendor5.Visible = True
-                        ckVendor5.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor5.Checked = True
-                    Case 6
-                        ckVendor6.Visible = True
-                        ckVendor6.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor6.Checked = True
-                    Case 7
-                        ckVendor7.Visible = True
-                        ckVendor7.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor7.Checked = True
-                    Case 8
-                        ckVendor8.Visible = True
-                        ckVendor8.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
-                        ckVendor8.Checked = True
-                End Select
+            If oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(1).VendorDummy = "N" Then
+                Do While iCnt <= iMax
+
+                    If iCnt > 8 Then Exit Do 'There are only 8 checkboxes
+                    'oCurVendor = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt)
+                    Select Case iCnt
+                        Case 1
+                            ckVendor1.Visible = True
+                            ckVendor1.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor1.Checked = True
+                        Case 2
+                            ckVendor2.Visible = True
+                            ckVendor2.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor2.Checked = True
+                        Case 3
+                            ckVendor3.Visible = True
+                            ckVendor3.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor3.Checked = True
+                        Case 4
+                            ckVendor4.Visible = True
+                            ckVendor4.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor1.Checked = True
+                        Case 5
+                            ckVendor5.Visible = True
+                            ckVendor5.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor5.Checked = True
+                        Case 6
+                            ckVendor6.Visible = True
+                            ckVendor6.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor6.Checked = True
+                        Case 7
+                            ckVendor7.Visible = True
+                            ckVendor7.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor7.Checked = True
+                        Case 8
+                            ckVendor8.Visible = True
+                            ckVendor8.Text = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors(iCnt).VendorName
+                            ckVendor8.Checked = True
+                    End Select
 
 
-                iCnt = iCnt + 1
-            Loop
+                    iCnt = iCnt + 1
+                Loop
 
-
+            End If
             'lvNotes.Clear()
             TestDataGrid.Rows.Clear()
             For Each oNote In oGrowerColl(ListBox1.SelectedIndex + 1).Notes
@@ -686,11 +691,11 @@ Public Class FormMain
                 'lvNotes.Items.Add(oLVI)
             Next
         End If
-        'If cbxVendors.Items.Count >= 1 Then
-        'cbxVendors.SetSelected(0, True)
+            'If cbxVendors.Items.Count >= 1 Then
+            'cbxVendors.SetSelected(0, True)
 
-        'End If
-        BuildCommodityList()
+            'End If
+            BuildCommodityList()
 
     End Sub
 
@@ -1030,7 +1035,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub btnAddGrower_ClientSizeChanged(sender As Object, e As EventArgs) Handles btnAddGrower.ClientSizeChanged
+    Private Sub btnAddGrower_ClientSizeChanged(sender As Object, e As EventArgs) Handles btnMissingButton.ClientSizeChanged
 
     End Sub
 
@@ -1049,6 +1054,12 @@ Public Class FormMain
     End Sub
 
     Private Sub btnAddNote_ClientSizeChanged(sender As Object, e As EventArgs) Handles btnAddNote.ClientSizeChanged
+
+    End Sub
+
+
+
+    Private Sub btnEditGrower_Click(sender As Object, e As EventArgs) Handles btnEditGrower.Click
 
     End Sub
 End Class

@@ -40,6 +40,7 @@ Public Class GrowVendCom
     Public Property GrowerPhone1 As String
     Public Property GrowerPhone2 As String
     Public Property VendorName As String
+    Public Property VendorDummy As String
     Public Property CommID As String
     Public Property CommName As String
     Public Property CurrentCropYear As Decimal
@@ -70,6 +71,7 @@ End Class
 Public Class Vendor
     Public Property VendorName As String
     Public Property VendorID As String
+    Public Property VendorDummy As String
     Public Property CollCommodities As New Collection
 End Class
 

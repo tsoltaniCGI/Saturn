@@ -25,8 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -62,7 +61,7 @@ Partial Class FormMain
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.btnAddGrower = New System.Windows.Forms.Button()
+        Me.btnMissingButton = New System.Windows.Forms.Button()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.PictureBox8 = New System.Windows.Forms.PictureBox()
@@ -74,7 +73,7 @@ Partial Class FormMain
         Me.PictureBox14 = New System.Windows.Forms.PictureBox()
         Me.PictureBox15 = New System.Windows.Forms.PictureBox()
         Me.btnEditGrower = New System.Windows.Forms.Button()
-        Me.btnAddGrower1 = New System.Windows.Forms.Button()
+        Me.btnAddGrower = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -367,14 +366,7 @@ Partial Class FormMain
         Me.TestDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.TestDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Note})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.TestDataGrid.DefaultCellStyle = DataGridViewCellStyle4
+        Me.TestDataGrid.DefaultCellStyle = DataGridViewCellStyle2
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(112, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.TestDataGrid.Location = New System.Drawing.Point(1309, 170)
         Me.TestDataGrid.Name = "TestDataGrid"
@@ -384,13 +376,14 @@ Partial Class FormMain
         '
         'Note
         '
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(112, Byte), Integer), CType(CType(139, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(112, Byte), Integer), CType(CType(139, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Note.DefaultCellStyle = DataGridViewCellStyle2
         Me.Note.HeaderText = ""
         Me.Note.MinimumWidth = 400
         Me.Note.Name = "Note"
@@ -450,14 +443,14 @@ Partial Class FormMain
         Me.PictureBox5.TabIndex = 59
         Me.PictureBox5.TabStop = False
         '
-        'btnAddGrower
+        'btnMissingButton
         '
-        Me.btnAddGrower.Location = New System.Drawing.Point(13, 1000)
-        Me.btnAddGrower.Name = "btnAddGrower"
-        Me.btnAddGrower.Size = New System.Drawing.Size(95, 31)
-        Me.btnAddGrower.TabIndex = 55
-        Me.btnAddGrower.Text = "&Add Grower"
-        Me.btnAddGrower.UseVisualStyleBackColor = True
+        Me.btnMissingButton.Location = New System.Drawing.Point(13, 1000)
+        Me.btnMissingButton.Name = "btnMissingButton"
+        Me.btnMissingButton.Size = New System.Drawing.Size(95, 31)
+        Me.btnMissingButton.TabIndex = 55
+        Me.btnMissingButton.Text = "&Add Grower"
+        Me.btnMissingButton.UseVisualStyleBackColor = True
         '
         'PictureBox6
         '
@@ -569,23 +562,23 @@ Partial Class FormMain
         Me.btnEditGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.btnEditGrower.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnEditGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.btnEditGrower.Location = New System.Drawing.Point(119, 830)
+        Me.btnEditGrower.Location = New System.Drawing.Point(215, 830)
         Me.btnEditGrower.Name = "btnEditGrower"
         Me.btnEditGrower.Size = New System.Drawing.Size(75, 23)
         Me.btnEditGrower.TabIndex = 70
         Me.btnEditGrower.Text = "Edit"
         Me.btnEditGrower.UseVisualStyleBackColor = False
         '
-        'btnAddGrower1
+        'btnAddGrower
         '
-        Me.btnAddGrower1.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.btnAddGrower1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.btnAddGrower1.Location = New System.Drawing.Point(244, 830)
-        Me.btnAddGrower1.Name = "btnAddGrower1"
-        Me.btnAddGrower1.Size = New System.Drawing.Size(75, 23)
-        Me.btnAddGrower1.TabIndex = 71
-        Me.btnAddGrower1.Text = "Add"
-        Me.btnAddGrower1.UseVisualStyleBackColor = False
+        Me.btnAddGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.btnAddGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.btnAddGrower.Location = New System.Drawing.Point(128, 830)
+        Me.btnAddGrower.Name = "btnAddGrower"
+        Me.btnAddGrower.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddGrower.TabIndex = 71
+        Me.btnAddGrower.Text = "Add"
+        Me.btnAddGrower.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -603,7 +596,7 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1792, 887)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.btnAddGrower1)
+        Me.Controls.Add(Me.btnAddGrower)
         Me.Controls.Add(Me.btnEditGrower)
         Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.btnAddNote)
@@ -701,7 +694,7 @@ Partial Class FormMain
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents PictureBox5 As PictureBox
-    Friend WithEvents btnAddGrower As Button
+    Friend WithEvents btnMissingButton As Button
     Friend WithEvents PictureBox6 As PictureBox
     Friend WithEvents PictureBox7 As PictureBox
     Friend WithEvents PictureBox8 As PictureBox
@@ -714,6 +707,6 @@ Partial Class FormMain
     Friend WithEvents PictureBox14 As PictureBox
     Friend WithEvents PictureBox15 As PictureBox
     Friend WithEvents btnEditGrower As Button
-    Friend WithEvents btnAddGrower1 As Button
+    Friend WithEvents btnAddGrower As Button
     Friend WithEvents Label1 As Label
 End Class
