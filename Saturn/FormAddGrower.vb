@@ -62,6 +62,9 @@ Public Class FormAddGrower
         Dim iGrowerID As Integer
         Dim iVendorID As Integer
         Dim bDataValidated As Boolean
+        Dim sProspect As String
+        GlobalVariables.iAddedGrowerID = 0
+        GlobalVariables.ResetGrower = True
         'Dim iCnt As Integer
         'Dim iMax As Integer
         'Dim oReader As SqlDataReader
@@ -78,6 +81,13 @@ Public Class FormAddGrower
             MessageBox.Show("Last Name is required.")
             bDataValidated = False
         End If
+        sProspect = "N"
+        If Not ckProspect.Checked Then
+            If lstVendors.SelectedIndices.Count = 0 Then
+                MessageBox.Show("If Grower is not a Prospect, at least one associated Vendor must be selected.")
+                bDataValidated = False
+            End If
+        End If
         iVendorID = 0
         If bDataValidated Then
             If ckProspect.Checked Then
@@ -86,19 +96,22 @@ Public Class FormAddGrower
                 sSql = sSql & Hour(Now()).ToString() & Minute(Now()).ToString() & Second(Now()).ToString() & "', 'Y'); SELECT SCOPE_IDENTITY()"
                 myCmd.CommandText = sSql
                 iVendorID = myCmd.ExecuteScalar()
+                GlobalVariables.iAddedVendorID = iVendorID
+                sProspect = "Y"
             End If
             sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
 
-            sSql = "INSERT INTO growers (grower_first_name, grower_last_name, grower_address_line_1, grower_address_line_2, "
+            sSql = "INSERT INTO growers (grower_prospect, grower_first_name, grower_last_name, grower_address_line_1, grower_address_line_2, "
             sSql = sSql & "grower_city, grower_county, grower_state, grower_zip, grower_country, grower_phone1, grower_phone2, grower_fax, "
             sSql = sSql & "grower_email, grower_date_created, grower_created_by) "
-            sSql = sSql & "VALUES ('" & txtFirstName.Text & "', '" & txtLastName.Text & "', '" & txtAddress1.Text & "', '" & txtAddress2.Text & "', '"
+            sSql = sSql & "VALUES ('" & sProspect & "', '" & txtFirstName.Text & "', '" & txtLastName.Text & "', '" & txtAddress1.Text & "', '" & txtAddress2.Text & "', '"
             sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & txtState.Text & "', '" & txtZip.Text & "', '" & "US" & "', '" & txtWorkPhone.Text & "', '"
             sSql = sSql & txtCellPhone.Text & "', '" & txtFax.Text & "', '" & txtEmail.Text & "', '" & sDate & "', " & GlobalVariables.UserId.ToString() & "); SELECT SCOPE_IDENTITY()"
             '"INSERT INTO table (Databasevalue) VALUES ('" + formvalue + "'); SELECT SCOPE_IDENTITY()"
             myCmd.CommandText = sSql
 
             iGrowerID = myCmd.ExecuteScalar()
+            GlobalVariables.iAddedGrowerID = iGrowerID
             'sSql = "SELECT @@IDENTITY"
             'myCmd.CommandText = sSql
             'oReader = myCmd.ExecuteReader()
@@ -125,6 +138,7 @@ Public Class FormAddGrower
                 Next
             End If
         End If
+        Me.Close()
     End Sub
 
     Private Sub ckProspect_CheckedChanged(sender As Object, e As EventArgs) Handles ckProspect.CheckedChanged

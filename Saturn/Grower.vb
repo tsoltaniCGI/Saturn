@@ -59,6 +59,11 @@ Public Class GrowVendCom
 
 
 End Class
+Public Class IndexedGrowerListItem
+    Public Property CollectionIndex As Integer
+    Public Property GrowerName As String
+
+End Class
 Public Class Commodity
     Public Property CommID As String
     Public Property CommName As String
@@ -115,6 +120,8 @@ Public Class GlobalVariables
     Public Shared CurrentNoteMethodText As String
     Public Shared CurrentNoteCreationDate As DateTime
     Public Shared oVendorCollection As New Collection
+    Public Shared iAddedGrowerID As Integer
+    Public Shared iAddedVendorID As Integer
     Public Shared Function DQuot(lsConvStr As String) As String
         Dim lsRetStr As String
 

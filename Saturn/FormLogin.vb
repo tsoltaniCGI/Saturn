@@ -56,7 +56,7 @@
                 Me.Close()
                 Dim oFormMain As New FormMain
                 oFormMain.Show()
-                oFormMain.TopMost = True
+                'oFormMain.TopMost = True
             Else
                 Label4.Visible = True
                 Label4.Text = "You are not authorized for access to Saturn.  Please contact your supervisor."
