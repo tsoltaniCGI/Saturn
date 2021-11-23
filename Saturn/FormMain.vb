@@ -611,7 +611,7 @@ Public Class FormMain
                 oProspectNoteRecs.Add(oPNoteRec)
             Loop
         End If
-
+        '
         iCnt = 1
         iMax = oProspectNoteRecs.Count
         iGrowerID = -1
