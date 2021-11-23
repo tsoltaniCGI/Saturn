@@ -269,7 +269,8 @@ Public Class FormMain
         sSql = sSql & "ON commodities.COMMODITY_ID = VENDORS_COMMODITIES.COMMODITY_ID "
         sSql = sSql & " ) "
         sSql = sSql & "ON VENDORS.VENDOR_ID = VENDORS_COMMODITIES.VENDOR_ID "
-        sSql = sSql & "WHERE users.USER_ID = " & GlobalVariables.UserId.ToString() & " "
+        'sSql = sSql & "WHERE users.USER_ID = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "WHERE users.USER_ID = 333 "
         sSql = sSql & "AND growers.GROWER_PROSPECT = 'N' "
         'sSql = sSql & "AND growers.grower_id = 173"
         sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
@@ -485,7 +486,8 @@ Public Class FormMain
         'sSql = sSql & "AND grower_note_methods.grower_note_method_id = grower_notes.grower_note_method_id "
         'sSql = sSql & "AND grower_notes.grower_note_created_by = users.user_id "
         sSql = sSql & "AND grower_prospect = 'Y' "
-        sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString() & " "
+        'sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "AND users.user_id = 333 "
         sSql = sSql & "ORDER BY growers.grower_id, vendors.vendor_id"
 
         myCmd.CommandText = sSql
@@ -589,6 +591,8 @@ Public Class FormMain
         sSql = sSql & "AND users_facilities.user_id = users.user_id "
         sSql = sSql & "AND vendors_facilities.vendor_id = vendors.vendor_id "
         sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
+        sSql = sSql & "AND users.user_id = 333 "
+        sSql = sSql & "AND grower_prospect = 'Y' "
         sSql = sSql & "ORDER BY growers.grower_id, vendors.vendor_id, grower_note_id"
 
         myCmd.CommandText = sSql
