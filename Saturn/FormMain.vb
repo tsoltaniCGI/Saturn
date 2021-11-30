@@ -4,7 +4,9 @@ Imports System.Data.SqlClient
 
 Public Class FormMain
 
+
     Inherits System.Windows.Forms.Form
+
 
 
     Dim oConn As New SqlConnection
@@ -30,6 +32,8 @@ Public Class FormMain
 
 
     Public Property DataGridView1 As Object
+    Public Property OtherCrops As Object
+
     Private Sub ReloadNotes()
         Dim sNote As String
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
@@ -53,6 +57,23 @@ Public Class FormMain
     Private Sub RebuildPage()
         Form1_Load(Me, EventArgs.Empty)
     End Sub
+    Private Sub BuildNonCGIList(iIndex As Integer)
+        If Not GlobalVariables.BuildNonCGI Then Exit Sub
+        'lvNonCGI.View = View.Details
+        lvNonCGI.Clear()
+
+        For Each oCurCrop In oGrowerColl(iIndex).OtherCrops
+            Dim oCurlvi As New ListViewItem
+            oCurlvi.SubItems(0).Text = oCurCrop.NonCGICommodity
+            oCurlvi.SubItems.Add(oCurCrop.UpdatedDate)
+            oCurlvi.SubItems.Add(oCurCrop.Status)
+            oCurlvi.SubItems.Add(oCurCrop.SoldTo)
+            oCurlvi.SubItems.Add(oCurCrop.Volume)
+            oCurlvi.SubItems.Add(oCurCrop.Location)
+            lvNonCGI.Items.Add(oCurlvi)
+        Next
+
+    End Sub
     Private Sub BuildCommodityList(iIndex As Integer)
         Dim liIndex As Integer
         Dim loCollCommList As New Collection
@@ -68,6 +89,7 @@ Public Class FormMain
         Dim lsPrevCropYear As String
         Dim lsPrev2CropYear As String
         Dim loCollCheckedIndices As New Collection
+
 
 
         lbCommFound = False
@@ -137,6 +159,7 @@ Public Class FormMain
         Dim oNoteMethods As New Collection
         Dim oProspectRecs As New Collection
         Dim oProspectNoteRecs As New Collection
+        Dim oOtherCropsRec As New Collection
         Dim iMax As Integer
         Dim iCnt As Integer
         'Dim iNoteId As Integer
@@ -542,7 +565,7 @@ Public Class FormMain
                 oGrower.GrowerZip = oProspectRecs(iCnt).GrowerZip
                 oGrower.GrowerPhone1 = oProspectRecs(iCnt).GrowerPhone1
                 oGrower.GrowerProspect = "Y"
-                Do While ((iGrowerID = oProspectRecs(iCnt).GrowerID) And (iCnt <= iMax))
+                Do While iGrowerID = oProspectRecs(iCnt).GrowerID
                     If iVendorID <> oProspectRecs(iCnt).VendorID Then
                         Dim oVendor As New Vendor
                         oVendor.VendorID = iVendorID
@@ -564,20 +587,40 @@ Public Class FormMain
                     'oGrower.Notes.Add(oNote)
                     'iCnt = iCnt + 1
                     'Loop
+
+                    oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                    oGrowerListItem.CollectionIndex = oGrowerColl.Count
+                    ListBox1.Items.Add(oGrowerListItem)
                     iCnt = iCnt + 1
                     If iCnt > iMax Then Exit Do
                 Loop
-                oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                oGrowerListItem.CollectionIndex = oGrowerColl.Count
-                ListBox1.Items.Add(oGrowerListItem)
+                If iCnt <= iMax Then
+                    If iGrowerID <> oProspectRecs(iCnt).GrowerID Then
+                        iCnt = iCnt - 1
+                    End If
+                End If
+                iCnt = iCnt + 1
+                If iCnt > iMax Then Exit Do
+                'If iCnt > iMax Then
+                ' If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+                ' oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                ' oGrowerListItem.CollectionIndex = oGrowerColl.Count
+                ' ListBox1.Items.Add(oGrowerListItem)
+                '
+                '            Exit Do
+                '            End If
+                '           End If
+            Else
+                    iCnt = iCnt + 1
             End If
-
-
-            iCnt = iCnt + 1
-            If iCnt > iMax Then Exit Do
-
-
         Loop
+        '        If iCnt > iMax Then
+        '        If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+        '        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+        '        oGrowerListItem.CollectionIndex = oGrowerColl.Count
+        '        ListBox1.Items.Add(oGrowerListItem)
+        '        End If
+        '        End If
 
         sSql = "SELECT growers.grower_id, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', ISNULL(GROWER_NOTES.GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', "
         sSql = sSql & "ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0), "
@@ -616,7 +659,7 @@ Public Class FormMain
                 oProspectNoteRecs.Add(oPNoteRec)
             Loop
         End If
-
+        '
         iCnt = 1
         iMax = oProspectNoteRecs.Count
         iGrowerID = -1
@@ -643,6 +686,75 @@ Public Class FormMain
 
 
         Loop
+
+        iGrowerID = -1
+        sSql = "SELECT DISTINCT growers.grower_id, ISNULL(commodity_name, '') As CommName, ISNULL(status, '') As Status , ISNULL(sold_to, ''), volume_bu, updated_date, ISNULL(location, '') "
+        sSql = sSql & "FROM commodities, nonCGIcrop, users, facilities, users_facilities, vendors, vendors_facilities, growers, growers_vendors "
+        sSql = sSql & "WHERE nonCGIcrop.commodity_id = commodities.commodity_id "
+        sSql = sSql & "AND users_facilities.user_id = users.user_id "
+        sSql = sSql & "AND facilities.facility_id = users_facilities.facility_id "
+        sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
+        sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
+        sSql = sSql & "AND nonCGICrop.grower_id = growers.grower_id "
+        sSql = sSql & "AND growers_vendors.grower_id = growers.grower_id "
+        sSql = sSql & "AND growers_vendors.vendor_id = vendors.vendor_id "
+        sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "ORDER BY grower_id, CommName, status"
+        myCmd.CommandText = sSql
+        oReader.Close()
+        oReader = myCmd.ExecuteReader()
+        If oReader.HasRows Then
+            Do While oReader.Read()
+                Dim oNonCGIRec As New NonCGIRec
+                oNonCGIRec.GrowerID = oReader.GetInt32(0)
+                oNonCGIRec.CommodityID = oReader.GetString(1)
+                oNonCGIRec.Status = oReader.GetString(2)
+                oNonCGIRec.SoldTo = oReader.GetString(3)
+                oNonCGIRec.Volume = oReader.GetInt32(4)
+                oNonCGIRec.UpdatedDate = oReader.GetDateTime(5)
+                oNonCGIRec.Location = oReader.GetString(6)
+                oOtherCropsRec.Add(oNonCGIRec)
+            Loop
+        End If
+
+        iCnt = 1
+        iMax = oOtherCropsRec.Count
+
+        Do While iCnt <= iMax
+            If iGrowerID <> oOtherCropsRec(iCnt).GrowerID Then
+                iGrowerID = oOtherCropsRec(iCnt).GrowerID
+                Do While iGrowerID = oOtherCropsRec(iCnt).GrowerID
+                    Dim oNonCGI As New NonCGI
+                    oNonCGI.UpdatedDate = oOtherCropsRec(iCnt).UpdatedDate
+                    oNonCGI.NonCGICommodity = oOtherCropsRec(iCnt).CommodityID
+                    oNonCGI.Status = oOtherCropsRec(iCnt).Status
+                    oNonCGI.SoldTo = oOtherCropsRec(iCnt).SoldTo
+                    oNonCGI.Volume = oOtherCropsRec(iCnt).Volume
+                    oNonCGI.Location = oOtherCropsRec(iCnt).Location
+                    oGrowerColl(iGrowerID.ToString()).OtherCrops.Add(oNonCGI)
+                    iCnt = iCnt + 1
+                    If iCnt > iMax Then Exit Do
+                Loop
+            End If
+        Loop
+
+        'If oReader.GetInt32(0) <> iGrowerID Then
+        '    iGrowerID = oReader.GetInt32(0)
+        '    Do While iGrowerID = oReader.GetInt32(0)
+        '        Dim oNonCGI As New NonCGI
+        '        oNonCGI.UpdatedDate = oReader.GetDateTime(5)
+        '        oNonCGI.NonCGICommodity = oReader.GetString(1)
+        '        oNonCGI.Status = oReader.GetString(2)
+        '        oNonCGI.SoldTo = oReader.GetString(3)
+        '        oNonCGI.Volume = oReader.GetInt32(4)
+        '        oNonCGI.Location = oReader.GetString(6)
+        '    Loop
+        'End If
+
+
+        '
+        '
+        '             oGrowerAddressColl.Add(oReader.GetString(3))
 
         '                oGrowerAddressColl.Add(oReader.GetString(3))
         '            oGrowerCityColl.Add(oReader.GetString(4))
@@ -742,6 +854,10 @@ Public Class FormMain
 
     End Sub
 
+    Private Function Left(sSql As String, v As Integer) As String
+        Throw New NotImplementedException()
+    End Function
+
 
     'Join growers_temp to vendors_tem using Relationships_temp table as intersection table 
 
@@ -836,6 +952,8 @@ Public Class FormMain
 
             iCnt = 1
             GlobalVariables.BuildComm = False
+            GlobalVariables.BuildNonCGI = False
+
             iMax = oGrowerColl(oSelItem.CollectionIndex).Vendors.Count
             'ckVendor1.Checked = False
             ckVendor1.CheckState = CheckState.Unchecked
@@ -914,6 +1032,8 @@ Public Class FormMain
 
             End If
             GlobalVariables.BuildComm = True
+            GlobalVariables.BuildNonCGI = True
+
             'lvNotes.Clear()
             TestDataGrid.Rows.Clear()
             For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
@@ -946,6 +1066,8 @@ Public Class FormMain
         If oGrowerColl(oSelItem.CollectionIndex).GrowerProspect = "N" Then
             BuildCommodityList(oSelItem.CollectionIndex)
         End If
+
+        BuildNonCGIList(oSelItem.CollectionIndex)
 
     End Sub
 
@@ -1318,7 +1440,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs) Handles PictureBox1.Click
+    Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs) Handles MainbBackGround.Click
 
     End Sub
 
@@ -1355,8 +1477,23 @@ Public Class FormMain
     Private Sub btnEditGrower_Click(sender As Object, e As EventArgs) Handles btnEditGrower.Click
 
     End Sub
-End Class
 
+    Private Sub txtSale_TextChanged(sender As Object, e As EventArgs) Handles txtSale.TextChanged
+
+    End Sub
+
+    Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+
+    End Sub
+
+
+
+
+
+
+
+
+End Class
 
 
 
