@@ -59,11 +59,12 @@ Public Class FormMain
     End Sub
     Private Sub BuildNonCGIList(iIndex As Integer)
         If Not GlobalVariables.BuildNonCGI Then Exit Sub
+        'lvNonCGI.View = View.Details
         lvNonCGI.Clear()
 
         For Each oCurCrop In oGrowerColl(iIndex).OtherCrops
             Dim oCurlvi As New ListViewItem
-            oCurlvi.SubItems(0).Text = oCurCrop.CommodityID
+            oCurlvi.SubItems(0).Text = oCurCrop.NonCGICommodity
             oCurlvi.SubItems.Add(oCurCrop.UpdatedDate)
             oCurlvi.SubItems.Add(oCurCrop.Status)
             oCurlvi.SubItems.Add(oCurCrop.SoldTo)
@@ -564,7 +565,7 @@ Public Class FormMain
                 oGrower.GrowerZip = oProspectRecs(iCnt).GrowerZip
                 oGrower.GrowerPhone1 = oProspectRecs(iCnt).GrowerPhone1
                 oGrower.GrowerProspect = "Y"
-                Do While ((iGrowerID = oProspectRecs(iCnt).GrowerID) And (iCnt <= iMax))
+                Do While iGrowerID = oProspectRecs(iCnt).GrowerID
                     If iVendorID <> oProspectRecs(iCnt).VendorID Then
                         Dim oVendor As New Vendor
                         oVendor.VendorID = iVendorID
@@ -586,20 +587,40 @@ Public Class FormMain
                     'oGrower.Notes.Add(oNote)
                     'iCnt = iCnt + 1
                     'Loop
+
+                    oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                    oGrowerListItem.CollectionIndex = oGrowerColl.Count
+                    ListBox1.Items.Add(oGrowerListItem)
                     iCnt = iCnt + 1
                     If iCnt > iMax Then Exit Do
                 Loop
-                oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                oGrowerListItem.CollectionIndex = oGrowerColl.Count
-                ListBox1.Items.Add(oGrowerListItem)
+                If iCnt <= iMax Then
+                    If iGrowerID <> oProspectRecs(iCnt).GrowerID Then
+                        iCnt = iCnt - 1
+                    End If
+                End If
+                iCnt = iCnt + 1
+                If iCnt > iMax Then Exit Do
+                'If iCnt > iMax Then
+                ' If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+                ' oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                ' oGrowerListItem.CollectionIndex = oGrowerColl.Count
+                ' ListBox1.Items.Add(oGrowerListItem)
+                '
+                '            Exit Do
+                '            End If
+                '           End If
+            Else
+                    iCnt = iCnt + 1
             End If
-
-
-            iCnt = iCnt + 1
-            If iCnt > iMax Then Exit Do
-
-
         Loop
+        '        If iCnt > iMax Then
+        '        If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+        '        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+        '        oGrowerListItem.CollectionIndex = oGrowerColl.Count
+        '        ListBox1.Items.Add(oGrowerListItem)
+        '        End If
+        '        End If
 
         sSql = "SELECT growers.grower_id, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', ISNULL(GROWER_NOTES.GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', "
         sSql = sSql & "ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0), "
@@ -667,7 +688,7 @@ Public Class FormMain
         Loop
 
         iGrowerID = -1
-        sSql = "SELECT DISTINCT growers.grower_id, commodity_name, status, sold_to, volume_bu, updated_date, location "
+        sSql = "SELECT DISTINCT growers.grower_id, ISNULL(commodity_name, '') As CommName, ISNULL(status, '') As Status , ISNULL(sold_to, ''), volume_bu, updated_date, ISNULL(location, '') "
         sSql = sSql & "FROM commodities, nonCGIcrop, users, facilities, users_facilities, vendors, vendors_facilities, growers, growers_vendors "
         sSql = sSql & "WHERE nonCGIcrop.commodity_id = commodities.commodity_id "
         sSql = sSql & "AND users_facilities.user_id = users.user_id "
@@ -678,7 +699,7 @@ Public Class FormMain
         sSql = sSql & "AND growers_vendors.grower_id = growers.grower_id "
         sSql = sSql & "AND growers_vendors.vendor_id = vendors.vendor_id "
         sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString() & " "
-        sSql = sSql & "ORDER BY grower_id, commodities.commodity_name, status"
+        sSql = sSql & "ORDER BY grower_id, CommName, status"
         myCmd.CommandText = sSql
         oReader.Close()
         oReader = myCmd.ExecuteReader()
@@ -1464,8 +1485,15 @@ Public Class FormMain
     Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
 
     End Sub
-End Class
 
+
+
+
+
+
+
+
+End Class
 
 
 
