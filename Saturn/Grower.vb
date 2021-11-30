@@ -15,6 +15,7 @@
 
     Public Property Vendors As New Collection
     Public Property Notes As New Collection
+    Public Property OtherCrops As New Collection
 
 
 
@@ -81,6 +82,18 @@ Public Class Vendor
     Public Property CollCommodities As New Collection
 End Class
 
+
+Public Class NonCGI
+    Public Property UpdatedDate As Date
+    Public Property NonCGICommodity As String
+    Public Property Status As String
+    Public Property SoldTo As String
+    Public Property Volume As Integer
+    Public Property Location As String
+
+End Class
+
+
 Public Class Note
     Public Property GrowerId As Integer
     Public Property GrowerNoteId As Integer
@@ -136,6 +149,17 @@ Public Class ProspectRec
 
 
 End Class
+
+Public Class NonCGIRec
+    Public Property GrowerID As Integer
+    Public Property CommodityID As String
+    Public Property Status As String
+    Public Property Volume As Integer
+    Public Property SoldTo As String
+    Public Property UpdatedDate As Date
+    Public Property Location As String
+End Class
+
 Public Class ProspectNotesRec
     Public Property GrowerID As Integer
     Public Property GrowerNoteID As Integer
@@ -167,6 +191,7 @@ Public Class GlobalVariables
     Public Shared ResetNote As Boolean
     Public Shared ResetGrower As Boolean
     Public Shared BuildComm As Boolean
+    Public Shared BuildNonCGI As Boolean
     Public Shared CurrentNoteSubject As String
     Public Shared CurrentNoteText As String
     Public Shared CurrentNoteMethod As Integer
