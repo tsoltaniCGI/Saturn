@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -69,6 +69,12 @@ Partial Class FormMain
         Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.lvNonCGI = New System.Windows.Forms.ListView()
+        Me.ColumnHeader5 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader6 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader7 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader8 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader9 = New System.Windows.Forms.ColumnHeader()
+        Me.ColumnHeader10 = New System.Windows.Forms.ColumnHeader()
         Me.txtSale = New System.Windows.Forms.TextBox()
         Me.txtvendors = New System.Windows.Forms.TextBox()
         Me.txtProspect = New System.Windows.Forms.TextBox()
@@ -383,14 +389,14 @@ Partial Class FormMain
         '
         'Note
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(112, Byte), Integer), CType(CType(139, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Note.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(112, Byte), Integer), CType(CType(139, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
         Me.Note.HeaderText = ""
         Me.Note.MinimumWidth = 400
         Me.Note.Name = "Note"
@@ -537,12 +543,39 @@ Partial Class FormMain
         'lvNonCGI
         '
         Me.lvNonCGI.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.lvNonCGI.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10})
         Me.lvNonCGI.HideSelection = False
         Me.lvNonCGI.Location = New System.Drawing.Point(855, 212)
         Me.lvNonCGI.Name = "lvNonCGI"
         Me.lvNonCGI.Size = New System.Drawing.Size(542, 144)
         Me.lvNonCGI.TabIndex = 76
         Me.lvNonCGI.UseCompatibleStateImageBehavior = False
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "Commodity"
+        Me.ColumnHeader5.Width = 280
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "Last Update"
+        Me.ColumnHeader6.Width = 150
+        '
+        'ColumnHeader7
+        '
+        Me.ColumnHeader7.Text = "Status"
+        '
+        'ColumnHeader8
+        '
+        Me.ColumnHeader8.Text = "Sold To"
+        '
+        'ColumnHeader9
+        '
+        Me.ColumnHeader9.Text = "Volume"
+        '
+        'ColumnHeader10
+        '
+        Me.ColumnHeader10.Text = "Location"
         '
         'txtSale
         '
@@ -729,4 +762,10 @@ Partial Class FormMain
     Friend WithEvents txtNotes As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents txtGrowers As TextBox
+    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents ColumnHeader7 As ColumnHeader
+    Friend WithEvents ColumnHeader8 As ColumnHeader
+    Friend WithEvents ColumnHeader9 As ColumnHeader
+    Friend WithEvents ColumnHeader10 As ColumnHeader
 End Class
