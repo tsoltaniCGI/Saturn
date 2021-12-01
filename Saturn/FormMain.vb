@@ -59,7 +59,7 @@ Public Class FormMain
     End Sub
     Private Sub BuildNonCGIList(iIndex As Integer)
         If Not GlobalVariables.BuildNonCGI Then Exit Sub
-        'lvNonCGI.View = View.Details
+        lvNonCGI.View = View.Details
         lvNonCGI.Clear()
 
         For Each oCurCrop In oGrowerColl(iIndex).OtherCrops
