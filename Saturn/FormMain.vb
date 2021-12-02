@@ -60,15 +60,15 @@ Public Class FormMain
     Private Sub BuildNonCGIList(iIndex As Integer)
         If Not GlobalVariables.BuildNonCGI Then Exit Sub
         lvNonCGI.View = View.Details
-        lvNonCGI.Clear()
+        lvNonCGI.Items.Clear()
 
         For Each oCurCrop In oGrowerColl(iIndex).OtherCrops
             Dim oCurlvi As New ListViewItem
             oCurlvi.SubItems(0).Text = oCurCrop.NonCGICommodity
-            oCurlvi.SubItems.Add(oCurCrop.UpdatedDate)
+            oCurlvi.SubItems.Add(oCurCrop.UpdatedDate.ToString())
             oCurlvi.SubItems.Add(oCurCrop.Status)
             oCurlvi.SubItems.Add(oCurCrop.SoldTo)
-            oCurlvi.SubItems.Add(oCurCrop.Volume)
+            oCurlvi.SubItems.Add(oCurCrop.Volume.ToString())
             oCurlvi.SubItems.Add(oCurCrop.Location)
             lvNonCGI.Items.Add(oCurlvi)
         Next
@@ -611,7 +611,7 @@ Public Class FormMain
                 '            End If
                 '           End If
             Else
-                    iCnt = iCnt + 1
+                iCnt = iCnt + 1
             End If
         Loop
         '        If iCnt > iMax Then
@@ -1486,13 +1486,9 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub lvNonCGI_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvNonCGI.SelectedIndexChanged
 
-
-
-
-
-
-
+    End Sub
 End Class
 
 
