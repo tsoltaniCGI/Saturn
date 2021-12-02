@@ -182,6 +182,7 @@ Public Class GlobalVariables
     Public Shared UserFacilities As New Collection
     Public Shared UserFacilityIDs As New Collection
     Public Shared CurrentGrowerID As Integer
+    Public Shared CurrentGrower As Grower
     Public Shared GrowerFirstName As String
     Public Shared GrowerLastName As String
     Public Shared GrowerAddress1 As String
@@ -200,6 +201,7 @@ Public Class GlobalVariables
     Public Shared oVendorCollection As New Collection
     Public Shared iAddedGrowerID As Integer
     Public Shared iAddedVendorID As Integer
+
     Public Shared Function DQuot(lsConvStr As String) As String
         Dim lsRetStr As String
 
