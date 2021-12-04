@@ -22,6 +22,11 @@ Public Class FormMain
     Dim adapter As SqlDataAdapter
     Dim table As New DataTable()
     Dim results As String
+    Dim oCollGrowVendComm As New Collection
+    Dim oNoteMethods As New Collection
+    Dim oProspectRecs As New Collection
+    Dim oProspectNoteRecs As New Collection
+    Dim oOtherCropsRec As New Collection
     'Dim oGrowerAddressColl As New Collection
     'Dim oGrowerCityColl As New Collection
     'Dim oGrowerStateColl As New Collection
@@ -161,11 +166,13 @@ Public Class FormMain
         Dim iGrowerID As Integer
         Dim iVendorID As Integer
         Dim sCommID As String
-        Dim oCollGrowVendComm As New Collection
-        Dim oNoteMethods As New Collection
-        Dim oProspectRecs As New Collection
-        Dim oProspectNoteRecs As New Collection
-        Dim oOtherCropsRec As New Collection
+
+
+        oCollGrowVendComm.Clear()
+        oNoteMethods.Clear()
+        oProspectRecs.Clear()
+        oProspectNoteRecs.Clear()
+        oOtherCropsRec.Clear()
         Dim iMax As Integer
         Dim iCnt As Integer
         'Dim iNoteId As Integer
@@ -354,7 +361,9 @@ Public Class FormMain
         oReader = myCmd.ExecuteReader()
         If oReader.HasRows() Then
             Do While oReader.Read()
-                oNoteMethods.Add(oReader.GetString(1), oReader.GetInt32(0).ToString())
+                If Not oNoteMethods.Contains(oReader.GetInt32(0).ToString()) Then
+                    oNoteMethods.Add(oReader.GetString(1), oReader.GetInt32(0).ToString())
+                End If
             Loop
         End If
         oReader.Close()
@@ -594,9 +603,11 @@ Public Class FormMain
                     'iCnt = iCnt + 1
                     'Loop
 
-                    oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                    oGrowerListItem.CollectionIndex = oGrowerColl.Count
-                    ListBox1.Items.Add(oGrowerListItem)
+                    If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+                        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+                        oGrowerListItem.CollectionIndex = oGrowerColl.Count
+                        ListBox1.Items.Add(oGrowerListItem)
+                    End If
                     iCnt = iCnt + 1
                     If iCnt > iMax Then Exit Do
                 Loop
@@ -1481,7 +1492,16 @@ Public Class FormMain
 
 
     Private Sub btnEditGrower_Click(sender As Object, e As EventArgs) Handles btnEditGrower.Click
-
+        Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+        GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
+        Dim frmEditGrower = New FormEditGrower
+        GlobalVariables.ResetGrower = False
+        frmEditGrower.ShowDialog()
+        'frmEditGrower.ShowDialog()
+        'frmEditGrower.l
+        If GlobalVariables.ResetGrower Then
+            RebuildPage()
+        End If
     End Sub
 
     Private Sub txtSale_TextChanged(sender As Object, e As EventArgs) Handles txtSale.TextChanged
