@@ -90,4 +90,20 @@ Public Class FormNonCGI
         Me.Close()
 
     End Sub
+
+    Private Sub txtVolume_TextChanged(sender As Object, e As EventArgs) Handles txtVolume.TextChanged
+
+    End Sub
+
+    Private Sub lblStatus_Click(sender As Object, e As EventArgs) Handles lblStatus.Click
+
+    End Sub
+
+    Private Sub lblSoldTo_Click(sender As Object, e As EventArgs) Handles lblSoldTo.Click
+
+    End Sub
+
+    Private Sub lblGrowerName_Click(sender As Object, e As EventArgs) Handles lblGrowerName.Click
+
+    End Sub
 End Class

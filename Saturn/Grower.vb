@@ -202,7 +202,7 @@ Public Class GlobalVariables
     Public Shared oVendorCollection As New Collection
     Public Shared iAddedGrowerID As Integer
     Public Shared iAddedVendorID As Integer
-    Public Shared CurrentGrower As Grower
+    'Public Shared CurrentGrower As Grower
     Public Shared MainLoaded As Boolean
     Public Shared Function DQuot(lsConvStr As String) As String
         Dim lsRetStr As String

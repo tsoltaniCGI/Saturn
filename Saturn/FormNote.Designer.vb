@@ -22,7 +22,6 @@ Partial Class FormNote
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbMethod = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtNote = New System.Windows.Forms.TextBox()
@@ -49,19 +48,10 @@ Partial Class FormNote
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(46, 216)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(48, 15)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Grower:"
-        '
         'cmbMethod
         '
         Me.cmbMethod.FormattingEnabled = True
-        Me.cmbMethod.Location = New System.Drawing.Point(341, 176)
+        Me.cmbMethod.Location = New System.Drawing.Point(370, 176)
         Me.cmbMethod.Name = "cmbMethod"
         Me.cmbMethod.Size = New System.Drawing.Size(121, 23)
         Me.cmbMethod.TabIndex = 1
@@ -69,9 +59,9 @@ Partial Class FormNote
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(269, 184)
+        Me.Label2.Location = New System.Drawing.Point(298, 184)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 15)
         Me.Label2.TabIndex = 2
@@ -79,7 +69,7 @@ Partial Class FormNote
         '
         'txtNote
         '
-        Me.txtNote.Location = New System.Drawing.Point(208, 213)
+        Me.txtNote.Location = New System.Drawing.Point(237, 213)
         Me.txtNote.Multiline = True
         Me.txtNote.Name = "txtNote"
         Me.txtNote.Size = New System.Drawing.Size(264, 157)
@@ -89,7 +79,7 @@ Partial Class FormNote
         '
         Me.btnOK.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnOK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnOK.Location = New System.Drawing.Point(243, 410)
+        Me.btnOK.Location = New System.Drawing.Point(272, 410)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(75, 23)
         Me.btnOK.TabIndex = 4
@@ -100,7 +90,7 @@ Partial Class FormNote
         '
         Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnCancel.Location = New System.Drawing.Point(377, 411)
+        Me.btnCancel.Location = New System.Drawing.Point(406, 411)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 5
@@ -110,9 +100,9 @@ Partial Class FormNote
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(269, 139)
+        Me.Label3.Location = New System.Drawing.Point(298, 139)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(49, 15)
         Me.Label3.TabIndex = 6
@@ -120,7 +110,7 @@ Partial Class FormNote
         '
         'txtSubject
         '
-        Me.txtSubject.Location = New System.Drawing.Point(341, 136)
+        Me.txtSubject.Location = New System.Drawing.Point(370, 136)
         Me.txtSubject.Name = "txtSubject"
         Me.txtSubject.Size = New System.Drawing.Size(121, 23)
         Me.txtSubject.TabIndex = 7
@@ -131,7 +121,7 @@ Partial Class FormNote
         Me.lblName.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.lblName.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblName.Location = New System.Drawing.Point(47, 257)
+        Me.lblName.Location = New System.Drawing.Point(32, 257)
         Me.lblName.Name = "lblName"
         Me.lblName.Size = New System.Drawing.Size(89, 14)
         Me.lblName.TabIndex = 49
@@ -155,7 +145,7 @@ Partial Class FormNote
         Me.lblGrowerPhone1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.lblGrowerPhone1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerPhone1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblGrowerPhone1.Location = New System.Drawing.Point(47, 367)
+        Me.lblGrowerPhone1.Location = New System.Drawing.Point(32, 367)
         Me.lblGrowerPhone1.Name = "lblGrowerPhone1"
         Me.lblGrowerPhone1.Size = New System.Drawing.Size(101, 14)
         Me.lblGrowerPhone1.TabIndex = 46
@@ -167,7 +157,7 @@ Partial Class FormNote
         Me.lblGrowerCountry.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.lblGrowerCountry.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblGrowerCountry.Location = New System.Drawing.Point(47, 342)
+        Me.lblGrowerCountry.Location = New System.Drawing.Point(32, 342)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
         Me.lblGrowerCountry.Size = New System.Drawing.Size(103, 14)
         Me.lblGrowerCountry.TabIndex = 45
@@ -179,7 +169,7 @@ Partial Class FormNote
         Me.lblAddress.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.lblAddress.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblAddress.Location = New System.Drawing.Point(46, 288)
+        Me.lblAddress.Location = New System.Drawing.Point(31, 288)
         Me.lblAddress.Name = "lblAddress"
         Me.lblAddress.Size = New System.Drawing.Size(104, 14)
         Me.lblAddress.TabIndex = 44
@@ -191,7 +181,7 @@ Partial Class FormNote
         Me.lblGrowerCity.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.lblGrowerCity.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.lblGrowerCity.Location = New System.Drawing.Point(47, 315)
+        Me.lblGrowerCity.Location = New System.Drawing.Point(32, 315)
         Me.lblGrowerCity.Name = "lblGrowerCity"
         Me.lblGrowerCity.Size = New System.Drawing.Size(77, 14)
         Me.lblGrowerCity.TabIndex = 50
@@ -200,16 +190,16 @@ Partial Class FormNote
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(34, 27)
+        Me.PictureBox1.Location = New System.Drawing.Point(24, 27)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(479, 438)
+        Me.PictureBox1.Size = New System.Drawing.Size(512, 451)
         Me.PictureBox1.TabIndex = 51
         Me.PictureBox1.TabStop = False
         '
         'PictureBox2
         '
-        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(229, Byte), Integer))
-        Me.PictureBox2.Location = New System.Drawing.Point(189, 83)
+        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.PictureBox2.Location = New System.Drawing.Point(218, 83)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(306, 366)
         Me.PictureBox2.TabIndex = 52
@@ -218,7 +208,7 @@ Partial Class FormNote
         'PictureBox3
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.PictureBox3.Location = New System.Drawing.Point(189, 398)
+        Me.PictureBox3.Location = New System.Drawing.Point(218, 398)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(306, 50)
         Me.PictureBox3.TabIndex = 53
@@ -226,9 +216,9 @@ Partial Class FormNote
         '
         'PictureBox4
         '
-        Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox4.Location = New System.Drawing.Point(141, 79)
+        Me.PictureBox4.Location = New System.Drawing.Point(162, 79)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(114, 38)
         Me.PictureBox4.TabIndex = 54
@@ -236,9 +226,9 @@ Partial Class FormNote
         '
         'PictureBox5
         '
-        Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox5.Location = New System.Drawing.Point(177, 46)
+        Me.PictureBox5.Location = New System.Drawing.Point(198, 46)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(43, 104)
         Me.PictureBox5.TabIndex = 55
@@ -247,10 +237,10 @@ Partial Class FormNote
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(229, Byte), Integer))
+        Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label4.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(164, 89)
+        Me.Label4.Location = New System.Drawing.Point(183, 89)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(73, 16)
         Me.Label4.TabIndex = 56
@@ -260,7 +250,7 @@ Partial Class FormNote
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(558, 502)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.PictureBox4)
@@ -280,7 +270,6 @@ Partial Class FormNote
         Me.Controls.Add(Me.lblGrowerPhone1)
         Me.Controls.Add(Me.lblGrowerCountry)
         Me.Controls.Add(Me.lblAddress)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Name = "FormNote"
         Me.Text = "Note"
@@ -293,8 +282,6 @@ Partial Class FormNote
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Label1 As Label
     Friend WithEvents cmbMethod As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtNote As TextBox

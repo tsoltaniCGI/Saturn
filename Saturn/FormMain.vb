@@ -1058,7 +1058,7 @@ Public Class FormMain
                 'Dim oLVI As New ListViewItem
 
                 'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
-                sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+                sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
                 sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
                 sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
                 sNote = sNote & Year(oNote.GrowerNoteCreationDate).ToString() & " "
@@ -1547,6 +1547,10 @@ Public Class FormMain
     End Sub
 
     Private Sub PictureBox10_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub PictureBox10_Click_1(sender As Object, e As EventArgs) Handles PictureBox10.Click
 
     End Sub
 End Class
