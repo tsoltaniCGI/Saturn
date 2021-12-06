@@ -564,7 +564,7 @@ Public Class FormMain
                 Dim oGrowerListItem As New IndexedGrowerListItem
                 sName = Trim(oProspectRecs(iCnt).GrowerFirstName & " " & oProspectRecs(iCnt).GrowerLastName)
 
-                oGrowerListItem.GrowerName = sName
+                oGrowerListItem.GrowerName = sName & " - PROSPECT"
                 oGrower.GrowerFirstName = oProspectRecs(iCnt).GrowerFirstName
                 oGrower.GrowerID = iGrowerID
                 oGrower.GrowerAddress1 = oProspectRecs(iCnt).GrowerAddress
@@ -1018,7 +1018,7 @@ Public Class FormMain
                         Case 4
                             ckVendor4.Visible = True
                             ckVendor4.Text = oGrowerColl(oSelItem.CollectionIndex).Vendors(iCnt).VendorName
-                            ckVendor1.Checked = True
+                            ckVendor4.Checked = True
                         Case 5
                             ckVendor5.Visible = True
                             ckVendor5.Text = oGrowerColl(oSelItem.CollectionIndex).Vendors(iCnt).VendorName
