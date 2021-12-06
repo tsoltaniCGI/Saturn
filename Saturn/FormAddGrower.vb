@@ -22,16 +22,21 @@ Public Class FormAddGrower
 
 
         sSql = "SELECT DISTINCT vendors.vendor_id, vendors.vendor_name "
-        sSql = sSql & "FROM vendors, vendors_facilities "
-        sSql = sSql & "WHERE vendors_facilities.facility_id IN ("
-        For Each iID In GlobalVariables.UserFacilityIDs
-            sSql = sSql & iID.ToString() & ", "
-        Next
-        sSql = sSql & ")"
-        sSql = Replace(sSql, ", )", " )")
-        sSql = sSql & " "
+        sSql = sSql & "FROM users, users_facilities, vendors, vendors_facilities, facilities "
+        ' = sSql & "WHERE vendors_facilities.facility_id IN ("
+        'For Each iID In GlobalVariables.UserFacilityIDs
+        ' sSql = sSql & iID.ToString() & ", "
+        'Next
+        'sSql = sSql & ")"
+        'sSql = Replace(sSql, ", )", " )")
+        'sSql = sSql & " "
+        sSql = sSql & "WHERE users.user_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "AND users_facilities.user_id = users.user_id "
+        sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id "
         sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
-        sSql = sSql & "AND vendors.vendor_dummy = 'N'"
+        sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
+        sSql = sSql & "AND vendors.vendor_dummy = 'N' "
+        sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4"
         myCmd.CommandText = sSql
 
         Dim oReader = myCmd.ExecuteReader()
@@ -203,5 +208,11 @@ Public Class FormAddGrower
 
     End Sub
 
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
+    End Sub
 End Class
