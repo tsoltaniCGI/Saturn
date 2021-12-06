@@ -2,10 +2,16 @@
 Imports System.Data.SqlClient
 
 
+
+
 Public Class FormMain
 
 
     Inherits System.Windows.Forms.Form
+
+
+
+
 
 
 
@@ -1052,7 +1058,7 @@ Public Class FormMain
                 'Dim oLVI As New ListViewItem
 
                 'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
-                sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+                sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
                 sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
                 sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
                 sNote = sNote & Year(oNote.GrowerNoteCreationDate).ToString() & " "
@@ -1451,7 +1457,7 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs) Handles MainbBackGround.Click
+    Private Sub PictureBox1_Click_1(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -1502,11 +1508,49 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+    Private Sub cmdSearch_Click(sender As Object, e As EventArgs)
 
     End Sub
 
     Private Sub lvNonCGI_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvNonCGI.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub btnAddNonCGI_Click(sender As Object, e As EventArgs) Handles btnAddNonCGI.Click
+        Dim sSql As String
+        Dim oNewNonCGI As New NonCGI
+        Me.TopMost = False
+        Dim frmNonCGI = New FormNonCGI
+        Dim dDate As DateTime
+        Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+        GlobalVariables.BuildNonCGI = False
+        GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
+        frmNonCGI.ShowDialog()
+        If GlobalVariables.BuildNonCGI Then
+            BuildNonCGIList(oSelItem.CollectionIndex)
+            GlobalVariables.BuildNonCGI = False
+        End If
+
+        'If GlobalVariables.ResetNote Then
+
+        'oGrowerColl.ListBox1.SelectedIndex + 1).
+
+        'oNewNonCGI.NonCGICommodity = GlobalVariables
+        'oNewNonCGI.Status = GlobalVariables
+        'oNewNonCGI.UpdatedDate = dDate
+        'oNewNonCGI.Volume = GlobalVariables
+        'oNewNonCGI.SoldTo = GlobalVariables
+        'oNewNonCGI.Location = GlobalVariables
+
+
+
+    End Sub
+
+    Private Sub PictureBox10_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub PictureBox10_Click_1(sender As Object, e As EventArgs) Handles PictureBox10.Click
 
     End Sub
 End Class
