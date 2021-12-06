@@ -425,9 +425,9 @@ Partial Class FormMain
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(458, 239)
+        Me.PictureBox5.Location = New System.Drawing.Point(448, 227)
         Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(145, 116)
+        Me.PictureBox5.Size = New System.Drawing.Size(157, 154)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox5.TabIndex = 59
         Me.PictureBox5.TabStop = False
