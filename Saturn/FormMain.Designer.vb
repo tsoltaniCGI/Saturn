@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -79,6 +79,7 @@ Partial Class FormMain
         Me.txtGrowers = New System.Windows.Forms.TextBox()
         Me.btnAddNonCGI = New System.Windows.Forms.Button()
         Me.PictureBox10 = New System.Windows.Forms.PictureBox()
+        Me.btnEditNonCGI = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -374,14 +375,14 @@ Partial Class FormMain
         '
         'Note
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Note.DefaultCellStyle = DataGridViewCellStyle3
         Me.Note.HeaderText = ""
         Me.Note.MinimumWidth = 370
         Me.Note.Name = "Note"
@@ -497,7 +498,7 @@ Partial Class FormMain
         '
         Me.PictureBox9.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
-        Me.PictureBox9.Location = New System.Drawing.Point(826, 606)
+        Me.PictureBox9.Location = New System.Drawing.Point(826, 605)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(602, 363)
         Me.PictureBox9.TabIndex = 75
@@ -510,6 +511,7 @@ Partial Class FormMain
         Me.lvNonCGI.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.lvNonCGI.HideSelection = False
         Me.lvNonCGI.Location = New System.Drawing.Point(857, 705)
+        Me.lvNonCGI.MultiSelect = False
         Me.lvNonCGI.Name = "lvNonCGI"
         Me.lvNonCGI.Size = New System.Drawing.Size(536, 209)
         Me.lvNonCGI.TabIndex = 76
@@ -618,7 +620,7 @@ Partial Class FormMain
         Me.btnAddNonCGI.Name = "btnAddNonCGI"
         Me.btnAddNonCGI.Size = New System.Drawing.Size(75, 23)
         Me.btnAddNonCGI.TabIndex = 83
-        Me.btnAddNonCGI.Text = "Add"
+        Me.btnAddNonCGI.Text = "&Add"
         Me.btnAddNonCGI.UseVisualStyleBackColor = False
         '
         'PictureBox10
@@ -630,6 +632,17 @@ Partial Class FormMain
         Me.PictureBox10.TabIndex = 84
         Me.PictureBox10.TabStop = False
         '
+        'btnEditNonCGI
+        '
+        Me.btnEditNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.btnEditNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.btnEditNonCGI.Location = New System.Drawing.Point(1195, 658)
+        Me.btnEditNonCGI.Name = "btnEditNonCGI"
+        Me.btnEditNonCGI.Size = New System.Drawing.Size(75, 23)
+        Me.btnEditNonCGI.TabIndex = 85
+        Me.btnEditNonCGI.Text = "&Edit"
+        Me.btnEditNonCGI.UseVisualStyleBackColor = False
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -637,6 +650,7 @@ Partial Class FormMain
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1882, 982)
+        Me.Controls.Add(Me.btnEditNonCGI)
         Me.Controls.Add(Me.txtNotes)
         Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.btnAddNote)
@@ -748,4 +762,5 @@ Partial Class FormMain
     Friend WithEvents btnAddNonCGI As Button
     Friend WithEvents PictureBox10 As PictureBox
     Friend WithEvents Note As DataGridViewTextBoxColumn
+    Friend WithEvents btnEditNonCGI As Button
 End Class

@@ -27,6 +27,7 @@ Public Class FormMain
     Dim oProspectRecs As New Collection
     Dim oProspectNoteRecs As New Collection
     Dim oOtherCropsRec As New Collection
+    Dim oNonCgiCropIDs As New Collection
     'Dim oGrowerAddressColl As New Collection
     'Dim oGrowerCityColl As New Collection
     'Dim oGrowerStateColl As New Collection
@@ -72,6 +73,7 @@ Public Class FormMain
         If Not GlobalVariables.BuildNonCGI Then Exit Sub
         lvNonCGI.View = View.Details
         lvNonCGI.Items.Clear()
+        oNonCgiCropIDs.Clear()
 
         For Each oCurCrop In oGrowerColl(iIndex).OtherCrops
             Dim oCurlvi As New ListViewItem
@@ -82,6 +84,7 @@ Public Class FormMain
             oCurlvi.SubItems.Add(oCurCrop.Volume.ToString())
             oCurlvi.SubItems.Add(oCurCrop.Location)
             lvNonCGI.Items.Add(oCurlvi)
+            oNonCgiCropIDs.Add(oCurCrop.nonCGIcropID)
         Next
 
     End Sub
@@ -705,7 +708,8 @@ Public Class FormMain
         Loop
 
         iGrowerID = -1
-        sSql = "SELECT DISTINCT growers.grower_id, ISNULL(commodity_name, '') As CommName, ISNULL(status, '') As Status , ISNULL(sold_to, ''), volume_bu, updated_date, ISNULL(location, '') "
+        sSql = "SELECT DISTINCT growers.grower_id, ISNULL(commodity_name, '') As CommName, ISNULL(status, '') As Status , ISNULL(sold_to, ''), volume_bu, updated_date, ISNULL(location, ''), "
+        sSql = sSql & "nonCGIcrop_id "
         sSql = sSql & "FROM commodities, nonCGIcrop, users, facilities, users_facilities, vendors, vendors_facilities, growers, growers_vendors "
         sSql = sSql & "WHERE nonCGIcrop.commodity_id = commodities.commodity_id "
         sSql = sSql & "AND users_facilities.user_id = users.user_id "
@@ -730,7 +734,9 @@ Public Class FormMain
                 oNonCGIRec.Volume = oReader.GetInt32(4)
                 oNonCGIRec.UpdatedDate = oReader.GetDateTime(5)
                 oNonCGIRec.Location = oReader.GetString(6)
+                oNonCGIRec.nonCGIcrop_id = oReader.GetInt32(7)
                 oOtherCropsRec.Add(oNonCGIRec)
+
             Loop
         End If
 
@@ -748,6 +754,7 @@ Public Class FormMain
                     oNonCGI.SoldTo = oOtherCropsRec(iCnt).SoldTo
                     oNonCGI.Volume = oOtherCropsRec(iCnt).Volume
                     oNonCGI.Location = oOtherCropsRec(iCnt).Location
+                    oNonCGI.NonCGICropID = oOtherCropsRec(iCnt).nonCGIcrop_id
                     oGrowerColl(iGrowerID.ToString()).OtherCrops.Add(oNonCGI)
                     iCnt = iCnt + 1
                     If iCnt > iMax Then Exit Do
@@ -1513,7 +1520,7 @@ Public Class FormMain
     End Sub
 
     Private Sub lvNonCGI_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvNonCGI.SelectedIndexChanged
-
+        GlobalVariables.CurrentOtherCropIndex = lvNonCGI.SelectedIndices(0)
     End Sub
 
     Private Sub btnAddNonCGI_Click(sender As Object, e As EventArgs) Handles btnAddNonCGI.Click
@@ -1551,6 +1558,24 @@ Public Class FormMain
     End Sub
 
     Private Sub PictureBox10_Click_1(sender As Object, e As EventArgs) Handles PictureBox10.Click
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnEditNonCGI.Click
+        Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+        If lvNonCGI.SelectedItems.Count < 1 Then
+            MessageBox.Show("No Item is Selected")
+        Else
+            GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
+            GlobalVariables.CurrentNonCGIID = oNonCgiCropIDs(lvNonCGI.SelectedIndices(0) + 1)
+            Dim oFrmEditnonCGI As New FormEditNonCGI
+            oFrmEditnonCGI.ShowDialog()
+            If GlobalVariables.BuildNonCGI Then
+                BuildNonCGIList(oSelItem.CollectionIndex)
+                GlobalVariables.BuildNonCGI = False
+            End If
+        End If
+
 
     End Sub
 End Class
