@@ -57,4 +57,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="PictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wAAADsABataJCQAAA6tJREFUeF7t3aFuFEEYwPEKBIIHQCCQSAQCgeABkAgkggdAQG+P7pL1JOxemwZZ
+        gUQgEAhEBQ+AQFQgEAgEorKiosy085XN5a7c7c3szjfz/yWTNrPbZL/99+4KoccWAAAAAAAAAAAAAACp
+        q+uD69s7b+9t17u33BZSUJTNw0nZfiuq9kzWpGqPJ1XzxkZ3p0Gbuq6vmZh73bAL1tG03rvjvgRa2LiT
+        avZBQl48YttyWraPiqp5ZvYO5ZhZv4msyHxcs45e1vs33eFL5pyicw6RNVg1rphWzfPOuUSO2bpxBZEV
+        6BtXEDlim8YVRI6Qr7iCyBHxHVcQOQKh4goijyh0XEHkEQwVVxB5QEPHFUQewFhxBZEDGjuuIHIAscQV
+        RPYotriCyB7EGlcQeQOxxxVE7kFLXEHkNWiLK4i8Aq1xBZGvoD2uIPICqcQVRO5ILa4gspFqXJF15AVx
+        7XrnDicjy8hL4p6vSdU27rRkZBV50dOy/cUwO7jsEVmpq15z7cB2cDlGZGVW+YGKyEqtElcQWZl14ooc
+        Ixd1c9sd0qNPXJFh5EO3rcMmcUUOke1bSPybb/bEbcfNR1yRemT7/iBmrj9qZvMZV6QeuXjdfr2YbfbF
+        bcUpRFyRcmR59x8z00e3FZ+QcUWKkV/VzV0zy6mbp3TbcRkirkgpcl3v3yjK9rub5cTO5g7FY8i4IoXI
+        53EvX3vbs2k1e+EOxWOMuEJz5Pm49h7ae+kOx2HMuEJjZOKuSVNk4vakITJxNxRzZOJ6EmNk4noWU2Ti
+        BhJDZOIGNmZkFXGt4nVTy0WapSauGCOymrjdvwQ3S11cMWRkNXEtc4Hv3YWe2thuW6UhIquKa3X+h5JP
+        bku1kJHVxbXMhZ74vhFjCxFZZVyr8wj+7LaS4DOy2riWueADd+Gn2zu79912EnxEVh3Xcjfh/GnarB9a
+        f4peZpPI6uMK+68MZAiz1P5RaZk+kZOJK+zQMoxZWUdOLq4gcsJxRc6Rk48rcoycTVyRW+Tu58nHFRlG
+        zieuSDmyncXOJPNlF1ekGJm4c1KKTNwlUohM3P/QHJm4K9IYmbhr0hSZuD1piEzcDcUcmbiexBiZuJ7F
+        FJm4gcQQmbiBjRmZuAMZIzJxBzZkZOKOZIjIxB1ZyMjEjUSIyMSNjM/IxI1UN7L5/Nh8/Nlnua+Vbxa7
+        ftn9GNa0bB67cfM090hOcDVP3aj5Mk+phbkZ9rcak1uTndkDNyYAAAAAAAAAAAAA+LG19RcSuAFWOTmu
+        OgAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

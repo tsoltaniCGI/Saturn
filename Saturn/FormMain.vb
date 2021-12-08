@@ -868,6 +868,10 @@ Public Class FormMain
 
 
         'In addition to this you need to set the WrapMode for the DataGridViewColumn to DataGridViewTriState.True And make sure you set a height for the row, Or set the DataGridView's AutoSizeRowsMode to DataGridViewAutoSizeRowsMode.AllCells – 
+        lvCommoditySales.Columns(0).Text = "Commodity"
+        lvCommoditySales.Columns(1).Text = "C.C.Year"
+        lvCommoditySales.Columns(2).Text = "P.C.Year"
+        lvCommoditySales.Columns(3).Text = "P2.C.Year"
 
     End Sub
 

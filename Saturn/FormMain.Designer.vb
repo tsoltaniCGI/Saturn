@@ -511,6 +511,7 @@ Partial Class FormMain
         Me.lvNonCGI.HideSelection = False
         Me.lvNonCGI.Location = New System.Drawing.Point(857, 705)
         Me.lvNonCGI.Name = "lvNonCGI"
+        Me.lvNonCGI.ShowItemToolTips = True
         Me.lvNonCGI.Size = New System.Drawing.Size(536, 209)
         Me.lvNonCGI.TabIndex = 76
         Me.lvNonCGI.UseCompatibleStateImageBehavior = False
@@ -573,7 +574,7 @@ Partial Class FormMain
         Me.txtProspect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         Me.txtProspect.Location = New System.Drawing.Point(886, 658)
         Me.txtProspect.Name = "txtProspect"
-        Me.txtProspect.Size = New System.Drawing.Size(161, 22)
+        Me.txtProspect.Size = New System.Drawing.Size(183, 22)
         Me.txtProspect.TabIndex = 79
         Me.txtProspect.Text = "NonCGI Business"
         '

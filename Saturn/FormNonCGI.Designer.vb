@@ -134,7 +134,7 @@ Partial Class FormNonCGI
         Me.cmbCommodity.Location = New System.Drawing.Point(292, 143)
         Me.cmbCommodity.Name = "cmbCommodity"
         Me.cmbCommodity.Size = New System.Drawing.Size(196, 23)
-        Me.cmbCommodity.TabIndex = 11
+        Me.cmbCommodity.TabIndex = 1
         '
         'cmbStatus
         '
@@ -142,21 +142,21 @@ Partial Class FormNonCGI
         Me.cmbStatus.Location = New System.Drawing.Point(292, 213)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(71, 23)
-        Me.cmbStatus.TabIndex = 12
+        Me.cmbStatus.TabIndex = 3
         '
         'txtVolume
         '
         Me.txtVolume.Location = New System.Drawing.Point(292, 178)
         Me.txtVolume.Name = "txtVolume"
         Me.txtVolume.Size = New System.Drawing.Size(100, 23)
-        Me.txtVolume.TabIndex = 13
+        Me.txtVolume.TabIndex = 2
         '
         'txtSoldTo
         '
         Me.txtSoldTo.Location = New System.Drawing.Point(292, 248)
         Me.txtSoldTo.Name = "txtSoldTo"
         Me.txtSoldTo.Size = New System.Drawing.Size(100, 23)
-        Me.txtSoldTo.TabIndex = 14
+        Me.txtSoldTo.TabIndex = 4
         '
         'txtLocation
         '
@@ -164,7 +164,7 @@ Partial Class FormNonCGI
         Me.txtLocation.Multiline = True
         Me.txtLocation.Name = "txtLocation"
         Me.txtLocation.Size = New System.Drawing.Size(125, 82)
-        Me.txtLocation.TabIndex = 15
+        Me.txtLocation.TabIndex = 5
         '
         'btnOKAddNonCGI
         '
@@ -217,9 +217,9 @@ Partial Class FormNonCGI
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox4.Location = New System.Drawing.Point(136, 67)
+        Me.PictureBox4.Location = New System.Drawing.Point(136, 50)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(114, 38)
+        Me.PictureBox4.Size = New System.Drawing.Size(119, 38)
         Me.PictureBox4.TabIndex = 56
         Me.PictureBox4.TabStop = False
         '
@@ -227,9 +227,9 @@ Partial Class FormNonCGI
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox5.Location = New System.Drawing.Point(172, 34)
+        Me.PictureBox5.Location = New System.Drawing.Point(169, 26)
         Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(43, 104)
+        Me.PictureBox5.Size = New System.Drawing.Size(43, 95)
         Me.PictureBox5.TabIndex = 57
         Me.PictureBox5.TabStop = False
         '
@@ -239,7 +239,7 @@ Partial Class FormNonCGI
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(150, 78)
+        Me.Label1.Location = New System.Drawing.Point(150, 61)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 15)
         Me.Label1.TabIndex = 58
