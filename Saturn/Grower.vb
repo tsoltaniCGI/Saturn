@@ -129,6 +129,7 @@ Public Class ProspectRec
     Public Property GrowerID As Integer
     Public Property VendorID As Integer
     Public Property GrowerFirstName As String
+    Public Property GrowerLastName As String
 
     Public Property GrowerAddress As String
     Public Property GrowerCity As String
@@ -147,7 +148,7 @@ Public Class ProspectRec
     Public Property GrowerNoteCreatedBy As Integer
     Public Property GrowerNoteCreatedByLogin As String
     Public Property VendorDummy As String
-    Public Property GrowerLastName As String
+
 
 
 End Class

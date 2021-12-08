@@ -48,6 +48,7 @@ Public Class FormEditGrower
             ckProspect.Checked = True
         Else
             ckProspect.Checked = False
+            ckProspect.Enabled = False
         End If
         txtAddress1.Text = loCurrentGrower.GrowerAddress1
         txtAddress2.Text = loCurrentGrower.GrowerAddress2
@@ -187,5 +188,11 @@ Public Class FormEditGrower
         End If
         Me.Close()
 
+    End Sub
+
+    Private Sub lstVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstVendors.SelectedIndexChanged
+        If lstVendors.SelectedIndices.Count > 8 Then
+            MessageBox.Show("Limit of 8 Vendors per Grower.")
+        End If
     End Sub
 End Class

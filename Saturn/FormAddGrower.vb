@@ -219,4 +219,10 @@ Public Class FormAddGrower
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
 
     End Sub
+
+    Private Sub lstVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstVendors.SelectedIndexChanged
+        If lstVendors.SelectedIndices.Count > 8 Then
+            MessageBox.Show("Limit of 8 Vendors per Grower.")
+        End If
+    End Sub
 End Class

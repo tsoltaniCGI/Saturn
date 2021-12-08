@@ -391,6 +391,7 @@ Public Class FormMain
                 iGrowerID = oCollGrowVendComm(iCnt).GrowerId
                 Dim oGrower As New Grower()
                 oGrower.GrowerFirstName = oCollGrowVendComm(iCnt).GrowerFirstName
+                oGrower.GrowerLastName = oCollGrowVendComm(iCnt).GrowerLastName
                 oGrower.GrowerID = oCollGrowVendComm(iCnt).GrowerId
                 oGrower.GrowerAddress1 = oCollGrowVendComm(iCnt).GrowerAddress1
                 oGrower.GrowerCity = oCollGrowVendComm(iCnt).GrowerCity
@@ -575,6 +576,7 @@ Public Class FormMain
 
                 oGrowerListItem.GrowerName = sName & " - PROSPECT"
                 oGrower.GrowerFirstName = oProspectRecs(iCnt).GrowerFirstName
+                oGrower.GrowerLastName = oProspectRecs(iCnt).GrowerLastName
                 oGrower.GrowerID = iGrowerID
                 oGrower.GrowerAddress1 = oProspectRecs(iCnt).GrowerAddress
                 oGrower.GrowerCity = oProspectRecs(iCnt).GrowerCity
