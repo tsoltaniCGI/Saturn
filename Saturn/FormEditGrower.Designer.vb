@@ -67,10 +67,10 @@ Partial Class FormEditGrower
         Me.ckProspect.AutoSize = True
         Me.ckProspect.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckProspect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckProspect.Location = New System.Drawing.Point(503, 59)
+        Me.ckProspect.Location = New System.Drawing.Point(503, 69)
         Me.ckProspect.Name = "ckProspect"
         Me.ckProspect.Size = New System.Drawing.Size(77, 19)
-        Me.ckProspect.TabIndex = 56
+        Me.ckProspect.TabIndex = 3
         Me.ckProspect.Text = "Prospect?"
         Me.ckProspect.UseVisualStyleBackColor = False
         '
@@ -102,14 +102,14 @@ Partial Class FormEditGrower
         Me.lstVendors.Name = "lstVendors"
         Me.lstVendors.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple
         Me.lstVendors.Size = New System.Drawing.Size(261, 259)
-        Me.lstVendors.TabIndex = 53
+        Me.lstVendors.TabIndex = 14
         '
         'txtEmail
         '
         Me.txtEmail.Location = New System.Drawing.Point(260, 254)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(203, 23)
-        Me.txtEmail.TabIndex = 52
+        Me.txtEmail.TabIndex = 13
         '
         'Label12
         '
@@ -128,7 +128,7 @@ Partial Class FormEditGrower
         Me.txtFax.Location = New System.Drawing.Point(641, 214)
         Me.txtFax.Name = "txtFax"
         Me.txtFax.Size = New System.Drawing.Size(100, 23)
-        Me.txtFax.TabIndex = 50
+        Me.txtFax.TabIndex = 12
         '
         'Label11
         '
@@ -147,7 +147,7 @@ Partial Class FormEditGrower
         Me.txtCellPhone.Location = New System.Drawing.Point(486, 217)
         Me.txtCellPhone.Name = "txtCellPhone"
         Me.txtCellPhone.Size = New System.Drawing.Size(100, 23)
-        Me.txtCellPhone.TabIndex = 48
+        Me.txtCellPhone.TabIndex = 11
         '
         'Label10
         '
@@ -166,7 +166,7 @@ Partial Class FormEditGrower
         Me.txtWorkPhone.Location = New System.Drawing.Point(260, 217)
         Me.txtWorkPhone.Name = "txtWorkPhone"
         Me.txtWorkPhone.Size = New System.Drawing.Size(100, 23)
-        Me.txtWorkPhone.TabIndex = 46
+        Me.txtWorkPhone.TabIndex = 10
         '
         'Label9
         '
@@ -185,7 +185,7 @@ Partial Class FormEditGrower
         Me.txtCounty.Location = New System.Drawing.Point(539, 143)
         Me.txtCounty.Name = "txtCounty"
         Me.txtCounty.Size = New System.Drawing.Size(100, 23)
-        Me.txtCounty.TabIndex = 44
+        Me.txtCounty.TabIndex = 6
         '
         'Label8
         '
@@ -205,7 +205,7 @@ Partial Class FormEditGrower
         Me.txtZip.MaxLength = 5
         Me.txtZip.Name = "txtZip"
         Me.txtZip.Size = New System.Drawing.Size(57, 23)
-        Me.txtZip.TabIndex = 42
+        Me.txtZip.TabIndex = 9
         '
         'Label7
         '
@@ -225,7 +225,7 @@ Partial Class FormEditGrower
         Me.txtState.MaxLength = 2
         Me.txtState.Name = "txtState"
         Me.txtState.Size = New System.Drawing.Size(35, 23)
-        Me.txtState.TabIndex = 40
+        Me.txtState.TabIndex = 7
         '
         'Label6
         '
@@ -244,7 +244,7 @@ Partial Class FormEditGrower
         Me.txtCity.Location = New System.Drawing.Point(260, 180)
         Me.txtCity.Name = "txtCity"
         Me.txtCity.Size = New System.Drawing.Size(100, 23)
-        Me.txtCity.TabIndex = 38
+        Me.txtCity.TabIndex = 8
         '
         'Label5
         '
@@ -263,7 +263,7 @@ Partial Class FormEditGrower
         Me.txtAddress2.Location = New System.Drawing.Point(260, 143)
         Me.txtAddress2.Name = "txtAddress2"
         Me.txtAddress2.Size = New System.Drawing.Size(207, 23)
-        Me.txtAddress2.TabIndex = 36
+        Me.txtAddress2.TabIndex = 5
         '
         'Label4
         '
@@ -282,7 +282,7 @@ Partial Class FormEditGrower
         Me.txtAddress1.Location = New System.Drawing.Point(260, 106)
         Me.txtAddress1.Name = "txtAddress1"
         Me.txtAddress1.Size = New System.Drawing.Size(207, 23)
-        Me.txtAddress1.TabIndex = 34
+        Me.txtAddress1.TabIndex = 4
         '
         'Label3
         '
@@ -301,7 +301,7 @@ Partial Class FormEditGrower
         Me.txtLastName.Location = New System.Drawing.Point(260, 69)
         Me.txtLastName.Name = "txtLastName"
         Me.txtLastName.Size = New System.Drawing.Size(100, 23)
-        Me.txtLastName.TabIndex = 32
+        Me.txtLastName.TabIndex = 2
         '
         'Label2
         '
@@ -320,7 +320,7 @@ Partial Class FormEditGrower
         Me.txtFirstName.Location = New System.Drawing.Point(260, 32)
         Me.txtFirstName.Name = "txtFirstName"
         Me.txtFirstName.Size = New System.Drawing.Size(100, 23)
-        Me.txtFirstName.TabIndex = 30
+        Me.txtFirstName.TabIndex = 1
         '
         'Label1
         '
