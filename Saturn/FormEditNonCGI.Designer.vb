@@ -137,14 +137,14 @@ Partial Class FormEditNonCGI
         Me.txtSoldTo.Location = New System.Drawing.Point(413, 226)
         Me.txtSoldTo.Name = "txtSoldTo"
         Me.txtSoldTo.Size = New System.Drawing.Size(100, 23)
-        Me.txtSoldTo.TabIndex = 4
+        Me.txtSoldTo.TabIndex = 69
         '
         'txtVolume
         '
         Me.txtVolume.Location = New System.Drawing.Point(413, 156)
         Me.txtVolume.Name = "txtVolume"
         Me.txtVolume.Size = New System.Drawing.Size(100, 23)
-        Me.txtVolume.TabIndex = 2
+        Me.txtVolume.TabIndex = 68
         '
         'cmbCommodity
         '
@@ -152,7 +152,7 @@ Partial Class FormEditNonCGI
         Me.cmbCommodity.Location = New System.Drawing.Point(413, 121)
         Me.cmbCommodity.Name = "cmbCommodity"
         Me.cmbCommodity.Size = New System.Drawing.Size(196, 23)
-        Me.cmbCommodity.TabIndex = 1
+        Me.cmbCommodity.TabIndex = 66
         '
         'cmbStatus
         '
@@ -160,7 +160,7 @@ Partial Class FormEditNonCGI
         Me.cmbStatus.Location = New System.Drawing.Point(413, 191)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(71, 23)
-        Me.cmbStatus.TabIndex = 3
+        Me.cmbStatus.TabIndex = 67
         '
         'txtLocation
         '
@@ -168,7 +168,7 @@ Partial Class FormEditNonCGI
         Me.txtLocation.Multiline = True
         Me.txtLocation.Name = "txtLocation"
         Me.txtLocation.Size = New System.Drawing.Size(125, 82)
-        Me.txtLocation.TabIndex = 5
+        Me.txtLocation.TabIndex = 70
         '
         'lblLocation
         '
@@ -239,9 +239,9 @@ Partial Class FormEditNonCGI
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(144, 0)
+        Me.PictureBox1.Location = New System.Drawing.Point(138, 12)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(512, 451)
+        Me.PictureBox1.Size = New System.Drawing.Size(512, 439)
         Me.PictureBox1.TabIndex = 72
         Me.PictureBox1.TabStop = False
         '
@@ -249,7 +249,7 @@ Partial Class FormEditNonCGI
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(778, 450)
+        Me.ClientSize = New System.Drawing.Size(674, 466)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.PictureBox5)
