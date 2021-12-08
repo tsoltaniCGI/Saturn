@@ -85,6 +85,7 @@ End Class
 
 
 Public Class NonCGI
+    Public Property NonCGICropID As Integer
     Public Property UpdatedDate As Date
     Public Property NonCGICommodity As String
     Public Property Status As String
@@ -153,6 +154,7 @@ End Class
 
 Public Class NonCGIRec
     Public Property GrowerID As Integer
+    Public Property nonCGIcrop_id As Integer
     Public Property CommodityID As String
     Public Property Status As String
     Public Property Volume As Integer
@@ -202,6 +204,8 @@ Public Class GlobalVariables
     Public Shared oVendorCollection As New Collection
     Public Shared iAddedGrowerID As Integer
     Public Shared iAddedVendorID As Integer
+    Public Shared CurrentNonCGIID As Integer
+    Public Shared CurrentOtherCropIndex As Integer
     'Public Shared CurrentGrower As Grower
     Public Shared MainLoaded As Boolean
     Public Shared Function DQuot(lsConvStr As String) As String
