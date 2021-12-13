@@ -357,7 +357,7 @@ Partial Class FormAddGrower
         Me.Label13.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label13.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(59, 57)
+        Me.Label13.Location = New System.Drawing.Point(52, 53)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(84, 15)
         Me.Label13.TabIndex = 61
@@ -367,7 +367,7 @@ Partial Class FormAddGrower
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox4.Location = New System.Drawing.Point(45, 46)
+        Me.PictureBox4.Location = New System.Drawing.Point(38, 42)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(114, 38)
         Me.PictureBox4.TabIndex = 59
@@ -377,7 +377,7 @@ Partial Class FormAddGrower
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox5.Location = New System.Drawing.Point(81, 13)
+        Me.PictureBox5.Location = New System.Drawing.Point(76, 13)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(43, 104)
         Me.PictureBox5.TabIndex = 60
