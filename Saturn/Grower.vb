@@ -12,6 +12,8 @@
     Public Property GrowerZip As String
     Public Property GrowerPhone1 As String
     Public Property GrowerPhone2 As String
+    Public Property GrowerFax As String
+    Public Property GrowerEmail As String
     Public Property GrowerProspect As String
 
     Public Property Vendors As New Collection
@@ -42,6 +44,8 @@ Public Class GrowVendCom
     Public Property GrowerZip As String
     Public Property GrowerPhone1 As String
     Public Property GrowerPhone2 As String
+    Public Property GrowerFax As String
+    Public Property GrowerEmail As String
     Public Property VendorName As String
     Public Property VendorDummy As String
     Public Property CommID As String
@@ -177,10 +181,25 @@ Public Class ProspectNotesRec
     Public Property GrowerNoteCreatedByLogin As String
 
 End Class
+Public Class State
+    Public Property StateID As String
+    Public Property StateName As String
+End Class
+
+Public Class Province
+    Public Property ProvinceID As String
+    Public Property ProvinceName As String
+End Class
+
+Public Class Country
+    Public Property CountryID As String
+    Public Property CountryName As String
+End Class
 Public Class GlobalVariables
     Public Shared UserList As New Collection
     Public Shared UserId As Integer
     Public Shared CurrentUserLogin As String
+    Public Shared EditedGrower As Boolean
     Public Shared UserFirstName As String
     Public Shared UserLastName As String
     Public Shared UserFacilities As New Collection

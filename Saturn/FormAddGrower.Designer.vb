@@ -32,17 +32,12 @@ Partial Class FormAddGrower
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtCity = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtState = New System.Windows.Forms.TextBox()
+        Me.lblState = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtZip = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.txtCounty = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.txtWorkPhone = New System.Windows.Forms.TextBox()
-        Me.txtCellPhone = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.txtFax = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -56,11 +51,21 @@ Partial Class FormAddGrower
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.rbOther = New System.Windows.Forms.RadioButton()
+        Me.rbCanada = New System.Windows.Forms.RadioButton()
+        Me.rbUSA = New System.Windows.Forms.RadioButton()
+        Me.cmbState = New System.Windows.Forms.ComboBox()
+        Me.txtWorkPhone = New System.Windows.Forms.MaskedTextBox()
+        Me.txtCellPhone = New System.Windows.Forms.MaskedTextBox()
+        Me.txtFax = New System.Windows.Forms.MaskedTextBox()
+        Me.txtZip = New System.Windows.Forms.MaskedTextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -157,25 +162,17 @@ Partial Class FormAddGrower
         Me.Label5.Text = "City:"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
-        'Label6
+        'lblState
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(678, 148)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(36, 15)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "State:"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        '
-        'txtState
-        '
-        Me.txtState.Location = New System.Drawing.Point(720, 145)
-        Me.txtState.MaxLength = 2
-        Me.txtState.Name = "txtState"
-        Me.txtState.Size = New System.Drawing.Size(35, 23)
-        Me.txtState.TabIndex = 7
+        Me.lblState.AutoSize = True
+        Me.lblState.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.lblState.Location = New System.Drawing.Point(634, 148)
+        Me.lblState.Name = "lblState"
+        Me.lblState.Size = New System.Drawing.Size(36, 15)
+        Me.lblState.TabIndex = 10
+        Me.lblState.Text = "State:"
+        Me.lblState.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
         'Label7
         '
@@ -189,20 +186,12 @@ Partial Class FormAddGrower
         Me.Label7.Text = "Zip:"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
-        'txtZip
-        '
-        Me.txtZip.Location = New System.Drawing.Point(492, 182)
-        Me.txtZip.MaxLength = 5
-        Me.txtZip.Name = "txtZip"
-        Me.txtZip.Size = New System.Drawing.Size(83, 23)
-        Me.txtZip.TabIndex = 9
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(517, 148)
+        Me.Label8.Location = New System.Drawing.Point(493, 148)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(49, 15)
         Me.Label8.TabIndex = 14
@@ -211,7 +200,7 @@ Partial Class FormAddGrower
         '
         'txtCounty
         '
-        Me.txtCounty.Location = New System.Drawing.Point(572, 145)
+        Me.txtCounty.Location = New System.Drawing.Point(548, 145)
         Me.txtCounty.Name = "txtCounty"
         Me.txtCounty.Size = New System.Drawing.Size(77, 23)
         Me.txtCounty.TabIndex = 6
@@ -228,20 +217,6 @@ Partial Class FormAddGrower
         Me.Label9.Text = "Work Phone:"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
-        'txtWorkPhone
-        '
-        Me.txtWorkPhone.Location = New System.Drawing.Point(274, 220)
-        Me.txtWorkPhone.Name = "txtWorkPhone"
-        Me.txtWorkPhone.Size = New System.Drawing.Size(100, 23)
-        Me.txtWorkPhone.TabIndex = 10
-        '
-        'txtCellPhone
-        '
-        Me.txtCellPhone.Location = New System.Drawing.Point(491, 220)
-        Me.txtCellPhone.Name = "txtCellPhone"
-        Me.txtCellPhone.Size = New System.Drawing.Size(100, 23)
-        Me.txtCellPhone.TabIndex = 11
-        '
         'Label10
         '
         Me.Label10.AutoSize = True
@@ -253,13 +228,6 @@ Partial Class FormAddGrower
         Me.Label10.TabIndex = 18
         Me.Label10.Text = "Cell Phone:"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        '
-        'txtFax
-        '
-        Me.txtFax.Location = New System.Drawing.Point(655, 220)
-        Me.txtFax.Name = "txtFax"
-        Me.txtFax.Size = New System.Drawing.Size(100, 23)
-        Me.txtFax.TabIndex = 12
         '
         'Label11
         '
@@ -338,16 +306,16 @@ Partial Class FormAddGrower
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.PictureBox1.Location = New System.Drawing.Point(12, 12)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(776, 615)
+        Me.PictureBox1.Size = New System.Drawing.Size(851, 615)
         Me.PictureBox1.TabIndex = 29
         Me.PictureBox1.TabStop = False
         '
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox2.Location = New System.Drawing.Point(96, 28)
+        Me.PictureBox2.Location = New System.Drawing.Point(96, 25)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(668, 583)
+        Me.PictureBox2.Size = New System.Drawing.Size(748, 583)
         Me.PictureBox2.TabIndex = 30
         Me.PictureBox2.TabStop = False
         '
@@ -392,11 +360,102 @@ Partial Class FormAddGrower
         Me.PictureBox3.TabIndex = 62
         Me.PictureBox3.TabStop = False
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.rbOther)
+        Me.GroupBox1.Controls.Add(Me.rbCanada)
+        Me.GroupBox1.Controls.Add(Me.rbUSA)
+        Me.GroupBox1.Location = New System.Drawing.Point(490, 98)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(263, 40)
+        Me.GroupBox1.TabIndex = 63
+        Me.GroupBox1.TabStop = False
+        '
+        'rbOther
+        '
+        Me.rbOther.AutoSize = True
+        Me.rbOther.Location = New System.Drawing.Point(163, 14)
+        Me.rbOther.Name = "rbOther"
+        Me.rbOther.Size = New System.Drawing.Size(55, 19)
+        Me.rbOther.TabIndex = 68
+        Me.rbOther.TabStop = True
+        Me.rbOther.Text = "Other"
+        Me.rbOther.UseVisualStyleBackColor = True
+        '
+        'rbCanada
+        '
+        Me.rbCanada.AutoSize = True
+        Me.rbCanada.Location = New System.Drawing.Point(88, 14)
+        Me.rbCanada.Name = "rbCanada"
+        Me.rbCanada.Size = New System.Drawing.Size(65, 19)
+        Me.rbCanada.TabIndex = 67
+        Me.rbCanada.TabStop = True
+        Me.rbCanada.Text = "Canada"
+        Me.rbCanada.UseVisualStyleBackColor = True
+        '
+        'rbUSA
+        '
+        Me.rbUSA.AutoSize = True
+        Me.rbUSA.Location = New System.Drawing.Point(30, 15)
+        Me.rbUSA.Name = "rbUSA"
+        Me.rbUSA.Size = New System.Drawing.Size(47, 19)
+        Me.rbUSA.TabIndex = 66
+        Me.rbUSA.TabStop = True
+        Me.rbUSA.Text = "USA"
+        Me.rbUSA.UseVisualStyleBackColor = True
+        '
+        'cmbState
+        '
+        Me.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbState.FormattingEnabled = True
+        Me.cmbState.Location = New System.Drawing.Point(672, 144)
+        Me.cmbState.Name = "cmbState"
+        Me.cmbState.Size = New System.Drawing.Size(162, 23)
+        Me.cmbState.TabIndex = 64
+        '
+        'txtWorkPhone
+        '
+        Me.txtWorkPhone.Location = New System.Drawing.Point(274, 217)
+        Me.txtWorkPhone.Mask = "(999)-000-0000"
+        Me.txtWorkPhone.Name = "txtWorkPhone"
+        Me.txtWorkPhone.Size = New System.Drawing.Size(100, 23)
+        Me.txtWorkPhone.TabIndex = 68
+        '
+        'txtCellPhone
+        '
+        Me.txtCellPhone.Location = New System.Drawing.Point(486, 218)
+        Me.txtCellPhone.Mask = "(999)-000-0000"
+        Me.txtCellPhone.Name = "txtCellPhone"
+        Me.txtCellPhone.Size = New System.Drawing.Size(100, 23)
+        Me.txtCellPhone.TabIndex = 69
+        '
+        'txtFax
+        '
+        Me.txtFax.Location = New System.Drawing.Point(653, 218)
+        Me.txtFax.Mask = "(999)-000-0000"
+        Me.txtFax.Name = "txtFax"
+        Me.txtFax.Size = New System.Drawing.Size(100, 23)
+        Me.txtFax.TabIndex = 70
+        '
+        'txtZip
+        '
+        Me.txtZip.Location = New System.Drawing.Point(485, 182)
+        Me.txtZip.Mask = "99999"
+        Me.txtZip.Name = "txtZip"
+        Me.txtZip.Size = New System.Drawing.Size(100, 23)
+        Me.txtZip.TabIndex = 71
+        '
         'FormAddGrower
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 639)
+        Me.ClientSize = New System.Drawing.Size(904, 639)
+        Me.Controls.Add(Me.txtZip)
+        Me.Controls.Add(Me.txtFax)
+        Me.Controls.Add(Me.txtCellPhone)
+        Me.Controls.Add(Me.txtWorkPhone)
+        Me.Controls.Add(Me.cmbState)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.PictureBox3)
@@ -406,18 +465,13 @@ Partial Class FormAddGrower
         Me.Controls.Add(Me.lstVendors)
         Me.Controls.Add(Me.txtEmail)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.txtFax)
         Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.txtCellPhone)
         Me.Controls.Add(Me.Label10)
-        Me.Controls.Add(Me.txtWorkPhone)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtCounty)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.txtZip)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.txtState)
-        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.lblState)
         Me.Controls.Add(Me.txtCity)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.ckProspect)
@@ -438,6 +492,8 @@ Partial Class FormAddGrower
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -453,17 +509,12 @@ Partial Class FormAddGrower
     Friend WithEvents Label4 As Label
     Friend WithEvents txtCity As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents txtState As TextBox
+    Friend WithEvents lblState As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents txtZip As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents txtCounty As TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents txtWorkPhone As TextBox
-    Friend WithEvents txtCellPhone As TextBox
     Friend WithEvents Label10 As Label
-    Friend WithEvents txtFax As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents Label12 As Label
@@ -477,4 +528,13 @@ Partial Class FormAddGrower
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents rbOther As RadioButton
+    Friend WithEvents rbCanada As RadioButton
+    Friend WithEvents rbUSA As RadioButton
+    Friend WithEvents cmbState As ComboBox
+    Friend WithEvents txtWorkPhone As MaskedTextBox
+    Friend WithEvents txtCellPhone As MaskedTextBox
+    Friend WithEvents txtFax As MaskedTextBox
+    Friend WithEvents txtZip As MaskedTextBox
 End Class
