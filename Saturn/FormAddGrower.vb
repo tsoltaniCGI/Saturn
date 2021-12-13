@@ -5,11 +5,15 @@ Imports System.Data.SqlClient
 
 Public Class FormAddGrower
     Dim oVendIDs As New Collection
-    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
+    Dim oStates As New Collection
+    Dim oProvinces As New Collection
+    Dim oCountries As New Collection
+
+    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles lblState.Click
 
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtState.TextChanged
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -50,14 +54,74 @@ Public Class FormAddGrower
             Loop
         End If
         oReader.Close()
+        sSql = "SELECT state_code, state_name "
+        sSql = sSql & "FROM states "
+        sSql = sSql & "ORDER BY state_name"
+        myCmd.CommandText = sSql
+
+        oReader = myCmd.ExecuteReader()
+        If oReader.HasRows Then
+            Do While oReader.Read()
+                Dim oCurState As New State
+                oCurState.StateID = oReader.GetString(0)
+                oCurState.StateName = oReader.GetString(1)
+                If Not oStates.Contains(oCurState.StateID) Then
+                    oStates.Add(oCurState, oCurState.StateID)
+                End If
+            Loop
+
+        End If
+
+        oReader.Close()
+
+        sSql = "SELECT province_code, province_name "
+        sSql = sSql & "FROM canadian_provinces "
+        sSql = sSql & "ORDER BY province_name"
+        myCmd.CommandText = sSql
+
+        oReader = myCmd.ExecuteReader()
+        If oReader.HasRows Then
+            Do While oReader.Read()
+                Dim oCurProvince As New Province
+                oCurProvince.ProvinceID = oReader.GetString(0)
+                oCurProvince.ProvinceName = oReader.GetString(1)
+                If Not oProvinces.Contains(oCurProvince.ProvinceID) Then
+                    oProvinces.Add(oCurProvince, oCurProvince.ProvinceID)
+                End If
+            Loop
+        End If
+
+        oReader.Close()
+
+        sSql = "SELECT country_code, country_name "
+        sSql = sSql & "FROM countries "
+        sSql = sSql & "ORDER BY country_name"
+        myCmd.CommandText = sSql
+
+        oReader = myCmd.ExecuteReader()
+        If oReader.HasRows Then
+            Do While oReader.Read()
+                Dim oCurCountry As New Country
+                oCurCountry.CountryID = oReader.GetString(0)
+                oCurCountry.CountryName = oReader.GetString(1)
+                If Not oCountries.Contains(oCurCountry.CountryID) Then
+                    oCountries.Add(oCurCountry, oCurCountry.CountryID)
+                End If
+            Loop
+        End If
+
+        oReader.Close()
+
         oConn.Close()
+
+        rbUSA.Checked = True
     End Sub
 
     Private Sub txtCity_TextChanged(sender As Object, e As EventArgs) Handles txtCity.TextChanged
 
     End Sub
 
-    Private Sub TextBox1_TextChanged_1(sender As Object, e As EventArgs) Handles txtCellPhone.TextChanged
+    Private Sub TextBox1_TextChanged_1(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -68,6 +132,21 @@ Public Class FormAddGrower
         Dim iVendorID As Integer
         Dim bDataValidated As Boolean
         Dim sProspect As String
+        Dim sCurCountryCode As String
+
+        sCurCountryCode = "US"
+        If rbUSA.Checked Then
+            sCurCountryCode = "US"
+        End If
+
+        If rbCanada.Checked Then
+            sCurCountryCode = "CA"
+        End If
+
+        If rbOther.Checked Then
+            sCurCountryCode = oCountries(cmbState.SelectedIndex).CountryID
+        End If
+
         GlobalVariables.iAddedGrowerID = 0
         GlobalVariables.ResetGrower = True
         'Dim iCnt As Integer
@@ -93,8 +172,20 @@ Public Class FormAddGrower
                 bDataValidated = False
             End If
         End If
-        iVendorID = 0
+
+        If cmbState.SelectedIndex <> -1 Then
+            If Len(cmbState.SelectedItem.ToString()) = 0 Then
+                MessageBox.Show("State must be selected.")
+                bDataValidated = False
+            End If
+        Else
+            MessageBox.Show("State must be selected.")
+            bDataValidated = False
+        End If
+
+
         If bDataValidated Then
+            iVendorID = 0
             If ckProspect.Checked Then
                 sSql = "INSERT INTO vendors (vendor_name, vendor_dummy) "
                 sSql = sSql & "VALUES ('" & Year(Now().ToString()) & Month(Now().ToString()) & DateTime.Now.Day().ToString()
@@ -110,7 +201,8 @@ Public Class FormAddGrower
             sSql = sSql & "grower_city, grower_county, grower_state, grower_zip, grower_country, grower_phone1, grower_phone2, grower_fax, "
             sSql = sSql & "grower_email, grower_date_created, grower_created_by) "
             sSql = sSql & "VALUES ('" & sProspect & "', '" & txtFirstName.Text & "', '" & txtLastName.Text & "', '" & txtAddress1.Text & "', '" & txtAddress2.Text & "', '"
-            sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & txtState.Text & "', '" & txtZip.Text & "', '" & "US" & "', '" & txtWorkPhone.Text & "', '"
+            'sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & txtState.Text & "', '" & txtZip.Text & "', '" & "US" & "', '" & txtWorkPhone.Text & "', '"
+            sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & cmbState.SelectedItem.ToString() & "', '" & txtZip.Text & "', '" & sCurCountryCode & "', '" & txtWorkPhone.Text & "', '"
             sSql = sSql & txtCellPhone.Text & "', '" & txtFax.Text & "', '" & txtEmail.Text & "', '" & sDate & "', " & GlobalVariables.UserId.ToString() & "); SELECT SCOPE_IDENTITY()"
             '"INSERT INTO table (Databasevalue) VALUES ('" + formvalue + "'); SELECT SCOPE_IDENTITY()"
             myCmd.CommandText = sSql
@@ -142,8 +234,9 @@ Public Class FormAddGrower
                     myCmd.ExecuteNonQuery()
                 Next
             End If
+            Me.Close()
         End If
-        Me.Close()
+
     End Sub
 
     Private Sub ckProspect_CheckedChanged(sender As Object, e As EventArgs) Handles ckProspect.CheckedChanged
@@ -224,5 +317,75 @@ Public Class FormAddGrower
         If lstVendors.SelectedIndices.Count > 8 Then
             MessageBox.Show("Limit of 8 Vendors per Grower.")
         End If
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged_1(sender As Object, e As EventArgs) Handles rbUSA.CheckedChanged
+        Dim iMax As Integer
+        Dim iCnt As Integer
+
+        If rbUSA.Checked Then
+            iMax = oStates.Count
+            iCnt = 1
+            cmbState.Items.Clear()
+
+            Do While iCnt <= iMax
+                cmbState.Items.Add(oStates(iCnt).StateName)
+                iCnt = iCnt + 1
+            Loop
+
+        End If
+    End Sub
+
+    Private Sub rbCanada_CheckedChanged(sender As Object, e As EventArgs) Handles rbCanada.CheckedChanged
+        Dim iMax As Integer
+        Dim iCnt As Integer
+
+        If rbCanada.Checked Then
+            iMax = oProvinces.Count
+            iCnt = 1
+            cmbState.Items.Clear()
+
+            Do While iCnt <= iMax
+                cmbState.Items.Add(oProvinces(iCnt).ProvinceName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+
+    End Sub
+
+    Private Sub rbOther_CheckedChanged(sender As Object, e As EventArgs) Handles rbOther.CheckedChanged
+        Dim iMax As Integer
+        Dim iCnt As Integer
+
+        If rbOther.Checked Then
+            iMax = oCountries.Count
+            iCnt = 1
+            cmbState.Items.Clear()
+
+            Do While iCnt <= iMax
+                cmbState.Items.Add(oCountries(iCnt).CountryName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+
+    End Sub
+
+    Private Sub txtWorkPhone_TextChanged(sender As Object, e As EventArgs)
     End Sub
 End Class

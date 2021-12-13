@@ -102,7 +102,7 @@ Public Class FormMain
         Dim liCnt As Integer
         Dim liCommCnt As Integer
         Dim liCommMax As Integer
-        Dim liMax As Integer
+        'Dim liMax As Integer
         Dim lbCommFound As Boolean
         Dim lsCurCommId As String
         Dim lsCurCommName As String
@@ -114,7 +114,9 @@ Public Class FormMain
 
 
         lbCommFound = False
+        'If Not GlobalVariables.EditedGrower Then
         If Not GlobalVariables.BuildComm Then Exit Sub
+        'End If
         liCnt = 1
         'liMax = 2
         loCollCheckedIndices.Clear()
@@ -283,7 +285,8 @@ Public Class FormMain
         sSql = sSql & "ISNULL(GROWER_NOTE_ID, 0) AS NoteID, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', "
         sSql = sSql & "ISNULL(GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', "
         sSql = sSql & "ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Note Creator', "
-        sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?', ISNULL(GROWER_LAST_NAME, '') AS 'Last Name' "
+        sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?', ISNULL(GROWER_LAST_NAME, '') AS 'Last Name', "
+        sSql = sSql & "ISNULL(GROWER_FAX, '') AS Fax, ISNULL(GROWER_EMAIL, '') AS Email, ISNULL(GROWER_PHONE2, '') AS 'Cell Phone'"
         sSql = sSql & "FROM GROWERS "
         sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
         sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
@@ -356,6 +359,9 @@ Public Class FormMain
                 oGVC.GrowerNoteCreatedBy = oReader.GetInt32(21)
                 oGVC.VendorDummy = oReader.GetString(22)
                 oGVC.GrowerLastName = oReader.GetString(23)
+                oGVC.GrowerFax = oReader.GetString(24)
+                oGVC.GrowerEmail = oReader.GetString(25)
+                oGVC.GrowerPhone2 = oReader.GetString(26)
 
                 oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & oGVC.VendorId.ToString() & oGVC.CommID.ToString() & iNum.ToString())
                 'slGrowers.Add(oGVC, oGVC.GrowerFirstName & " " & oGVC.GrowerLastName)
@@ -406,6 +412,9 @@ Public Class FormMain
                 oGrower.GrowerCountry = oCollGrowVendComm(iCnt).GrowerCountry
                 oGrower.GrowerZip = oCollGrowVendComm(iCnt).GrowerZip
                 oGrower.GrowerPhone1 = oCollGrowVendComm(iCnt).GrowerPhone1
+                oGrower.GrowerPhone2 = oCollGrowVendComm(iCnt).GrowerPhone2
+                oGrower.GrowerFax = oCollGrowVendComm(iCnt).GrowerFax
+                oGrower.GrowerEmail = oCollGrowVendComm(iCnt).GrowerEmail
                 oGrower.GrowerProspect = "N"
 
                 iVendorID = -1
@@ -420,6 +429,8 @@ Public Class FormMain
                         oVendor.VendorID = iVendorID
                         'oGrower.Vendors.Add(oVendor)
                         sCommID = ""
+                        oVendor.CollCommodities.Clear()
+
                         Do While iVendorID = oCollGrowVendComm(iCnt).VendorID And iGrowerID = oCollGrowVendComm(iCnt).GrowerId
 
                             sCommID = oCollGrowVendComm(iCnt).CommID
@@ -733,6 +744,7 @@ Public Class FormMain
         myCmd.CommandText = sSql
         oReader.Close()
         oReader = myCmd.ExecuteReader()
+        oOtherCropsRec.Clear()
         If oReader.HasRows Then
             Do While oReader.Read()
                 Dim oNonCGIRec As New NonCGIRec
@@ -755,6 +767,7 @@ Public Class FormMain
         Do While iCnt <= iMax
             If iGrowerID <> oOtherCropsRec(iCnt).GrowerID Then
                 iGrowerID = oOtherCropsRec(iCnt).GrowerID
+                oGrowerColl(iGrowerID.ToString()).OtherCrops.Clear()
                 Do While iGrowerID = oOtherCropsRec(iCnt).GrowerID
                     Dim oNonCGI As New NonCGI
                     oNonCGI.UpdatedDate = oOtherCropsRec(iCnt).UpdatedDate
@@ -963,6 +976,7 @@ Public Class FormMain
         Dim iMax As Integer
         Dim sNote As String
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+
         'Dim ilvCnt As Integer
         'Dim iLvMax As Integer
         'Dim oCurVendor As Vendor
@@ -988,7 +1002,9 @@ Public Class FormMain
 
 
             iCnt = 1
-            GlobalVariables.BuildComm = False
+            If Not GlobalVariables.EditedGrower Then
+                GlobalVariables.BuildComm = False
+            End If
             GlobalVariables.BuildNonCGI = False
 
             iMax = oGrowerColl(oSelItem.CollectionIndex).Vendors.Count
@@ -1561,6 +1577,8 @@ Public Class FormMain
 
 
     Private Sub btnEditGrower_Click(sender As Object, e As EventArgs) Handles btnEditGrower.Click
+        Dim iCnt As Integer
+        Dim iMax As Integer
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
         GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
         Dim frmEditGrower = New FormEditGrower
@@ -1569,7 +1587,28 @@ Public Class FormMain
         'frmEditGrower.ShowDialog()
         'frmEditGrower.l
         If GlobalVariables.ResetGrower Then
+            'GlobalVariables.EditedGrower = True
             RebuildPage()
+            'GlobalVariables.EditedGrower = False
+            'lvCommoditySales.View = View.Details
+            'lvCommoditySales.Items.Clear()
+            ''Dim oLoadVendor As Vendor
+            'iCnt = 1
+            'iMax = GlobalVariables.CurrentGrower.Vendors.Count
+            'Do While iCnt <= iMax
+            '
+            '            For Each loCurComm In GlobalVariables.CurrentGrower.Vendors(iCnt).CollCommodities
+            '            Dim oLVI As New ListViewItem
+            '            oLVI.SubItems(0).Text = loCurComm.CommName'
+            '
+            '            oLVI.SubItems.Add(loCurComm.CurrentCropYear)
+            '            oLVI.SubItems.Add(loCurComm.PreviousCropYear)
+            '            oLVI.SubItems.Add(loCurComm.Previous2CropYear)
+            '            oLVI.SubItems.Add("CGI")
+            '            lvCommoditySales.Items.Add(oLVI)
+            '            Next
+            '            iCnt = iCnt + 1
+            '            Loop
         End If
     End Sub
 
