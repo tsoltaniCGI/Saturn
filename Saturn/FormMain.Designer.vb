@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -375,14 +375,14 @@ Partial Class FormMain
         '
         'Note
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Note.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
         Me.Note.HeaderText = ""
         Me.Note.MinimumWidth = 370
         Me.Note.Name = "Note"
@@ -513,6 +513,7 @@ Partial Class FormMain
         Me.lvNonCGI.Location = New System.Drawing.Point(857, 705)
         Me.lvNonCGI.MultiSelect = False
         Me.lvNonCGI.Name = "lvNonCGI"
+        Me.lvNonCGI.ShowItemToolTips = True
         Me.lvNonCGI.Size = New System.Drawing.Size(536, 209)
         Me.lvNonCGI.TabIndex = 76
         Me.lvNonCGI.UseCompatibleStateImageBehavior = False
@@ -575,7 +576,7 @@ Partial Class FormMain
         Me.txtProspect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         Me.txtProspect.Location = New System.Drawing.Point(886, 658)
         Me.txtProspect.Name = "txtProspect"
-        Me.txtProspect.Size = New System.Drawing.Size(161, 22)
+        Me.txtProspect.Size = New System.Drawing.Size(183, 22)
         Me.txtProspect.TabIndex = 79
         Me.txtProspect.Text = "NonCGI Business"
         '
@@ -636,7 +637,7 @@ Partial Class FormMain
         '
         Me.btnEditNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnEditNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnEditNonCGI.Location = New System.Drawing.Point(1195, 658)
+        Me.btnEditNonCGI.Location = New System.Drawing.Point(1221, 657)
         Me.btnEditNonCGI.Name = "btnEditNonCGI"
         Me.btnEditNonCGI.Size = New System.Drawing.Size(75, 23)
         Me.btnEditNonCGI.TabIndex = 85

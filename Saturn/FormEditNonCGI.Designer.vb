@@ -137,14 +137,14 @@ Partial Class FormEditNonCGI
         Me.txtSoldTo.Location = New System.Drawing.Point(413, 226)
         Me.txtSoldTo.Name = "txtSoldTo"
         Me.txtSoldTo.Size = New System.Drawing.Size(100, 23)
-        Me.txtSoldTo.TabIndex = 69
+        Me.txtSoldTo.TabIndex = 4
         '
         'txtVolume
         '
         Me.txtVolume.Location = New System.Drawing.Point(413, 156)
         Me.txtVolume.Name = "txtVolume"
         Me.txtVolume.Size = New System.Drawing.Size(100, 23)
-        Me.txtVolume.TabIndex = 68
+        Me.txtVolume.TabIndex = 2
         '
         'cmbCommodity
         '
@@ -152,7 +152,7 @@ Partial Class FormEditNonCGI
         Me.cmbCommodity.Location = New System.Drawing.Point(413, 121)
         Me.cmbCommodity.Name = "cmbCommodity"
         Me.cmbCommodity.Size = New System.Drawing.Size(196, 23)
-        Me.cmbCommodity.TabIndex = 66
+        Me.cmbCommodity.TabIndex = 1
         '
         'cmbStatus
         '
@@ -160,7 +160,7 @@ Partial Class FormEditNonCGI
         Me.cmbStatus.Location = New System.Drawing.Point(413, 191)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(71, 23)
-        Me.cmbStatus.TabIndex = 67
+        Me.cmbStatus.TabIndex = 3
         '
         'txtLocation
         '
@@ -168,7 +168,7 @@ Partial Class FormEditNonCGI
         Me.txtLocation.Multiline = True
         Me.txtLocation.Name = "txtLocation"
         Me.txtLocation.Size = New System.Drawing.Size(125, 82)
-        Me.txtLocation.TabIndex = 70
+        Me.txtLocation.TabIndex = 5
         '
         'lblLocation
         '
