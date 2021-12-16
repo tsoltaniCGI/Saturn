@@ -856,11 +856,4 @@ Partial Class FormMain
     Friend WithEvents PictureBox10 As PictureBox
     Friend WithEvents Note As DataGridViewTextBoxColumn
     Friend WithEvents btnEditNonCGI As Button
-    Friend WithEvents lblGrowerCounty As Label
-    Friend WithEvents PictureBox8 As PictureBox
-    Friend WithEvents PictureBox11 As PictureBox
-    Friend WithEvents lblGrowerEmail As Label
-    Friend WithEvents mtbGrowerWorkWhone As MaskedTextBox
-    Friend WithEvents mtbGrowerCellPhone As MaskedTextBox
-    Friend WithEvents mtbGrowerFax As MaskedTextBox
 End Class

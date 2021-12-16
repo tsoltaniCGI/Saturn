@@ -82,7 +82,7 @@ Public Class Commodity
 End Class
 Public Class Vendor
     Public Property VendorName As String
-    Public Property VendorID As String
+    Public Property VendorID As Integer
     Public Property VendorDummy As String
     Public Property CollCommodities As New Collection
 End Class
@@ -136,11 +136,15 @@ Public Class ProspectRec
     Public Property GrowerLastName As String
 
     Public Property GrowerAddress As String
+    Public Property GrowerAddress2 As String
     Public Property GrowerCity As String
     Public Property GrowerState As String
     Public Property GrowerZip As String
     Public Property GrowerCountry As String
     Public Property GrowerPhone1 As String
+    Public Property GrowerPhone2 As String
+    Public Property GrowerFax As String
+    Public Property GrowerEmail As String
     Public Property VendorName As String
     Public Property GrowerNoteID As Integer
 
@@ -196,7 +200,9 @@ Public Class Country
     Public Property CountryName As String
 End Class
 Public Class GlobalVariables
+    Public Shared bFirstLoad As Boolean
     Public Shared UserList As New Collection
+    Public Shared VendorList As New Collection
     Public Shared UserId As Integer
     Public Shared CurrentUserLogin As String
     Public Shared EditedGrower As Boolean

@@ -178,13 +178,15 @@ Public Class FormMain
         Dim iGrowerID As Integer
         Dim iVendorID As Integer
         Dim sCommID As String
-
+        Dim oVendor As Vendor
 
         oCollGrowVendComm.Clear()
         oNoteMethods.Clear()
         oProspectRecs.Clear()
         oProspectNoteRecs.Clear()
         oOtherCropsRec.Clear()
+
+
         Dim iMax As Integer
         Dim iCnt As Integer
         'Dim iNoteId As Integer
@@ -192,6 +194,7 @@ Public Class FormMain
         Dim bAddNote As Boolean
         Dim sCaption As String
         Dim sName As String
+        Dim oReader As SqlClient.SqlDataReader
         'Dim slGrowers As New SortedList
         'no fdg
         GlobalVariables.ResetNote = False
@@ -203,7 +206,37 @@ Public Class FormMain
         'Me.Text = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facility: " & GlobalVariables.UserFacility
         Me.Text = Trim(sCaption)
         oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        oConn.Open()
         myCmd = oConn.CreateCommand
+        If Not GlobalVariables.bFirstLoad Then
+            GlobalVariables.VendorList.Clear()
+            GlobalVariables.bFirstLoad = True
+            sSql = "SELECT DISTINCT vendors.vendor_id, vendors.vendor_name, vendor_dummy "
+            sSql = sSql & "FROM users, users_facilities, vendors, vendors_facilities, facilities "
+
+            sSql = sSql & "WHERE users.user_id = " & GlobalVariables.UserId.ToString() & " "
+            sSql = sSql & "AND users_facilities.user_id = users.user_id "
+            sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id "
+            sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
+            sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
+            'sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4"
+            myCmd.CommandText = sSql
+
+            oReader = myCmd.ExecuteReader()
+
+            If oReader.HasRows Then
+                Do While oReader.Read()
+                    Dim oThisVendor As New Vendor
+                    oThisVendor.VendorID = oReader.GetInt32(0)
+                    oThisVendor.VendorName = oReader.GetString(1)
+                    oThisVendor.VendorDummy = oReader.GetString(2)
+                    'If oThisVendor.VendorID = 61 Then MessageBox.Show("61 Found!")
+                    GlobalVariables.VendorList.Add(oThisVendor, oThisVendor.VendorID.ToString())
+
+                Loop
+            End If
+            oReader.Close()
+        End If
         'sSql = "SELECT growers.grower_id, vendors.vendor_id, ISNULL(grower_first_name,''), ISNULL(grower_address_line_1,''), "
         'sSql = sSql & "ISNULL(grower_city,''), ISNULL(grower_county,''), ISNULL(grower_state,''), ISNULL(grower_zip,''), ISNULL(grower_country,''), ISNULL(grower_phone1,''), "
         'sSql = sSql & "ISNULL(vendor_name,''), ISNULL(commodities.commodity_id,''), ISNULL(commodity_name,''), "
@@ -286,7 +319,8 @@ Public Class FormMain
         sSql = sSql & "ISNULL(GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', "
         sSql = sSql & "ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Note Creator', "
         sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?', ISNULL(GROWER_LAST_NAME, '') AS 'Last Name', "
-        sSql = sSql & "ISNULL(GROWER_FAX, '') AS Fax, ISNULL(GROWER_EMAIL, '') AS Email, ISNULL(GROWER_PHONE2, '') AS 'Cell Phone'"
+        sSql = sSql & "ISNULL(GROWER_FAX, '') AS Fax, ISNULL(GROWER_EMAIL, '') AS Email, ISNULL(GROWER_PHONE2, '') AS 'Cell Phone', "
+        sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_2, '') As 'Address 2' "
         sSql = sSql & "FROM GROWERS "
         sSql = sSql & "LEFT OUTER JOIN GROWER_NOTES "
         sSql = sSql & "ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
@@ -321,12 +355,15 @@ Public Class FormMain
         sSql = sSql & "WHERE users.USER_ID = " & GlobalVariables.UserId.ToString() & " "
         'sSql = sSql & "WHERE users.USER_ID = 333 "
         sSql = sSql & "AND growers.GROWER_PROSPECT = 'N' "
+        'sSql = sSql & "AND vendors.vendor_id = 131 "
         'sSql = sSql & "AND growers.grower_id = 173"
         sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
 
         myCmd.CommandText = sSql
-        oConn.Open()
+        'oConn.Open()
         'oComm
+
+
         oReader = myCmd.ExecuteReader()
 
         iGrowerID = -1
@@ -337,6 +374,7 @@ Public Class FormMain
                 Dim oGVC As New GrowVendCom
                 oGVC.GrowerID = oReader.GetInt32(0)
                 oGVC.VendorId = oReader.GetInt32(1)
+
                 oGVC.GrowerFirstName = oReader.GetString(2)
                 oGVC.GrowerAddress1 = oReader.GetString(3)
                 oGVC.GrowerCity = oReader.GetString(4)
@@ -362,7 +400,14 @@ Public Class FormMain
                 oGVC.GrowerFax = oReader.GetString(24)
                 oGVC.GrowerEmail = oReader.GetString(25)
                 oGVC.GrowerPhone2 = oReader.GetString(26)
-
+                oGVC.GrowerAddress2 = oReader.GetString(26)
+                'If Not GlobalVariables.VendorList.Contains(oGVC.VendorId.ToString()) Then
+                ' Dim oCurVendor As New Vendor
+                ' oCurVendor.VendorID = oGVC.VendorId
+                ' oCurVendor.VendorName = oGVC.VendorName
+                ' oCurVendor.VendorDummy = oGVC.VendorDummy
+                ' GlobalVariables.VendorList.Add(oCurVendor, oGVC.VendorId.ToString())
+                ' End If
                 oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & oGVC.VendorId.ToString() & oGVC.CommID.ToString() & iNum.ToString())
                 'slGrowers.Add(oGVC, oGVC.GrowerFirstName & " " & oGVC.GrowerLastName)
                 iNum = iNum + 1
@@ -423,10 +468,13 @@ Public Class FormMain
                     If iVendorID <> oCollGrowVendComm(iCnt).VendorId Then
                         iVendorID = oCollGrowVendComm(iCnt).VendorId
 
-                        Dim oVendor As New Vendor()
-                        oVendor.VendorName = oCollGrowVendComm(iCnt).VendorName
-                        oVendor.VendorDummy = oCollGrowVendComm(iCnt).VendorDummy
-                        oVendor.VendorID = iVendorID
+                        'Dim oVendor As New Vendor()
+                        oVendor = GlobalVariables.VendorList(iVendorID.ToString())
+
+
+                        'oVendor.VendorName = oCollGrowVendComm(iCnt).VendorName
+                        'oVendor.VendorDummy = oCollGrowVendComm(iCnt).VendorDummy
+                        'oVendor.VendorID = iVendorID
                         'oGrower.Vendors.Add(oVendor)
                         sCommID = ""
                         oVendor.CollCommodities.Clear()
@@ -450,6 +498,9 @@ Public Class FormMain
                             End If
 
                         Loop
+                        'If Not GlobalVariables.VendorList.Contains(oVendor.VendorID.ToString()) Then
+                        'GlobalVariables.VendorList.Add(oVendor, oVendor.VendorID.ToString())
+                        'End If
                         oGrower.Vendors.Add(oVendor)
                     Else
                         iCnt = iCnt + 1
@@ -529,11 +580,13 @@ Public Class FormMain
         sSql = "SELECT DISTINCT GROWERS.GROWER_ID, VENDORS.VENDOR_ID, ISNULL(GROWER_FIRST_NAME, '') AS 'First Name', ISNULL(GROWER_ADDRESS_LINE_1, '') AS Address, "
         sSql = sSql & "ISNULL(GROWER_CITY, '') AS City, ISNULL(GROWER_COUNTY, '') AS County, ISNULL(GROWER_STATE, '') AS State, "
         sSql = sSql & "ISNULL(GROWER_ZIP, '') AS 'Zip Code', ISNULL(GROWER_COUNTRY, '') AS Country, ISNULL(GROWER_PHONE1, '') AS 'Work Phone', "
-        sSql = sSql & "ISNULL(VENDOR_NAME, '') AS 'Vendor Name', "
+        sSql = sSql & "ISNULL(VENDOR_NAME, '') AS 'Vendor Name', ISNULL(GROWER_PHONE2, '') AS 'Cell Phone', ISNULL(GROWER_FAX, '') AS Fax, "
+        sSql = sSql & "ISNULL(GROWER_EMAIL, '') AS Email, "
         'sSql = sSql & "ISNULL(GROWER_NOTE_ID, 0) AS NoteID, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', "
         'sSql = sSql & "ISNULL(GROWER_NOTES.GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', "
         'sSql = sSql & "ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Note Creator', "
-        sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?', ISNULL(GROWER_LAST_NAME, '') AS 'Last Name' "
+        sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?', ISNULL(GROWER_LAST_NAME, '') AS 'Last Name', "
+        sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_2, '') As 'Address 2' "
         'sSql = sSql & "GROWER_NOTE_METHOD_SHORT_NAME, USER_LOGIN "
         sSql = sSql & "FROM growers, growers_vendors, vendors, users, facilities, users_facilities, vendors_facilities "
         sSql = sSql & "WHERE growers_vendors.grower_id = growers.grower_id "
@@ -560,16 +613,20 @@ Public Class FormMain
                 Dim oPRec As New ProspectRec
                 oPRec.GrowerID = oReader.GetInt32(0)
                 oPRec.GrowerFirstName = oReader.GetString(2)
-                oPRec.GrowerLastName = oReader.GetString(12)
+                oPRec.GrowerLastName = oReader.GetString(15)
                 oPRec.GrowerAddress = oReader.GetString(3)
+                oPRec.GrowerAddress2 = oReader.GetString(16)
                 oPRec.GrowerCity = oReader.GetString(4)
                 oPRec.GrowerState = oReader.GetString(6)
                 oPRec.GrowerCountry = oReader.GetString(8)
                 oPRec.GrowerZip = oReader.GetString(7)
                 oPRec.GrowerPhone1 = oReader.GetString(9)
+                oPRec.GrowerPhone2 = oReader.GetString(11)
+                oPRec.GrowerFax = oReader.GetString(12)
+                oPRec.GrowerEmail = oReader.GetString(13)
                 oPRec.VendorID = oReader.GetInt32(1)
                 oPRec.VendorName = oReader.GetString(10)
-                oPRec.VendorDummy = oReader.GetString(11)
+                oPRec.VendorDummy = oReader.GetString(14)
                 'oPRec.GrowerNoteSubject = oReader.GetString(12)
                 'oPRec.GrowerNoteMethod = oReader.GetInt32(13)
                 'oPRec.GrowerNoteMethodText = oReader.GetString(19)
@@ -578,6 +635,15 @@ Public Class FormMain
                 'oPRec.GrowerNoteCreationDate = oReader.GetDateTime(15)
                 'oPRec.GrowerNoteCreatedBy = oReader.GetInt32(16)
                 'oPRec.GrowerNoteCreatedByLogin = oReader.GetString(20)
+
+                'If Not GlobalVariables.VendorList.Contains(oPRec.VendorID.ToString()) Then
+                ' Dim oCurVendor As New Vendor
+                ' oCurVendor.VendorID = oPRec.VendorID
+                ' oCurVendor.VendorName = oPRec.VendorName
+                ' oCurVendor.VendorDummy = oPRec.VendorDummy
+                ' GlobalVariables.VendorList.Add(oCurVendor, oPRec.VendorID.ToString())
+                '
+                '        End If
                 oProspectRecs.Add(oPRec)
             Loop
         End If
@@ -597,19 +663,27 @@ Public Class FormMain
                 oGrower.GrowerLastName = oProspectRecs(iCnt).GrowerLastName
                 oGrower.GrowerID = iGrowerID
                 oGrower.GrowerAddress1 = oProspectRecs(iCnt).GrowerAddress
+                oGrower.GrowerAddress2 = oProspectRecs(iCnt).GrowerAddress2
                 oGrower.GrowerCity = oProspectRecs(iCnt).GrowerCity
                 oGrower.GrowerState = oProspectRecs(iCnt).GrowerState
                 oGrower.GrowerCountry = oProspectRecs(iCnt).GrowerCountry
                 oGrower.GrowerZip = oProspectRecs(iCnt).GrowerZip
                 oGrower.GrowerPhone1 = oProspectRecs(iCnt).GrowerPhone1
+                oGrower.GrowerPhone2 = oProspectRecs(iCnt).GrowerPhone2
+                oGrower.GrowerFax = oProspectRecs(iCnt).GrowerFax
+                oGrower.GrowerEmail = oProspectRecs(iCnt).GrowerEmail
                 oGrower.GrowerProspect = "Y"
                 Do While iGrowerID = oProspectRecs(iCnt).GrowerID
                     If iVendorID <> oProspectRecs(iCnt).VendorID Then
-                        Dim oVendor As New Vendor
+                        'Dim oVendor As New Vendor
+                        oVendor = GlobalVariables.VendorList(oProspectRecs(iCnt).VendorID.ToString())
                         oVendor.VendorID = iVendorID
                         iVendorID = oProspectRecs(iCnt).VendorID
                         oVendor.VendorName = oProspectRecs(iCnt).VendorName
                         oVendor.VendorDummy = oProspectRecs(iCnt).VendorDummy
+                        'If Not GlobalVariables.VendorList.Contains(oVendor.VendorID.ToString()) Then
+                        'GlobalVariables.VendorList.Add(oVendor, oVendor.VendorID.ToString())
+                        'End If
                         oGrower.Vendors.Add(oVendor)
                     End If
 
@@ -993,12 +1067,19 @@ Public Class FormMain
             '           iMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors.Count
 
             lblName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerFirstName.ToString()
+            lblLastName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
             lblAddress.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerAddress1.ToString()
             lblGrowerCity.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerCity.ToString()
             lblGrowerState.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerState.ToString()
             lblGrowerCountry.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerCountry.ToString()
             lblGrowerZip.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerZip.ToString()
-            lblGrowerPhone1.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
+            'lblGrowerPhone1.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
+            lblWorkPhone.Text = "W: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
+            lblCellPhone.Text = "C: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone2.ToString()
+            lblFax.Text = "F: " & oGrowerColl(oSelItem.CollectionIndex).GrowerFax.ToString()
+            lblEmail.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerEmail.ToString()
+
+
 
 
             iCnt = 1
@@ -1677,6 +1758,18 @@ Public Class FormMain
             End If
         End If
 
+
+    End Sub
+
+    Private Sub lblAddress_Click(sender As Object, e As EventArgs) Handles lblAddress.Click
+
+    End Sub
+
+    Private Sub lblGrowerZip_Click(sender As Object, e As EventArgs) Handles lblGrowerZip.Click
+
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblFax.Click
 
     End Sub
 End Class
