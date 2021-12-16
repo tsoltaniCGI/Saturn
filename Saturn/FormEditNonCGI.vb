@@ -144,11 +144,15 @@ Public Class FormEditNonCGI
         '65 - 90  = Ascii codes for capital letters
         '48 - 57  = Ascii codes for numbers
 
-        If Asc(e.KeyChar) <> 8 Then
-            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
-                e.Handled = True
-            End If
-        End If
+        'If Asc(e.KeyChar) <> 8 Then
+        ' If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+        ' e.Handled = True
+        ' End If
+        ' End If
 
+    End Sub
+
+    Private Sub btnCancelNonCGI_Click(sender As Object, e As EventArgs) Handles btnCancelNonCGI.Click
+        Me.Close()
     End Sub
 End Class
