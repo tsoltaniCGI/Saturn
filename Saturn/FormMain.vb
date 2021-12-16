@@ -568,9 +568,13 @@ Public Class FormMain
                     iCnt = iCnt + 1
                     If iCnt > iMax Then
                         If bAddNote Then
-                            oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Items.Add(oNote, oNote.GrowerNoteId.ToString())
+                            If Not oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Contains(oNote.GrowerNoteId.ToString()) Then
+
+                                oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+                            End If
+                            Exit Do
+
                         End If
-                        Exit Do
                     End If
                 Loop
             End If
@@ -1067,17 +1071,17 @@ Public Class FormMain
             '           iMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors.Count
 
             lblName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerFirstName.ToString()
-            lblLastName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
+            'lblLastName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
             lblAddress.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerAddress1.ToString()
             lblGrowerCity.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerCity.ToString()
             lblGrowerState.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerState.ToString()
             lblGrowerCountry.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerCountry.ToString()
             lblGrowerZip.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerZip.ToString()
             'lblGrowerPhone1.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
-            lblWorkPhone.Text = "W: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
-            lblCellPhone.Text = "C: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone2.ToString()
-            lblFax.Text = "F: " & oGrowerColl(oSelItem.CollectionIndex).GrowerFax.ToString()
-            lblEmail.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerEmail.ToString()
+            'lblWorkPhone.Text = "W: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
+            'lblCellPhone.Text = "C: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone2.ToString()
+            'lblFax.Text = "F: " & oGrowerColl(oSelItem.CollectionIndex).GrowerFax.ToString()
+            'lblEmail.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerEmail.ToString()
 
 
 
@@ -1769,9 +1773,9 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblFax.Click
+    'Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblFax.Click
 
-    End Sub
+    'End Sub
 End Class
 
 
