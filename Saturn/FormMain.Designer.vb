@@ -80,6 +80,11 @@ Partial Class FormMain
         Me.btnAddNonCGI = New System.Windows.Forms.Button()
         Me.PictureBox10 = New System.Windows.Forms.PictureBox()
         Me.btnEditNonCGI = New System.Windows.Forms.Button()
+        Me.lblWorkPhone = New System.Windows.Forms.Label()
+        Me.lblCellPhone = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.lblFax = New System.Windows.Forms.Label()
+        Me.lblLastName = New System.Windows.Forms.Label()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -644,6 +649,66 @@ Partial Class FormMain
         Me.btnEditNonCGI.Text = "&Edit"
         Me.btnEditNonCGI.UseVisualStyleBackColor = False
         '
+        'lblWorkPhone
+        '
+        Me.lblWorkPhone.AutoSize = True
+        Me.lblWorkPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblWorkPhone.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblWorkPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblWorkPhone.Location = New System.Drawing.Point(650, 339)
+        Me.lblWorkPhone.Name = "lblWorkPhone"
+        Me.lblWorkPhone.Size = New System.Drawing.Size(76, 15)
+        Me.lblWorkPhone.TabIndex = 86
+        Me.lblWorkPhone.Text = "Work Phone"
+        '
+        'lblCellPhone
+        '
+        Me.lblCellPhone.AutoSize = True
+        Me.lblCellPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblCellPhone.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblCellPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblCellPhone.Location = New System.Drawing.Point(650, 364)
+        Me.lblCellPhone.Name = "lblCellPhone"
+        Me.lblCellPhone.Size = New System.Drawing.Size(67, 15)
+        Me.lblCellPhone.TabIndex = 87
+        Me.lblCellPhone.Text = "Cell Phone"
+        '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblEmail.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblEmail.Location = New System.Drawing.Point(650, 415)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(42, 15)
+        Me.lblEmail.TabIndex = 88
+        Me.lblEmail.Text = "Email"
+        '
+        'lblFax
+        '
+        Me.lblFax.AutoSize = True
+        Me.lblFax.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblFax.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblFax.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblFax.Location = New System.Drawing.Point(650, 386)
+        Me.lblFax.Name = "lblFax"
+        Me.lblFax.Size = New System.Drawing.Size(28, 15)
+        Me.lblFax.TabIndex = 89
+        Me.lblFax.Text = "Fax"
+        '
+        'lblLastName
+        '
+        Me.lblLastName.AutoSize = True
+        Me.lblLastName.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblLastName.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.lblLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblLastName.Location = New System.Drawing.Point(743, 212)
+        Me.lblLastName.Name = "lblLastName"
+        Me.lblLastName.Size = New System.Drawing.Size(140, 16)
+        Me.lblLastName.TabIndex = 90
+        Me.lblLastName.Text = "Grower Last Name"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -651,6 +716,11 @@ Partial Class FormMain
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1882, 982)
+        Me.Controls.Add(Me.lblLastName)
+        Me.Controls.Add(Me.lblFax)
+        Me.Controls.Add(Me.lblEmail)
+        Me.Controls.Add(Me.lblCellPhone)
+        Me.Controls.Add(Me.lblWorkPhone)
         Me.Controls.Add(Me.btnEditNonCGI)
         Me.Controls.Add(Me.txtNotes)
         Me.Controls.Add(Me.TestDataGrid)
@@ -764,4 +834,9 @@ Partial Class FormMain
     Friend WithEvents PictureBox10 As PictureBox
     Friend WithEvents Note As DataGridViewTextBoxColumn
     Friend WithEvents btnEditNonCGI As Button
+    Friend WithEvents lblWorkPhone As Label
+    Friend WithEvents lblCellPhone As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblFax As Label
+    Friend WithEvents lblLastName As Label
 End Class

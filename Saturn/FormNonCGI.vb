@@ -130,10 +130,10 @@ Public Class FormNonCGI
         End If
     End Sub
 
-    Private Sub txtVolume_TextChanged(sender As Object, e As EventArgs) Handles txtVolume.TextChanged
+    Private Sub txtVolume_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
-    Private Sub txtVolume_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtVolume.KeyPress
+    Private Sub txtVolume_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
 
         '97 - 122 = Ascii codes for simple letters
         '65 - 90  = Ascii codes for capital letters

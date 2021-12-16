@@ -20,16 +20,21 @@ Public Class FormEditGrower
         Dim iCurIndex As Integer
 
         sSql = "SELECT DISTINCT vendors.vendor_id, vendors.vendor_name "
-        sSql = sSql & "FROM vendors, vendors_facilities "
-        sSql = sSql & "WHERE vendors_facilities.facility_id IN ("
-        For Each iID In GlobalVariables.UserFacilityIDs
-            sSql = sSql & iID.ToString() & ", "
-        Next
-        sSql = sSql & ")"
-        sSql = Replace(sSql, ", )", " )")
-        sSql = sSql & " "
+        sSql = sSql & "FROM vendors, vendors_facilities, users, users_facilities, facilities "
+        sSql = sSql & "WHERE vendors_facilities.facility_id = facilities.facility_id "
         sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
-        sSql = sSql & "AND vendors.vendor_dummy = 'N'"
+        sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id "
+        sSql = sSql & "AND users.user_id = users_facilities.user_id "
+        sSql = sSql & "AND vendors.vendor_dummy = 'N' "
+        sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString()
+        'For Each iID In GlobalVariables.UserFacilityIDs
+        ' sSql = sSql & iID.ToString() & ", "
+        ' Next
+        ' sSql = sSql & ")"
+        ' sSql = Replace(sSql, ", )", " )")
+        ' sSql = sSql & " "
+        ' sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
+        ' sSql = sSql & "AND vendors.vendor_dummy = 'N'"
         myCmd.CommandText = sSql
 
         Dim oReader = myCmd.ExecuteReader()
@@ -175,6 +180,7 @@ Public Class FormEditGrower
         Dim sProspect As String
         Dim sCurCountry As String
         Dim loCurrentGrower As Grower
+        Dim sCollIndex As String
 
         loCurrentGrower = GlobalVariables.CurrentGrower
         GlobalVariables.iAddedGrowerID = 0
@@ -214,7 +220,7 @@ Public Class FormEditGrower
         End If
 
         If bDataValidated Then
-            iVendorID = GlobalVariables.CurrentGrower.GrowerID
+            'iVendorID = GlobalVariables.CurrentGrower.GrowerID
             'If ckProspect.Checked Then
             ' sSql = "INSERT INTO vendors (vendor_name, vendor_dummy) "
             ' sSql = sSql & "VALUES ('" & Year(Now().ToString()) & Month(Now().ToString()) & DateTime.Now.Day().ToString()
@@ -287,30 +293,34 @@ Public Class FormEditGrower
             'oReader = myCmd.ExecuteReader()
             'iGrowerID = oReader.GetInt32(0)
 
-            sSql = "DELETE FROM growers_vendors "
-            sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrower.GrowerID.ToString()
-            myCmd.CommandText = sSql
-            myCmd.ExecuteNonQuery()
-
-            If ckProspect.Checked Then
-                For Each FacID In GlobalVariables.UserFacilityIDs
-                    sSql = "INSERT INTO vendors_facilities (vendor_id, facility_id) "
-                    sSql = sSql & "VALUES (" & iVendorID.ToString() & ", "
-                    sSql = sSql & FacID.ToString() & ")"
-                    myCmd.CommandText = sSql
-                    myCmd.ExecuteNonQuery()
-                Next
-                sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
-                sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
+            If ckProspect.Checked = False Then
+                sSql = "DELETE FROM growers_vendors "
+                sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrower.GrowerID.ToString()
                 myCmd.CommandText = sSql
                 myCmd.ExecuteNonQuery()
-            Else
-                'GlobalVariables.CurrentGrower.Vendors.Clear()
+
+
+                'If ckProspect.Checked Then
+                'For Each FacID In GlobalVariables.UserFacilityIDs
+                'sSql = "INSERT INTO vendors_facilities (vendor_id, facility_id) "
+                'sSql = sSql & "VALUES (" & iVendorID.ToString() & ", "
+                'sSql = sSql & FacID.ToString() & ")"
+                'myCmd.CommandText = sSql
+                'myCmd.ExecuteNonQuery()
+                'Next
+                'sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
+                'sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
+                'myCmd.CommandText = sSql
+                'myCmd.ExecuteNonQuery()
+                'Else
+                GlobalVariables.CurrentGrower.Vendors.Clear()
                 For Each iIndex In lstVendors.SelectedIndices
+                    sCollIndex = oVendIDs(iIndex.ToString()).ToString()
                     sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
                     sSql = sSql & "VALUES (" & GlobalVariables.CurrentGrower.GrowerID.ToString() & ", " & oVendIDs(iIndex.ToString()).ToString() & ")"
                     myCmd.CommandText = sSql
                     myCmd.ExecuteNonQuery()
+                    GlobalVariables.CurrentGrower.Vendors.Add(GlobalVariables.VendorList(sCollIndex))
                     'Dim oNewVendor As New Vendor
                     'oNewVendor.VendorID = oVendIDs(iIndex.ToString()).ToString()
                     'oNewVendor.VendorName = lstVendors.Items(iIndex)
@@ -327,7 +337,10 @@ Public Class FormEditGrower
 
     Private Sub lstVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstVendors.SelectedIndexChanged
         If lstVendors.SelectedIndices.Count > 8 Then
-            MessageBox.Show("Limit of 8 Vendors per Grower.")
+            If lstVendors.SelectedIndices.Count > 8 Then
+                MessageBox.Show("Limit of 8 Vendors per Grower.")
+                lstVendors.SetSelected(lstVendors.SelectedIndex, False)
+            End If
         End If
     End Sub
 
@@ -402,5 +415,15 @@ Public Class FormEditGrower
 
     Private Sub txtZip_TextChanged(sender As Object, e As EventArgs)
 
+    End Sub
+
+    Private Sub ckProspect_CheckedChanged(sender As Object, e As EventArgs) Handles ckProspect.CheckedChanged
+        If Me.ckProspect.Checked Then
+            lstVendors.ClearSelected()
+            lstVendors.Enabled = False
+        Else
+            lstVendors.Enabled = True
+
+        End If
     End Sub
 End Class

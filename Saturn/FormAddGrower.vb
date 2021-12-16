@@ -8,6 +8,7 @@ Public Class FormAddGrower
     Dim oStates As New Collection
     Dim oProvinces As New Collection
     Dim oCountries As New Collection
+    Dim iLastSelectedVendor As Integer
 
     Private Sub Label6_Click(sender As Object, e As EventArgs) Handles lblState.Click
 
@@ -171,6 +172,12 @@ Public Class FormAddGrower
                 MessageBox.Show("If Grower is not a Prospect, at least one associated Vendor must be selected.")
                 bDataValidated = False
             End If
+
+            If lstVendors.SelectedIndices.Count > 8 Then
+                MessageBox.Show("Maximum number of Vendors (8) exceeded.")
+                bDataValidated = False
+
+            End If
         End If
 
         If cmbState.SelectedIndex <> -1 Then
@@ -316,6 +323,7 @@ Public Class FormAddGrower
     Private Sub lstVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstVendors.SelectedIndexChanged
         If lstVendors.SelectedIndices.Count > 8 Then
             MessageBox.Show("Limit of 8 Vendors per Grower.")
+            lstVendors.SetSelected(lstVendors.SelectedIndex, False)
         End If
     End Sub
 

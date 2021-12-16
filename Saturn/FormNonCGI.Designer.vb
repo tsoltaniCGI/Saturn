@@ -31,7 +31,6 @@ Partial Class FormNonCGI
         Me.lblLocation = New System.Windows.Forms.Label()
         Me.cmbCommodity = New System.Windows.Forms.ComboBox()
         Me.cmbStatus = New System.Windows.Forms.ComboBox()
-        Me.txtVolume = New System.Windows.Forms.TextBox()
         Me.txtSoldTo = New System.Windows.Forms.TextBox()
         Me.txtLocation = New System.Windows.Forms.TextBox()
         Me.btnOKAddNonCGI = New System.Windows.Forms.Button()
@@ -42,6 +41,7 @@ Partial Class FormNonCGI
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtVolume = New System.Windows.Forms.MaskedTextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,13 +144,6 @@ Partial Class FormNonCGI
         Me.cmbStatus.Size = New System.Drawing.Size(71, 23)
         Me.cmbStatus.TabIndex = 3
         '
-        'txtVolume
-        '
-        Me.txtVolume.Location = New System.Drawing.Point(292, 178)
-        Me.txtVolume.Name = "txtVolume"
-        Me.txtVolume.Size = New System.Drawing.Size(100, 23)
-        Me.txtVolume.TabIndex = 2
-        '
         'txtSoldTo
         '
         Me.txtSoldTo.Location = New System.Drawing.Point(292, 248)
@@ -245,11 +238,20 @@ Partial Class FormNonCGI
         Me.Label1.TabIndex = 58
         Me.Label1.Text = "Add Non CGI"
         '
+        'txtVolume
+        '
+        Me.txtVolume.Location = New System.Drawing.Point(292, 178)
+        Me.txtVolume.Mask = "9999999"
+        Me.txtVolume.Name = "txtVolume"
+        Me.txtVolume.Size = New System.Drawing.Size(100, 23)
+        Me.txtVolume.TabIndex = 60
+        '
         'FormNonCGI
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(558, 502)
+        Me.Controls.Add(Me.txtVolume)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.PictureBox5)
@@ -259,7 +261,6 @@ Partial Class FormNonCGI
         Me.Controls.Add(Me.lblVolume)
         Me.Controls.Add(Me.lblSoldTo)
         Me.Controls.Add(Me.txtSoldTo)
-        Me.Controls.Add(Me.txtVolume)
         Me.Controls.Add(Me.cmbCommodity)
         Me.Controls.Add(Me.cmbStatus)
         Me.Controls.Add(Me.txtLocation)
@@ -291,7 +292,6 @@ Partial Class FormNonCGI
     Friend WithEvents lblLocation As Label
     Friend WithEvents cmbCommodity As ComboBox
     Friend WithEvents cmbStatus As ComboBox
-    Friend WithEvents txtVolume As TextBox
     Friend WithEvents txtSoldTo As TextBox
     Friend WithEvents txtLocation As TextBox
     Friend WithEvents btnOKAddNonCGI As Button
@@ -302,4 +302,5 @@ Partial Class FormNonCGI
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents PictureBox5 As PictureBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents txtVolume As MaskedTextBox
 End Class
