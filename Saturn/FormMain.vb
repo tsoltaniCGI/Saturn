@@ -1071,17 +1071,17 @@ Public Class FormMain
             '           iMax = oGrowerColl(ListBox1.SelectedIndex + 1).Vendors.Count
 
             lblName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerFirstName.ToString()
-            'lblLastName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
+            lblLastName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
             lblAddress.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerAddress1.ToString()
             lblGrowerCity.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerCity.ToString()
             lblGrowerState.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerState.ToString()
             lblGrowerCountry.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerCountry.ToString()
             lblGrowerZip.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerZip.ToString()
             'lblGrowerPhone1.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
-            'lblWorkPhone.Text = "W: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
-            'lblCellPhone.Text = "C: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone2.ToString()
-            'lblFax.Text = "F: " & oGrowerColl(oSelItem.CollectionIndex).GrowerFax.ToString()
-            'lblEmail.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerEmail.ToString()
+            lblWorkPhone.Text = "W: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone1.ToString()
+            lblCellPhone.Text = "C: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone2.ToString()
+            lblFax.Text = "F: " & oGrowerColl(oSelItem.CollectionIndex).GrowerFax.ToString()
+            lblEmail.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerEmail.ToString()
 
 
 
