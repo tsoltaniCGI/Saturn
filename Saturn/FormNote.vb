@@ -8,10 +8,12 @@ Public Class FormNote
 
         'Me.DialogResult = Windows.Forms.DialogResult.OK
         GlobalVariables.ResetNote = False
-        lblName.Text = GlobalVariables.GrowerFirstName
-        lblAddress.Text = GlobalVariables.GrowerAddress1
-        lblGrowerCity.Text = GlobalVariables.GrowerCity
-        lblGrowerState.Text = GlobalVariables.GrowerState
+
+        Me.lblName.Text = GlobalVariables.CurrentGrower.GrowerFirstName
+        Me.lblAddress.Text = GlobalVariables.CurrentGrower.GrowerAddress1
+        Me.lblAddress2.Text = GlobalVariables.CurrentGrower.GrowerAddress2
+        Me.lblGrowerCity.Text = GlobalVariables.CurrentGrower.GrowerCity
+        Me.lblGrowerState.Text = GlobalVariables.CurrentGrower.GrowerState
         'oConn.Open("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         oConn.Open()
@@ -89,6 +91,14 @@ Public Class FormNote
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    Private Sub lblGrowerCountry_Click(sender As Object, e As EventArgs) Handles lblGrowerCountry.Click
+
+    End Sub
+
+    Private Sub lblGrowerCity_Click(sender As Object, e As EventArgs) Handles lblGrowerCity.Click
 
     End Sub
 End Class

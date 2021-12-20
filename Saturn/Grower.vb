@@ -199,6 +199,10 @@ Public Class Country
     Public Property CountryID As String
     Public Property CountryName As String
 End Class
+Public Class NoteListItem
+    Public Property CreateDate As String
+    Public Property NoteText As String
+End Class
 Public Class GlobalVariables
     Public Shared bFirstLoad As Boolean
     Public Shared UserList As New Collection

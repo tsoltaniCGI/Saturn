@@ -52,7 +52,6 @@ Partial Class FormMain
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
         Me.btnAddNote = New System.Windows.Forms.Button()
         Me.TestDataGrid = New System.Windows.Forms.DataGridView()
-        Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -85,6 +84,8 @@ Partial Class FormMain
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.lblFax = New System.Windows.Forms.Label()
         Me.lblLastName = New System.Windows.Forms.Label()
+        Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -369,7 +370,7 @@ Partial Class FormMain
         Me.TestDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TestDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.TestDataGrid.ColumnHeadersVisible = False
-        Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Note})
+        Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.TestDataGrid.Location = New System.Drawing.Point(1445, 212)
         Me.TestDataGrid.Name = "TestDataGrid"
@@ -377,22 +378,6 @@ Partial Class FormMain
         Me.TestDataGrid.RowTemplate.Height = 25
         Me.TestDataGrid.Size = New System.Drawing.Size(390, 659)
         Me.TestDataGrid.TabIndex = 54
-        '
-        'Note
-        '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Note.HeaderText = ""
-        Me.Note.MinimumWidth = 370
-        Me.Note.Name = "Note"
-        Me.Note.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Note.Width = 370
         '
         'PictureBox2
         '
@@ -709,6 +694,28 @@ Partial Class FormMain
         Me.lblLastName.TabIndex = 90
         Me.lblLastName.Text = "Grower Last Name"
         '
+        'Note
+        '
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Note.HeaderText = ""
+        Me.Note.MinimumWidth = 370
+        Me.Note.Name = "Note"
+        Me.Note.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Note.Width = 370
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = ""
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -832,11 +839,12 @@ Partial Class FormMain
     Friend WithEvents ColumnHeader10 As ColumnHeader
     Friend WithEvents btnAddNonCGI As Button
     Friend WithEvents PictureBox10 As PictureBox
-    Friend WithEvents Note As DataGridViewTextBoxColumn
     Friend WithEvents btnEditNonCGI As Button
     Friend WithEvents lblWorkPhone As Label
     Friend WithEvents lblCellPhone As Label
     Friend WithEvents lblEmail As Label
     Friend WithEvents lblFax As Label
     Friend WithEvents lblLastName As Label
+    Friend WithEvents Note As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
 End Class

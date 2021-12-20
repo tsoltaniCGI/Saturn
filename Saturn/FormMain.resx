@@ -463,7 +463,7 @@
         TkSuQmCC
 </value>
   </data>
-  <metadata name="Note.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="PictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -514,7 +514,7 @@
   <data name="PictureBox5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAl0AAAJdCAYAAAAIgsIrAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAy
-        uAAAMrgBKPMmiQAAKfxJREFUeF7t3S+wHFXeN/AVKxArViBWIBArEAgEIgKBiEAgEAgEAoFAICIQKxCp
+        tgAAMrYBjHpqdwAAKfxJREFUeF7t3S+wHFXeN/AVKxArViBWIBArEAgEIgKBiEAgEAgEAoFAICIQKxCp
         QiCg6tb0MDOkqPe9RXcTqpan3ghERERERAQCEYGIiEBERERERFyx7/n1nLB5Os3M3Jnu+Xc/n6pvPfXs
         bvfczPT0+c05p8/5CwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1361,7 +1361,7 @@
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAE4gAAAsxCAYAAAA0bBffAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAy
-        ugAAMroBVw3lAAAA9gdJREFUeF7s3LFpAgEAQFHH1kJnMAtEF8hSh+aEgFdI6gsErNTuwF+84pV/hb/6
+        uAAAMrgBKPMmiQAA9gdJREFUeF7s3LFpAgEAQFHH1kJnMAtEF8hSh+aEgFdI6gsErNTuwF+84pV/hb/6
         naYZAAAAAAAAAAAAAAAAAAAAAAAAgPcziAMAAAAAAAAAAAAAAAAAAAAAAACIMIgDAAAAAAAAAAAAAAAA
         AAAAAAAAiDCIAwAAAAAAAAAAAAAAAAAAAAAAAIgwiAMAAAAAAAAAAAAAAAAAAAAAAACIeDqIu12v8zic
         AAAAAAAAAAAAAAAAAAAAAAAAAFjYz/fl4QF393QQNw7nebP7AAAAAAAAAAAAAAAAAAAAAAAAAGBhh+PX

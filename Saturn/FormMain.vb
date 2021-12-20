@@ -165,8 +165,8 @@ Public Class FormMain
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.TopMost = True
+        'Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        'Me.TopMost = True
         Dim sSql As String
         Dim iGrowerID As Integer
         Dim iVendorID As Integer
@@ -945,6 +945,7 @@ Public Class FormMain
 
         TestDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         TestDataGrid.Columns(0).ReadOnly = True
+
         'DataGridView1.Rows.Add(New String(){Value1, Value2, Value3})
         'TestDataGrid.Rows.Add(New String() {"Once, I was a wanderer.  I wandered the entire country."})
 
@@ -1042,6 +1043,7 @@ Public Class FormMain
         Dim iCnt As Integer
         Dim iMax As Integer
         Dim sNote As String
+        Dim sBuildDate As String
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
 
         'Dim ilvCnt As Integer
@@ -1163,11 +1165,9 @@ Public Class FormMain
 
             'lvNotes.Clear()
             TestDataGrid.Rows.Clear()
+            Dim oDict As New List(Of String)
+            Dim oNoteRows As New Collection
             For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
-
-                'Dim oLVI As New ListViewItem
-
-                'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
                 sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
                 sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
                 sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
@@ -1175,8 +1175,41 @@ Public Class FormMain
                 sNote = sNote & Hour(oNote.GrowerNoteCreationDate).ToString() & ":"
                 sNote = sNote & Minute(oNote.GrowerNoteCreationDate).ToString & ":"
                 sNote = sNote & Second(oNote.GrowerNoteCreationDate).ToString()
-                'DateTime.ParseExact(oNote.GrowerNoteCreationDate, "MM/dd/yyyy hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
-                TestDataGrid.Rows.Add(New String() {sNote})
+
+                sBuildDate = Year(oNote.GrowerNoteCreationDate).ToString()
+                sBuildDate = sBuildDate & Month(oNote.GrowerNoteCreationDate).ToString()
+                sBuildDate = sBuildDate & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString()
+                sBuildDate = sBuildDate & Hour(oNote.GrowerNoteCreationDate).ToString()
+                sBuildDate = sBuildDate & Minute(oNote.GrowerNoteCreationDate).ToString()
+                sBuildDate = sBuildDate & Second(oNote.GrowerNoteCreationDate).ToString()
+                Dim oCurNoteItem As New NoteListItem
+                oCurNoteItem.CreateDate = sBuildDate
+                oCurNoteItem.NoteText = sNote
+                If Not oNoteRows.Contains(oCurNoteItem.CreateDate) Then
+                    oNoteRows.Add(oCurNoteItem, oCurNoteItem.CreateDate)
+                End If
+                oDict.Add(sBuildDate)
+            Next
+
+            oDict.Sort()
+            For Each sDate In oDict
+                '            For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
+                '
+                '            'Dim oLVI As New ListViewItem'
+                '
+                '            'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & "Note: " & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethod & "     " & "Created Bye: " & oNote.GrowerNoteCreatedBy
+                '            sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+                '            sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
+                '            sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
+                '            sNote = sNote & Year(oNote.GrowerNoteCreationDate).ToString() & " "
+                '            sNote = sNote & Hour(oNote.GrowerNoteCreationDate).ToString() & ":"
+                '            sNote = sNote & Minute(oNote.GrowerNoteCreationDate).ToString & ":"
+                '            sNote = sNote & Second(oNote.GrowerNoteCreationDate).ToString()
+                ''            'DateTime.ParseExact(oNote.GrowerNoteCreationDate, "MM/dd/yyyy hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)'
+
+                'TestDataGrid.Rows.Add(New String() {sNote})
+                TestDataGrid.Rows.Add(New String() {oNoteRows(sDate).NoteText})
+                'TestDataGrid.Rows.Add(oDict.Item(sDate))
                 'oLVI.SubItems(0).Text = oNote.GrowerNoteText
 
                 'oLVI.SubItems.Add(oNote.GrowerNoteCreationDate)
@@ -1185,6 +1218,8 @@ Public Class FormMain
                 'oLVI.SubItems.Add(oNote.GrowerNoteMethod)
                 'lvNotes.Items.Add(oLVI)
             Next
+            oDict = Nothing
+            oNoteRows = Nothing
         End If
         'If cbxVendors.Items.Count >= 1 Then
         'cbxVendors.SetSelected(0, True)
@@ -1514,6 +1549,7 @@ Public Class FormMain
         'Dim sDate As String
         Dim dDate As DateTime
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+        GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
         frmNote.ShowDialog()
         'frmNote.TopMost = True
         GlobalVariables.CurrentGrowerID = oGrowerColl(oSelItem.CollectionIndex).GrowerID
