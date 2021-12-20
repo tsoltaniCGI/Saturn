@@ -165,8 +165,8 @@ Public Class FormMain
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.TopMost = True
         Dim sSql As String
         Dim iGrowerID As Integer
         Dim iVendorID As Integer
@@ -192,7 +192,7 @@ Public Class FormMain
         'no fdg
         GlobalVariables.ResetNote = False
         GlobalVariables.BuildComm = True
-        sCaption = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facilities: "
+        sCaption = "Saturn CRM" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facilities: "
         For Each sFacility In GlobalVariables.UserFacilities
             sCaption = sCaption & sFacility & " "
         Next
@@ -1586,8 +1586,10 @@ Public Class FormMain
         Dim frmAddGrower = New FormAddGrower
         'Dim sDate As String
         Dim dDate As DateTime
+        Me.TopMost = False
         GlobalVariables.ResetGrower = False
         frmAddGrower.ShowDialog()
+        Me.TopMost = True
         If GlobalVariables.ResetGrower Then
             RebuildPage()
         End If
@@ -1605,12 +1607,14 @@ Public Class FormMain
         Dim iCnt As Integer
         Dim iMax As Integer
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+        Me.TopMost = False
         GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
         Dim frmEditGrower = New FormEditGrower
         GlobalVariables.ResetGrower = False
         frmEditGrower.ShowDialog()
         'frmEditGrower.ShowDialog()
         'frmEditGrower.l
+        Me.TopMost = False
         If GlobalVariables.ResetGrower Then
             'GlobalVariables.EditedGrower = True
             RebuildPage()
@@ -1658,7 +1662,9 @@ Public Class FormMain
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
         GlobalVariables.BuildNonCGI = False
         GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
+        Me.TopMost = False
         frmNonCGI.ShowDialog()
+        Me.TopMost = True
         If GlobalVariables.BuildNonCGI Then
             BuildNonCGIList(oSelItem.CollectionIndex)
             GlobalVariables.BuildNonCGI = False
@@ -1695,7 +1701,9 @@ Public Class FormMain
             GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
             GlobalVariables.CurrentNonCGIID = oNonCgiCropIDs(lvNonCGI.SelectedIndices(0) + 1)
             Dim oFrmEditnonCGI As New FormEditNonCGI
+            Me.TopMost = False
             oFrmEditnonCGI.ShowDialog()
+            Me.TopMost = True
             If GlobalVariables.BuildNonCGI Then
                 BuildNonCGIList(oSelItem.CollectionIndex)
                 GlobalVariables.BuildNonCGI = False
