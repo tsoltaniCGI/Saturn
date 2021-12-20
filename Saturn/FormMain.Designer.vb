@@ -79,13 +79,15 @@ Partial Class FormMain
         Me.btnAddNonCGI = New System.Windows.Forms.Button()
         Me.PictureBox10 = New System.Windows.Forms.PictureBox()
         Me.btnEditNonCGI = New System.Windows.Forms.Button()
-        Me.lblWorkPhone = New System.Windows.Forms.Label()
-        Me.lblCellPhone = New System.Windows.Forms.Label()
-        Me.lblEmail = New System.Windows.Forms.Label()
-        Me.lblFax = New System.Windows.Forms.Label()
+        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.lblWorkPhone = New System.Windows.Forms.MaskedTextBox()
         Me.lblLastName = New System.Windows.Forms.Label()
-        Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lblCellPhone = New System.Windows.Forms.MaskedTextBox()
+        Me.lblFax = New System.Windows.Forms.MaskedTextBox()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.lblGrowerCounty = New System.Windows.Forms.Label()
+        Me.lblAddress2 = New System.Windows.Forms.Label()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,6 +99,8 @@ Partial Class FormMain
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvCommoditySales
@@ -119,22 +123,22 @@ Partial Class FormMain
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "Commodity"
-        Me.ColumnHeader1.Width = 220
+        Me.ColumnHeader1.Width = 180
         '
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "Cur Crop Year"
-        Me.ColumnHeader2.Width = 50
+        Me.ColumnHeader2.Width = 78
         '
         'ColumnHeader3
         '
         Me.ColumnHeader3.Text = "Prev Crop Year"
-        Me.ColumnHeader3.Width = 50
+        Me.ColumnHeader3.Width = 78
         '
         'ColumnHeader4
         '
         Me.ColumnHeader4.Text = "2 Yrs Prev"
-        Me.ColumnHeader4.Width = 50
+        Me.ColumnHeader4.Width = 78
         '
         'ListBox1
         '
@@ -146,7 +150,7 @@ Partial Class FormMain
         Me.ListBox1.ItemHeight = 17
         Me.ListBox1.Location = New System.Drawing.Point(23, 148)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(308, 833)
+        Me.ListBox1.Size = New System.Drawing.Size(322, 833)
         Me.ListBox1.TabIndex = 32
         '
         'lblAddress
@@ -167,7 +171,7 @@ Partial Class FormMain
         Me.lblGrowerCity.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblGrowerCity.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblGrowerCity.Location = New System.Drawing.Point(649, 268)
+        Me.lblGrowerCity.Location = New System.Drawing.Point(649, 289)
         Me.lblGrowerCity.Name = "lblGrowerCity"
         Me.lblGrowerCity.Size = New System.Drawing.Size(75, 15)
         Me.lblGrowerCity.TabIndex = 34
@@ -178,8 +182,8 @@ Partial Class FormMain
         Me.lblGrowerCountry.AutoSize = True
         Me.lblGrowerCountry.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblGrowerCountry.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(62, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblGrowerCountry.Location = New System.Drawing.Point(673, 316)
+        Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblGrowerCountry.Location = New System.Drawing.Point(718, 338)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
         Me.lblGrowerCountry.Size = New System.Drawing.Size(99, 15)
         Me.lblGrowerCountry.TabIndex = 35
@@ -191,7 +195,7 @@ Partial Class FormMain
         Me.lblGrowerZip.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblGrowerZip.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerZip.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblGrowerZip.Location = New System.Drawing.Point(649, 315)
+        Me.lblGrowerZip.Location = New System.Drawing.Point(649, 335)
         Me.lblGrowerZip.Name = "lblGrowerZip"
         Me.lblGrowerZip.Size = New System.Drawing.Size(68, 15)
         Me.lblGrowerZip.TabIndex = 37
@@ -214,7 +218,7 @@ Partial Class FormMain
         Me.lblGrowerState.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblGrowerState.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblGrowerState.Location = New System.Drawing.Point(649, 291)
+        Me.lblGrowerState.Location = New System.Drawing.Point(649, 312)
         Me.lblGrowerState.Name = "lblGrowerState"
         Me.lblGrowerState.Size = New System.Drawing.Size(80, 15)
         Me.lblGrowerState.TabIndex = 39
@@ -242,11 +246,11 @@ Partial Class FormMain
         Me.lblName.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblName.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblName.Location = New System.Drawing.Point(636, 212)
+        Me.lblName.Location = New System.Drawing.Point(636, 207)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(103, 16)
+        Me.lblName.Size = New System.Drawing.Size(137, 16)
         Me.lblName.TabIndex = 43
-        Me.lblName.Text = "GrowerName"
+        Me.lblName.Text = "GrowerFirstName"
         '
         'ckVendor1
         '
@@ -357,9 +361,9 @@ Partial Class FormMain
         Me.btnAddNote.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddNote.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.btnAddNote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddNote.Location = New System.Drawing.Point(1738, 147)
+        Me.btnAddNote.Location = New System.Drawing.Point(1695, 147)
         Me.btnAddNote.Name = "btnAddNote"
-        Me.btnAddNote.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddNote.Size = New System.Drawing.Size(85, 23)
         Me.btnAddNote.TabIndex = 53
         Me.btnAddNote.Text = "Add"
         Me.btnAddNote.UseVisualStyleBackColor = False
@@ -394,9 +398,9 @@ Partial Class FormMain
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(610, 338)
+        Me.PictureBox3.Location = New System.Drawing.Point(610, 362)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(29, 17)
+        Me.PictureBox3.Size = New System.Drawing.Size(29, 19)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox3.TabIndex = 57
         Me.PictureBox3.TabStop = False
@@ -405,7 +409,7 @@ Partial Class FormMain
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(611, 364)
+        Me.PictureBox4.Location = New System.Drawing.Point(610, 446)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(29, 19)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -416,9 +420,9 @@ Partial Class FormMain
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(448, 227)
+        Me.PictureBox5.Location = New System.Drawing.Point(451, 232)
         Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(157, 154)
+        Me.PictureBox5.Size = New System.Drawing.Size(129, 137)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox5.TabIndex = 59
         Me.PictureBox5.TabStop = False
@@ -450,7 +454,7 @@ Partial Class FormMain
         Me.btnAddGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddGrower.Location = New System.Drawing.Point(237, 85)
         Me.btnAddGrower.Name = "btnAddGrower"
-        Me.btnAddGrower.Size = New System.Drawing.Size(91, 23)
+        Me.btnAddGrower.Size = New System.Drawing.Size(85, 23)
         Me.btnAddGrower.TabIndex = 71
         Me.btnAddGrower.Text = "Add"
         Me.btnAddGrower.UseVisualStyleBackColor = False
@@ -540,7 +544,7 @@ Partial Class FormMain
         Me.txtSale.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSale.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtSale.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtSale.Location = New System.Drawing.Point(424, 658)
+        Me.txtSale.Location = New System.Drawing.Point(429, 658)
         Me.txtSale.Name = "txtSale"
         Me.txtSale.Size = New System.Drawing.Size(86, 22)
         Me.txtSale.TabIndex = 77
@@ -564,7 +568,7 @@ Partial Class FormMain
         Me.txtProspect.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtProspect.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtProspect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtProspect.Location = New System.Drawing.Point(886, 658)
+        Me.txtProspect.Location = New System.Drawing.Point(888, 658)
         Me.txtProspect.Name = "txtProspect"
         Me.txtProspect.Size = New System.Drawing.Size(183, 22)
         Me.txtProspect.TabIndex = 79
@@ -576,7 +580,7 @@ Partial Class FormMain
         Me.txtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNotes.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtNotes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtNotes.Location = New System.Drawing.Point(1469, 148)
+        Me.txtNotes.Location = New System.Drawing.Point(1476, 148)
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(161, 22)
         Me.txtNotes.TabIndex = 80
@@ -607,9 +611,9 @@ Partial Class FormMain
         '
         Me.btnAddNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddNonCGI.Location = New System.Drawing.Point(1296, 657)
+        Me.btnAddNonCGI.Location = New System.Drawing.Point(1283, 657)
         Me.btnAddNonCGI.Name = "btnAddNonCGI"
-        Me.btnAddNonCGI.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnAddNonCGI.TabIndex = 83
         Me.btnAddNonCGI.Text = "&Add"
         Me.btnAddNonCGI.UseVisualStyleBackColor = False
@@ -627,60 +631,44 @@ Partial Class FormMain
         '
         Me.btnEditNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnEditNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnEditNonCGI.Location = New System.Drawing.Point(1221, 657)
+        Me.btnEditNonCGI.Location = New System.Drawing.Point(1195, 657)
         Me.btnEditNonCGI.Name = "btnEditNonCGI"
-        Me.btnEditNonCGI.Size = New System.Drawing.Size(75, 23)
+        Me.btnEditNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnEditNonCGI.TabIndex = 85
         Me.btnEditNonCGI.Text = "&Edit"
         Me.btnEditNonCGI.UseVisualStyleBackColor = False
         '
+        'PictureBox8
+        '
+        Me.PictureBox8.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.PictureBox8.Image = CType(resources.GetObject("PictureBox8.Image"), System.Drawing.Image)
+        Me.PictureBox8.Location = New System.Drawing.Point(610, 418)
+        Me.PictureBox8.Name = "PictureBox8"
+        Me.PictureBox8.Size = New System.Drawing.Size(29, 19)
+        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox8.TabIndex = 86
+        Me.PictureBox8.TabStop = False
+        '
+        'PictureBox11
+        '
+        Me.PictureBox11.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.PictureBox11.Image = CType(resources.GetObject("PictureBox11.Image"), System.Drawing.Image)
+        Me.PictureBox11.Location = New System.Drawing.Point(610, 390)
+        Me.PictureBox11.Name = "PictureBox11"
+        Me.PictureBox11.Size = New System.Drawing.Size(29, 19)
+        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox11.TabIndex = 87
+        Me.PictureBox11.TabStop = False
+        '
         'lblWorkPhone
         '
-        Me.lblWorkPhone.AutoSize = True
         Me.lblWorkPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblWorkPhone.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblWorkPhone.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lblWorkPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblWorkPhone.Location = New System.Drawing.Point(650, 339)
+        Me.lblWorkPhone.Location = New System.Drawing.Point(649, 363)
         Me.lblWorkPhone.Name = "lblWorkPhone"
-        Me.lblWorkPhone.Size = New System.Drawing.Size(76, 15)
-        Me.lblWorkPhone.TabIndex = 86
-        Me.lblWorkPhone.Text = "Work Phone"
-        '
-        'lblCellPhone
-        '
-        Me.lblCellPhone.AutoSize = True
-        Me.lblCellPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblCellPhone.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblCellPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblCellPhone.Location = New System.Drawing.Point(650, 364)
-        Me.lblCellPhone.Name = "lblCellPhone"
-        Me.lblCellPhone.Size = New System.Drawing.Size(67, 15)
-        Me.lblCellPhone.TabIndex = 87
-        Me.lblCellPhone.Text = "Cell Phone"
-        '
-        'lblEmail
-        '
-        Me.lblEmail.AutoSize = True
-        Me.lblEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblEmail.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblEmail.Location = New System.Drawing.Point(650, 415)
-        Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(42, 15)
-        Me.lblEmail.TabIndex = 88
-        Me.lblEmail.Text = "Email"
-        '
-        'lblFax
-        '
-        Me.lblFax.AutoSize = True
-        Me.lblFax.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblFax.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblFax.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblFax.Location = New System.Drawing.Point(650, 386)
-        Me.lblFax.Name = "lblFax"
-        Me.lblFax.Size = New System.Drawing.Size(28, 15)
-        Me.lblFax.TabIndex = 89
-        Me.lblFax.Text = "Fax"
+        Me.lblWorkPhone.Size = New System.Drawing.Size(100, 16)
+        Me.lblWorkPhone.TabIndex = 88
         '
         'lblLastName
         '
@@ -688,11 +676,67 @@ Partial Class FormMain
         Me.lblLastName.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblLastName.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblLastName.Location = New System.Drawing.Point(743, 212)
+        Me.lblLastName.Location = New System.Drawing.Point(770, 208)
         Me.lblLastName.Name = "lblLastName"
-        Me.lblLastName.Size = New System.Drawing.Size(140, 16)
-        Me.lblLastName.TabIndex = 90
-        Me.lblLastName.Text = "Grower Last Name"
+        Me.lblLastName.Size = New System.Drawing.Size(134, 16)
+        Me.lblLastName.TabIndex = 89
+        Me.lblLastName.Text = "GrowerLastName"
+        '
+        'lblCellPhone
+        '
+        Me.lblCellPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblCellPhone.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.lblCellPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblCellPhone.Location = New System.Drawing.Point(649, 392)
+        Me.lblCellPhone.Name = "lblCellPhone"
+        Me.lblCellPhone.Size = New System.Drawing.Size(100, 16)
+        Me.lblCellPhone.TabIndex = 90
+        '
+        'lblFax
+        '
+        Me.lblFax.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblFax.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.lblFax.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblFax.Location = New System.Drawing.Point(649, 419)
+        Me.lblFax.Name = "lblFax"
+        Me.lblFax.Size = New System.Drawing.Size(100, 16)
+        Me.lblFax.TabIndex = 91
+        '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblEmail.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblEmail.Location = New System.Drawing.Point(650, 450)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(85, 15)
+        Me.lblEmail.TabIndex = 92
+        Me.lblEmail.Text = "GrowerEmail"
+        '
+        'lblGrowerCounty
+        '
+        Me.lblGrowerCounty.AutoSize = True
+        Me.lblGrowerCounty.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblGrowerCounty.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGrowerCounty.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblGrowerCounty.Location = New System.Drawing.Point(752, 288)
+        Me.lblGrowerCounty.Name = "lblGrowerCounty"
+        Me.lblGrowerCounty.Size = New System.Drawing.Size(93, 15)
+        Me.lblGrowerCounty.TabIndex = 93
+        Me.lblGrowerCounty.Text = "GrowerCounty"
+        '
+        'lblAddress2
+        '
+        Me.lblAddress2.AutoSize = True
+        Me.lblAddress2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblAddress2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblAddress2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblAddress2.Location = New System.Drawing.Point(649, 266)
+        Me.lblAddress2.Name = "lblAddress2"
+        Me.lblAddress2.Size = New System.Drawing.Size(103, 15)
+        Me.lblAddress2.TabIndex = 94
+        Me.lblAddress2.Text = "GrowerAddress2"
         '
         'Note
         '
@@ -723,11 +767,15 @@ Partial Class FormMain
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1882, 982)
-        Me.Controls.Add(Me.lblLastName)
-        Me.Controls.Add(Me.lblFax)
+        Me.Controls.Add(Me.lblAddress2)
+        Me.Controls.Add(Me.lblGrowerCounty)
         Me.Controls.Add(Me.lblEmail)
+        Me.Controls.Add(Me.lblFax)
         Me.Controls.Add(Me.lblCellPhone)
+        Me.Controls.Add(Me.lblLastName)
         Me.Controls.Add(Me.lblWorkPhone)
+        Me.Controls.Add(Me.PictureBox11)
+        Me.Controls.Add(Me.PictureBox8)
         Me.Controls.Add(Me.btnEditNonCGI)
         Me.Controls.Add(Me.txtNotes)
         Me.Controls.Add(Me.TestDataGrid)
@@ -782,6 +830,8 @@ Partial Class FormMain
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -840,11 +890,13 @@ Partial Class FormMain
     Friend WithEvents btnAddNonCGI As Button
     Friend WithEvents PictureBox10 As PictureBox
     Friend WithEvents btnEditNonCGI As Button
-    Friend WithEvents lblWorkPhone As Label
-    Friend WithEvents lblCellPhone As Label
-    Friend WithEvents lblEmail As Label
-    Friend WithEvents lblFax As Label
+    Friend WithEvents PictureBox8 As PictureBox
+    Friend WithEvents PictureBox11 As PictureBox
+    Friend WithEvents lblWorkPhone As MaskedTextBox
     Friend WithEvents lblLastName As Label
-    Friend WithEvents Note As DataGridViewTextBoxColumn
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents lblCellPhone As MaskedTextBox
+    Friend WithEvents lblFax As MaskedTextBox
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblGrowerCounty As Label
+    Friend WithEvents lblAddress2 As Label
 End Class

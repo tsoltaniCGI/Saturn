@@ -28,6 +28,13 @@ Public Class FormMain
     Dim oProspectNoteRecs As New Collection
     Dim oOtherCropsRec As New Collection
     Dim oNonCgiCropIDs As New Collection
+    Dim HiLiteBrush As New SolidBrush(Color.FromKnownColor(KnownColor.Control))
+    'Dim HiLiteText As New te
+    Dim clrSelectedText As Color = Color.Red    'Our color for selected text
+    Dim clrHighlight As Color = Color.Yellow
+    'Dim backColor = this.BackColor;         'Default BackColor*
+    'Dim textColor = this.ForeColor;         'Default ForeColor*/
+    'Dim txt = ListBox.GetItemText(ListBox.Items[e.Index])
     'Dim oGrowerAddressColl As New Collection
     'Dim oGrowerCityColl As New Collection
     'Dim oGrowerStateColl As New Collection
@@ -561,10 +568,16 @@ Public Class FormMain
                     iCnt = iCnt + 1
                     If iCnt > iMax Then
                         If bAddNote Then
-                            oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Items.Add(oNote, oNote.GrowerNoteId.ToString())
+                            If Not oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Contains(oNote.GrowerNoteId.ToString()) Then
+
+                                oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+                            End If
+                            Exit Do
+
                         End If
-                        Exit Do
+
                     End If
+                    If iCnt > iMax Then Exit Do
                 Loop
             End If
             iCnt = iCnt + 1
@@ -1426,19 +1439,68 @@ Public Class FormMain
     End Sub
 
 
-    Private Sub ListBox1_DrawItem(sender As Object, e As DrawItemEventArgs) Handles ListBox1.DrawItem
-        Dim mybrush As New System.Drawing.SolidBrush(Color.FromArgb(25, 25, 25))
-        mybrush.Color = Color.FromArgb(25, 25, 25)
-        e.DrawBackground()
-        If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
-            e.Graphics.FillRectangle(mybrush, e.Bounds)
-        End If
-        Using b As New SolidBrush(e.ForeColor)
-            e.Graphics.DrawString(ListBox1.GetItemText(ListBox1.Items(e.Index)), e.Font, b, e.Bounds)
-        End Using
-        e.DrawFocusRectangle()
-    End Sub
+    'Private Sub ListBox1_DrawItem(sender As Object, e As DrawItemEventArgs) Handles ListBox1.DrawItem
+    '    Dim mybrush As New System.Drawing.SolidBrush(Color.FromArgb(25, 25, 25))
+    '    mybrush.Color = Color.FromArgb(25, 25, 25)
+    '    e.DrawBackground()
+    '    If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
+    '        e.Graphics.FillRectangle(mybrush, e.Bounds)
+    '    End If
+    '    Using b As New SolidBrush(e.ForeColor)
+    '        e.Graphics.DrawString(ListBox1.GetItemText(ListBox1.Items(e.Index)), e.Font, b, e.Bounds)
+    '    End Using
+    '    e.DrawFocusRectangle()
+    'End Sub
 
+
+
+
+
+    'Private Sub ListBox1_DrawItem(ByVal sender As Object, ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
+    '    'Dim mybrush As New System.Drawing.SolidBrush(Color.FromArgb(25, 25, 25))
+    '    e.DrawBackground()
+    'mybrush.Color = Color.FromArgb(25, 25, 25)
+
+
+
+    'If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
+    '    HiLiteBrush = Color.
+    'End If
+    'Using b As New SolidBrush(e.ForeColor)
+    '    e.Graphics.DrawString(ListBox1.GetItemText(ListBox1.Items(e.Index)), e.Font, b, e.Bounds)
+    'End Using
+    'e.DrawFocusRectangle()
+
+    'End Sub
+
+    'Private Sub ListBox1_DrawItem(ByVal sender As Object, ByVal e As System.Windows.Forms.DrawListViewItemEventArgs) Handles ListBox1.DrawItem
+    '    Dim mybrush As New System.Drawing.SolidBrush(Color.FromArgb(25, 25, 25))
+    '    e.DrawBackground()
+    '    If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
+    '        e.Graphics.FillRectangle(Brushes.Gray, e.Bounds)
+    '    End If
+    '    Using b As New SolidBrush(e.Forecolor)
+    '        e.Graphics.DrawString(ListBox1.GetItemText(ListBox1.Items(e.Index)), e.Font, b, e.Bounds)
+    '    End Using
+    '    e.DrawFocusRectangle()
+    'End Sub
+
+    '    Private Sub ListBox1_DrawItem(ByVal sender As Object, ByVal e As System.Windows.Forms.DrawListViewItemEventArgs) Handles ListBox1.DrawItem
+    '        var ListBox = sender as ListBox;
+    '        var BackColor = this.BackColor;         /*Default BackColor*/
+    '    var textColor = this.ForeColor;         /*Default ForeColor*/
+    '    var txt = ListBox.GetItemText(ListBox.Items[e.Index]);
+    '    If ((e.State & DrawItemState.Selected) == DrawItemState.Selected) Then
+    '                {
+    '        BackColor = Color.RoyalBlue;        /*Seletion BackColor*/
+    '        textColor = Color.Yellow;           /*Seletion ForeColor*/
+    '    }
+    '    Using (var brush = New SolidBrush(backColor))
+    '        e.Graphics.FillRectangle(Brush, e.Bounds);
+    '    TextRenderer.DrawText(e.Graphics, txt, ListBox.Font, e.Bounds, textColor,
+    '        TextFormatFlags.VerticalCenter | TextFormatFlags.Left);
+    '}
+    'End Sub
 
     Private Sub lvCommoditySales_DrawItem(sender As Object, e As DrawListViewItemEventArgs) Handles lvCommoditySales.DrawItem
         e.DrawDefault = True
@@ -1757,9 +1819,9 @@ Public Class FormMain
 
     End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblFax.Click
+    'Private Sub Label2_Click(sender As Object, e As EventArgs) Handles lblFax.Click
 
-    End Sub
+    'End Sub
 End Class
 
 
