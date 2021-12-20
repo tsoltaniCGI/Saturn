@@ -575,7 +575,9 @@ Public Class FormMain
                             Exit Do
 
                         End If
+
                     End If
+                    If iCnt > iMax Then Exit Do
                 Loop
             End If
             iCnt = iCnt + 1
