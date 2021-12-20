@@ -88,6 +88,7 @@ Partial Class FormMain
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.lblGrowerCounty = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -738,27 +739,15 @@ Partial Class FormMain
         Me.lblAddress2.TabIndex = 94
         Me.lblAddress2.Text = "GrowerAddress2"
         '
-        'Note
-        '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Note.HeaderText = ""
-        Me.Note.MinimumWidth = 370
-        Me.Note.Name = "Note"
-        Me.Note.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Note.Width = 370
-        '
         'Column1
         '
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
         Me.Column1.HeaderText = ""
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
+        Me.Column1.Width = 21
         '
         'FormMain
         '
@@ -899,4 +888,5 @@ Partial Class FormMain
     Friend WithEvents lblEmail As Label
     Friend WithEvents lblGrowerCounty As Label
     Friend WithEvents lblAddress2 As Label
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
 End Class
