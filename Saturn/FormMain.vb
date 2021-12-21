@@ -1190,7 +1190,9 @@ Public Class FormMain
     End Sub
 
     Private Sub lvNonCGI_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvNonCGI.SelectedIndexChanged
-        GlobalVariables.CurrentOtherCropIndex = lvNonCGI.SelectedIndices(0)
+        If lvNonCGI.SelectedItems.Count > 0 Then
+            GlobalVariables.CurrentOtherCropIndex = lvNonCGI.SelectedIndices(0)
+        End If
     End Sub
 
     Private Sub btnAddNonCGI_Click(sender As Object, e As EventArgs) Handles btnAddNonCGI.Click

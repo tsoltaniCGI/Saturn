@@ -127,6 +127,7 @@ Partial Class FormEditNonCGI
         '
         'cmbCommodity
         '
+        Me.cmbCommodity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCommodity.FormattingEnabled = True
         Me.cmbCommodity.Location = New System.Drawing.Point(297, 121)
         Me.cmbCommodity.Name = "cmbCommodity"
@@ -135,6 +136,7 @@ Partial Class FormEditNonCGI
         '
         'cmbStatus
         '
+        Me.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Location = New System.Drawing.Point(297, 197)
         Me.cmbStatus.Name = "cmbStatus"
