@@ -985,9 +985,9 @@ Public Class FormMain
 
     End Sub
 
-    Private Function Left(sSql As String, v As Integer) As String
-        Throw New NotImplementedException()
-    End Function
+    'Private Function Left(sSql As String, v As Integer) As String
+    'w New NotImplementedException()
+    'End Function
 
 
     'Join growers_temp to vendors_tem using Relationships_temp table as intersection table 

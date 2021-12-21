@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -52,6 +52,7 @@ Partial Class FormMain
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
         Me.btnAddNote = New System.Windows.Forms.Button()
         Me.TestDataGrid = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -86,7 +87,6 @@ Partial Class FormMain
         Me.lblCellPhone = New System.Windows.Forms.MaskedTextBox()
         Me.lblFax = New System.Windows.Forms.MaskedTextBox()
         Me.lblEmail = New System.Windows.Forms.Label()
-        Me.lblGrowerCounty = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,18 +112,18 @@ Partial Class FormMain
         Me.lvCommoditySales.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.lvCommoditySales.GridLines = True
         Me.lvCommoditySales.HideSelection = False
-        Me.lvCommoditySales.Location = New System.Drawing.Point(403, 705)
+        Me.lvCommoditySales.Location = New System.Drawing.Point(373, 696)
         Me.lvCommoditySales.Margin = New System.Windows.Forms.Padding(7)
         Me.lvCommoditySales.Name = "lvCommoditySales"
         Me.lvCommoditySales.Scrollable = False
-        Me.lvCommoditySales.Size = New System.Drawing.Size(394, 209)
+        Me.lvCommoditySales.Size = New System.Drawing.Size(445, 204)
         Me.lvCommoditySales.TabIndex = 20
         Me.lvCommoditySales.UseCompatibleStateImageBehavior = False
         '
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "Commodity"
-        Me.ColumnHeader1.Width = 180
+        Me.ColumnHeader1.Width = 210
         '
         'ColumnHeader2
         '
@@ -148,9 +148,9 @@ Partial Class FormMain
         Me.ListBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(23, 148)
+        Me.ListBox1.Location = New System.Drawing.Point(18, 148)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(322, 833)
+        Me.ListBox1.Size = New System.Drawing.Size(322, 799)
         Me.ListBox1.TabIndex = 32
         '
         'lblAddress
@@ -183,7 +183,7 @@ Partial Class FormMain
         Me.lblGrowerCountry.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblGrowerCountry.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblGrowerCountry.Location = New System.Drawing.Point(718, 338)
+        Me.lblGrowerCountry.Location = New System.Drawing.Point(718, 336)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
         Me.lblGrowerCountry.Size = New System.Drawing.Size(99, 15)
         Me.lblGrowerCountry.TabIndex = 35
@@ -361,7 +361,7 @@ Partial Class FormMain
         Me.btnAddNote.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddNote.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.btnAddNote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddNote.Location = New System.Drawing.Point(1695, 147)
+        Me.btnAddNote.Location = New System.Drawing.Point(1695, 112)
         Me.btnAddNote.Name = "btnAddNote"
         Me.btnAddNote.Size = New System.Drawing.Size(85, 23)
         Me.btnAddNote.TabIndex = 53
@@ -370,18 +370,32 @@ Partial Class FormMain
         '
         'TestDataGrid
         '
-        Me.TestDataGrid.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.TestDataGrid.AllowUserToResizeColumns = False
+        Me.TestDataGrid.BackgroundColor = System.Drawing.Color.White
         Me.TestDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TestDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.TestDataGrid.ColumnHeadersVisible = False
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1445, 212)
+        Me.TestDataGrid.Location = New System.Drawing.Point(1448, 207)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
-        Me.TestDataGrid.Size = New System.Drawing.Size(390, 659)
+        Me.TestDataGrid.Size = New System.Drawing.Size(390, 655)
         Me.TestDataGrid.TabIndex = 54
+        '
+        'Column1
+        '
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Column1.HeaderText = ""
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Width = 380
         '
         'PictureBox2
         '
@@ -441,7 +455,7 @@ Partial Class FormMain
         Me.btnEditGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.btnEditGrower.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnEditGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnEditGrower.Location = New System.Drawing.Point(150, 85)
+        Me.btnEditGrower.Location = New System.Drawing.Point(150, 70)
         Me.btnEditGrower.Name = "btnEditGrower"
         Me.btnEditGrower.Size = New System.Drawing.Size(85, 23)
         Me.btnEditGrower.TabIndex = 70
@@ -452,7 +466,7 @@ Partial Class FormMain
         '
         Me.btnAddGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.btnAddGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnAddGrower.Location = New System.Drawing.Point(237, 85)
+        Me.btnAddGrower.Location = New System.Drawing.Point(237, 70)
         Me.btnAddGrower.Name = "btnAddGrower"
         Me.btnAddGrower.Size = New System.Drawing.Size(85, 23)
         Me.btnAddGrower.TabIndex = 71
@@ -472,9 +486,9 @@ Partial Class FormMain
         '
         Me.PictureBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(1415, 53)
+        Me.PictureBox6.Location = New System.Drawing.Point(1419, 28)
         Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(444, 916)
+        Me.PictureBox6.Size = New System.Drawing.Size(444, 927)
         Me.PictureBox6.TabIndex = 60
         Me.PictureBox6.TabStop = False
         '
@@ -482,9 +496,9 @@ Partial Class FormMain
         '
         Me.PictureBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox7.Image = CType(resources.GetObject("PictureBox7.Image"), System.Drawing.Image)
-        Me.PictureBox7.Location = New System.Drawing.Point(373, 604)
+        Me.PictureBox7.Location = New System.Drawing.Point(341, 589)
         Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(454, 365)
+        Me.PictureBox7.Size = New System.Drawing.Size(496, 365)
         Me.PictureBox7.TabIndex = 73
         Me.PictureBox7.TabStop = False
         '
@@ -492,7 +506,7 @@ Partial Class FormMain
         '
         Me.PictureBox9.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
-        Me.PictureBox9.Location = New System.Drawing.Point(826, 605)
+        Me.PictureBox9.Location = New System.Drawing.Point(823, 589)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(602, 363)
         Me.PictureBox9.TabIndex = 75
@@ -503,12 +517,13 @@ Partial Class FormMain
         Me.lvNonCGI.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lvNonCGI.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10})
         Me.lvNonCGI.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.lvNonCGI.GridLines = True
         Me.lvNonCGI.HideSelection = False
-        Me.lvNonCGI.Location = New System.Drawing.Point(857, 705)
+        Me.lvNonCGI.Location = New System.Drawing.Point(855, 696)
         Me.lvNonCGI.MultiSelect = False
         Me.lvNonCGI.Name = "lvNonCGI"
         Me.lvNonCGI.ShowItemToolTips = True
-        Me.lvNonCGI.Size = New System.Drawing.Size(536, 209)
+        Me.lvNonCGI.Size = New System.Drawing.Size(536, 204)
         Me.lvNonCGI.TabIndex = 76
         Me.lvNonCGI.UseCompatibleStateImageBehavior = False
         '
@@ -533,10 +548,12 @@ Partial Class FormMain
         'ColumnHeader9
         '
         Me.ColumnHeader9.Text = "Volume"
+        Me.ColumnHeader9.Width = 80
         '
         'ColumnHeader10
         '
         Me.ColumnHeader10.Text = "Location"
+        Me.ColumnHeader10.Width = 80
         '
         'txtSale
         '
@@ -544,7 +561,7 @@ Partial Class FormMain
         Me.txtSale.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSale.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtSale.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtSale.Location = New System.Drawing.Point(429, 658)
+        Me.txtSale.Location = New System.Drawing.Point(406, 653)
         Me.txtSale.Name = "txtSale"
         Me.txtSale.Size = New System.Drawing.Size(86, 22)
         Me.txtSale.TabIndex = 77
@@ -568,7 +585,7 @@ Partial Class FormMain
         Me.txtProspect.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtProspect.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtProspect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtProspect.Location = New System.Drawing.Point(888, 658)
+        Me.txtProspect.Location = New System.Drawing.Point(888, 653)
         Me.txtProspect.Name = "txtProspect"
         Me.txtProspect.Size = New System.Drawing.Size(183, 22)
         Me.txtProspect.TabIndex = 79
@@ -580,7 +597,7 @@ Partial Class FormMain
         Me.txtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNotes.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtNotes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtNotes.Location = New System.Drawing.Point(1476, 148)
+        Me.txtNotes.Location = New System.Drawing.Point(1476, 113)
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(161, 22)
         Me.txtNotes.TabIndex = 80
@@ -589,7 +606,7 @@ Partial Class FormMain
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(23, 54)
+        Me.PictureBox1.Location = New System.Drawing.Point(18, 27)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(322, 928)
         Me.PictureBox1.TabIndex = 81
@@ -601,7 +618,7 @@ Partial Class FormMain
         Me.txtGrowers.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtGrowers.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtGrowers.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtGrowers.Location = New System.Drawing.Point(32, 86)
+        Me.txtGrowers.Location = New System.Drawing.Point(32, 71)
         Me.txtGrowers.Name = "txtGrowers"
         Me.txtGrowers.Size = New System.Drawing.Size(161, 22)
         Me.txtGrowers.TabIndex = 82
@@ -611,7 +628,7 @@ Partial Class FormMain
         '
         Me.btnAddNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddNonCGI.Location = New System.Drawing.Point(1283, 657)
+        Me.btnAddNonCGI.Location = New System.Drawing.Point(1283, 653)
         Me.btnAddNonCGI.Name = "btnAddNonCGI"
         Me.btnAddNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnAddNonCGI.TabIndex = 83
@@ -620,8 +637,9 @@ Partial Class FormMain
         '
         'PictureBox10
         '
+        Me.PictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox10.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox10.Location = New System.Drawing.Point(22, 53)
+        Me.PictureBox10.Location = New System.Drawing.Point(17, 27)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(1848, 928)
         Me.PictureBox10.TabIndex = 84
@@ -631,7 +649,7 @@ Partial Class FormMain
         '
         Me.btnEditNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnEditNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnEditNonCGI.Location = New System.Drawing.Point(1195, 657)
+        Me.btnEditNonCGI.Location = New System.Drawing.Point(1195, 653)
         Me.btnEditNonCGI.Name = "btnEditNonCGI"
         Me.btnEditNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnEditNonCGI.TabIndex = 85
@@ -714,18 +732,6 @@ Partial Class FormMain
         Me.lblEmail.TabIndex = 92
         Me.lblEmail.Text = "GrowerEmail"
         '
-        'lblGrowerCounty
-        '
-        Me.lblGrowerCounty.AutoSize = True
-        Me.lblGrowerCounty.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblGrowerCounty.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGrowerCounty.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblGrowerCounty.Location = New System.Drawing.Point(752, 288)
-        Me.lblGrowerCounty.Name = "lblGrowerCounty"
-        Me.lblGrowerCounty.Size = New System.Drawing.Size(93, 15)
-        Me.lblGrowerCounty.TabIndex = 93
-        Me.lblGrowerCounty.Text = "GrowerCounty"
-        '
         'lblAddress2
         '
         Me.lblAddress2.AutoSize = True
@@ -738,28 +744,6 @@ Partial Class FormMain
         Me.lblAddress2.TabIndex = 94
         Me.lblAddress2.Text = "GrowerAddress2"
         '
-        'Note
-        '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Note.HeaderText = ""
-        Me.Note.MinimumWidth = 370
-        Me.Note.Name = "Note"
-        Me.Note.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Note.Width = 370
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = ""
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -768,7 +752,6 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1882, 982)
         Me.Controls.Add(Me.lblAddress2)
-        Me.Controls.Add(Me.lblGrowerCounty)
         Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.lblFax)
         Me.Controls.Add(Me.lblCellPhone)
@@ -897,6 +880,6 @@ Partial Class FormMain
     Friend WithEvents lblCellPhone As MaskedTextBox
     Friend WithEvents lblFax As MaskedTextBox
     Friend WithEvents lblEmail As Label
-    Friend WithEvents lblGrowerCounty As Label
     Friend WithEvents lblAddress2 As Label
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
 End Class
