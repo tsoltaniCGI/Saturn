@@ -56,20 +56,62 @@ Public Class FormMain
     Private Sub ReloadNotes()
         Dim sNote As String
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
-        Me.TestDataGrid.Rows.Clear()
+        Dim sBuildDate As String
+        'Me.TestDataGrid.Rows.Clear()
+        'For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
+        ' 'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " " & oNote.GrowerNoteCreationDate.ToString("yyyy-MM-dd hh:mm:ss")
+        ' 'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+        ' 'sNote = sNote & DateTime.ParseExact(oNote.GrowerNoteCreationDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
+        ' sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+        ' sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
+        ' sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
+        ' sNote = sNote & Year(oNote.GrowerNoteCreationDate).ToString() & " "
+        ' sNote = sNote & Hour(oNote.GrowerNoteCreationDate).ToString() & ":"
+        ' sNote = sNote & Minute(oNote.GrowerNoteCreationDate).ToString & ":"
+        ' sNote = sNote & Second(oNote.GrowerNoteCreationDate).ToString()
+        ' TestDataGrid.Rows.Add(New String() {sNote})
+        ' Next
+        Dim oDict As New List(Of String)
+        Dim oNoteRows As New Collection
+        TestDataGrid.Rows.Clear()
         For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
-            'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " " & oNote.GrowerNoteCreationDate.ToString("yyyy-MM-dd hh:mm:ss")
-            'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
-            'sNote = sNote & DateTime.ParseExact(oNote.GrowerNoteCreationDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None)
-            sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
+            sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
             sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
             sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
             sNote = sNote & Year(oNote.GrowerNoteCreationDate).ToString() & " "
             sNote = sNote & Hour(oNote.GrowerNoteCreationDate).ToString() & ":"
             sNote = sNote & Minute(oNote.GrowerNoteCreationDate).ToString & ":"
             sNote = sNote & Second(oNote.GrowerNoteCreationDate).ToString()
-            TestDataGrid.Rows.Add(New String() {sNote})
+
+            'sBuildDate = Year(oNote.GrowerNoteCreationDate).ToString()
+            'sBuildDate = sBuildDate & Month(oNote.GrowerNoteCreationDate).ToString()
+            'sBuildDate = sBuildDate & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString()
+            'sBuildDate = sBuildDate & Hour(oNote.GrowerNoteCreationDate).ToString()
+            'sBuildDate = sBuildDate & Minute(oNote.GrowerNoteCreationDate).ToString()
+            'sBuildDate = sBuildDate & Second(oNote.GrowerNoteCreationDate).ToString()
+            sBuildDate = Year(oNote.GrowerNoteCreationDate).ToString()
+            sBuildDate = sBuildDate & Replace(Month(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+            sBuildDate = sBuildDate & Replace(Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+            sBuildDate = sBuildDate & Replace(Hour(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+            sBuildDate = sBuildDate & Replace(Minute(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+            sBuildDate = sBuildDate & Replace(Second(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+
+            Dim oCurNoteItem As New NoteListItem
+            oCurNoteItem.CreateDate = sBuildDate
+            oCurNoteItem.NoteText = sNote
+            If Not oNoteRows.Contains(oCurNoteItem.CreateDate) Then
+                oNoteRows.Add(oCurNoteItem, oCurNoteItem.CreateDate)
+            End If
+            oDict.Add(sBuildDate)
         Next
+
+        oDict.Sort()
+        oDict.Reverse()
+        For Each sDate In oDict
+            TestDataGrid.Rows.Add(New String() {oNoteRows(sDate).NoteText})
+        Next
+        oDict = Nothing
+        oNoteRows = Nothing
 
     End Sub
 
@@ -1190,11 +1232,11 @@ Public Class FormMain
                 sNote = sNote & Second(oNote.GrowerNoteCreationDate).ToString()
 
                 sBuildDate = Year(oNote.GrowerNoteCreationDate).ToString()
-                sBuildDate = sBuildDate & Month(oNote.GrowerNoteCreationDate).ToString()
-                sBuildDate = sBuildDate & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString()
-                sBuildDate = sBuildDate & Hour(oNote.GrowerNoteCreationDate).ToString()
-                sBuildDate = sBuildDate & Minute(oNote.GrowerNoteCreationDate).ToString()
-                sBuildDate = sBuildDate & Second(oNote.GrowerNoteCreationDate).ToString()
+                sBuildDate = sBuildDate & Replace(Month(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+                sBuildDate = sBuildDate & Replace(Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+                sBuildDate = sBuildDate & Replace(Hour(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+                sBuildDate = sBuildDate & Replace(Minute(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
+                sBuildDate = sBuildDate & Replace(Second(oNote.GrowerNoteCreationDate).ToString().PadLeft(2), " ", "0")
                 Dim oCurNoteItem As New NoteListItem
                 oCurNoteItem.CreateDate = sBuildDate
                 oCurNoteItem.NoteText = sNote
@@ -1205,6 +1247,7 @@ Public Class FormMain
             Next
 
             oDict.Sort()
+            oDict.Reverse()
             For Each sDate In oDict
                 '            For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
                 '
