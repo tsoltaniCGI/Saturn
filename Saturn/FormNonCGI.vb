@@ -9,6 +9,14 @@ Public Class FormNonCGI
         Dim sSql As String
         Dim oReader As SqlDataReader
 
+        GlobalVariables.ResetNote = False
+
+        'Me.lblName.Text = GlobalVariables.CurrentGrower.GrowerFirstName
+        'Me.lblAddress.Text = GlobalVariables.CurrentGrower.GrowerAddress1
+        'Me.lblAddress2.Text = GlobalVariables.CurrentGrower.GrowerAddress2
+        'Me.lblGrowerCity.Text = GlobalVariables.CurrentGrower.GrowerCity
+        'Me.lblGrowerState.Text = GlobalVariables.CurrentGrower.GrowerState
+
         oConn.Open()
         myCmd = oConn.CreateCommand
 

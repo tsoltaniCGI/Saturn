@@ -53,11 +53,11 @@ Partial Class FormNonCGI
         '
         Me.lblGrower.AutoSize = True
         Me.lblGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.lblGrower.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.lblGrower.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblGrower.Location = New System.Drawing.Point(35, 221)
         Me.lblGrower.Name = "lblGrower"
-        Me.lblGrower.Size = New System.Drawing.Size(59, 16)
+        Me.lblGrower.Size = New System.Drawing.Size(61, 16)
         Me.lblGrower.TabIndex = 0
         Me.lblGrower.Text = "Grower"
         '
@@ -65,11 +65,11 @@ Partial Class FormNonCGI
         '
         Me.lblGrowerName.AutoSize = True
         Me.lblGrowerName.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.lblGrowerName.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGrowerName.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblGrowerName.Location = New System.Drawing.Point(35, 256)
         Me.lblGrowerName.Name = "lblGrowerName"
-        Me.lblGrowerName.Size = New System.Drawing.Size(93, 14)
+        Me.lblGrowerName.Size = New System.Drawing.Size(88, 15)
         Me.lblGrowerName.TabIndex = 1
         Me.lblGrowerName.Text = "Grower Name"
         '
@@ -89,7 +89,7 @@ Partial Class FormNonCGI
         Me.lblVolume.AutoSize = True
         Me.lblVolume.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblVolume.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.lblVolume.Location = New System.Drawing.Point(208, 181)
+        Me.lblVolume.Location = New System.Drawing.Point(208, 185)
         Me.lblVolume.Name = "lblVolume"
         Me.lblVolume.Size = New System.Drawing.Size(47, 15)
         Me.lblVolume.TabIndex = 7
@@ -100,7 +100,7 @@ Partial Class FormNonCGI
         Me.lblStatus.AutoSize = True
         Me.lblStatus.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblStatus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.lblStatus.Location = New System.Drawing.Point(208, 215)
+        Me.lblStatus.Location = New System.Drawing.Point(208, 223)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(39, 15)
         Me.lblStatus.TabIndex = 8
@@ -111,7 +111,7 @@ Partial Class FormNonCGI
         Me.lblSoldTo.AutoSize = True
         Me.lblSoldTo.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblSoldTo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.lblSoldTo.Location = New System.Drawing.Point(208, 249)
+        Me.lblSoldTo.Location = New System.Drawing.Point(208, 261)
         Me.lblSoldTo.Name = "lblSoldTo"
         Me.lblSoldTo.Size = New System.Drawing.Size(42, 15)
         Me.lblSoldTo.TabIndex = 9
@@ -122,7 +122,7 @@ Partial Class FormNonCGI
         Me.lblLocation.AutoSize = True
         Me.lblLocation.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblLocation.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.lblLocation.Location = New System.Drawing.Point(208, 283)
+        Me.lblLocation.Location = New System.Drawing.Point(208, 299)
         Me.lblLocation.Name = "lblLocation"
         Me.lblLocation.Size = New System.Drawing.Size(53, 15)
         Me.lblLocation.TabIndex = 10
@@ -131,7 +131,7 @@ Partial Class FormNonCGI
         'cmbCommodity
         '
         Me.cmbCommodity.FormattingEnabled = True
-        Me.cmbCommodity.Location = New System.Drawing.Point(292, 143)
+        Me.cmbCommodity.Location = New System.Drawing.Point(292, 145)
         Me.cmbCommodity.Name = "cmbCommodity"
         Me.cmbCommodity.Size = New System.Drawing.Size(196, 23)
         Me.cmbCommodity.TabIndex = 1
@@ -139,21 +139,21 @@ Partial Class FormNonCGI
         'cmbStatus
         '
         Me.cmbStatus.FormattingEnabled = True
-        Me.cmbStatus.Location = New System.Drawing.Point(292, 213)
+        Me.cmbStatus.Location = New System.Drawing.Point(292, 223)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(71, 23)
         Me.cmbStatus.TabIndex = 3
         '
         'txtSoldTo
         '
-        Me.txtSoldTo.Location = New System.Drawing.Point(292, 248)
+        Me.txtSoldTo.Location = New System.Drawing.Point(292, 262)
         Me.txtSoldTo.Name = "txtSoldTo"
         Me.txtSoldTo.Size = New System.Drawing.Size(100, 23)
         Me.txtSoldTo.TabIndex = 4
         '
         'txtLocation
         '
-        Me.txtLocation.Location = New System.Drawing.Point(292, 283)
+        Me.txtLocation.Location = New System.Drawing.Point(292, 301)
         Me.txtLocation.Multiline = True
         Me.txtLocation.Name = "txtLocation"
         Me.txtLocation.Size = New System.Drawing.Size(125, 82)
@@ -162,7 +162,7 @@ Partial Class FormNonCGI
         'btnOKAddNonCGI
         '
         Me.btnOKAddNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnOKAddNonCGI.Location = New System.Drawing.Point(258, 397)
+        Me.btnOKAddNonCGI.Location = New System.Drawing.Point(258, 419)
         Me.btnOKAddNonCGI.Name = "btnOKAddNonCGI"
         Me.btnOKAddNonCGI.Size = New System.Drawing.Size(75, 23)
         Me.btnOKAddNonCGI.TabIndex = 16
@@ -171,8 +171,9 @@ Partial Class FormNonCGI
         '
         'PictureBox1
         '
+        Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(23, 22)
+        Me.PictureBox1.Location = New System.Drawing.Point(23, 26)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(512, 451)
         Me.PictureBox1.TabIndex = 17
@@ -181,25 +182,25 @@ Partial Class FormNonCGI
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox2.Location = New System.Drawing.Point(191, 67)
+        Me.PictureBox2.Location = New System.Drawing.Point(191, 82)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(306, 366)
+        Me.PictureBox2.Size = New System.Drawing.Size(331, 377)
         Me.PictureBox2.TabIndex = 18
         Me.PictureBox2.TabStop = False
         '
         'PictureBox3
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.PictureBox3.Location = New System.Drawing.Point(191, 383)
+        Me.PictureBox3.Location = New System.Drawing.Point(191, 407)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(306, 50)
+        Me.PictureBox3.Size = New System.Drawing.Size(331, 52)
         Me.PictureBox3.TabIndex = 19
         Me.PictureBox3.TabStop = False
         '
         'btnCancelNonCGI
         '
         Me.btnCancelNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnCancelNonCGI.Location = New System.Drawing.Point(363, 397)
+        Me.btnCancelNonCGI.Location = New System.Drawing.Point(363, 419)
         Me.btnCancelNonCGI.Name = "btnCancelNonCGI"
         Me.btnCancelNonCGI.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelNonCGI.TabIndex = 20
@@ -210,9 +211,9 @@ Partial Class FormNonCGI
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox4.Location = New System.Drawing.Point(136, 50)
+        Me.PictureBox4.Location = New System.Drawing.Point(136, 62)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(119, 38)
+        Me.PictureBox4.Size = New System.Drawing.Size(114, 38)
         Me.PictureBox4.TabIndex = 56
         Me.PictureBox4.TabStop = False
         '
@@ -220,9 +221,9 @@ Partial Class FormNonCGI
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox5.Location = New System.Drawing.Point(169, 26)
+        Me.PictureBox5.Location = New System.Drawing.Point(169, 36)
         Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(43, 95)
+        Me.PictureBox5.Size = New System.Drawing.Size(43, 104)
         Me.PictureBox5.TabIndex = 57
         Me.PictureBox5.TabStop = False
         '
@@ -232,7 +233,7 @@ Partial Class FormNonCGI
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label1.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(150, 61)
+        Me.Label1.Location = New System.Drawing.Point(150, 72)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 15)
         Me.Label1.TabIndex = 58
@@ -240,7 +241,7 @@ Partial Class FormNonCGI
         '
         'txtVolume
         '
-        Me.txtVolume.Location = New System.Drawing.Point(292, 178)
+        Me.txtVolume.Location = New System.Drawing.Point(292, 184)
         Me.txtVolume.Mask = "9999999"
         Me.txtVolume.Name = "txtVolume"
         Me.txtVolume.Size = New System.Drawing.Size(100, 23)
