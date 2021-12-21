@@ -10,7 +10,16 @@ Public Class FormEditGrower
     Private Sub FormEditGrower_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim loCurrentGrower As Grower
         Dim oCurrentVendor As Vendor
-        Dim oConn As New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        Dim sTestProd As String
+        Dim oConn As SqlConnection
+        sTestProd = "P"
+        If sTestProd = "P" Then
+            oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
+
+
         oConn.Open()
         Dim myCmd = oConn.CreateCommand
         Dim sSql As String
@@ -174,21 +183,25 @@ Public Class FormEditGrower
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         Dim sSql As String
         Dim sDate As String
-        Dim iGrowerID As Integer
-        Dim iVendorID As Integer
         Dim bDataValidated As Boolean
         Dim sProspect As String
         Dim sCurCountry As String
         Dim loCurrentGrower As Grower
         Dim sCollIndex As String
+        Dim oConn As SqlConnection
 
         loCurrentGrower = GlobalVariables.CurrentGrower
         GlobalVariables.iAddedGrowerID = 0
         GlobalVariables.ResetGrower = True
-        'Dim iCnt As Integer
-        'Dim iMax As Integer
-        'Dim oReader As SqlDataReader
-        Dim oConn As New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+
+        Dim sTestProd As String
+        sTestProd = "P"
+        If sTestProd = "P" Then
+            oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
+
         oConn.Open()
         Dim myCmd = oConn.CreateCommand
         bDataValidated = True
@@ -220,26 +233,7 @@ Public Class FormEditGrower
         End If
 
         If bDataValidated Then
-            'iVendorID = GlobalVariables.CurrentGrower.GrowerID
-            'If ckProspect.Checked Then
-            ' sSql = "INSERT INTO vendors (vendor_name, vendor_dummy) "
-            ' sSql = sSql & "VALUES ('" & Year(Now().ToString()) & Month(Now().ToString()) & DateTime.Now.Day().ToString()
-            ' sSql = sSql & Hour(Now()).ToString() & Minute(Now()).ToString() & Second(Now()).ToString() & "', 'Y'); SELECT SCOPE_IDENTITY()"
-            ' myCmd.CommandText = sSql
-            ' iVendorID = myCmd.ExecuteScalar()
-            ' GlobalVariables.iAddedVendorID = iVendorID
-            ' sProspect = "Y"
-            ' End If
             sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
-            'Start with Vendor List
-
-            'sSql = "INSERT INTO growers (grower_prospect, grower_first_name, grower_last_name, grower_address_line_1, grower_address_line_2, "
-            'sSql = sSql & "grower_city, grower_county, grower_state, grower_zip, grower_country, grower_phone1, grower_phone2, grower_fax, "
-            'sSql = sSql & "grower_email, grower_date_created, grower_created_by) "
-            'sSql = sSql & "VALUES ('" & sProspect & "', '" & txtFirstName.Text & "', '" & txtLastName.Text & "', '" & txtAddress1.Text & "', '" & txtAddress2.Text & "', '"
-            'sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & txtState.Text & "', '" & txtZip.Text & "', '" & "US" & "', '" & txtWorkPhone.Text & "', '"
-            'sSql = sSql & txtCellPhone.Text & "', '" & txtFax.Text & "', '" & txtEmail.Text & "', '" & sDate & "', " & GlobalVariables.UserId.ToString() & "); SELECT SCOPE_IDENTITY()"
-            '"INSERT INTO table (Databasevalue) VALUES ('" + formvalue + "'); SELECT SCOPE_IDENTITY()"
             sCurCountry = "US"
             If rbUSA.Checked Then
                 sCurCountry = "US"
@@ -261,7 +255,6 @@ Public Class FormEditGrower
             sSql = sSql & "grower_state = '" & GlobalVariables.DQuot(cmbState.SelectedItem.ToString()) & "', "
             sSql = sSql & "grower_country = '" & sCurCountry & "', "
             sSql = sSql & "grower_zip = '" & GlobalVariables.DQuot(txtZip.Text.ToString()) & "', "
-            'Sql = sSql & "grower_country = '" & GlobalVariables.DQuot(cmbState.SelectedItem.ToString()) & "', "
             sSql = sSql & "grower_phone1 = '" & GlobalVariables.DQuot(txtWorkPhone.Text.ToString()) & "', "
             sSql = sSql & "grower_phone2 = '" & GlobalVariables.DQuot(txtCellPhone.Text.ToString()) & "', "
             sSql = sSql & "grower_fax = '" & GlobalVariables.DQuot(txtFax.Text.ToString()) & "', "
@@ -287,11 +280,6 @@ Public Class FormEditGrower
             GlobalVariables.CurrentGrower.GrowerFax = txtFax.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerEmail = txtEmail.Text.ToString()
 
-            'GlobalVariables.iAddedGrowerID = iGrowerID
-            'sSql = "SELECT @@IDENTITY"
-            'myCmd.CommandText = sSql
-            'oReader = myCmd.ExecuteReader()
-            'iGrowerID = oReader.GetInt32(0)
 
             If ckProspect.Checked = False Then
                 sSql = "DELETE FROM growers_vendors "
@@ -300,19 +288,6 @@ Public Class FormEditGrower
                 myCmd.ExecuteNonQuery()
 
 
-                'If ckProspect.Checked Then
-                'For Each FacID In GlobalVariables.UserFacilityIDs
-                'sSql = "INSERT INTO vendors_facilities (vendor_id, facility_id) "
-                'sSql = sSql & "VALUES (" & iVendorID.ToString() & ", "
-                'sSql = sSql & FacID.ToString() & ")"
-                'myCmd.CommandText = sSql
-                'myCmd.ExecuteNonQuery()
-                'Next
-                'sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
-                'sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
-                'myCmd.CommandText = sSql
-                'myCmd.ExecuteNonQuery()
-                'Else
                 GlobalVariables.CurrentGrower.Vendors.Clear()
                 For Each iIndex In lstVendors.SelectedIndices
                     sCollIndex = oVendIDs(iIndex.ToString()).ToString()
@@ -321,11 +296,6 @@ Public Class FormEditGrower
                     myCmd.CommandText = sSql
                     myCmd.ExecuteNonQuery()
                     GlobalVariables.CurrentGrower.Vendors.Add(GlobalVariables.VendorList(sCollIndex))
-                    'Dim oNewVendor As New Vendor
-                    'oNewVendor.VendorID = oVendIDs(iIndex.ToString()).ToString()
-                    'oNewVendor.VendorName = lstVendors.Items(iIndex)
-                    'oNewVendor.VendorDummy = "N"
-                    'GlobalVariables.CurrentGrower.Vendors.Add(oNewVendor)
                 Next
             End If
             GlobalVariables.BuildComm = True

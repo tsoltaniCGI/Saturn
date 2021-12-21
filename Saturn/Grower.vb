@@ -204,6 +204,7 @@ Public Class NoteListItem
     Public Property NoteText As String
 End Class
 Public Class GlobalVariables
+    Public Shared oFrmBackground As Form
     Public Shared bFirstLoad As Boolean
     Public Shared UserList As New Collection
     Public Shared VendorList As New Collection

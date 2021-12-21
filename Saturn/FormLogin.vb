@@ -25,7 +25,15 @@
         bValidated = False
         If ValidateActiveDirectoryLogin("columbiagrain.com", txtUserName.Text.ToString(), txtPassword.Text.ToString()) Then
 
-            oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+
+            Dim sTestProd As String
+            sTestProd = "P"
+            If sTestProd = "P" Then
+                oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+            Else
+                oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+            End If
+
             myCmd = oConn.CreateCommand
             sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id "
             sSql = sSql & "FROM users, facilities, users_facilities "
@@ -56,6 +64,7 @@
                 Me.Close()
                 Dim oFormMain As New FormMain
                 oFormMain.Show()
+                GlobalVariables.oFrmBackground.WindowState = FormWindowState.Minimized
                 'oFormMain.TopMost = True
             Else
                 Label4.Visible = True

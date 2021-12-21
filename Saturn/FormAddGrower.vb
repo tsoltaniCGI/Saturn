@@ -19,7 +19,15 @@ Public Class FormAddGrower
     End Sub
 
     Private Sub FormAddGrower_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim oConn As New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        Dim oConn As SqlConnection
+        Dim sTestProd As String
+        sTestProd = "P"
+        If sTestProd = "P" Then
+            oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
+
         oConn.Open()
         Dim myCmd = oConn.CreateCommand
         Dim sSql As String
@@ -134,6 +142,7 @@ Public Class FormAddGrower
         Dim bDataValidated As Boolean
         Dim sProspect As String
         Dim sCurCountryCode As String
+        Dim oConn As SqlConnection
 
         sCurCountryCode = "US"
         If rbUSA.Checked Then
@@ -153,7 +162,14 @@ Public Class FormAddGrower
         'Dim iCnt As Integer
         'Dim iMax As Integer
         'Dim oReader As SqlDataReader
-        Dim oConn As New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+
+        Dim sTestProd As String
+        sTestProd = "P"
+        If sTestProd = "P" Then
+            oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
         oConn.Open()
         Dim myCmd = oConn.CreateCommand
         bDataValidated = True

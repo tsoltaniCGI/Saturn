@@ -4,7 +4,16 @@ Public Class FormNonCGI
     Dim oCommIds As New Collection
     Dim iCommIndex As Integer
     Private Sub FormNonCGI_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim oConn As New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+
+        Dim sTestProd As String
+        sTestProd = "P"
+        Dim oCOnn As New SqlConnection
+        If sTestProd = "P" Then
+            oCOnn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oCOnn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
+
         Dim myCmd As New SqlCommand
         Dim sSql As String
         Dim oReader As SqlDataReader
@@ -50,7 +59,15 @@ Public Class FormNonCGI
     End Sub
 
     Private Sub btnOKAddNonCGI_Click(sender As Object, e As EventArgs) Handles btnOKAddNonCGI.Click
-        Dim oConn As New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        Dim oConn = New SqlConnection
+        Dim sTestProd As String
+        sTestProd = "P"
+        If sTestProd = "P" Then
+            oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
+
         Dim myCmd As New SqlCommand
         Dim sSql As String
         Dim dDate As Date

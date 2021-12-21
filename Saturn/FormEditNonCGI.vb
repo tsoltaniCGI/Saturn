@@ -10,7 +10,14 @@ Public Class FormEditNonCGI
         Dim myCmd As SqlCommand
 
 
-        oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        Dim sTestProd As String
+        sTestProd = "P"
+        If sTestProd = "P" Then
+            oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
+
         oConn.Open()
         myCmd = oConn.CreateCommand
         sSql = "SELECT commodity_id, commodity_name "
@@ -51,11 +58,18 @@ Public Class FormEditNonCGI
     End Sub
 
     Private Sub btnOKAddNonCGI_Click(sender As Object, e As EventArgs) Handles btnOKAddNonCGI.Click
-        Dim oConn As New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        Dim oConn As SqlConnection
         Dim myCmd As New SqlCommand
         Dim sSql As String
         Dim dDate As Date
         Dim bValidated As Boolean
+        Dim sTestProd As String
+        sTestProd = "P"
+        If sTestProd = "P" Then
+            oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+        Else
+            oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+        End If
 
 
         bValidated = True
