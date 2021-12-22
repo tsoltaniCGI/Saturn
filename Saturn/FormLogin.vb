@@ -58,9 +58,12 @@
                         bUserLoaded = True
                     End If
                     GlobalVariables.UserFacilityIDs.Add(oReader.GetInt32(4))
-                    GlobalVariables.UserFacilities.Add(oReader.GetString(3), oReader.GetString(3))
+                    If Not GlobalVariables.UserFacilities.Contains(oReader.GetString(3)) Then
+                        GlobalVariables.UserFacilities.Add(oReader.GetString(3), oReader.GetString(3))
+                    End If
                 Loop
                 Label4.Text = "Validated"
+                'Me.BackgroundImage = 
                 Me.Close()
                 Dim oFormMain As New FormMain
                 oFormMain.Show()

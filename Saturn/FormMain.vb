@@ -227,7 +227,10 @@ Public Class FormMain
         oProspectRecs.Clear()
         oProspectNoteRecs.Clear()
         oOtherCropsRec.Clear()
-
+        'oGrowerColl.Clear()
+        If Not GlobalVariables.bGrowerAdd Then
+            ListBox1.Items.Clear()
+        End If
 
         Dim iMax As Integer
         Dim iCnt As Integer
@@ -241,6 +244,7 @@ Public Class FormMain
         'no fdg
         GlobalVariables.ResetNote = False
         GlobalVariables.BuildComm = True
+
         sCaption = "Saturn CRM" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facilities: "
         For Each sFacility In GlobalVariables.UserFacilities
             sCaption = sCaption & sFacility & " "
@@ -248,7 +252,7 @@ Public Class FormMain
         'Me.Text = "Saturn" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facility: " & GlobalVariables.UserFacility
         Me.Text = Trim(sCaption)
         Dim sTestProd As String
-        sTestProd = "P"
+        sTestProd = GlobalVariables.sEnv
         If sTestProd = "P" Then
             oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
         Else
@@ -346,6 +350,7 @@ Public Class FormMain
 
         iGrowerID = -1
         oCollGrowVendComm.Clear()
+
         If oReader.HasRows Then
             iNum = 1
             Do While oReader.Read()
@@ -432,7 +437,7 @@ Public Class FormMain
                 oGrower.GrowerFax = oCollGrowVendComm(iCnt).GrowerFax
                 oGrower.GrowerEmail = oCollGrowVendComm(iCnt).GrowerEmail
                 oGrower.GrowerProspect = "N"
-
+                oGrowerListItem.GrowerName = oGrower.GrowerFirstName & " " & oGrower.GrowerLastName
                 iVendorID = -1
                 Do While iGrowerID = oCollGrowVendComm(iCnt).GrowerId
 
@@ -484,10 +489,13 @@ Public Class FormMain
                         If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                             oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
                             oGrowerListItem.CollectionIndex = oGrowerColl.Count
+
                             ListBox1.Items.Add(oGrowerListItem)
                         End If
-                        'iCnt = iCnt - 1 'Move the pointer back one so the outside loop can advance to the next record
+
                     End If
+                    'iCnt = iCnt - 1 'Move the pointer back one so the outside loop can advance to the next record
+
                 End If
             Else
                 iCnt = iCnt + 1
@@ -1086,7 +1094,7 @@ Public Class FormMain
         GlobalVariables.GrowerState = oGrowerColl(oSelItem.CollectionIndex).GrowerState
         If GlobalVariables.ResetNote Then
             Dim sTestProd As String
-            sTestProd = "P"
+            sTestProd = GlobalVariables.sEnv
             If sTestProd = "P" Then
                 oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
             Else
@@ -1144,7 +1152,8 @@ Public Class FormMain
     End Sub
 
     Private Sub btnAddGrower_Click(sender As Object, e As EventArgs) Handles btnAddGrower.Click
-
+        Dim iIndex As Integer
+        Dim sCurName As String
         Dim oNewNote As New Note
         Me.TopMost = False
         Dim frmAddGrower = New FormAddGrower
@@ -1156,6 +1165,15 @@ Public Class FormMain
         Me.TopMost = True
         If GlobalVariables.ResetGrower Then
             RebuildPage()
+            sCurName = oGrowerColl(GlobalVariables.iAddedGrowerID.ToString()).GrowerFirstName
+            sCurName = sCurName & " "
+            sCurName = sCurName & oGrowerColl(GlobalVariables.iAddedGrowerID.ToString()).GrowerLastName
+            iIndex = ListBox1.FindString(sCurName)
+            If iIndex > -1 Then
+                ListBox1.SelectedIndex = iIndex
+            Else
+                ListBox1.SelectedIndex = 0
+            End If
         End If
 
 
@@ -1168,16 +1186,39 @@ Public Class FormMain
 
 
     Private Sub btnEditGrower_Click(sender As Object, e As EventArgs) Handles btnEditGrower.Click
+        Dim iCurIndex As Integer
+        Dim icnt As Integer
+        Dim iMax As Integer
+        Dim sCurGrowerName As String
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
         Me.TopMost = False
+        iCurIndex = ListBox1.SelectedIndex
+
         GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
+
         Dim frmEditGrower = New FormEditGrower
         GlobalVariables.ResetGrower = False
         frmEditGrower.ShowDialog()
+        'oSelItem.GrowerName = sCurGrowerName
         Me.TopMost = False
         If GlobalVariables.ResetGrower Then
-
             RebuildPage()
+            sCurGrowerName = GlobalVariables.CurrentGrower.GrowerFirstName & " " & GlobalVariables.CurrentGrower.GrowerLastName
+            icnt = 1
+            iMax = oGrowerColl.Count
+            Do While icnt <= iMax
+                Dim oNewGrowerListItem As New IndexedGrowerListItem
+                oNewGrowerListItem.GrowerName = oGrowerColl(icnt).GrowerFirstName & " " & oGrowerColl(icnt).GrowerLastName
+                oNewGrowerListItem.CollectionIndex = icnt
+                ListBox1.Items.Add(oNewGrowerListItem)
+                icnt = icnt + 1
+            Loop
+            iCurIndex = ListBox1.FindString(sCurGrowerName)
+            If iCurIndex > -1 Then
+                ListBox1.SelectedIndex = iCurIndex
+            Else
+                ListBox1.SelectedIndex = 0
+            End If
         End If
     End Sub
 

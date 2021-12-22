@@ -12,7 +12,7 @@ Public Class FormEditGrower
         Dim oCurrentVendor As Vendor
         Dim sTestProd As String
         Dim oConn As SqlConnection
-        sTestProd = "P"
+        sTestProd = GlobalVariables.sEnv
         If sTestProd = "P" Then
             oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
         Else
@@ -195,7 +195,7 @@ Public Class FormEditGrower
         GlobalVariables.ResetGrower = True
 
         Dim sTestProd As String
-        sTestProd = "P"
+        sTestProd = GlobalVariables.sEnv
         If sTestProd = "P" Then
             oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
         Else

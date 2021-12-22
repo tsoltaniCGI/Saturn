@@ -16,7 +16,7 @@ Public Class FormNote
         Me.lblGrowerState.Text = GlobalVariables.CurrentGrower.GrowerState
         'oConn.Open("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         Dim sTestProd As String
-        sTestProd = "P"
+        sTestProd = GlobalVariables.sEnv
         If sTestProd = "P" Then
             oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
         Else

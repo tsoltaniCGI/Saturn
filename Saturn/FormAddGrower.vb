@@ -21,7 +21,7 @@ Public Class FormAddGrower
     Private Sub FormAddGrower_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim oConn As SqlConnection
         Dim sTestProd As String
-        sTestProd = "P"
+        sTestProd = GlobalVariables.sEnv
         If sTestProd = "P" Then
             oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
         Else
@@ -154,7 +154,7 @@ Public Class FormAddGrower
         End If
 
         If rbOther.Checked Then
-            sCurCountryCode = oCountries(cmbState.SelectedIndex).CountryID
+            sCurCountryCode = oCountries(cmbState.SelectedIndex + 1).CountryID
         End If
 
         GlobalVariables.iAddedGrowerID = 0
@@ -164,7 +164,7 @@ Public Class FormAddGrower
         'Dim oReader As SqlDataReader
 
         Dim sTestProd As String
-        sTestProd = "P"
+        sTestProd = GlobalVariables.sEnv
         If sTestProd = "P" Then
             oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
         Else
@@ -208,6 +208,7 @@ Public Class FormAddGrower
 
 
         If bDataValidated Then
+            GlobalVariables.bGrowerAdd = True
             iVendorID = 0
             If ckProspect.Checked Then
                 sSql = "INSERT INTO vendors (vendor_name, vendor_dummy) "
