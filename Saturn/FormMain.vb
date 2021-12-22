@@ -780,6 +780,15 @@ Public Class FormMain
 
         If ListBox1.Items.Count >= 1 Then
             ListBox1.SetSelected(0, True)
+        Else
+            ckVendor1.Visible = False
+            ckVendor2.Visible = False
+            ckVendor3.Visible = False
+            ckVendor4.Visible = False
+            ckVendor5.Visible = False
+            ckVendor6.Visible = False
+            ckVendor7.Visible = False
+            ckVendor8.Visible = False
         End If
 
         TestDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
