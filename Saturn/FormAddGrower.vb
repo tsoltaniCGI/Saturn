@@ -143,6 +143,7 @@ Public Class FormAddGrower
         Dim sProspect As String
         Dim sCurCountryCode As String
         Dim oConn As SqlConnection
+        Dim sProsVendorName As String
 
         sCurCountryCode = "US"
         If rbUSA.Checked Then
@@ -211,12 +212,20 @@ Public Class FormAddGrower
             GlobalVariables.bGrowerAdd = True
             iVendorID = 0
             If ckProspect.Checked Then
+                sProsVendorName = Year(Now().ToString()) & Month(Now().ToString()) & DateTime.Now.Day().ToString()
+                sProsVendorName = sProsVendorName & Hour(Now()).ToString() & Minute(Now()).ToString() & Second(Now()).ToString()
                 sSql = "INSERT INTO vendors (vendor_name, vendor_dummy) "
-                sSql = sSql & "VALUES ('" & Year(Now().ToString()) & Month(Now().ToString()) & DateTime.Now.Day().ToString()
-                sSql = sSql & Hour(Now()).ToString() & Minute(Now()).ToString() & Second(Now()).ToString() & "', 'Y'); SELECT SCOPE_IDENTITY()"
+                sSql = sSql & "VALUES ('" & sProsVendorName
+                sSql = sSql & "', 'Y'); SELECT SCOPE_IDENTITY()"
                 myCmd.CommandText = sSql
                 iVendorID = myCmd.ExecuteScalar()
                 GlobalVariables.iAddedVendorID = iVendorID
+
+                Dim oNewVendor As New Vendor
+                oNewVendor.VendorID = iVendorID
+                oNewVendor.VendorName = sProsVendorName
+                oNewVendor.VendorDummy = "Y"
+                GlobalVariables.VendorList.Add(oNewVendor, oNewVendor.VendorID.ToString())
                 sProspect = "Y"
             End If
             sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
@@ -242,9 +251,10 @@ Public Class FormAddGrower
                 For Each FacID In GlobalVariables.UserFacilityIDs
                     sSql = "INSERT INTO vendors_facilities (vendor_id, facility_id) "
                     sSql = sSql & "VALUES (" & iVendorID.ToString() & ", "
-                    sSql = sSql & FacID.ToString() & ")"
+                    sSql = sSql & FacID.ToString() & "); SELECT SCOPE_IDENTITY()"
                     myCmd.CommandText = sSql
                     myCmd.ExecuteNonQuery()
+
                 Next
                 sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
                 sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"

@@ -628,6 +628,7 @@ Public Class FormMain
                     If iVendorID <> oProspectRecs(iCnt).VendorID Then
                         'Dim oVendor As New Vendor
                         oVendor = GlobalVariables.VendorList(oProspectRecs(iCnt).VendorID.ToString())
+                        iVendorID = oProspectRecs(iCnt).VendorID
                         oVendor.VendorID = iVendorID
                         iVendorID = oProspectRecs(iCnt).VendorID
                         oVendor.VendorName = oProspectRecs(iCnt).VendorName
