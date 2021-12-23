@@ -20,14 +20,15 @@ Public Class FormNonCGI
 
         GlobalVariables.ResetNote = False
 
-        'Me.lblName.Text = GlobalVariables.CurrentGrower.GrowerFirstName
+        Me.lblNonCGIGrowerFirstName.Text = GlobalVariables.CurrentGrower.GrowerFirstName
+        Me.lblNonCGIGrowerLastName.Text = GlobalVariables.CurrentGrower.GrowerLastName
         'Me.lblAddress.Text = GlobalVariables.CurrentGrower.GrowerAddress1
         'Me.lblAddress2.Text = GlobalVariables.CurrentGrower.GrowerAddress2
         'Me.lblGrowerCity.Text = GlobalVariables.CurrentGrower.GrowerCity
         'Me.lblGrowerState.Text = GlobalVariables.CurrentGrower.GrowerState
 
         oCOnn.Open()
-        myCmd = oConn.CreateCommand
+        myCmd = oCOnn.CreateCommand
 
 
         'dDate = Now()
@@ -48,7 +49,7 @@ Public Class FormNonCGI
         cmbStatus.Items.Add("UNSOLD")
 
         oReader.Close()
-        oConn.Close()
+        oCOnn.Close()
 
     End Sub
 
@@ -68,7 +69,6 @@ Public Class FormNonCGI
 
     Private Sub btnOKAddNonCGI_Click(sender As Object, e As EventArgs) Handles btnOKAddNonCGI.Click
         Dim oConn = New SqlConnection
-        Dim iCropID As Integer
         Dim sTestProd As String
         sTestProd = "P"
         If sTestProd = "P" Then
@@ -132,13 +132,12 @@ Public Class FormNonCGI
             sSql = sSql & "'" & GlobalVariables.DQuot(txtSoldTo.Text.ToString()) & "', "
             sSql = sSql & "Convert(DateTime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
             sSql = sSql & "'" & GlobalVariables.DQuot(txtLocation.Text.ToString()) & "', "
-            sSql = sSql & GlobalVariables.CurrentGrower.GrowerID.ToString() & "); SELECT SCOPE_IDENTITY()"
+            sSql = sSql & GlobalVariables.CurrentGrower.GrowerID.ToString() & ")"
 
             oConn.Open()
             myCmd.CommandText = sSql
 
-            'myCmd.ExecuteNonQuery()
-            iCropID = myCmd.ExecuteScalar()
+            myCmd.ExecuteNonQuery()
             oConn.Close()
             Dim oNewNonCGI As New NonCGI
 
@@ -149,7 +148,6 @@ Public Class FormNonCGI
             oNewNonCGI.Volume = txtVolume.Text
             oNewNonCGI.SoldTo = txtSoldTo.Text
             oNewNonCGI.Location = txtLocation.Text
-            oNewNonCGI.NonCGICropID = iCropID
             GlobalVariables.CurrentGrower.OtherCrops.Add(oNewNonCGI)
             'oGrowerColl(oSelItem.CollectionIndex).Notes.Add(oNewNonCGI)
 
@@ -183,7 +181,7 @@ Public Class FormNonCGI
 
     End Sub
 
-    Private Sub lblGrowerName_Click(sender As Object, e As EventArgs) Handles lblGrowerName.Click
+    Private Sub lblGrowerName_Click(sender As Object, e As EventArgs) Handles lblNonCGIGrowerFirstName.Click
 
     End Sub
 

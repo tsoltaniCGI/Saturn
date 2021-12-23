@@ -116,7 +116,7 @@ Partial Class FormMain
         Me.lvCommoditySales.Margin = New System.Windows.Forms.Padding(7)
         Me.lvCommoditySales.Name = "lvCommoditySales"
         Me.lvCommoditySales.Scrollable = False
-        Me.lvCommoditySales.Size = New System.Drawing.Size(445, 204)
+        Me.lvCommoditySales.Size = New System.Drawing.Size(445, 188)
         Me.lvCommoditySales.TabIndex = 20
         Me.lvCommoditySales.UseCompatibleStateImageBehavior = False
         '
@@ -186,9 +186,8 @@ Partial Class FormMain
         Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.lblGrowerCountry.Location = New System.Drawing.Point(718, 336)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
-        Me.lblGrowerCountry.Size = New System.Drawing.Size(99, 15)
+        Me.lblGrowerCountry.Size = New System.Drawing.Size(0, 15)
         Me.lblGrowerCountry.TabIndex = 35
-        Me.lblGrowerCountry.Text = "GrowerCountry"
         '
         'lblGrowerZip
         '
@@ -526,7 +525,7 @@ Partial Class FormMain
         Me.lvNonCGI.MultiSelect = False
         Me.lvNonCGI.Name = "lvNonCGI"
         Me.lvNonCGI.ShowItemToolTips = True
-        Me.lvNonCGI.Size = New System.Drawing.Size(536, 204)
+        Me.lvNonCGI.Size = New System.Drawing.Size(536, 188)
         Me.lvNonCGI.TabIndex = 76
         Me.lvNonCGI.UseCompatibleStateImageBehavior = False
         '

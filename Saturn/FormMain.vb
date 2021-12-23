@@ -789,6 +789,8 @@ Public Class FormMain
             ckVendor6.Visible = False
             ckVendor7.Visible = False
             ckVendor8.Visible = False
+            btnAddNote.Enabled = False
+            btnEditGrower.Enabled = False
         End If
 
         TestDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells

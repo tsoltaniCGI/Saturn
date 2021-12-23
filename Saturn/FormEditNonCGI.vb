@@ -18,6 +18,9 @@ Public Class FormEditNonCGI
             oConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         End If
 
+        Me.lblNonCGIGrowerFirstName.Text = GlobalVariables.CurrentGrower.GrowerFirstName
+        Me.lblNonCGIGrowerLastName.Text = GlobalVariables.CurrentGrower.GrowerLastName
+
         oConn.Open()
         myCmd = oConn.CreateCommand
         sSql = "SELECT commodity_id, commodity_name "
