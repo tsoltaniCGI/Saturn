@@ -3,7 +3,7 @@
     Private Sub SaturnBackground_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim formLogin As New FormLogin
         GlobalVariables.oFrmBackground = Me
-        GlobalVariables.sEnv = "P"
+        GlobalVariables.sEnv = "T"
         formLogin.TopLevel = True
         'formLogin.Parent = Me
         formLogin.ShowDialog()
