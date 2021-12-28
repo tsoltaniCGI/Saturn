@@ -35,7 +35,7 @@
             End If
 
             myCmd = oConn.CreateCommand
-            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id "
+            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id "
             sSql = sSql & "FROM users, facilities, users_facilities "
             sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
             sSql = sSql & "AND users_facilities.user_id = users.user_id "
@@ -55,6 +55,7 @@
                         GlobalVariables.CurrentUserLogin = GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper()))
                         GlobalVariables.UserFirstName = oReader.GetString(1)
                         GlobalVariables.UserLastName = oReader.GetString(2)
+                        GlobalVariables.CurrentUVDID = oReader.GetInt32(5)
                         bUserLoaded = True
                     End If
                     GlobalVariables.UserFacilityIDs.Add(oReader.GetInt32(4))

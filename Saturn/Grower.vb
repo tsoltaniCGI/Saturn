@@ -197,6 +197,7 @@ Public Class GlobalVariables
     Public Shared VendorList As New Collection
     Public Shared UserId As Integer
     Public Shared CurrentUserLogin As String
+    Public Shared CurrentUVDID As Integer
     Public Shared EditedGrower As Boolean
     Public Shared UserFirstName As String
     Public Shared UserLastName As String

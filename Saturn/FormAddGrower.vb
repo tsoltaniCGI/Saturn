@@ -212,20 +212,22 @@ Public Class FormAddGrower
             GlobalVariables.bGrowerAdd = True
             iVendorID = 0
             If ckProspect.Checked Then
-                sProsVendorName = Year(Now().ToString()) & Month(Now().ToString()) & DateTime.Now.Day().ToString()
-                sProsVendorName = sProsVendorName & Hour(Now()).ToString() & Minute(Now()).ToString() & Second(Now()).ToString()
-                sSql = "INSERT INTO vendors (vendor_name, vendor_dummy) "
-                sSql = sSql & "VALUES ('" & sProsVendorName
-                sSql = sSql & "', 'Y'); SELECT SCOPE_IDENTITY()"
-                myCmd.CommandText = sSql
-                iVendorID = myCmd.ExecuteScalar()
-                GlobalVariables.iAddedVendorID = iVendorID
+                'sProsVendorName = Year(Now().ToString()) & Month(Now().ToString()) & DateTime.Now.Day().ToString()
+                'sProsVendorName = sProsVendorName & Hour(Now()).ToString() & Minute(Now()).ToString() & Second(Now()).ToString()
+                'sSql = "INSERT INTO vendors (vendor_name, vendor_dummy) "
+                'sSql = sSql & "VALUES ('" & sProsVendorName
+                'sSql = sSql & "', 'Y'); SELECT SCOPE_IDENTITY()"
+                'myCmd.CommandText = sSql
+                'iVendorID = myCmd.ExecuteScalar()
+                'GlobalVariables.iAddedVendorID = iVendorID
 
-                Dim oNewVendor As New Vendor
-                oNewVendor.VendorID = iVendorID
-                oNewVendor.VendorName = sProsVendorName
-                oNewVendor.VendorDummy = "Y"
-                GlobalVariables.VendorList.Add(oNewVendor, oNewVendor.VendorID.ToString())
+                'Dim oNewVendor As New Vendor
+                'oNewVendor.VendorID = iVendorID
+                'oNewVendor.VendorName = sProsVendorName
+                'oNewVendor.VendorDummy = "Y"
+                'GlobalVariables.VendorList.Add(oNewVendor, oNewVendor.VendorID.ToString())
+                iVendorID = GlobalVariables.CurrentUVDID
+                GlobalVariables.iAddedVendorID = iVendorID
                 sProspect = "Y"
             End If
             sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
@@ -256,10 +258,10 @@ Public Class FormAddGrower
                     myCmd.ExecuteNonQuery()
 
                 Next
-                sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
-                sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
-                myCmd.CommandText = sSql
-                myCmd.ExecuteNonQuery()
+                'sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
+                'sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
+                'myCmd.CommandText = sSql
+                'myCmd.ExecuteNonQuery()
             Else
                 For Each iIndex In lstVendors.SelectedIndices
                     sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
