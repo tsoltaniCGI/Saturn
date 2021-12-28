@@ -70,7 +70,7 @@ Public Class FormNonCGI
     Private Sub btnOKAddNonCGI_Click(sender As Object, e As EventArgs) Handles btnOKAddNonCGI.Click
         Dim oConn = New SqlConnection
         Dim sTestProd As String
-        sTestProd = "P"
+        sTestProd = GlobalVariables.sEnv
         If sTestProd = "P" Then
             oConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
         Else

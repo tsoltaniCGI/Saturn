@@ -250,18 +250,18 @@ Public Class FormAddGrower
             'iGrowerID = oReader.GetInt32(0)
 
             If ckProspect.Checked Then
-                For Each FacID In GlobalVariables.UserFacilityIDs
-                    sSql = "INSERT INTO vendors_facilities (vendor_id, facility_id) "
-                    sSql = sSql & "VALUES (" & iVendorID.ToString() & ", "
-                    sSql = sSql & FacID.ToString() & "); SELECT SCOPE_IDENTITY()"
-                    myCmd.CommandText = sSql
-                    myCmd.ExecuteNonQuery()
-
-                Next
-                'sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
-                'sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
+                'For Each FacID In GlobalVariables.UserFacilityIDs
+                'sSql = "INSERT INTO vendors_facilities (vendor_id, facility_id) "
+                'sSql = sSql & "VALUES (" & iVendorID.ToString() & ", "
+                'sSql = sSql & FacID.ToString() & "); SELECT SCOPE_IDENTITY()"
                 'myCmd.CommandText = sSql
                 'myCmd.ExecuteNonQuery()
+
+                'Next
+                sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
+                sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
+                myCmd.CommandText = sSql
+                myCmd.ExecuteNonQuery()
             Else
                 For Each iIndex In lstVendors.SelectedIndices
                     sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
