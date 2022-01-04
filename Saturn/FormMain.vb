@@ -854,6 +854,7 @@ Public Class FormMain
         Loop
 
         If ListBox1.Items.Count >= 1 Then
+            btnEditGrower.Enabled = True
             ListBox1.SetSelected(0, True)
         Else
             ckVendor1.Visible = False
