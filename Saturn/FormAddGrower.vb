@@ -143,7 +143,7 @@ Public Class FormAddGrower
         Dim sProspect As String
         Dim sCurCountryCode As String
         Dim oConn As SqlConnection
-        Dim sProsVendorName As String
+        'Dim sProsVendorName As String
 
         sCurCountryCode = "US"
         If rbUSA.Checked Then
