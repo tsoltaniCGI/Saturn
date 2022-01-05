@@ -413,7 +413,9 @@ Public Class FormMain
         sSql = sSql & " left outer join GROWER_NOTES "
         sSql = sSql & "   on GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
         sSql = sSql & " cross join GROWERS_VENDORS AS g_v "
-        sSql = sSql & "WHERE VENDOR_SALES_VOLUME.COMMODITY_ID = com.commodity_id"
+        sSql = sSql & "WHERE VENDOR_SALES_VOLUME.COMMODITY_ID = com.commodity_id "
+        sSql = sSql & "AND Users.User_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
 
         myCmd.CommandText = sSql
         'oConn.Open()
