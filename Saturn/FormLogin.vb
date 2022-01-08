@@ -38,7 +38,7 @@
             sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id "
             sSql = sSql & "FROM users, facilities, users_facilities "
             sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
-            'sSql = sSql & "WHERE user_login = 'JSMART' "
+            'sSql = sSql & "WHERE user_login = 'CWOLERY' "
             sSql = sSql & "AND users_facilities.user_id = users.user_id "
             sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id"
             'facilities.facility_id = ISNULL(User_facility_id, 158)"
