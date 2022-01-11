@@ -604,7 +604,8 @@ Public Class FormMain
                             oNote.GrowerNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
                             oNote.GrowerNoteCreationDate = oCollGrowVendComm(iCnt).GrowerNoteCreationDate
                             oNote.GrowerNoteCreatedBy = oCollGrowVendComm(iCnt).GrowerNoteCreatedBy
-                            oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oNote.GrowerNoteCreatedBy)
+                            'oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oNote.GrowerNoteCreatedBy)
+                            oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oCollGrowVendComm(iCnt).GrowerNoteCreatedBy.ToString())
                             oNote.GrowerNoteSubject = oCollGrowVendComm(iCnt).GrowerNoteSubject
                             oNote.GrowerNoteMethod = oCollGrowVendComm(iCnt).GrowerNoteMethod
                             oNote.GrowerNoteMethodText = oNoteMethods(oNote.GrowerNoteMethod.ToString())
