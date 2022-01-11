@@ -7,6 +7,7 @@
     <StartupObject>Saturn.SaturnBackground</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <OptionStrict>On</OptionStrict>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
