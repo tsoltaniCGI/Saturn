@@ -1380,6 +1380,13 @@ Public Class FormMain
 
     End Sub
 
+    'Private Sub btnLogOut_Click(sender As Object, e As EventArgs)
+    '    If MessageBox.Show("Do you want to exit?", "Title", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+
+    '        Me.Close()
+
+    '    End If
+    'End Sub
 End Class
 
 

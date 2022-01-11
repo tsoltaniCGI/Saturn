@@ -1,0 +1,48 @@
+SELECT DISTINCT 
+        GROWERS.GROWER_ID,  VENDORS.VENDOR_ID,  coalesce(GROWER_FIRST_NAME, '') as [First Name],
+        coalesce(GROWER_ADDRESS_LINE_1, '') as ADDRESS, coalesce(GROWER_CITY, '') as CITY, 
+        coalesce(GROWER_COUNTY, '') as COUNTY, coalesce(GROWER_STATE, '') as STATE, coalesce(GROWER_ZIP, '') as [Zip Code], 
+        coalesce(GROWER_COUNTRY, '') as COUNTRY, coalesce(GROWER_PHONE1, '') as [Work Phone], coalesce(VENDOR_NAME, '') as [Vendor Name], 
+        coalesce(COM.COMMODITY_ID, '') as COMMID, coalesce(COM.COMMODITY_NAME, '') as COMMODITY, coalesce(CURRENT_CROP_YEAR_VOLUME, 0) as [CCY Volume], 
+        coalesce(PREVIOUS_CROP_YEAR_VOLUME, 0) as [PCY Volume], coalesce(PREVIOUS2_CROP_YEAR_VOLUME, 0) as [P2CY Volume], 
+        coalesce(GROWER_NOTE_ID, 0) as NOTEID, coalesce(GROWER_NOTE_SUBJECT, '') as [Note Subject], coalesce(GROWER_NOTE_METHOD_ID, 0) as [Note Method ID], 
+        coalesce(GROWER_NOTE_TEXT, '') as [Note Text], coalesce(GROWER_NOTE_CREATION_DATE, '') as [Note Creation Date], 
+        coalesce(GROWER_NOTE_CREATED_BY, 0) as [Note Creator], coalesce(VENDOR_DUMMY, 'N') as [Dummy (Y/N)?], 
+        coalesce(GROWER_LAST_NAME, '') as [Last Name], coalesce(GROWER_FAX, '') as FAX, coalesce(GROWER_EMAIL, '') as EMAIL, 
+        coalesce(GROWER_PHONE2, '') as [Cell Phone], coalesce(GROWER_ADDRESS_LINE_2, '') as [Address 2] 
+ FROM GROWERS 
+        inner join GROWERS_VENDORS 
+        on GROWERS.GROWER_ID = GROWERS_VENDORS.GROWER_ID 
+        inner join ( 
+        VENDORS 
+        left outer join ( 
+        VENDORS_COMMODITIES 
+        inner join COMMODITIES As com 
+        on VENDORS_COMMODITIES.COMMODITY_ID = COM.COMMODITY_ID 
+          ) 
+        on VENDORS_COMMODITIES.VENDOR_ID = VENDORS.VENDOR_ID 
+        left outer join VENDOR_SALES_VOLUME 
+        on VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID 
+      ) 
+        on VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID 
+        inner join ( 
+        VENDORS_FACILITIES 
+        inner join FACILITIES 
+        on VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID 
+        inner join USERS_FACILITIES 
+        on USERS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID 
+        inner join USERS 
+        on USERS_FACILITIES.USER_ID = USERS.USER_ID 
+       ) 
+         on ( 
+         VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID 
+         and VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID 
+       ) 
+         left outer join GROWER_NOTES 
+         on GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID 
+         cross join GROWERS_VENDORS AS g_v 
+         WHERE VENDOR_SALES_VOLUME.COMMODITY_ID = com.commodity_id
+	 AND users.user_id = 18
+
+	Select * from users_facilities
+	where user_id = 333
