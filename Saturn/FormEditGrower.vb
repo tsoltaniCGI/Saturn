@@ -271,7 +271,7 @@ Public Class FormEditGrower
             GlobalVariables.CurrentGrower.GrowerAddress1 = txtAddress1.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerAddress2 = txtAddress2.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerCity = txtCity.Text.ToString()
-            GlobalVariables.CurrentGrower.GrowerCountry = txtCounty.Text.ToString()
+            GlobalVariables.CurrentGrower.GrowerCounty = txtCounty.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerState = cmbState.SelectedItem.ToString()
             GlobalVariables.CurrentGrower.GrowerCountry = sCurCountry
             GlobalVariables.CurrentGrower.GrowerZip = txtZip.Text.ToString()

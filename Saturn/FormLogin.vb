@@ -34,11 +34,12 @@
                 oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
             End If
 
+            'This is the code where impersonating happens
             myCmd = oConn.CreateCommand
             sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id "
             sSql = sSql & "FROM users, facilities, users_facilities "
-            'sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
-            sSql = sSql & "WHERE user_login = 'ROSBORNE' "
+            sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
+            'sSql = sSql & "WHERE user_login = 'AYOCKEY' "
             sSql = sSql & "AND users_facilities.user_id = users.user_id "
             sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id"
             'facilities.facility_id = ISNULL(User_facility_id, 158)"
