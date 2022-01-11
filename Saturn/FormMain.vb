@@ -604,7 +604,8 @@ Public Class FormMain
                             oNote.GrowerNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
                             oNote.GrowerNoteCreationDate = oCollGrowVendComm(iCnt).GrowerNoteCreationDate
                             oNote.GrowerNoteCreatedBy = oCollGrowVendComm(iCnt).GrowerNoteCreatedBy
-                            oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oNote.GrowerNoteCreatedBy)
+                            'oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oNote.GrowerNoteCreatedBy)
+                            oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oCollGrowVendComm(iCnt).GrowerNoteCreatedBy.ToString())
                             oNote.GrowerNoteSubject = oCollGrowVendComm(iCnt).GrowerNoteSubject
                             oNote.GrowerNoteMethod = oCollGrowVendComm(iCnt).GrowerNoteMethod
                             oNote.GrowerNoteMethodText = oNoteMethods(oNote.GrowerNoteMethod.ToString())
@@ -855,20 +856,22 @@ Public Class FormMain
             End If
         Loop
 
-        If ListBox1.Items.Count >= 1 Then
-            btnEditGrower.Enabled = True
-            ListBox1.SetSelected(0, True)
-        Else
-            ckVendor1.Visible = False
-            ckVendor2.Visible = False
-            ckVendor3.Visible = False
-            ckVendor4.Visible = False
-            ckVendor5.Visible = False
-            ckVendor6.Visible = False
-            ckVendor7.Visible = False
-            ckVendor8.Visible = False
-            btnAddNote.Enabled = False
-            btnEditGrower.Enabled = False
+        If Not GlobalVariables.ResetGrower Then
+            If ListBox1.Items.Count >= 1 Then
+                btnEditGrower.Enabled = True
+                ListBox1.SetSelected(0, True)
+            Else
+                ckVendor1.Visible = False
+                ckVendor2.Visible = False
+                ckVendor3.Visible = False
+                ckVendor4.Visible = False
+                ckVendor5.Visible = False
+                ckVendor6.Visible = False
+                ckVendor7.Visible = False
+                ckVendor8.Visible = False
+                btnAddNote.Enabled = False
+                btnEditGrower.Enabled = False
+            End If
         End If
 
         TestDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
