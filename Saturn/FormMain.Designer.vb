@@ -610,9 +610,9 @@ Partial Class FormMain
         '
         Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(17, 54)
+        Me.PictureBox1.Location = New System.Drawing.Point(17, 38)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(322, 901)
+        Me.PictureBox1.Size = New System.Drawing.Size(322, 917)
         Me.PictureBox1.TabIndex = 81
         Me.PictureBox1.TabStop = False
         '

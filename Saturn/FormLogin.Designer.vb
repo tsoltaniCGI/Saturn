@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormLogin
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,13 +20,14 @@ Partial Class FormLogin
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormLogin))
         Me.txtUserName = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblImpersonate = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtUserName
@@ -61,7 +62,7 @@ Partial Class FormLogin
         Me.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.btnLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnLogin.Location = New System.Drawing.Point(66, 472)
+        Me.btnLogin.Location = New System.Drawing.Point(66, 474)
         Me.btnLogin.Margin = New System.Windows.Forms.Padding(0)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(357, 48)
@@ -73,11 +74,20 @@ Partial Class FormLogin
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(117, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(66, 446)
+        Me.Label4.Location = New System.Drawing.Point(66, 440)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 15)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Label4"
+        '
+        'lblImpersonate
+        '
+        Me.lblImpersonate.AutoSize = True
+        Me.lblImpersonate.BackColor = System.Drawing.Color.FromArgb(CType(CType(77, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(117, Byte), Integer))
+        Me.lblImpersonate.Location = New System.Drawing.Point(66, 466)
+        Me.lblImpersonate.Name = "lblImpersonate"
+        Me.lblImpersonate.Size = New System.Drawing.Size(0, 15)
+        Me.lblImpersonate.TabIndex = 7
         '
         'FormLogin
         '
@@ -85,7 +95,8 @@ Partial Class FormLogin
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.HotTrack
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(471, 532)
+        Me.ClientSize = New System.Drawing.Size(484, 549)
+        Me.Controls.Add(Me.lblImpersonate)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.txtPassword)
@@ -103,4 +114,5 @@ Partial Class FormLogin
     Friend WithEvents txtPassword As TextBox
     Friend WithEvents btnLogin As Button
     Friend WithEvents Label4 As Label
+    Friend WithEvents lblImpersonate As Label
 End Class

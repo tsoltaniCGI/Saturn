@@ -1,6 +1,5 @@
 ﻿Option Strict Off
 Imports System.Data.SqlClient
-'Imports
 
 
 Public Class FormAddGrower
