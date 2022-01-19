@@ -87,10 +87,6 @@ Partial Class FormMain
         Me.lblFax = New System.Windows.Forms.MaskedTextBox()
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
-        Me.btnLogOut = New System.Windows.Forms.Button()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -738,24 +734,15 @@ Partial Class FormMain
         '
         'btnLogOut
         '
-        Me.btnLogOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnLogOut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnLogOut.Location = New System.Drawing.Point(1815, 13)
-        Me.btnLogOut.Name = "btnLogOut"
-        Me.btnLogOut.Size = New System.Drawing.Size(75, 23)
-        Me.btnLogOut.TabIndex = 95
-        Me.btnLogOut.Text = "Log Off"
-        Me.btnLogOut.UseVisualStyleBackColor = False
-        '
         'FormMain
         '
-        Me.AcceptButton = Me.btnSearch
+
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1882, 982)
-        Me.Controls.Add(Me.btnLogOut)
+
         Me.Controls.Add(Me.btnEditNonCGI)
         Me.Controls.Add(Me.btnAddNonCGI)
         Me.Controls.Add(Me.txtProspect)
@@ -888,5 +875,5 @@ Partial Class FormMain
     Friend WithEvents lblAddress2 As Label
     Friend WithEvents btnLogOut As Button
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents btnLogOut As Button
+
 End Class
