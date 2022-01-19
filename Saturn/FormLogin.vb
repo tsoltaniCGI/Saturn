@@ -34,6 +34,7 @@
                 oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
             End If
 
+            'This is the code where impersonating happens
             myCmd = oConn.CreateCommand
             sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, user_role "
             sSql = sSql & "FROM users, facilities, users_facilities "
