@@ -17,6 +17,7 @@
         Dim iUserId As Integer
         Dim bValidated As Boolean
         Dim bUserLoaded As Boolean
+        Dim frmImpersonate = New FormImpersonate
 
         Label4.Text = ""
 
@@ -24,7 +25,6 @@
         Label4.Visible = False
         bValidated = False
         If ValidateActiveDirectoryLogin("columbiagrain.com", txtUserName.Text.ToString(), txtPassword.Text.ToString()) Then
-
 
             Dim sTestProd As String
             sTestProd = "P"
@@ -36,15 +36,17 @@
 
             'This is the code where impersonating happens
             myCmd = oConn.CreateCommand
-            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id "
+            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, user_role "
             sSql = sSql & "FROM users, facilities, users_facilities "
             sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
-            'sSql = sSql & "WHERE user_login = 'AYOCKEY' "
+            'sSql = sSql & "WHERE user_login = 'ROSBORNE' "
             sSql = sSql & "AND users_facilities.user_id = users.user_id "
             sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id"
             'facilities.facility_id = ISNULL(User_facility_id, 158)"
             myCmd.CommandText = sSql
             oConn.Open()
+
+
 
             oReader = myCmd.ExecuteReader()
             If oReader.HasRows Then
@@ -58,6 +60,7 @@
                         GlobalVariables.UserFirstName = oReader.GetString(1)
                         GlobalVariables.UserLastName = oReader.GetString(2)
                         GlobalVariables.CurrentUVDID = oReader.GetInt32(5)
+                        GlobalVariables.CurrentUserRole = oReader.GetInt32(6)
                         bUserLoaded = True
                     End If
                     GlobalVariables.UserFacilityIDs.Add(oReader.GetInt32(4))
@@ -66,6 +69,45 @@
                     End If
                 Loop
                 Label4.Text = "Validated"
+
+                If GlobalVariables.CurrentUserRole = 1 Then
+                    If MessageBox.Show("Do you want to impersonate?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                        frmImpersonate.ShowDialog()
+                        If GlobalVariables.ImpLogin <> "" Then
+                            oReader.Close()
+                            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, user_role "
+                            sSql = sSql & "FROM users, facilities, users_facilities "
+                            'sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
+                            sSql = sSql & "WHERE user_login = '" & GlobalVariables.ImpLogin & "' "
+                            sSql = sSql & "AND users_facilities.user_id = users.user_id "
+                            sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id"
+
+                            myCmd.CommandText = sSql
+                            oReader = myCmd.ExecuteReader()
+
+                            Me.bAppExit = False
+                            bUserLoaded = False
+                            Do While oReader.Read()
+                                If Not bUserLoaded Then
+                                    iUserId = oReader.GetInt32(0)
+                                    GlobalVariables.UserId = iUserId
+                                    GlobalVariables.CurrentUserLogin = GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper()))
+                                    GlobalVariables.UserFirstName = oReader.GetString(1)
+                                    GlobalVariables.UserLastName = oReader.GetString(2)
+                                    GlobalVariables.CurrentUVDID = oReader.GetInt32(5)
+                                    'GlobalVariables.CurrentUserRole = oReader.GetInt32(6)
+                                    GlobalVariables.CurrentUserRole = 0
+                                    bUserLoaded = True
+                                End If
+                                GlobalVariables.UserFacilityIDs.Add(oReader.GetInt32(4))
+                                If Not GlobalVariables.UserFacilities.Contains(oReader.GetString(3)) Then
+                                    GlobalVariables.UserFacilities.Add(oReader.GetString(3), oReader.GetString(3))
+                                End If
+                            Loop
+                        End If
+
+                    End If
+                End If
                 'Me.BackgroundImage = 
                 Me.Close()
                 Dim oFormMain As New FormMain
@@ -74,12 +116,11 @@
                 'oFormMain.TopMost = True
             Else
                 Label4.Visible = True
-                Label4.Text = "You are not authorized for access to Saturn.  Please contact your supervisor."
+                Label4.Text = "You are not authorized for access to Saturn. Please contact your supervisor."
             End If
-
         Else
             Label4.Visible = True
-            Label4.Text = "Invalid Username/Password.  Try Again."
+            Label4.Text = "Invalid Username/Password. Try Again."
         End If
     End Sub
 
@@ -108,6 +149,10 @@
     End Sub
 
     Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
+
+    End Sub
+
+    Private Sub btnYes_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class
