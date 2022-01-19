@@ -52,7 +52,6 @@ Partial Class FormMain
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
         Me.btnAddNote = New System.Windows.Forms.Button()
         Me.TestDataGrid = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -89,6 +88,7 @@ Partial Class FormMain
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
         Me.btnLogOut = New System.Windows.Forms.Button()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -379,25 +379,12 @@ Partial Class FormMain
         Me.TestDataGrid.ColumnHeadersVisible = False
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1455, 200)
+        Me.TestDataGrid.Location = New System.Drawing.Point(1455, 194)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
-        Me.TestDataGrid.Size = New System.Drawing.Size(391, 655)
+        Me.TestDataGrid.Size = New System.Drawing.Size(391, 661)
         Me.TestDataGrid.TabIndex = 54
-        '
-        'Column1
-        '
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Column1.HeaderText = ""
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        Me.Column1.Width = 375
         '
         'PictureBox2
         '
@@ -600,7 +587,7 @@ Partial Class FormMain
         Me.txtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNotes.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtNotes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtNotes.Location = New System.Drawing.Point(1509, 127)
+        Me.txtNotes.Location = New System.Drawing.Point(1512, 129)
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(161, 22)
         Me.txtNotes.TabIndex = 80
@@ -751,12 +738,25 @@ Partial Class FormMain
         '
         Me.btnLogOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnLogOut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnLogOut.Location = New System.Drawing.Point(1809, 11)
+        Me.btnLogOut.Location = New System.Drawing.Point(1815, 13)
         Me.btnLogOut.Name = "btnLogOut"
         Me.btnLogOut.Size = New System.Drawing.Size(75, 23)
         Me.btnLogOut.TabIndex = 95
         Me.btnLogOut.Text = "Log Off"
         Me.btnLogOut.UseVisualStyleBackColor = False
+        '
+        'Column1
+        '
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Column1.HeaderText = ""
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Width = 385
         '
         'FormMain
         '
