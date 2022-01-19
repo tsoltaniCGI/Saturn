@@ -72,26 +72,7 @@
                 If GlobalVariables.CurrentUserRole = 1 Then
                     If MessageBox.Show("Do you want to impersonate?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
                         frmImpersonate.ShowDialog()
-
-                        'Dim oLogins As New Collection
-                        'sSql = " SELECT user_first_name, user_last_name, user_login  "
-                        'sSql = sSql & " FROM Users "
-                        'sSql = sSql & "WHERE user_role <> 1 "
-                        'sSql = sSql & "ORDER BY user_first_name, user_last_name"
-                        'myCmd.CommandText = sSql
-                        'oReader.Close()
-
-
-                        'oReader = myCmd.ExecuteReader()
-                        'If oReader.HasRows() Then
-                        '    Do While oReader.Read()
-                        '        cmbUsers.Items.Add(oReader.GetString(0) & " " & oReader.GetString(1))
-                        '        oLogins.Add(oReader.GetString(2).ToString().ToUpper())
-                        '    Loop
-
                         If GlobalVariables.ImpLogin <> "" Then
-
-
                             oReader.Close()
                             sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, user_role "
                             sSql = sSql & "FROM users, facilities, users_facilities "
@@ -101,9 +82,7 @@
                             sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id"
 
                             myCmd.CommandText = sSql
-
                             oReader = myCmd.ExecuteReader()
-
 
                             Me.bAppExit = False
                             bUserLoaded = False
@@ -126,34 +105,22 @@
                             Loop
                         End If
 
-
-
-                    Else
-
-                        'Me.BackgroundImage = 
-                        Me.Close()
-                        Dim oFormMain As New FormMain
-                        oFormMain.Show()
-                        GlobalVariables.oFrmBackground.WindowState = FormWindowState.Minimized
-                        'oFormMain.TopMost = True
-
-
                     End If
                 End If
-
-
-
-
+                'Me.BackgroundImage = 
+                Me.Close()
+                Dim oFormMain As New FormMain
+                oFormMain.Show()
+                GlobalVariables.oFrmBackground.WindowState = FormWindowState.Minimized
+                'oFormMain.TopMost = True
             Else
                 Label4.Visible = True
-                Label4.Text = "You are not authorized for access to Saturn.  Please contact your supervisor."
+                Label4.Text = "You are not authorized for access to Saturn. Please contact your supervisor."
             End If
-
         Else
             Label4.Visible = True
-            Label4.Text = "Invalid Username/Password.  Try Again."
+            Label4.Text = "Invalid Username/Password. Try Again."
         End If
-
     End Sub
 
     Private Function ValidateActiveDirectoryLogin(ByVal Domain As String, ByVal Username As String, ByVal Password As String) As Boolean

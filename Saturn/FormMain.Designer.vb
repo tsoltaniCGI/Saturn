@@ -150,7 +150,7 @@ Partial Class FormMain
         Me.ListBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(26, 156)
+        Me.ListBox1.Location = New System.Drawing.Point(3, 149)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(313, 799)
         Me.ListBox1.TabIndex = 32
@@ -236,7 +236,7 @@ Partial Class FormMain
         Me.pbContact.Image = CType(resources.GetObject("pbContact.Image"), System.Drawing.Image)
         Me.pbContact.Location = New System.Drawing.Point(403, 104)
         Me.pbContact.Name = "pbContact"
-        Me.pbContact.Size = New System.Drawing.Size(591, 383)
+        Me.pbContact.Size = New System.Drawing.Size(591, 384)
         Me.pbContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbContact.TabIndex = 40
         Me.pbContact.TabStop = False
@@ -247,7 +247,7 @@ Partial Class FormMain
         Me.lblName.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblName.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblName.Location = New System.Drawing.Point(648, 207)
+        Me.lblName.Location = New System.Drawing.Point(651, 208)
         Me.lblName.Name = "lblName"
         Me.lblName.Size = New System.Drawing.Size(137, 16)
         Me.lblName.TabIndex = 43
@@ -379,7 +379,7 @@ Partial Class FormMain
         Me.TestDataGrid.ColumnHeadersVisible = False
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1455, 207)
+        Me.TestDataGrid.Location = New System.Drawing.Point(1432, 200)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
@@ -489,7 +489,7 @@ Partial Class FormMain
         Me.PictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(1426, 54)
+        Me.PictureBox6.Location = New System.Drawing.Point(1403, 47)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(439, 901)
         Me.PictureBox6.TabIndex = 60
@@ -610,9 +610,9 @@ Partial Class FormMain
         '
         Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(17, 38)
+        Me.PictureBox1.Location = New System.Drawing.Point(-6, 40)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(322, 917)
+        Me.PictureBox1.Size = New System.Drawing.Size(322, 908)
         Me.PictureBox1.TabIndex = 81
         Me.PictureBox1.TabStop = False
         '
@@ -643,9 +643,9 @@ Partial Class FormMain
         '
         Me.PictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox10.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox10.Location = New System.Drawing.Point(17, 38)
+        Me.PictureBox10.Location = New System.Drawing.Point(-6, 40)
         Me.PictureBox10.Name = "PictureBox10"
-        Me.PictureBox10.Size = New System.Drawing.Size(1848, 917)
+        Me.PictureBox10.Size = New System.Drawing.Size(1848, 908)
         Me.PictureBox10.TabIndex = 84
         Me.PictureBox10.TabStop = False
         '
@@ -752,7 +752,7 @@ Partial Class FormMain
         '
         Me.btnLogOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnLogOut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnLogOut.Location = New System.Drawing.Point(1790, 11)
+        Me.btnLogOut.Location = New System.Drawing.Point(1790, 13)
         Me.btnLogOut.Name = "btnLogOut"
         Me.btnLogOut.Size = New System.Drawing.Size(75, 23)
         Me.btnLogOut.TabIndex = 95
@@ -765,7 +765,8 @@ Partial Class FormMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
-        Me.ClientSize = New System.Drawing.Size(1882, 982)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ClientSize = New System.Drawing.Size(1837, 969)
         Me.Controls.Add(Me.btnLogOut)
         Me.Controls.Add(Me.btnEditNonCGI)
         Me.Controls.Add(Me.btnAddNonCGI)
@@ -815,6 +816,7 @@ Partial Class FormMain
         Me.Controls.Add(Me.PictureBox10)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblGrowerPhone1)
+        Me.DoubleBuffered = True
         Me.Name = "FormMain"
         Me.Text = "Saturn"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
