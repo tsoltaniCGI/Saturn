@@ -52,6 +52,7 @@ Partial Class FormMain
         Me.ckVendor8 = New System.Windows.Forms.CheckBox()
         Me.btnAddNote = New System.Windows.Forms.Button()
         Me.TestDataGrid = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -88,7 +89,8 @@ Partial Class FormMain
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
         Me.btnLogOut = New System.Windows.Forms.Button()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,9 +152,9 @@ Partial Class FormMain
         Me.ListBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(18, 149)
+        Me.ListBox1.Location = New System.Drawing.Point(9, 166)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(313, 799)
+        Me.ListBox1.Size = New System.Drawing.Size(329, 782)
         Me.ListBox1.TabIndex = 32
         '
         'lblAddress
@@ -386,6 +388,19 @@ Partial Class FormMain
         Me.TestDataGrid.Size = New System.Drawing.Size(391, 661)
         Me.TestDataGrid.TabIndex = 54
         '
+        'Column1
+        '
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Column1.HeaderText = ""
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Width = 385
+        '
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
@@ -444,7 +459,7 @@ Partial Class FormMain
         Me.btnEditGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.btnEditGrower.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnEditGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnEditGrower.Location = New System.Drawing.Point(162, 80)
+        Me.btnEditGrower.Location = New System.Drawing.Point(158, 74)
         Me.btnEditGrower.Name = "btnEditGrower"
         Me.btnEditGrower.Size = New System.Drawing.Size(85, 23)
         Me.btnEditGrower.TabIndex = 70
@@ -455,7 +470,7 @@ Partial Class FormMain
         '
         Me.btnAddGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.btnAddGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.btnAddGrower.Location = New System.Drawing.Point(249, 80)
+        Me.btnAddGrower.Location = New System.Drawing.Point(242, 74)
         Me.btnAddGrower.Name = "btnAddGrower"
         Me.btnAddGrower.Size = New System.Drawing.Size(85, 23)
         Me.btnAddGrower.TabIndex = 71
@@ -609,7 +624,7 @@ Partial Class FormMain
         Me.txtGrowers.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtGrowers.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtGrowers.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.txtGrowers.Location = New System.Drawing.Point(44, 81)
+        Me.txtGrowers.Location = New System.Drawing.Point(45, 75)
         Me.txtGrowers.Name = "txtGrowers"
         Me.txtGrowers.Size = New System.Drawing.Size(168, 22)
         Me.txtGrowers.TabIndex = 82
@@ -745,27 +760,37 @@ Partial Class FormMain
         Me.btnLogOut.Text = "Log Off"
         Me.btnLogOut.UseVisualStyleBackColor = False
         '
-        'Column1
+        'txtSearch
         '
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Column1.HeaderText = ""
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        Me.Column1.Width = 385
+        Me.txtSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.txtSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.txtSearch.Location = New System.Drawing.Point(145, 127)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(181, 23)
+        Me.txtSearch.TabIndex = 96
+        '
+        'btnSearch
+        '
+        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        Me.btnSearch.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.btnSearch.Location = New System.Drawing.Point(49, 127)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(75, 22)
+        Me.btnSearch.TabIndex = 97
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = False
         '
         'FormMain
         '
+        Me.AcceptButton = Me.btnSearch
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1866, 969)
+        Me.Controls.Add(Me.btnSearch)
+        Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lvNonCGI)
         Me.Controls.Add(Me.btnLogOut)
         Me.Controls.Add(Me.btnEditNonCGI)
@@ -900,4 +925,6 @@ Partial Class FormMain
     Friend WithEvents lblAddress2 As Label
     Friend WithEvents btnLogOut As Button
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents txtSearch As TextBox
+    Friend WithEvents btnSearch As Button
 End Class

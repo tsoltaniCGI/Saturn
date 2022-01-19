@@ -1390,6 +1390,49 @@ Public Class FormMain
     End Sub
 
 
+    Private Sub btnSearch_Click_1(sender As Object, e As EventArgs) Handles btnSearch.Click
+
+
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim sItem As String
+        Dim sSearch As String
+        Dim bFound As Boolean
+
+
+
+        If Trim(txtSearch.Text.ToString()) <> "" Then
+            bFound = False
+            iCnt = 0
+            iMax = ListBox1.Items.Count - 1
+            sSearch = txtSearch.Text.ToString().ToUpper()
+
+            Do While iCnt <= iMax
+                sItem = ListBox1.Items(iCnt).GrowerName.ToString().ToUpper()
+
+                If sItem.Contains(sSearch) Then
+                    ListBox1.SelectedIndex = iCnt
+                    bFound = True
+                    Exit Do
+                End If
+
+                iCnt = iCnt + 1
+
+            Loop
+
+            If bFound Then
+                txtSearch.Text = ""
+            Else
+
+                txtSearch.Text = "Not Found"
+            End If
+
+        End If
+    End Sub
+
+    Private Sub txtGrowers_TextChanged(sender As Object, e As EventArgs) Handles txtGrowers.TextChanged
+
+    End Sub
 End Class
 
 
