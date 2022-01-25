@@ -87,6 +87,8 @@
 
                             Me.bAppExit = False
                             bUserLoaded = False
+                            GlobalVariables.UserFacilityIDs.Clear()
+                            GlobalVariables.UserFacilities.Clear()
                             Do While oReader.Read()
                                 If Not bUserLoaded Then
                                     iUserId = oReader.GetInt32(0)
