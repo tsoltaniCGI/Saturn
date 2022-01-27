@@ -1427,13 +1427,6 @@ Public Class FormMain
     Private Sub txtGrowers_TextChanged(sender As Object, e As EventArgs) Handles txtGrowers.TextChanged
 
     End Sub
-
-    Private Sub btnLogOut_Click(sender As Object, e As EventArgs) Handles btnLogOut.Click
-        If MessageBox.Show("Are you sure you want to log off?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
-            Me.Close()
-        End If
-
-    End Sub
 End Class
 
 
