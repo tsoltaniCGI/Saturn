@@ -1383,6 +1383,12 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub btnLogOut_Click(sender As Object, e As EventArgs) Handles btnLogOut.Click
+        If MessageBox.Show("Are you sure you want to log off?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
+
 
     Private Sub btnSearch_Click_1(sender As Object, e As EventArgs) Handles btnSearch.Click
 
