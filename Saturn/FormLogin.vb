@@ -36,7 +36,7 @@
 
             'This is the code where impersonating happens
             myCmd = oConn.CreateCommand
-            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, user_role "
+            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, ISNULL(user_role,0) AS user_role "
             sSql = sSql & "FROM users, facilities, users_facilities "
             sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
             'sSql = sSql & "WHERE user_login = 'ROSBORNE' "
@@ -87,8 +87,6 @@
 
                             Me.bAppExit = False
                             bUserLoaded = False
-                            GlobalVariables.UserFacilityIDs.Clear()
-                            GlobalVariables.UserFacilities.Clear()
                             Do While oReader.Read()
                                 If Not bUserLoaded Then
                                     iUserId = oReader.GetInt32(0)
