@@ -1250,7 +1250,7 @@ Public Class FormMain
         Me.TopMost = False
         Dim frmAddGrower = New FormAddGrower
         'Dim sDate As String
-
+        'Dim sDate As String
         Me.TopMost = False
         GlobalVariables.ResetGrower = False
         frmAddGrower.ShowDialog()
