@@ -1250,7 +1250,7 @@ Public Class FormMain
         Me.TopMost = False
         Dim frmAddGrower = New FormAddGrower
         'Dim sDate As String
-
+        'Dim sDate As String
         Me.TopMost = False
         GlobalVariables.ResetGrower = False
         frmAddGrower.ShowDialog()
@@ -1383,6 +1383,12 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub btnLogOut_Click(sender As Object, e As EventArgs) Handles btnLogOut.Click
+        If MessageBox.Show("Are you sure you want to log off?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
+
 
     Private Sub btnSearch_Click_1(sender As Object, e As EventArgs) Handles btnSearch.Click
 
@@ -1425,13 +1431,6 @@ Public Class FormMain
     End Sub
 
     Private Sub txtGrowers_TextChanged(sender As Object, e As EventArgs) Handles txtGrowers.TextChanged
-
-    End Sub
-
-    Private Sub btnLogOut_Click(sender As Object, e As EventArgs) Handles btnLogOut.Click
-        If MessageBox.Show("Are you sure you want to log off?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
-            Me.Close()
-        End If
 
     End Sub
 End Class

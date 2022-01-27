@@ -47,7 +47,6 @@ Partial Class FormImpersonate
         '
         'cmbUsers
         '
-        Me.cmbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbUsers.FormattingEnabled = True
         Me.cmbUsers.Location = New System.Drawing.Point(60, 90)
         Me.cmbUsers.Name = "cmbUsers"
