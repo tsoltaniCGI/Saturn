@@ -48,6 +48,7 @@
 
 
             GlobalVariables.UserFacilityIDs.Clear()
+            GlobalVariables.UserFacilities.Clear()
             oReader = myCmd.ExecuteReader()
             If oReader.HasRows Then
                 Me.bAppExit = False
