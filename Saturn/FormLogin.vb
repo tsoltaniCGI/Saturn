@@ -48,6 +48,8 @@
 
 
             GlobalVariables.UserFacilities.Clear()
+            GlobalVariables.UserFacilities.Clear()
+
             oReader = myCmd.ExecuteReader()
             If oReader.HasRows Then
                 Me.bAppExit = False
@@ -63,6 +65,7 @@
                         GlobalVariables.CurrentUserRole = oReader.GetInt32(6)
                         bUserLoaded = True
                     End If
+
                     GlobalVariables.UserFacilityIDs.Add(oReader.GetInt32(4))
                     If Not GlobalVariables.UserFacilities.Contains(oReader.GetString(3)) Then
                         GlobalVariables.UserFacilities.Add(oReader.GetString(3), oReader.GetString(3))
