@@ -35,6 +35,7 @@ Public Class FormNonCGI
         'cmbCommodity.Items.Add
         sSql = "SELECT commodity_id, commodity_name "
         sSql = sSql & "FROM commodities "
+        sSql = sSql & "WHERE show = 'Y' "
         sSql = sSql & "ORDER BY commodity_id"
 
         myCmd.CommandText = sSql

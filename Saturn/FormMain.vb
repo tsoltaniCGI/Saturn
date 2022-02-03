@@ -245,7 +245,7 @@ Public Class FormMain
         'no fdg
         GlobalVariables.ResetNote = False
         GlobalVariables.BuildComm = True
-
+        sCaption = ""
         sCaption = "Saturn CRM" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facilities: "
         For Each sFacility In GlobalVariables.UserFacilities
             sCaption = sCaption & sFacility & " "
