@@ -1296,11 +1296,18 @@ Public Class FormMain
         If GlobalVariables.ResetGrower Then
             RebuildPage()
             sCurGrowerName = GlobalVariables.CurrentGrower.GrowerFirstName & " " & GlobalVariables.CurrentGrower.GrowerLastName
+            If GlobalVariables.CurrentGrower.GrowerProspect = "Y" Then
+                sCurGrowerName = sCurGrowerName & " - PROSPECT"
+            End If
             icnt = 1
             iMax = oGrowerColl.Count
+            ListBox1.Items.Clear()
             Do While icnt <= iMax
                 Dim oNewGrowerListItem As New IndexedGrowerListItem
                 oNewGrowerListItem.GrowerName = oGrowerColl(icnt).GrowerFirstName & " " & oGrowerColl(icnt).GrowerLastName
+                If oGrowerColl(icnt).GrowerProspect = "Y" Then
+                    oNewGrowerListItem.GrowerName = oNewGrowerListItem.GrowerName & " - PROSPECT"
+                End If
                 oNewGrowerListItem.CollectionIndex = icnt
                 ListBox1.Items.Add(oNewGrowerListItem)
                 icnt = icnt + 1
