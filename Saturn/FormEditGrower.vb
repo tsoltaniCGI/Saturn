@@ -36,7 +36,9 @@ Public Class FormEditGrower
         sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id "
         sSql = sSql & "AND users.user_id = users_facilities.user_id "
         sSql = sSql & "AND vendors.vendor_dummy = 'N' "
-        sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString()
+        sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4 "
+        sSql = sSql & "ORDER BY vendors.vendor_name"
         'For Each iID In GlobalVariables.UserFacilityIDs
         ' sSql = sSql & iID.ToString() & ", "
         ' Next
@@ -166,6 +168,7 @@ Public Class FormEditGrower
         txtZip.Text = loCurrentGrower.GrowerZip
         txtWorkPhone.Text = loCurrentGrower.GrowerPhone1
         txtCellPhone.Text = loCurrentGrower.GrowerPhone2
+        txtComment.Text = loCurrentGrower.GrowerComment
         For Each oCurrentVendor In loCurrentGrower.Vendors
             iCnt = 0
             iMax = lstVendors.Items.Count - 1
@@ -267,7 +270,8 @@ Public Class FormEditGrower
             sSql = sSql & "grower_phone1 = '" & GlobalVariables.DQuot(txtWorkPhone.Text.ToString()) & "', "
             sSql = sSql & "grower_phone2 = '" & GlobalVariables.DQuot(txtCellPhone.Text.ToString()) & "', "
             sSql = sSql & "grower_fax = '" & GlobalVariables.DQuot(txtFax.Text.ToString()) & "', "
-            sSql = sSql & "grower_email = '" & GlobalVariables.DQuot(txtEmail.Text.ToString()) & "' "
+            sSql = sSql & "grower_email = '" & GlobalVariables.DQuot(txtEmail.Text.ToString()) & "', "
+            sSql = sSql & "grower_comment = '" & GlobalVariables.DQuot(txtComment.Text.ToString()) & "' "
             sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrower.GrowerID.ToString()
 
 
@@ -288,7 +292,7 @@ Public Class FormEditGrower
             GlobalVariables.CurrentGrower.GrowerPhone2 = txtCellPhone.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerFax = txtFax.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerEmail = txtEmail.Text.ToString()
-
+            GlobalVariables.CurrentGrower.GrowerComment = txtComment.Text.ToString()
 
             If ckProspect.Checked = False Then
                 sSql = "DELETE FROM growers_vendors "

@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -91,6 +91,7 @@ Partial Class FormMain
         Me.btnLogOut = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
+        Me.txtComment = New System.Windows.Forms.TextBox()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -390,12 +391,12 @@ Partial Class FormMain
         '
         'Column1
         '
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle3
         Me.Column1.HeaderText = ""
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
@@ -780,6 +781,15 @@ Partial Class FormMain
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = False
         '
+        'txtComment
+        '
+        Me.txtComment.Location = New System.Drawing.Point(451, 493)
+        Me.txtComment.Multiline = True
+        Me.txtComment.Name = "txtComment"
+        Me.txtComment.ReadOnly = True
+        Me.txtComment.Size = New System.Drawing.Size(540, 92)
+        Me.txtComment.TabIndex = 99
+        '
         'FormMain
         '
         Me.AcceptButton = Me.btnSearch
@@ -789,6 +799,7 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1882, 1008)
+        Me.Controls.Add(Me.txtComment)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lvNonCGI)
@@ -841,7 +852,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblGrowerPhone1)
         Me.DoubleBuffered = True
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FormMain"
         Me.Text = "Saturn"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -928,4 +938,5 @@ Partial Class FormMain
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnSearch As Button
+    Friend WithEvents txtComment As TextBox
 End Class

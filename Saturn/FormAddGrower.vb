@@ -48,7 +48,8 @@ Public Class FormAddGrower
         sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
         sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
         sSql = sSql & "AND vendors.vendor_dummy = 'N' "
-        sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4"
+        sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4 "
+        sSql = sSql & "ORDER BY vendors.vendor_name "
         myCmd.CommandText = sSql
 
         Dim oReader = myCmd.ExecuteReader()
@@ -233,11 +234,13 @@ Public Class FormAddGrower
 
             sSql = "INSERT INTO growers (grower_prospect, grower_first_name, grower_last_name, grower_address_line_1, grower_address_line_2, "
             sSql = sSql & "grower_city, grower_county, grower_state, grower_zip, grower_country, grower_phone1, grower_phone2, grower_fax, "
-            sSql = sSql & "grower_email, grower_date_created, grower_created_by) "
-            sSql = sSql & "VALUES ('" & sProspect & "', '" & txtFirstName.Text & "', '" & txtLastName.Text & "', '" & txtAddress1.Text & "', '" & txtAddress2.Text & "', '"
+            sSql = sSql & "grower_email, grower_date_created, grower_created_by, grower_comment) "
+            sSql = sSql & "VALUES ('" & sProspect & "', '" & GlobalVariables.DQuot(txtFirstName.Text) & "', '" & GlobalVariables.DQuot(txtLastName.Text) & "', '" & GlobalVariables.DQuot(txtAddress1.Text) & "', '" & GlobalVariables.DQuot(txtAddress2.Text) & "', '"
             'sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & txtState.Text & "', '" & txtZip.Text & "', '" & "US" & "', '" & txtWorkPhone.Text & "', '"
-            sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & cmbState.SelectedItem.ToString() & "', '" & txtZip.Text & "', '" & sCurCountryCode & "', '" & txtWorkPhone.Text & "', '"
-            sSql = sSql & txtCellPhone.Text & "', '" & txtFax.Text & "', '" & txtEmail.Text & "', '" & sDate & "', " & GlobalVariables.UserId.ToString() & "); SELECT SCOPE_IDENTITY()"
+            sSql = sSql & GlobalVariables.DQuot(txtCity.Text) & "', '" & GlobalVariables.DQuot(txtCounty.Text) & "', '" & cmbState.SelectedItem.ToString() & "', '" & GlobalVariables.DQuot(txtZip.Text) & "', '" & GlobalVariables.DQuot(sCurCountryCode) & "', '" & GlobalVariables.DQuot(txtWorkPhone.Text) & "', '"
+            sSql = sSql & GlobalVariables.DQuot(txtCellPhone.Text) & "', '" & GlobalVariables.DQuot(txtFax.Text) & "', '" & GlobalVariables.DQuot(txtEmail.Text) & "', '" & sDate & "', " & GlobalVariables.UserId.ToString() & ", "
+            sSql = sSql & "'" & GlobalVariables.DQuot(txtComment.Text) & "'"
+            sSql = sSql & "); SELECT SCOPE_IDENTITY()"
             '"INSERT INTO table (Databasevalue) VALUES ('" + formvalue + "'); SELECT SCOPE_IDENTITY()"
             myCmd.CommandText = sSql
 
@@ -424,4 +427,6 @@ Public Class FormAddGrower
 
     Private Sub txtWorkPhone_TextChanged(sender As Object, e As EventArgs)
     End Sub
+
+
 End Class
