@@ -61,6 +61,7 @@ Partial Class FormAddGrower
         Me.txtFax = New System.Windows.Forms.MaskedTextBox()
         Me.txtZip = New System.Windows.Forms.MaskedTextBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtComment = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -461,11 +462,20 @@ Partial Class FormAddGrower
         Me.Label6.Text = "Country:"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
+        'txtComment
+        '
+        Me.txtComment.Location = New System.Drawing.Point(524, 292)
+        Me.txtComment.Multiline = True
+        Me.txtComment.Name = "txtComment"
+        Me.txtComment.Size = New System.Drawing.Size(286, 246)
+        Me.txtComment.TabIndex = 74
+        '
         'FormAddGrower
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(893, 639)
+        Me.Controls.Add(Me.txtComment)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txtZip)
         Me.Controls.Add(Me.txtFax)
@@ -555,4 +565,5 @@ Partial Class FormAddGrower
     Friend WithEvents txtFax As MaskedTextBox
     Friend WithEvents txtZip As MaskedTextBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents txtComment As TextBox
 End Class

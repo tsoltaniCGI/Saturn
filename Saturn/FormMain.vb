@@ -185,11 +185,11 @@ Public Class FormMain
                 lsPrev2CropYear = oGrowerColl(iIndex).Vendors(liIndex).CollCommodities(liCommCnt).Previous2CropYear.ToString()
                 'If Not loCollCommList.Contains(lsCurCommId) Then
                 Dim loNewComm As New Commodity
-                    loNewComm.CommID = lsCurCommId
-                    loNewComm.CommName = lsCurCommName
-                    loNewComm.CurrentCropYear = lsCurCropYear
-                    loNewComm.PreviousCropYear = lsPrevCropYear
-                    loNewComm.Previous2CropYear = lsPrev2CropYear
+                loNewComm.CommID = lsCurCommId
+                loNewComm.CommName = lsCurCommName
+                loNewComm.CurrentCropYear = lsCurCropYear
+                loNewComm.PreviousCropYear = lsPrevCropYear
+                loNewComm.Previous2CropYear = lsPrev2CropYear
                 'loCollCommList.Add(loNewComm, loNewComm.CommID)
                 loCollCommList.Add(loNewComm)
                 'End If
@@ -245,7 +245,6 @@ Public Class FormMain
         'no fdg
         GlobalVariables.ResetNote = False
         GlobalVariables.BuildComm = True
-
         sCaption = ""
         sCaption = "Saturn CRM" & " : " & "User: " & GlobalVariables.UserFirstName & " " & GlobalVariables.UserLastName & " : " & "Facilities: "
         For Each sFacility In GlobalVariables.UserFacilities
@@ -382,40 +381,40 @@ Public Class FormMain
         sSql = sSql & "coalesce(GROWER_NOTE_TEXT, '') as [Note Text], coalesce(GROWER_NOTE_CREATION_DATE, '') as [Note Creation Date], "
         sSql = sSql & "coalesce(GROWER_NOTE_CREATED_BY, 0) as [Note Creator], coalesce(VENDOR_DUMMY, 'N') as [Dummy (Y/N)?], "
         sSql = sSql & "coalesce(GROWER_LAST_NAME, '') as [Last Name], coalesce(GROWER_FAX, '') as FAX, coalesce(GROWER_EMAIL, '') as EMAIL, "
-        sSql = sSql & "coalesce(GROWER_PHONE2, '') as [Cell Phone], coalesce(GROWER_ADDRESS_LINE_2, '') as [Address 2] "
+        sSql = sSql & "coalesce(GROWER_PHONE2, '') as [Cell Phone], coalesce(GROWER_ADDRESS_LINE_2, '') as [Address 2], coalesce(GROWER_COMMENT, '') as [Comment] "
         sSql = sSql & "FROM GROWERS "
         sSql = sSql & "inner join GROWERS_VENDORS "
-        sSql = sSql & " on GROWERS.GROWER_ID = GROWERS_VENDORS.GROWER_ID "
+        sSql = sSql & " On GROWERS.GROWER_ID = GROWERS_VENDORS.GROWER_ID "
         sSql = sSql & " inner join ( "
         sSql = sSql & "    VENDORS "
         sSql = sSql & "    left outer join ( "
         sSql = sSql & "     VENDORS_COMMODITIES "
         sSql = sSql & "      inner join COMMODITIES As com "
-        sSql = sSql & "         on VENDORS_COMMODITIES.COMMODITY_ID = COM.COMMODITY_ID "
+        sSql = sSql & "         On VENDORS_COMMODITIES.COMMODITY_ID = COM.COMMODITY_ID "
         sSql = sSql & "     ) "
-        sSql = sSql & "        on VENDORS_COMMODITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        sSql = sSql & "        On VENDORS_COMMODITIES.VENDOR_ID = VENDORS.VENDOR_ID "
         sSql = sSql & "      left outer join VENDOR_SALES_VOLUME "
-        sSql = sSql & "        on VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
+        sSql = sSql & "        On VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
         sSql = sSql & " ) "
-        sSql = sSql & "   on VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID "
+        sSql = sSql & "   On VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID "
         sSql = sSql & " inner join ( "
         sSql = sSql & "   VENDORS_FACILITIES "
         sSql = sSql & "     inner join FACILITIES "
-        sSql = sSql & "       on VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        sSql = sSql & "       On VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
         sSql = sSql & "     inner join USERS_FACILITIES "
-        sSql = sSql & "       on USERS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        sSql = sSql & "       On USERS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
         sSql = sSql & "     inner join USERS "
-        sSql = sSql & "       on USERS_FACILITIES.USER_ID = USERS.USER_ID "
+        sSql = sSql & "       On USERS_FACILITIES.USER_ID = USERS.USER_ID "
         sSql = sSql & " ) "
-        sSql = sSql & "   on ( "
+        sSql = sSql & "   On ( "
         sSql = sSql & "     VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
-        sSql = sSql & "     and VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        sSql = sSql & "     And VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
         sSql = sSql & "   ) "
         sSql = sSql & " left outer join GROWER_NOTES "
-        sSql = sSql & "   on GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
-        sSql = sSql & " cross join GROWERS_VENDORS AS g_v "
+        sSql = sSql & "   On GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
+        sSql = sSql & " cross join GROWERS_VENDORS As g_v "
         sSql = sSql & "WHERE VENDOR_SALES_VOLUME.COMMODITY_ID = com.commodity_id "
-        sSql = sSql & "AND Users.User_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "And Users.User_id = " & GlobalVariables.UserId.ToString() & " "
         sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
 
         myCmd.CommandText = sSql
@@ -460,7 +459,8 @@ Public Class FormMain
                 oGVC.GrowerFax = oReader.GetString(24)
                 oGVC.GrowerEmail = oReader.GetString(25)
                 oGVC.GrowerPhone2 = oReader.GetString(26)
-                oGVC.GrowerAddress2 = oReader.GetString(26)
+                oGVC.GrowerAddress2 = oReader.GetString(27)
+                oGVC.GrowerComment = oReader.GetString(28)
 
                 oCollGrowVendComm.Add(oGVC, oGVC.GrowerID.ToString() & oGVC.VendorId.ToString() & oGVC.CommID.ToString() & iNum.ToString())
 
@@ -513,6 +513,7 @@ Public Class FormMain
                 oGrower.GrowerPhone2 = oCollGrowVendComm(iCnt).GrowerPhone2
                 oGrower.GrowerFax = oCollGrowVendComm(iCnt).GrowerFax
                 oGrower.GrowerEmail = oCollGrowVendComm(iCnt).GrowerEmail
+                oGrower.GrowerComment = oCollGrowVendComm(iCnt).GrowerComment
                 oGrower.GrowerProspect = "N"
                 oGrowerListItem.GrowerName = oGrower.GrowerFirstName & " " & oGrower.GrowerLastName
                 iVendorID = -1
@@ -639,7 +640,7 @@ Public Class FormMain
         sSql = sSql & "ISNULL(VENDOR_NAME, '') AS 'Vendor Name', ISNULL(GROWER_PHONE2, '') AS 'Cell Phone', ISNULL(GROWER_FAX, '') AS Fax, "
         sSql = sSql & "ISNULL(GROWER_EMAIL, '') AS Email, "
         sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?', ISNULL(GROWER_LAST_NAME, '') AS 'Last Name', "
-        sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_2, '') As 'Address 2' "
+        sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_2, '') As 'Address 2', ISNULL(GROWER_COMMENT, '') As 'Comment' "
         sSql = sSql & "FROM growers, growers_vendors, vendors, users, facilities, users_facilities, vendors_facilities "
         sSql = sSql & "WHERE growers_vendors.grower_id = growers.grower_id "
         sSql = sSql & "AND growers_vendors.vendor_id = vendors.vendor_id "
@@ -673,6 +674,7 @@ Public Class FormMain
                 oPRec.VendorID = oReader.GetInt32(1)
                 oPRec.VendorName = oReader.GetString(10)
                 oPRec.VendorDummy = oReader.GetString(14)
+                oPRec.GrowerComment = oReader.GetString(17)
                 oProspectRecs.Add(oPRec)
             Loop
         End If
@@ -701,6 +703,7 @@ Public Class FormMain
                 oGrower.GrowerPhone2 = oProspectRecs(iCnt).GrowerPhone2
                 oGrower.GrowerFax = oProspectRecs(iCnt).GrowerFax
                 oGrower.GrowerEmail = oProspectRecs(iCnt).GrowerEmail
+                oGrower.GrowerComment = oProspectRecs(iCnt).GrowerComment
                 oGrower.GrowerProspect = "Y"
                 Do While iGrowerID = oProspectRecs(iCnt).GrowerID
                     If iVendorID <> oProspectRecs(iCnt).VendorID Then
@@ -933,7 +936,7 @@ Public Class FormMain
             lblCellPhone.Text = "C: " & oGrowerColl(oSelItem.CollectionIndex).GrowerPhone2.ToString()
             lblFax.Text = "F: " & oGrowerColl(oSelItem.CollectionIndex).GrowerFax.ToString()
             lblEmail.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerEmail.ToString()
-
+            txtComment.Text = oGrowerColl(oSelItem.CollectionIndex).Growercomment.ToString()
 
 
 
@@ -1297,10 +1300,6 @@ Public Class FormMain
         If GlobalVariables.ResetGrower Then
             RebuildPage()
             sCurGrowerName = GlobalVariables.CurrentGrower.GrowerFirstName & " " & GlobalVariables.CurrentGrower.GrowerLastName
-            If GlobalVariables.CurrentGrower.GrowerProspect = "Y" Then
-                sCurGrowerName = sCurGrowerName & " - PROSPECT"
-            End If
-
             icnt = 1
             iMax = oGrowerColl.Count
             ListBox1.Items.Clear()

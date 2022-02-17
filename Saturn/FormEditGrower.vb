@@ -36,7 +36,9 @@ Public Class FormEditGrower
         sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id "
         sSql = sSql & "AND users.user_id = users_facilities.user_id "
         sSql = sSql & "AND vendors.vendor_dummy = 'N' "
-        sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString()
+        sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4 "
+        sSql = sSql & "ORDER BY vendors.vendor_name"
         'For Each iID In GlobalVariables.UserFacilityIDs
         ' sSql = sSql & iID.ToString() & ", "
         ' Next
@@ -125,7 +127,6 @@ Public Class FormEditGrower
         txtFirstName.Text = loCurrentGrower.GrowerFirstName
         txtLastName.Text = loCurrentGrower.GrowerLastName
         sOrigProspect = loCurrentGrower.GrowerProspect
-
         If loCurrentGrower.GrowerProspect = "Y" Then
             ckProspect.Checked = True
         Else
@@ -168,6 +169,7 @@ Public Class FormEditGrower
         txtZip.Text = loCurrentGrower.GrowerZip
         txtWorkPhone.Text = loCurrentGrower.GrowerPhone1
         txtCellPhone.Text = loCurrentGrower.GrowerPhone2
+        txtComment.Text = loCurrentGrower.GrowerComment
         For Each oCurrentVendor In loCurrentGrower.Vendors
             iCnt = 0
             iMax = lstVendors.Items.Count - 1
@@ -196,6 +198,8 @@ Public Class FormEditGrower
         Dim iDummyVendorId As Integer
         Dim oConn As SqlConnection
 
+
+
         loCurrentGrower = GlobalVariables.CurrentGrower
         GlobalVariables.iAddedGrowerID = 0
         GlobalVariables.ResetGrower = True
@@ -220,6 +224,7 @@ Public Class FormEditGrower
             MessageBox.Show("Last Name is required.")
             bDataValidated = False
         End If
+
         sProspect = "N"
         If Not ckProspect.Checked Then
             If lstVendors.SelectedIndices.Count = 0 Then
@@ -266,7 +271,8 @@ Public Class FormEditGrower
             sSql = sSql & "grower_phone1 = '" & GlobalVariables.DQuot(txtWorkPhone.Text.ToString()) & "', "
             sSql = sSql & "grower_phone2 = '" & GlobalVariables.DQuot(txtCellPhone.Text.ToString()) & "', "
             sSql = sSql & "grower_fax = '" & GlobalVariables.DQuot(txtFax.Text.ToString()) & "', "
-            sSql = sSql & "grower_email = '" & GlobalVariables.DQuot(txtEmail.Text.ToString()) & "' "
+            sSql = sSql & "grower_email = '" & GlobalVariables.DQuot(txtEmail.Text.ToString()) & "', "
+            sSql = sSql & "grower_comment = '" & GlobalVariables.DQuot(txtComment.Text.ToString()) & "' "
             sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrower.GrowerID.ToString()
 
 
@@ -287,7 +293,7 @@ Public Class FormEditGrower
             GlobalVariables.CurrentGrower.GrowerPhone2 = txtCellPhone.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerFax = txtFax.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerEmail = txtEmail.Text.ToString()
-
+            GlobalVariables.CurrentGrower.GrowerComment = txtComment.Text.ToString()
 
             If ckProspect.Checked = False Then
                 sSql = "DELETE FROM growers_vendors "
@@ -305,46 +311,6 @@ Public Class FormEditGrower
                     myCmd.ExecuteNonQuery()
                     GlobalVariables.CurrentGrower.Vendors.Add(GlobalVariables.VendorList(sCollIndex))
                 Next
-
-            Else
-                If sOrigProspect = "N" Then
-                    sConfirmMsg = "Changing the status of this grower to a PROSPECT will result in all vendor relationships for "
-                    sConfirmMsg = sConfirmMsg & "that grower to be deleted.  Are you sure you want to do this?"
-
-                    If MessageBox.Show(sConfirmMsg, " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
-                        sSql = "DELETE FROM growers_vendors "
-                        sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrower.GrowerID.ToString()
-                        myCmd.CommandText = sSql
-                        myCmd.ExecuteNonQuery()
-
-                        GlobalVariables.CurrentGrower.Vendors.Clear()
-                        'sSql = "SELECT vendor_id "
-                        'sSql = sSql & "FROM vendors "
-                        'sSql = sSql & "WHERE vendor_dummy = 'Y' "
-                        'sSql = sSql & "AND vendor_name = '" & GlobalVariables.CurrentUserLogin & "'"
-                        'myCmd.CommandText = sSql
-                        'oReader.close()
-                        'GlobalVariables.
-                        'oSqlReader = myCmd.ExecuteReader()
-                        'oReader = myCmd.ExecuteReader()
-                        'If oSqlReader.HasRows Then
-                        'Do While oSqlReader.Read()
-                        iDummyVendorId = GlobalVariables.CurrentUVDID
-                        'Loop
-                        'End If
-                        sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
-                        sSql = sSql & "VALUES (" & GlobalVariables.CurrentGrower.GrowerID.ToString() & ", "
-                        sSql = sSql & iDummyVendorId.ToString() & ")"
-                        myCmd.CommandText = sSql
-                        myCmd.ExecuteNonQuery()
-                        Dim oVendor As New Vendor
-                        oVendor.VendorID = iDummyVendorId
-                        oVendor.VendorName = GlobalVariables.CurrentUserLogin
-                        oVendor.VendorDummy = "Y"
-                        GlobalVariables.CurrentGrower.Vendors.Add(oVendor)
-                    End If
-                End If
-
             End If
             GlobalVariables.BuildComm = True
             Me.Close()

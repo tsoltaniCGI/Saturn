@@ -15,6 +15,7 @@
     Public Property GrowerFax As String
     Public Property GrowerEmail As String
     Public Property GrowerProspect As String
+    Public Property GrowerComment As String
 
     Public Property Vendors As New Collection
     Public Property Notes As New Collection
@@ -46,6 +47,7 @@ Public Class GrowVendCom
     Public Property GrowerPhone2 As String
     Public Property GrowerFax As String
     Public Property GrowerEmail As String
+    Public Property GrowerComment As String
     Public Property VendorName As String
     Public Property VendorDummy As String
     Public Property CommID As String
@@ -137,6 +139,7 @@ Public Class ProspectRec
     Public Property GrowerPhone2 As String
     Public Property GrowerFax As String
     Public Property GrowerEmail As String
+    Public Property GrowerComment As String
     Public Property VendorName As String
     Public Property GrowerNoteID As Integer
 
