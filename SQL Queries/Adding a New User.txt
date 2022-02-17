@@ -1,0 +1,24 @@
+INSERT INTO users(user_first_name, user_last_name, user_login, user_role)
+VALUES('COLE', 'LOBOY', 'CLOBOY', 0)
+
+SELECT * from facilities
+ORDER by facility_name
+
+Select * from users
+
+select * from users_facilities
+
+INSERT INTO users_facilities(user_id, facility_id)
+VALUES(404, 142)
+
+select * from vendors
+WHERE agtech_vendor_id IS NULL
+
+INSERT INTO vendors (vendor_name, vendor_dummy)
+Values ('CLOBOY', 'Y')
+
+UPDATE users SET dummy_vendor_id = 90839
+WHERE user_login = 'CLOBOY'
+
+UPDATE users SET user_role = NULL
+WHERE user_login = 'CLOBOY'

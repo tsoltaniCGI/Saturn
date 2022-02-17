@@ -5,6 +5,7 @@ Public Class FormEditGrower
     Dim oStates As New Collection
     Dim oProvinces As New Collection
     Dim oCountries As New Collection
+    Dim sOrigProspect As String
 
 
     Private Sub FormEditGrower_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -47,6 +48,7 @@ Public Class FormEditGrower
         myCmd.CommandText = sSql
 
         Dim oReader = myCmd.ExecuteReader()
+        'lstVendors.Sorted = True
 
         If oReader.HasRows Then
             iCnt = 0
@@ -122,11 +124,13 @@ Public Class FormEditGrower
         loCurrentGrower = GlobalVariables.CurrentGrower
         txtFirstName.Text = loCurrentGrower.GrowerFirstName
         txtLastName.Text = loCurrentGrower.GrowerLastName
+        sOrigProspect = loCurrentGrower.GrowerProspect
+
         If loCurrentGrower.GrowerProspect = "Y" Then
             ckProspect.Checked = True
         Else
             ckProspect.Checked = False
-            ckProspect.Enabled = False
+            'ckProspect.Enabled = False
         End If
         txtAddress1.Text = loCurrentGrower.GrowerAddress1
         txtAddress2.Text = loCurrentGrower.GrowerAddress2
@@ -185,9 +189,11 @@ Public Class FormEditGrower
         Dim sDate As String
         Dim bDataValidated As Boolean
         Dim sProspect As String
+        Dim sConfirmMsg As String
         Dim sCurCountry As String
         Dim loCurrentGrower As Grower
         Dim sCollIndex As String
+        Dim iDummyVendorId As Integer
         Dim oConn As SqlConnection
 
         loCurrentGrower = GlobalVariables.CurrentGrower
@@ -220,6 +226,8 @@ Public Class FormEditGrower
                 MessageBox.Show("If Grower is not a Prospect, at least one associated Vendor must be selected.")
                 bDataValidated = False
             End If
+        Else
+            sProspect = "Y"
         End If
 
         If cmbState.SelectedIndex <> -1 Then
@@ -297,6 +305,46 @@ Public Class FormEditGrower
                     myCmd.ExecuteNonQuery()
                     GlobalVariables.CurrentGrower.Vendors.Add(GlobalVariables.VendorList(sCollIndex))
                 Next
+
+            Else
+                If sOrigProspect = "N" Then
+                    sConfirmMsg = "Changing the status of this grower to a PROSPECT will result in all vendor relationships for "
+                    sConfirmMsg = sConfirmMsg & "that grower to be deleted.  Are you sure you want to do this?"
+
+                    If MessageBox.Show(sConfirmMsg, " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                        sSql = "DELETE FROM growers_vendors "
+                        sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrower.GrowerID.ToString()
+                        myCmd.CommandText = sSql
+                        myCmd.ExecuteNonQuery()
+
+                        GlobalVariables.CurrentGrower.Vendors.Clear()
+                        'sSql = "SELECT vendor_id "
+                        'sSql = sSql & "FROM vendors "
+                        'sSql = sSql & "WHERE vendor_dummy = 'Y' "
+                        'sSql = sSql & "AND vendor_name = '" & GlobalVariables.CurrentUserLogin & "'"
+                        'myCmd.CommandText = sSql
+                        'oReader.close()
+                        'GlobalVariables.
+                        'oSqlReader = myCmd.ExecuteReader()
+                        'oReader = myCmd.ExecuteReader()
+                        'If oSqlReader.HasRows Then
+                        'Do While oSqlReader.Read()
+                        iDummyVendorId = GlobalVariables.CurrentUVDID
+                        'Loop
+                        'End If
+                        sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
+                        sSql = sSql & "VALUES (" & GlobalVariables.CurrentGrower.GrowerID.ToString() & ", "
+                        sSql = sSql & iDummyVendorId.ToString() & ")"
+                        myCmd.CommandText = sSql
+                        myCmd.ExecuteNonQuery()
+                        Dim oVendor As New Vendor
+                        oVendor.VendorID = iDummyVendorId
+                        oVendor.VendorName = GlobalVariables.CurrentUserLogin
+                        oVendor.VendorDummy = "Y"
+                        GlobalVariables.CurrentGrower.Vendors.Add(oVendor)
+                    End If
+                End If
+
             End If
             GlobalVariables.BuildComm = True
             Me.Close()

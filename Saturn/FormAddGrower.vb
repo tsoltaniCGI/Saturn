@@ -8,6 +8,7 @@ Public Class FormAddGrower
     Dim oProvinces As New Collection
     Dim oCountries As New Collection
     Dim iLastSelectedVendor As Integer
+    Dim oCollGrowVendComm As New Collection
 
     Private Sub Label6_Click(sender As Object, e As EventArgs) Handles lblState.Click
 
@@ -31,6 +32,7 @@ Public Class FormAddGrower
         Dim myCmd = oConn.CreateCommand
         Dim sSql As String
         Dim iCnt As Integer
+        Dim iMax As Integer
 
 
         sSql = "SELECT DISTINCT vendors.vendor_id, vendors.vendor_name "
@@ -49,9 +51,17 @@ Public Class FormAddGrower
         sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
         sSql = sSql & "AND vendors.vendor_dummy = 'N' "
         sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4"
+
         myCmd.CommandText = sSql
 
         Dim oReader = myCmd.ExecuteReader()
+
+        lstVendors.Sorted = True
+        lstVendors.ValueMember = "VendorCollectionIndex"
+        lstVendors.DisplayMember = "VendorName"
+
+        iMax = oCollGrowVendComm.Count
+        iCnt = 1
 
         If oReader.HasRows Then
             iCnt = 0
@@ -341,6 +351,7 @@ Public Class FormAddGrower
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        GlobalVariables.ResetGrower = False
         Me.Close()
     End Sub
 
@@ -424,4 +435,6 @@ Public Class FormAddGrower
 
     Private Sub txtWorkPhone_TextChanged(sender As Object, e As EventArgs)
     End Sub
+
+
 End Class

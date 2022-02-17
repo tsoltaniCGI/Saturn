@@ -1297,11 +1297,19 @@ Public Class FormMain
         If GlobalVariables.ResetGrower Then
             RebuildPage()
             sCurGrowerName = GlobalVariables.CurrentGrower.GrowerFirstName & " " & GlobalVariables.CurrentGrower.GrowerLastName
+            If GlobalVariables.CurrentGrower.GrowerProspect = "Y" Then
+                sCurGrowerName = sCurGrowerName & " - PROSPECT"
+            End If
+
             icnt = 1
             iMax = oGrowerColl.Count
+            ListBox1.Items.Clear()
             Do While icnt <= iMax
                 Dim oNewGrowerListItem As New IndexedGrowerListItem
                 oNewGrowerListItem.GrowerName = oGrowerColl(icnt).GrowerFirstName & " " & oGrowerColl(icnt).GrowerLastName
+                If oGrowerColl(icnt).GrowerProspect = "Y" Then
+                    oNewGrowerListItem.GrowerName = oNewGrowerListItem.GrowerName & " - PROSPECT"
+                End If
                 oNewGrowerListItem.CollectionIndex = icnt
                 ListBox1.Items.Add(oNewGrowerListItem)
                 icnt = icnt + 1
@@ -1431,9 +1439,54 @@ Public Class FormMain
         End If
     End Sub
 
+
+
     Private Sub txtGrowers_TextChanged(sender As Object, e As EventArgs) Handles txtGrowers.TextChanged
 
     End Sub
+
+    'Private Sub txtSearchNote_TextChanged(sender As Object, e As EventArgs)
+    'Dim iCnt As Integer
+    'Dim iMax As Integer
+    'Dim sItem As String
+    'Dim sSearch As String
+    'Dim bFound As Boolean
+
+    'Convert.ToInt32(DataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString()));
+    'dataGridView1.CurrentRow.Index
+    'Convert.ToInt32(SelectedRow.ItemArray[0])
+    'dataGridView1.Rows[i].cell[0].Value.ToString()
+
+    'If Trim(txtSearchNote.Text.ToString()) <> "" Then
+    '    bFound = False
+    '    iCnt = 0
+    '    iMax = TestDataGrid.Rows.Count - 1
+    '    sSearch = txtSearchNote.Text.ToString().ToUpper()
+
+    '    Do While iCnt <= iMax
+    '        sItem = TestDataGrid.Rows(iCnt).Cell(0).GrowerNote.ToString().ToUpper()
+
+    '        If sItem.Contains(sSearch) Then
+    '            TestDataGrid.CurrentRow.Index = iCnt
+    '            bFound = True
+    '            Exit Do
+    '        End If
+
+    '        iCnt = iCnt + 1
+
+    '    Loop
+
+    '    If bFound Then
+    '        txtSearchNote.Text = ""
+    '    Else
+
+    '        txtSearchNote.Text = "Not Found"
+    '    End If
+
+    'End If
+    'End Sub
+
+
 End Class
 
 

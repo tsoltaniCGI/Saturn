@@ -1,0 +1,14 @@
+
+Delete From users_facilities
+Where user_id = 351
+
+Insert Into users_facilities
+Select 351, facility_id 
+From facilities
+
+
+or
+Where facility_state = 'MT'
+
+
+or  facility_id =

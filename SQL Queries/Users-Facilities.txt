@@ -1,0 +1,35 @@
+Select * from users
+where user_first_name = ''
+
+Select dummy_vendor_id, user_id
+from users
+order by user_id
+
+
+Select * from users_facilities
+where user_id = 367
+
+select * from vendors_facilities
+where vendor_id = 89673
+
+select Distinct vendor_id
+from vendors_facilities
+
+Select * from vendor_sales_volume
+Select * from vendors
+where vendor_dummy = 'Y'
+
+select * from vendors_facilities
+where vendor_id = 89585
+
+
+INSERT INTO vendors_facilities
+Select 89593, facility_id 
+from users_facilities
+Where user_id = 324
+
+
+Select Count(*) From users_facilities
+
+Select Count(*) From vendors_facilities
+where vendor_id IN(select dummy_vendor_id from users)

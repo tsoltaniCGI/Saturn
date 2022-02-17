@@ -36,7 +36,7 @@ Public Class FormNonCGI
         sSql = "SELECT commodity_id, commodity_name "
         sSql = sSql & "FROM commodities "
         sSql = sSql & "WHERE show = 'Y' "
-        sSql = sSql & "ORDER BY commodity_id"
+        sSql = sSql & "ORDER BY commodity_name"
 
         myCmd.CommandText = sSql
         oReader = myCmd.ExecuteReader()

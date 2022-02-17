@@ -71,6 +71,12 @@ Public Class IndexedGrowerListItem
     Public Property GrowerName As String
 
 End Class
+
+Public Class IndexedVendorListItem
+    Public Property VendorCollectionIndex As Integer
+    Public Property VendorName As String
+End Class
+
 Public Class Commodity
     Public Property CommID As String
     Public Property CommName As String

@@ -137,9 +137,8 @@ Partial Class FormNote
         Me.lblGrowerState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblGrowerState.Location = New System.Drawing.Point(110, 335)
         Me.lblGrowerState.Name = "lblGrowerState"
-        Me.lblGrowerState.Size = New System.Drawing.Size(80, 15)
+        Me.lblGrowerState.Size = New System.Drawing.Size(0, 15)
         Me.lblGrowerState.TabIndex = 47
-        Me.lblGrowerState.Text = "GrowerState"
         '
         'lblGrowerPhone1
         '
@@ -149,9 +148,8 @@ Partial Class FormNote
         Me.lblGrowerPhone1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblGrowerPhone1.Location = New System.Drawing.Point(32, 387)
         Me.lblGrowerPhone1.Name = "lblGrowerPhone1"
-        Me.lblGrowerPhone1.Size = New System.Drawing.Size(92, 15)
+        Me.lblGrowerPhone1.Size = New System.Drawing.Size(0, 15)
         Me.lblGrowerPhone1.TabIndex = 46
-        Me.lblGrowerPhone1.Text = "GrowerPhone1"
         '
         'lblGrowerCountry
         '
@@ -161,9 +159,8 @@ Partial Class FormNote
         Me.lblGrowerCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblGrowerCountry.Location = New System.Drawing.Point(32, 361)
         Me.lblGrowerCountry.Name = "lblGrowerCountry"
-        Me.lblGrowerCountry.Size = New System.Drawing.Size(99, 15)
+        Me.lblGrowerCountry.Size = New System.Drawing.Size(0, 15)
         Me.lblGrowerCountry.TabIndex = 45
-        Me.lblGrowerCountry.Text = "GrowerCountry"
         '
         'lblAddress
         '
@@ -173,9 +170,8 @@ Partial Class FormNote
         Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblAddress.Location = New System.Drawing.Point(32, 283)
         Me.lblAddress.Name = "lblAddress"
-        Me.lblAddress.Size = New System.Drawing.Size(95, 15)
+        Me.lblAddress.Size = New System.Drawing.Size(0, 15)
         Me.lblAddress.TabIndex = 44
-        Me.lblAddress.Text = "GrowerAddress"
         '
         'lblGrowerCity
         '
@@ -185,9 +181,8 @@ Partial Class FormNote
         Me.lblGrowerCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblGrowerCity.Location = New System.Drawing.Point(32, 335)
         Me.lblGrowerCity.Name = "lblGrowerCity"
-        Me.lblGrowerCity.Size = New System.Drawing.Size(75, 15)
+        Me.lblGrowerCity.Size = New System.Drawing.Size(0, 15)
         Me.lblGrowerCity.TabIndex = 50
-        Me.lblGrowerCity.Text = "GrowerCity"
         '
         'PictureBox1
         '
@@ -257,9 +252,8 @@ Partial Class FormNote
         Me.lblAddress2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.lblAddress2.Location = New System.Drawing.Point(32, 309)
         Me.lblAddress2.Name = "lblAddress2"
-        Me.lblAddress2.Size = New System.Drawing.Size(95, 15)
+        Me.lblAddress2.Size = New System.Drawing.Size(0, 15)
         Me.lblAddress2.TabIndex = 57
-        Me.lblAddress2.Text = "GrowerAddress"
         '
         'Label1
         '
