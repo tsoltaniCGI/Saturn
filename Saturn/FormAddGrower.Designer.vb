@@ -62,6 +62,8 @@ Partial Class FormAddGrower
         Me.txtZip = New System.Windows.Forms.MaskedTextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtComment = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,7 +77,7 @@ Partial Class FormAddGrower
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(180, 40)
+        Me.Label1.Location = New System.Drawing.Point(168, 40)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(67, 15)
         Me.Label1.TabIndex = 0
@@ -83,14 +85,14 @@ Partial Class FormAddGrower
         '
         'txtFirstName
         '
-        Me.txtFirstName.Location = New System.Drawing.Point(274, 37)
+        Me.txtFirstName.Location = New System.Drawing.Point(254, 37)
         Me.txtFirstName.Name = "txtFirstName"
         Me.txtFirstName.Size = New System.Drawing.Size(100, 23)
         Me.txtFirstName.TabIndex = 1
         '
         'txtLastName
         '
-        Me.txtLastName.Location = New System.Drawing.Point(274, 73)
+        Me.txtLastName.Location = New System.Drawing.Point(254, 73)
         Me.txtLastName.Name = "txtLastName"
         Me.txtLastName.Size = New System.Drawing.Size(100, 23)
         Me.txtLastName.TabIndex = 2
@@ -100,7 +102,7 @@ Partial Class FormAddGrower
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(180, 76)
+        Me.Label2.Location = New System.Drawing.Point(168, 76)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(66, 15)
         Me.Label2.TabIndex = 2
@@ -109,7 +111,7 @@ Partial Class FormAddGrower
         '
         'txtAddress1
         '
-        Me.txtAddress1.Location = New System.Drawing.Point(274, 109)
+        Me.txtAddress1.Location = New System.Drawing.Point(254, 109)
         Me.txtAddress1.Name = "txtAddress1"
         Me.txtAddress1.Size = New System.Drawing.Size(207, 23)
         Me.txtAddress1.TabIndex = 4
@@ -119,7 +121,7 @@ Partial Class FormAddGrower
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(180, 112)
+        Me.Label3.Location = New System.Drawing.Point(168, 112)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(52, 15)
         Me.Label3.TabIndex = 4
@@ -128,7 +130,7 @@ Partial Class FormAddGrower
         '
         'txtAddress2
         '
-        Me.txtAddress2.Location = New System.Drawing.Point(274, 145)
+        Me.txtAddress2.Location = New System.Drawing.Point(254, 145)
         Me.txtAddress2.Name = "txtAddress2"
         Me.txtAddress2.Size = New System.Drawing.Size(207, 23)
         Me.txtAddress2.TabIndex = 5
@@ -138,7 +140,7 @@ Partial Class FormAddGrower
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(180, 148)
+        Me.Label4.Location = New System.Drawing.Point(168, 148)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(90, 15)
         Me.Label4.TabIndex = 6
@@ -147,7 +149,7 @@ Partial Class FormAddGrower
         '
         'txtCity
         '
-        Me.txtCity.Location = New System.Drawing.Point(274, 182)
+        Me.txtCity.Location = New System.Drawing.Point(254, 182)
         Me.txtCity.Name = "txtCity"
         Me.txtCity.Size = New System.Drawing.Size(100, 23)
         Me.txtCity.TabIndex = 8
@@ -157,7 +159,7 @@ Partial Class FormAddGrower
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(180, 184)
+        Me.Label5.Location = New System.Drawing.Point(168, 184)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(31, 15)
         Me.Label5.TabIndex = 8
@@ -212,7 +214,7 @@ Partial Class FormAddGrower
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(180, 220)
+        Me.Label9.Location = New System.Drawing.Point(168, 220)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(75, 15)
         Me.Label9.TabIndex = 16
@@ -245,7 +247,7 @@ Partial Class FormAddGrower
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(274, 253)
+        Me.txtEmail.Location = New System.Drawing.Point(254, 253)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(203, 23)
         Me.txtEmail.TabIndex = 13
@@ -255,21 +257,21 @@ Partial Class FormAddGrower
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label12.Location = New System.Drawing.Point(180, 256)
+        Me.Label12.Location = New System.Drawing.Point(168, 256)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(36, 15)
+        Me.Label12.Size = New System.Drawing.Size(39, 15)
         Me.Label12.TabIndex = 22
-        Me.Label12.Text = "Email"
+        Me.Label12.Text = "Email:"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
         'lstVendors
         '
         Me.lstVendors.FormattingEnabled = True
         Me.lstVendors.ItemHeight = 15
-        Me.lstVendors.Location = New System.Drawing.Point(190, 292)
+        Me.lstVendors.Location = New System.Drawing.Point(254, 307)
         Me.lstVendors.Name = "lstVendors"
         Me.lstVendors.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple
-        Me.lstVendors.Size = New System.Drawing.Size(261, 259)
+        Me.lstVendors.Size = New System.Drawing.Size(261, 244)
         Me.lstVendors.TabIndex = 14
         '
         'btnOK
@@ -420,7 +422,7 @@ Partial Class FormAddGrower
         '
         'txtWorkPhone
         '
-        Me.txtWorkPhone.Location = New System.Drawing.Point(274, 217)
+        Me.txtWorkPhone.Location = New System.Drawing.Point(254, 217)
         Me.txtWorkPhone.Mask = "(999)-000-0000"
         Me.txtWorkPhone.Name = "txtWorkPhone"
         Me.txtWorkPhone.Size = New System.Drawing.Size(100, 23)
@@ -464,17 +466,43 @@ Partial Class FormAddGrower
         '
         'txtComment
         '
-        Me.txtComment.Location = New System.Drawing.Point(524, 292)
+        Me.txtComment.Location = New System.Drawing.Point(545, 302)
         Me.txtComment.Multiline = True
         Me.txtComment.Name = "txtComment"
-        Me.txtComment.Size = New System.Drawing.Size(286, 246)
+        Me.txtComment.Size = New System.Drawing.Size(286, 249)
         Me.txtComment.TabIndex = 74
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.Label14.Location = New System.Drawing.Point(168, 310)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(66, 15)
+        Me.Label14.TabIndex = 75
+        Me.Label14.Text = "Facility/ies:"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.BottomLeft
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.Label15.Location = New System.Drawing.Point(545, 280)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(64, 15)
+        Me.Label15.TabIndex = 76
+        Me.Label15.Text = "Comment:"
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
         'FormAddGrower
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(893, 639)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.txtComment)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txtZip)
@@ -566,4 +594,6 @@ Partial Class FormAddGrower
     Friend WithEvents txtZip As MaskedTextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents txtComment As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label15 As Label
 End Class
