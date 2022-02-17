@@ -103,10 +103,10 @@ Public Class FormEditNonCGI
                 bValidated = False
             End If
 
-            If Len(Trim(txtLocation.Text)) > 0 Then
-                MessageBox.Show(Chr(34) & "Location" & Chr(34) & " not valid with a status of " & Chr(34) & "SOLD" & Chr(34))
-                bValidated = False
-            End If
+            'If Len(Trim(txtLocation.Text)) > 0 Then
+            'MessageBox.Show(Chr(34) & "Location" & Chr(34) & " not valid with a status of " & Chr(34) & "SOLD" & Chr(34))
+            'bValidated = False
+            'End If
 
         End If
 

@@ -447,7 +447,6 @@ Partial Class FormAddGrower
         'txtZip
         '
         Me.txtZip.Location = New System.Drawing.Point(582, 181)
-        Me.txtZip.Mask = "99999"
         Me.txtZip.Name = "txtZip"
         Me.txtZip.Size = New System.Drawing.Size(100, 23)
         Me.txtZip.TabIndex = 71
