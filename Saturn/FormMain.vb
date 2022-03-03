@@ -706,16 +706,16 @@ Public Class FormMain
                 oGrower.GrowerComment = oProspectRecs(iCnt).GrowerComment
                 oGrower.GrowerProspect = "Y"
                 Do While iGrowerID = oProspectRecs(iCnt).GrowerID
-                    If iVendorID <> oProspectRecs(iCnt).VendorID Then
-                        'Dim oVendor As New Vendor
-                        oVendor = GlobalVariables.VendorList(oProspectRecs(iCnt).VendorID.ToString())
+                    'If iVendorID <> oProspectRecs(iCnt).VendorID Then
+                    'Dim oVendor As New Vendor
+                    oVendor = GlobalVariables.VendorList(oProspectRecs(iCnt).VendorID.ToString())
                         iVendorID = oProspectRecs(iCnt).VendorID
                         oVendor.VendorID = iVendorID
                         iVendorID = oProspectRecs(iCnt).VendorID
                         oVendor.VendorName = oProspectRecs(iCnt).VendorName
                         oVendor.VendorDummy = oProspectRecs(iCnt).VendorDummy
                         oGrower.Vendors.Add(oVendor)
-                    End If
+                    'End If
 
 
                     If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then

@@ -50,14 +50,15 @@ Public Class FormAddGrower
         sSql = sSql & "AND vendors.vendor_id = vendors_facilities.vendor_id "
         sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
         sSql = sSql & "AND vendors.vendor_dummy = 'N' "
-        sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4"
+        sSql = sSql & "AND LEN(ISNULL(agtech_vendor_id, '')) > 4 "
+        sSql = sSql & "ORDER BY vendors.vendor_name"
         myCmd.CommandText = sSql
 
         Dim oReader = myCmd.ExecuteReader()
 
-        lstVendors.Sorted = True
-        lstVendors.ValueMember = "VendorCollectionIndex"
-        lstVendors.DisplayMember = "VendorName"
+        'lstVendors.Sorted = True
+        'lstVendors.ValueMember = "VendorCollectionIndex"
+        'lstVendors.DisplayMember = "VendorName"
 
         iMax = oCollGrowVendComm.Count
         iCnt = 1
