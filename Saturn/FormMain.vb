@@ -1387,7 +1387,7 @@ Public Class FormMain
                 BuildNonCGIList(oSelItem.CollectionIndex)
                 'RebuildPage()
                 GlobalVariables.BuildNonCGI = False
-                iCurIndex = ListBox1.SelectedIndex
+                icurindex = ListBox1.SelectedIndex
                 'ListBox1.SetSelected(iCurIndex, False)
                 ListBox1_SelectedIndexChanged(Me, EventArgs.Empty)
             End If
@@ -1501,6 +1501,13 @@ Public Class FormMain
                 'RebuildPage()
             End If
         End If
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblEmail.LinkClicked
+        Dim oPSI = New ProcessStartInfo("mailto:" & lblEmail.Text)
+        oPSI.UseShellExecute = True
+        System.Diagnostics.Process.Start(oPSI)
+        'new ProcessStartInfo("mailto:example@stackoverflow.com") { UseShellExecute = true }
     End Sub
 
 

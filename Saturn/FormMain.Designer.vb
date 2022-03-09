@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -86,7 +86,7 @@ Partial Class FormMain
         Me.lblLastName = New System.Windows.Forms.Label()
         Me.lblCellPhone = New System.Windows.Forms.MaskedTextBox()
         Me.lblFax = New System.Windows.Forms.MaskedTextBox()
-        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.xlblEmail = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
         Me.btnLogOut = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -96,6 +96,7 @@ Partial Class FormMain
         Me.PictureBox13 = New System.Windows.Forms.PictureBox()
         Me.PictureBox14 = New System.Windows.Forms.PictureBox()
         Me.btnDeleteNonCGI = New System.Windows.Forms.Button()
+        Me.lblEmail = New System.Windows.Forms.LinkLabel()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -397,12 +398,12 @@ Partial Class FormMain
         '
         'Column1
         '
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle2
         Me.Column1.HeaderText = ""
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
@@ -733,17 +734,17 @@ Partial Class FormMain
         Me.lblFax.Size = New System.Drawing.Size(100, 16)
         Me.lblFax.TabIndex = 91
         '
-        'lblEmail
+        'xlblEmail
         '
-        Me.lblEmail.AutoSize = True
-        Me.lblEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblEmail.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblEmail.Location = New System.Drawing.Point(613, 450)
-        Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(85, 15)
-        Me.lblEmail.TabIndex = 92
-        Me.lblEmail.Text = "GrowerEmail"
+        Me.xlblEmail.AutoSize = True
+        Me.xlblEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.xlblEmail.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.xlblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.xlblEmail.Location = New System.Drawing.Point(613, 450)
+        Me.xlblEmail.Name = "xlblEmail"
+        Me.xlblEmail.Size = New System.Drawing.Size(85, 15)
+        Me.xlblEmail.TabIndex = 92
+        Me.xlblEmail.Text = "GrowerEmail"
         '
         'lblAddress2
         '
@@ -844,6 +845,16 @@ Partial Class FormMain
         Me.btnDeleteNonCGI.Text = "&Delete"
         Me.btnDeleteNonCGI.UseVisualStyleBackColor = False
         '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(620, 469)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(63, 15)
+        Me.lblEmail.TabIndex = 105
+        Me.lblEmail.TabStop = True
+        Me.lblEmail.Text = "LinkLabel1"
+        '
         'FormMain
         '
         Me.AcceptButton = Me.btnSearch
@@ -853,6 +864,7 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1882, 1008)
+        Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.btnDeleteNonCGI)
         Me.Controls.Add(Me.PictureBox14)
         Me.Controls.Add(Me.PictureBox13)
@@ -866,7 +878,7 @@ Partial Class FormMain
         Me.Controls.Add(Me.btnAddNonCGI)
         Me.Controls.Add(Me.txtProspect)
         Me.Controls.Add(Me.lblAddress2)
-        Me.Controls.Add(Me.lblEmail)
+        Me.Controls.Add(Me.xlblEmail)
         Me.Controls.Add(Me.lblFax)
         Me.Controls.Add(Me.lblCellPhone)
         Me.Controls.Add(Me.lblLastName)
@@ -993,7 +1005,7 @@ Partial Class FormMain
     Friend WithEvents lblLastName As Label
     Friend WithEvents lblCellPhone As MaskedTextBox
     Friend WithEvents lblFax As MaskedTextBox
-    Friend WithEvents lblEmail As Label
+    Friend WithEvents xlblEmail As Label
     Friend WithEvents lblAddress2 As Label
     Friend WithEvents btnLogOut As Button
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
@@ -1004,4 +1016,5 @@ Partial Class FormMain
     Friend WithEvents PictureBox13 As PictureBox
     Friend WithEvents PictureBox14 As PictureBox
     Friend WithEvents btnDeleteNonCGI As Button
+    Friend WithEvents lblEmail As LinkLabel
 End Class
