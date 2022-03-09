@@ -25,7 +25,7 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -86,7 +86,6 @@ Partial Class FormMain
         Me.lblLastName = New System.Windows.Forms.Label()
         Me.lblCellPhone = New System.Windows.Forms.MaskedTextBox()
         Me.lblFax = New System.Windows.Forms.MaskedTextBox()
-        Me.xlblEmail = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
         Me.btnLogOut = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -161,7 +160,7 @@ Partial Class FormMain
         Me.ListBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(17, 186)
+        Me.ListBox1.Location = New System.Drawing.Point(16, 180)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(329, 782)
         Me.ListBox1.TabIndex = 32
@@ -172,7 +171,7 @@ Partial Class FormMain
         Me.lblAddress.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblAddress.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblAddress.Location = New System.Drawing.Point(612, 243)
+        Me.lblAddress.Location = New System.Drawing.Point(589, 243)
         Me.lblAddress.Name = "lblAddress"
         Me.lblAddress.Size = New System.Drawing.Size(95, 15)
         Me.lblAddress.TabIndex = 33
@@ -206,7 +205,7 @@ Partial Class FormMain
         Me.lblGrowerZip.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblGrowerZip.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerZip.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblGrowerZip.Location = New System.Drawing.Point(612, 335)
+        Me.lblGrowerZip.Location = New System.Drawing.Point(589, 335)
         Me.lblGrowerZip.Name = "lblGrowerZip"
         Me.lblGrowerZip.Size = New System.Drawing.Size(68, 15)
         Me.lblGrowerZip.TabIndex = 37
@@ -229,7 +228,7 @@ Partial Class FormMain
         Me.lblGrowerState.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblGrowerState.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lblGrowerState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblGrowerState.Location = New System.Drawing.Point(612, 312)
+        Me.lblGrowerState.Location = New System.Drawing.Point(589, 312)
         Me.lblGrowerState.Name = "lblGrowerState"
         Me.lblGrowerState.Size = New System.Drawing.Size(80, 15)
         Me.lblGrowerState.TabIndex = 39
@@ -246,7 +245,7 @@ Partial Class FormMain
         Me.pbContact.Image = CType(resources.GetObject("pbContact.Image"), System.Drawing.Image)
         Me.pbContact.Location = New System.Drawing.Point(381, 104)
         Me.pbContact.Name = "pbContact"
-        Me.pbContact.Size = New System.Drawing.Size(591, 384)
+        Me.pbContact.Size = New System.Drawing.Size(619, 384)
         Me.pbContact.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbContact.TabIndex = 40
         Me.pbContact.TabStop = False
@@ -389,7 +388,7 @@ Partial Class FormMain
         Me.TestDataGrid.ColumnHeadersVisible = False
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1462, 194)
+        Me.TestDataGrid.Location = New System.Drawing.Point(1462, 188)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
@@ -398,12 +397,12 @@ Partial Class FormMain
         '
         'Column1
         '
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
         Me.Column1.HeaderText = ""
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
@@ -413,7 +412,7 @@ Partial Class FormMain
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(573, 241)
+        Me.PictureBox2.Location = New System.Drawing.Point(557, 241)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(29, 19)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -424,7 +423,7 @@ Partial Class FormMain
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(573, 362)
+        Me.PictureBox3.Location = New System.Drawing.Point(557, 362)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(29, 19)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -435,7 +434,7 @@ Partial Class FormMain
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(573, 446)
+        Me.PictureBox4.Location = New System.Drawing.Point(557, 446)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(29, 19)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -446,9 +445,9 @@ Partial Class FormMain
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(429, 232)
+        Me.PictureBox5.Location = New System.Drawing.Point(439, 232)
         Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(129, 137)
+        Me.PictureBox5.Size = New System.Drawing.Size(119, 137)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox5.TabIndex = 59
         Me.PictureBox5.TabStop = False
@@ -499,7 +498,7 @@ Partial Class FormMain
         Me.PictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(1433, 49)
+        Me.PictureBox6.Location = New System.Drawing.Point(1433, 43)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(439, 914)
         Me.PictureBox6.TabIndex = 60
@@ -620,7 +619,7 @@ Partial Class FormMain
         '
         Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(17, 42)
+        Me.PictureBox1.Location = New System.Drawing.Point(16, 36)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(329, 926)
         Me.PictureBox1.TabIndex = 81
@@ -653,7 +652,7 @@ Partial Class FormMain
         '
         Me.PictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox10.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox10.Location = New System.Drawing.Point(16, 42)
+        Me.PictureBox10.Location = New System.Drawing.Point(16, 36)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(1856, 925)
         Me.PictureBox10.TabIndex = 84
@@ -674,7 +673,7 @@ Partial Class FormMain
         '
         Me.PictureBox8.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox8.Image = CType(resources.GetObject("PictureBox8.Image"), System.Drawing.Image)
-        Me.PictureBox8.Location = New System.Drawing.Point(573, 418)
+        Me.PictureBox8.Location = New System.Drawing.Point(557, 418)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(29, 19)
         Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -685,7 +684,7 @@ Partial Class FormMain
         '
         Me.PictureBox11.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox11.Image = CType(resources.GetObject("PictureBox11.Image"), System.Drawing.Image)
-        Me.PictureBox11.Location = New System.Drawing.Point(573, 390)
+        Me.PictureBox11.Location = New System.Drawing.Point(557, 390)
         Me.PictureBox11.Name = "PictureBox11"
         Me.PictureBox11.Size = New System.Drawing.Size(29, 19)
         Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -697,7 +696,7 @@ Partial Class FormMain
         Me.lblWorkPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblWorkPhone.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lblWorkPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblWorkPhone.Location = New System.Drawing.Point(649, 363)
+        Me.lblWorkPhone.Location = New System.Drawing.Point(589, 364)
         Me.lblWorkPhone.Name = "lblWorkPhone"
         Me.lblWorkPhone.Size = New System.Drawing.Size(100, 16)
         Me.lblWorkPhone.TabIndex = 88
@@ -719,7 +718,7 @@ Partial Class FormMain
         Me.lblCellPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblCellPhone.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lblCellPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblCellPhone.Location = New System.Drawing.Point(649, 392)
+        Me.lblCellPhone.Location = New System.Drawing.Point(589, 393)
         Me.lblCellPhone.Name = "lblCellPhone"
         Me.lblCellPhone.Size = New System.Drawing.Size(100, 16)
         Me.lblCellPhone.TabIndex = 90
@@ -729,22 +728,10 @@ Partial Class FormMain
         Me.lblFax.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblFax.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lblFax.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblFax.Location = New System.Drawing.Point(649, 419)
+        Me.lblFax.Location = New System.Drawing.Point(589, 420)
         Me.lblFax.Name = "lblFax"
         Me.lblFax.Size = New System.Drawing.Size(100, 16)
         Me.lblFax.TabIndex = 91
-        '
-        'xlblEmail
-        '
-        Me.xlblEmail.AutoSize = True
-        Me.xlblEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.xlblEmail.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.xlblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.xlblEmail.Location = New System.Drawing.Point(613, 450)
-        Me.xlblEmail.Name = "xlblEmail"
-        Me.xlblEmail.Size = New System.Drawing.Size(85, 15)
-        Me.xlblEmail.TabIndex = 92
-        Me.xlblEmail.Text = "GrowerEmail"
         '
         'lblAddress2
         '
@@ -799,13 +786,13 @@ Partial Class FormMain
         Me.txtComment.Name = "txtComment"
         Me.txtComment.ReadOnly = True
         Me.txtComment.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtComment.Size = New System.Drawing.Size(279, 118)
+        Me.txtComment.Size = New System.Drawing.Size(279, 128)
         Me.txtComment.TabIndex = 99
         '
         'PictureBox12
         '
         Me.PictureBox12.Image = CType(resources.GetObject("PictureBox12.Image"), System.Drawing.Image)
-        Me.PictureBox12.Location = New System.Drawing.Point(749, 351)
+        Me.PictureBox12.Location = New System.Drawing.Point(763, 351)
         Me.PictureBox12.Name = "PictureBox12"
         Me.PictureBox12.Size = New System.Drawing.Size(333, 234)
         Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -816,9 +803,9 @@ Partial Class FormMain
         '
         Me.PictureBox13.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox13.Image = CType(resources.GetObject("PictureBox13.Image"), System.Drawing.Image)
-        Me.PictureBox13.Location = New System.Drawing.Point(755, 402)
+        Me.PictureBox13.Location = New System.Drawing.Point(771, 402)
         Me.PictureBox13.Name = "PictureBox13"
-        Me.PictureBox13.Size = New System.Drawing.Size(37, 29)
+        Me.PictureBox13.Size = New System.Drawing.Size(27, 17)
         Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox13.TabIndex = 101
         Me.PictureBox13.TabStop = False
@@ -827,9 +814,9 @@ Partial Class FormMain
         '
         Me.PictureBox14.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox14.Image = CType(resources.GetObject("PictureBox14.Image"), System.Drawing.Image)
-        Me.PictureBox14.Location = New System.Drawing.Point(1013, 549)
+        Me.PictureBox14.Location = New System.Drawing.Point(1054, 559)
         Me.PictureBox14.Name = "PictureBox14"
-        Me.PictureBox14.Size = New System.Drawing.Size(38, 28)
+        Me.PictureBox14.Size = New System.Drawing.Size(27, 17)
         Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox14.TabIndex = 102
         Me.PictureBox14.TabStop = False
@@ -848,7 +835,9 @@ Partial Class FormMain
         'lblEmail
         '
         Me.lblEmail.AutoSize = True
-        Me.lblEmail.Location = New System.Drawing.Point(620, 469)
+        Me.lblEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
+        Me.lblEmail.Location = New System.Drawing.Point(589, 450)
         Me.lblEmail.Name = "lblEmail"
         Me.lblEmail.Size = New System.Drawing.Size(63, 15)
         Me.lblEmail.TabIndex = 105
@@ -863,7 +852,7 @@ Partial Class FormMain
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(1882, 1008)
+        Me.ClientSize = New System.Drawing.Size(1882, 997)
         Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.btnDeleteNonCGI)
         Me.Controls.Add(Me.PictureBox14)
@@ -878,7 +867,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.btnAddNonCGI)
         Me.Controls.Add(Me.txtProspect)
         Me.Controls.Add(Me.lblAddress2)
-        Me.Controls.Add(Me.xlblEmail)
         Me.Controls.Add(Me.lblFax)
         Me.Controls.Add(Me.lblCellPhone)
         Me.Controls.Add(Me.lblLastName)
@@ -1005,7 +993,6 @@ Partial Class FormMain
     Friend WithEvents lblLastName As Label
     Friend WithEvents lblCellPhone As MaskedTextBox
     Friend WithEvents lblFax As MaskedTextBox
-    Friend WithEvents xlblEmail As Label
     Friend WithEvents lblAddress2 As Label
     Friend WithEvents btnLogOut As Button
     Friend WithEvents Column1 As DataGridViewTextBoxColumn

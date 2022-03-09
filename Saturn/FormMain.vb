@@ -1510,6 +1510,10 @@ Public Class FormMain
         'new ProcessStartInfo("mailto:example@stackoverflow.com") { UseShellExecute = true }
     End Sub
 
+    Private Sub xlblEmail_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
 
     'Private Sub txtSearchNote_TextChanged(sender As Object, e As EventArgs)
     'Dim iCnt As Integer
