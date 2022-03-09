@@ -1,10 +1,12 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Net.Mail
 Public Class FormNote
     Dim oConn As SqlConnection
     Private Sub FormNote_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sSql As String
         Dim oReader As SqlDataReader
         Dim myCmd As SqlCommand
+        Dim bValidEmail As Boolean
 
         'Me.DialogResult = Windows.Forms.DialogResult.OK
         GlobalVariables.ResetNote = False
@@ -14,6 +16,14 @@ Public Class FormNote
         Me.lblAddress2.Text = GlobalVariables.CurrentGrower.GrowerAddress2
         Me.lblGrowerCity.Text = GlobalVariables.CurrentGrower.GrowerCity
         Me.lblGrowerState.Text = GlobalVariables.CurrentGrower.GrowerState
+        Me.lblEmail.Text = GlobalVariables.CurrentGrower.GrowerEmail
+        If InStr(lblEmail.Text.ToString(), "@") <> 0 Then
+            bValidEmail = True
+        Else
+            bValidEmail = False
+        End If
+
+
         'oConn.Open("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         Dim sTestProd As String
         sTestProd = GlobalVariables.sEnv

@@ -43,6 +43,7 @@ Partial Class FormNote
         Me.Label4 = New System.Windows.Forms.Label()
         Me.lblAddress2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +53,7 @@ Partial Class FormNote
         '
         'cmbMethod
         '
+        Me.cmbMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbMethod.FormattingEnabled = True
         Me.cmbMethod.Location = New System.Drawing.Point(370, 176)
         Me.cmbMethod.Name = "cmbMethod"
@@ -267,6 +269,15 @@ Partial Class FormNote
         Me.Label1.TabIndex = 58
         Me.Label1.Text = "Grower"
         '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(482, 484)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(49, 15)
+        Me.lblEmail.TabIndex = 59
+        Me.lblEmail.Text = "lblEmail"
+        '
         'FormNote
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -274,6 +285,7 @@ Partial Class FormNote
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(558, 502)
+        Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblAddress2)
         Me.Controls.Add(Me.Label4)
@@ -327,4 +339,5 @@ Partial Class FormNote
     Friend WithEvents Label4 As Label
     Friend WithEvents lblAddress2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents lblEmail As Label
 End Class
