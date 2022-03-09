@@ -95,6 +95,7 @@ Partial Class FormMain
         Me.PictureBox12 = New System.Windows.Forms.PictureBox()
         Me.PictureBox13 = New System.Windows.Forms.PictureBox()
         Me.PictureBox14 = New System.Windows.Forms.PictureBox()
+        Me.btnDeleteNonCGI = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -640,7 +641,7 @@ Partial Class FormMain
         '
         Me.btnAddNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddNonCGI.Location = New System.Drawing.Point(1316, 661)
+        Me.btnAddNonCGI.Location = New System.Drawing.Point(1124, 661)
         Me.btnAddNonCGI.Name = "btnAddNonCGI"
         Me.btnAddNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnAddNonCGI.TabIndex = 83
@@ -661,7 +662,7 @@ Partial Class FormMain
         '
         Me.btnEditNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnEditNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnEditNonCGI.Location = New System.Drawing.Point(1228, 661)
+        Me.btnEditNonCGI.Location = New System.Drawing.Point(1211, 661)
         Me.btnEditNonCGI.Name = "btnEditNonCGI"
         Me.btnEditNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnEditNonCGI.TabIndex = 85
@@ -832,6 +833,17 @@ Partial Class FormMain
         Me.PictureBox14.TabIndex = 102
         Me.PictureBox14.TabStop = False
         '
+        'btnDeleteNonCGI
+        '
+        Me.btnDeleteNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.btnDeleteNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.btnDeleteNonCGI.Location = New System.Drawing.Point(1298, 661)
+        Me.btnDeleteNonCGI.Name = "btnDeleteNonCGI"
+        Me.btnDeleteNonCGI.Size = New System.Drawing.Size(85, 23)
+        Me.btnDeleteNonCGI.TabIndex = 103
+        Me.btnDeleteNonCGI.Text = "&Delete"
+        Me.btnDeleteNonCGI.UseVisualStyleBackColor = False
+        '
         'FormMain
         '
         Me.AcceptButton = Me.btnSearch
@@ -841,6 +853,7 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1882, 1008)
+        Me.Controls.Add(Me.btnDeleteNonCGI)
         Me.Controls.Add(Me.PictureBox14)
         Me.Controls.Add(Me.PictureBox13)
         Me.Controls.Add(Me.txtComment)
@@ -990,4 +1003,5 @@ Partial Class FormMain
     Friend WithEvents PictureBox12 As PictureBox
     Friend WithEvents PictureBox13 As PictureBox
     Friend WithEvents PictureBox14 As PictureBox
+    Friend WithEvents btnDeleteNonCGI As Button
 End Class

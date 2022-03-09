@@ -81,7 +81,7 @@ Public Class FormNonCGI
         Dim sSql As String
         Dim dDate As Date
         Dim bValidated As Boolean
-
+        Dim inonCGIID As Integer
 
         bValidated = True
 
@@ -132,12 +132,13 @@ Public Class FormNonCGI
             sSql = sSql & "'" & GlobalVariables.DQuot(txtSoldTo.Text.ToString()) & "', "
             sSql = sSql & "Convert(DateTime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
             sSql = sSql & "'" & GlobalVariables.DQuot(txtLocation.Text.ToString()) & "', "
-            sSql = sSql & GlobalVariables.CurrentGrower.GrowerID.ToString() & ")"
+            sSql = sSql & GlobalVariables.CurrentGrower.GrowerID.ToString() & "); SELECT SCOPE_IDENTITY()"
 
             oConn.Open()
             myCmd.CommandText = sSql
 
-            myCmd.ExecuteNonQuery()
+            'myCmd.ExecuteNonQuery()
+            inonCGIID = myCmd.ExecuteScalar()
             oConn.Close()
             Dim oNewNonCGI As New NonCGI
 
@@ -148,6 +149,7 @@ Public Class FormNonCGI
             oNewNonCGI.Volume = txtVolume.Text
             oNewNonCGI.SoldTo = txtSoldTo.Text
             oNewNonCGI.Location = txtLocation.Text
+            oNewNonCGI.NonCGICropID = inonCGIID
             GlobalVariables.CurrentGrower.OtherCrops.Add(oNewNonCGI)
             'oGrowerColl(oSelItem.CollectionIndex).Notes.Add(oNewNonCGI)
 

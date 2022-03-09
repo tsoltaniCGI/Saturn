@@ -172,4 +172,8 @@ Public Class FormEditNonCGI
     Private Sub btnCancelNonCGI_Click(sender As Object, e As EventArgs) Handles btnCancelNonCGI.Click
         Me.Close()
     End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
 End Class

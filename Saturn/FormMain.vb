@@ -135,7 +135,9 @@ Public Class FormMain
             lvNonCGI.Items.Add(oCurlvi)
             oNonCgiCropIDs.Add(oCurCrop.nonCGIcropID)
         Next
-
+        If lvNonCGI.Items.Count >= 1 Then
+            lvNonCGI.Items(0).Selected = True
+        End If
     End Sub
     Private Sub BuildCommodityList(iIndex As Integer)
         Dim liIndex As Integer
@@ -853,7 +855,7 @@ Public Class FormMain
                     oNonCGI.Volume = oOtherCropsRec(iCnt).Volume
                     oNonCGI.Location = oOtherCropsRec(iCnt).Location
                     oNonCGI.NonCGICropID = oOtherCropsRec(iCnt).nonCGIcrop_id
-                    oGrowerColl(iGrowerID.ToString()).OtherCrops.Add(oNonCGI)
+                    oGrowerColl(iGrowerID.ToString()).OtherCrops.Add(oNonCGI, oNonCGI.NonCGICropID.ToString())
                     iCnt = iCnt + 1
                     If iCnt > iMax Then Exit Do
                 Loop
@@ -1341,6 +1343,7 @@ Public Class FormMain
         Dim oNewNonCGI As New NonCGI
         Me.TopMost = False
         Dim frmNonCGI = New FormNonCGI
+        Dim iCurIndex As Integer
 
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
         GlobalVariables.BuildNonCGI = False
@@ -1350,7 +1353,12 @@ Public Class FormMain
         Me.TopMost = True
         If GlobalVariables.BuildNonCGI Then
             BuildNonCGIList(oSelItem.CollectionIndex)
+            'RebuildPage()
             GlobalVariables.BuildNonCGI = False
+            iCurIndex = ListBox1.SelectedIndex
+            'ListBox1.SetSelected(iCurIndex, False)
+            'ListBox1.SetSelected(iCurIndex, True)
+            ListBox1_SelectedIndexChanged(Me, EventArgs.Empty)
         End If
 
     End Sub
@@ -1365,6 +1373,7 @@ Public Class FormMain
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnEditNonCGI.Click
         Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+        Dim icurindex As Integer
         If lvNonCGI.SelectedItems.Count < 1 Then
             MessageBox.Show("No Item is Selected")
         Else
@@ -1376,7 +1385,11 @@ Public Class FormMain
             Me.TopMost = True
             If GlobalVariables.BuildNonCGI Then
                 BuildNonCGIList(oSelItem.CollectionIndex)
+                'RebuildPage()
                 GlobalVariables.BuildNonCGI = False
+                iCurIndex = ListBox1.SelectedIndex
+                'ListBox1.SetSelected(iCurIndex, False)
+                ListBox1_SelectedIndexChanged(Me, EventArgs.Empty)
             End If
         End If
 
@@ -1443,6 +1456,53 @@ Public Class FormMain
     Private Sub txtGrowers_TextChanged(sender As Object, e As EventArgs) Handles txtGrowers.TextChanged
 
     End Sub
+
+    Private Sub lvNonCGI_MouseDown(sender As Object, e As MouseEventArgs) Handles lvNonCGI.MouseDown
+
+    End Sub
+
+    Private Sub btnDeleteNonCGI_Click(sender As Object, e As EventArgs) Handles btnDeleteNonCGI.Click
+        Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
+        Dim sMessage As String
+        Dim oDelConn As SqlConnection
+        Dim oDelCMd As New SqlCommand
+        Dim iCurIndex As Integer
+        Dim sSql As String
+        If lvNonCGI.SelectedItems.Count < 1 Then
+            MessageBox.Show("No Item is Selected")
+        Else
+            GlobalVariables.CurrentGrower = oGrowerColl(oSelItem.CollectionIndex)
+            GlobalVariables.CurrentNonCGIID = oNonCgiCropIDs(lvNonCGI.SelectedIndices(0) + 1)
+            sMessage = "Delete " & lvNonCGI.SelectedItems(0).SubItems(0).Text
+            sMessage = sMessage & " " & lvNonCGI.SelectedItems(0).SubItems(4).Text & "?"
+            If MessageBox.Show(sMessage, " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                Dim sTestProd As String
+                sTestProd = GlobalVariables.sEnv
+                If sTestProd = "P" Then
+                    oDelConn = New SqlConnection("Server=pdx-sql14;Database=SATURN_PROD;UID=saturndba;PWD=saturndba")
+                Else
+                    oDelConn = New SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
+                End If
+                sSql = "DELETE FROM nonCGIcrop "
+                sSql = sSql & "WHERE nonCGIcrop_id = " & GlobalVariables.CurrentNonCGIID.ToString()
+                'oReader.Close
+                oDelConn.Open()
+                oDelCMd.Connection = oDelConn
+                oDelCMd.CommandText = sSql
+                oDelCMd.ExecuteNonQuery()
+                oDelConn.Close()
+                GlobalVariables.CurrentGrower.OtherCrops.Remove(lvNonCGI.SelectedIndices(0) + 1)
+                'oDelcmd.Dispose()
+                lvNonCGI.Items.RemoveAt(lvNonCGI.SelectedIndices(0))
+                BuildNonCGIList(oSelItem.CollectionIndex)
+                iCurIndex = ListBox1.SelectedIndex
+                'ListBox1.SetSelected(iCurIndex, False)
+                ListBox1_SelectedIndexChanged(Me, EventArgs.Empty)
+                'RebuildPage()
+            End If
+        End If
+    End Sub
+
 
     'Private Sub txtSearchNote_TextChanged(sender As Object, e As EventArgs)
     'Dim iCnt As Integer
