@@ -741,9 +741,9 @@ Public Class FormMain
         Loop
 
         sSql = "SELECT growers.grower_id, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', ISNULL(GROWER_NOTES.GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', "
-        sSql = sSql & "ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0), "
-        sSql = sSql & "user_login, grower_note_method_short_name, grower_note_id "
-        sSql = sSql & "FROM growers, grower_notes, grower_note_methods, growers_vendors, vendors, users, facilities, users_facilities, vendors_facilities "
+        sSql = sSql & "ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Grower Created By ID', "
+        sSql = sSql & "b.user_login, grower_note_method_short_name, grower_note_id "
+        sSql = sSql & "FROM growers, grower_notes, grower_note_methods, growers_vendors, vendors, users, facilities, users_facilities, vendors_facilities, users as b "
         sSql = sSql & "WHERE grower_notes.grower_id = growers.grower_id "
         sSql = sSql & "AND grower_note_methods.grower_note_method_id = grower_notes.grower_note_method_id "
         sSql = sSql & "AND growers_vendors.grower_id = growers.grower_id "
@@ -752,6 +752,7 @@ Public Class FormMain
         sSql = sSql & "AND users_facilities.user_id = users.user_id "
         sSql = sSql & "AND vendors_facilities.vendor_id = vendors.vendor_id "
         sSql = sSql & "AND vendors_facilities.facility_id = facilities.facility_id "
+        sSql = sSql & "AND b.user_id = grower_notes.grower_note_created_by "
         sSql = sSql & "AND users.user_id = " & GlobalVariables.UserId.ToString() & " "
         'sSql = sSql & "AND users.user_id = 333 "
         sSql = sSql & "AND grower_prospect = 'Y' "
