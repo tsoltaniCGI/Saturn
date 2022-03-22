@@ -20,17 +20,16 @@
     Public Property Vendors As New Collection
     Public Property Notes As New Collection
     Public Property OtherCrops As New Collection
-
-
-
-
-    Public Sub New()
-
-    End Sub
-
-
-
 End Class
+
+
+
+
+'Public Sub New()
+
+'End Sub
+
+
 Public Class GrowVendCom
     Public Property GrowerID As Integer
     Public Property VendorId As Integer
@@ -238,6 +237,7 @@ Public Class GlobalVariables
     Public Shared CurrentOtherCropIndex As Integer
     Public Shared sEnv As String
     Public Shared MainLoaded As Boolean
+    Public Shared CurrentTasks As New Collection
     Public Shared Function DQuot(lsConvStr As String) As String
         Dim lsRetStr As String
 

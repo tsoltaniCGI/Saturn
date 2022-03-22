@@ -96,6 +96,7 @@ Partial Class FormMain
         Me.PictureBox14 = New System.Windows.Forms.PictureBox()
         Me.btnDeleteNonCGI = New System.Windows.Forms.Button()
         Me.lblEmail = New System.Windows.Forms.LinkLabel()
+        Me.btnCreateReminder = New System.Windows.Forms.Button()
         CType(Me.pbContact, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -844,6 +845,15 @@ Partial Class FormMain
         Me.lblEmail.TabStop = True
         Me.lblEmail.Text = "LinkLabel1"
         '
+        'btnCreateReminder
+        '
+        Me.btnCreateReminder.Location = New System.Drawing.Point(381, 59)
+        Me.btnCreateReminder.Name = "btnCreateReminder"
+        Me.btnCreateReminder.Size = New System.Drawing.Size(122, 23)
+        Me.btnCreateReminder.TabIndex = 107
+        Me.btnCreateReminder.Text = "C&reate Reminder..."
+        Me.btnCreateReminder.UseVisualStyleBackColor = True
+        '
         'FormMain
         '
         Me.AcceptButton = Me.btnSearch
@@ -853,6 +863,7 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1882, 997)
+        Me.Controls.Add(Me.btnCreateReminder)
         Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.btnDeleteNonCGI)
         Me.Controls.Add(Me.PictureBox14)
@@ -1004,4 +1015,5 @@ Partial Class FormMain
     Friend WithEvents PictureBox14 As PictureBox
     Friend WithEvents btnDeleteNonCGI As Button
     Friend WithEvents lblEmail As LinkLabel
+    Friend WithEvents btnCreateReminder As Button
 End Class

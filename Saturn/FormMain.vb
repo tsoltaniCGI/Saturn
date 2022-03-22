@@ -4,10 +4,12 @@ Imports System.Data.SqlClient
 
 
 
+
 Public Class FormMain
 
 
     Inherits System.Windows.Forms.Form
+
 
 
 
@@ -1512,6 +1514,15 @@ Public Class FormMain
     End Sub
 
     Private Sub xlblEmail_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub btnCreateReminder_Click(sender As Object, e As EventArgs) Handles btnCreateReminder.Click
+        Dim oFromAR As New frmAddReminder
+
+        oFromAR.ShowDialog()
+
+        GlobalVariables.CurrentTasks.Clear()
 
     End Sub
 
