@@ -41,6 +41,8 @@ Partial Class frmAddReminder
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.lblRecurrence = New System.Windows.Forms.Label()
+        Me.LabelRecurrence = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,7 +156,7 @@ Partial Class frmAddReminder
         '
         Me.lblStartDateText.AutoSize = True
         Me.lblStartDateText.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblStartDateText.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.lblStartDateText.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblStartDateText.Location = New System.Drawing.Point(333, 320)
         Me.lblStartDateText.Name = "lblStartDateText"
         Me.lblStartDateText.Size = New System.Drawing.Size(61, 15)
@@ -165,7 +167,7 @@ Partial Class frmAddReminder
         '
         Me.lblEndDateText.AutoSize = True
         Me.lblEndDateText.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblEndDateText.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.lblEndDateText.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblEndDateText.Location = New System.Drawing.Point(474, 320)
         Me.lblEndDateText.Name = "lblEndDateText"
         Me.lblEndDateText.Size = New System.Drawing.Size(78, 15)
@@ -187,7 +189,7 @@ Partial Class frmAddReminder
         '
         Me.lblTaskTime.AutoSize = True
         Me.lblTaskTime.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblTaskTime.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.lblTaskTime.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblTaskTime.Location = New System.Drawing.Point(576, 320)
         Me.lblTaskTime.Name = "lblTaskTime"
         Me.lblTaskTime.Size = New System.Drawing.Size(174, 15)
@@ -222,11 +224,33 @@ Partial Class frmAddReminder
         Me.PictureBox3.TabIndex = 19
         Me.PictureBox3.TabStop = False
         '
+        'lblRecurrence
+        '
+        Me.lblRecurrence.AutoSize = True
+        Me.lblRecurrence.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.lblRecurrence.Location = New System.Drawing.Point(341, 349)
+        Me.lblRecurrence.Name = "lblRecurrence"
+        Me.lblRecurrence.Size = New System.Drawing.Size(0, 15)
+        Me.lblRecurrence.TabIndex = 20
+        '
+        'LabelRecurrence
+        '
+        Me.LabelRecurrence.AutoSize = True
+        Me.LabelRecurrence.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.LabelRecurrence.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.LabelRecurrence.Location = New System.Drawing.Point(266, 349)
+        Me.LabelRecurrence.Name = "LabelRecurrence"
+        Me.LabelRecurrence.Size = New System.Drawing.Size(69, 15)
+        Me.LabelRecurrence.TabIndex = 21
+        Me.LabelRecurrence.Text = "Recurrence:"
+        '
         'frmAddReminder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.LabelRecurrence)
+        Me.Controls.Add(Me.lblRecurrence)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.btnOK)
         Me.Controls.Add(Me.lblTaskTime)
@@ -274,6 +298,8 @@ Partial Class frmAddReminder
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents lblRecurrence As Label
+    Friend WithEvents LabelRecurrence As Label
     'Friend WithEvents MetroDateTime1 As MetroFramework.Controls.MetroDateTime
     'Friend WithEvents MetroDateTime1 As MetroFramework.Controls.MetroDateTime
 End Class

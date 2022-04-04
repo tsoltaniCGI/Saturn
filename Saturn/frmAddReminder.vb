@@ -156,6 +156,8 @@ Public Class frmAddReminder
         lblEndDate.Visible = False
         lblEndDateText.Visible = False
         lblTaskTime.Visible = False
+        lblRecurrence.Visible = False
+        LabelRecurrence.Visible = False
     End Sub
 
     Private Sub Label3_Click(sender As Object, e As EventArgs)
@@ -181,16 +183,34 @@ Public Class frmAddReminder
 
             lblStartDate.Visible = True
             lblStartDateText.Visible = True
+            lblRecurrence.Visible = True
+            LabelRecurrence.Visible = True
             lblStartDateText.Text = dtStartDate.ToString("mm/dd/yyyy")
             lblEndDate.Visible = True
             lblEndDateText.Visible = True
             lblEndDateText.Text = dtEndDate.ToString("mm/dd/yyyy")
             lblTaskTime.Visible = True
             lblTaskTime.Text = oTask.ReminderTime.ToString("t")
-            'Select Case oPattern.RecurrenceType
-            'Case Outlook.OlRecurrenceType.olRecursDaily
-            'lblRecurrence.Text = "Daily"
-            'End Select
+            Select Case oPattern.RecurrenceType
+                Case Outlook.OlRecurrenceType.olRecursDaily
+                    lblRecurrence.Text = "Daily"
+            End Select
+
+            Select Case oPattern.RecurrenceType
+                Case Outlook.OlRecurrenceType.olRecursMonthly
+                    lblRecurrence.Text = "Monthly"
+            End Select
+
+            Select Case oPattern.RecurrenceType
+                Case Outlook.OlRecurrenceType.olRecursWeekly
+                    lblRecurrence.Text = "Weekly"
+            End Select
+
+            Select Case oPattern.RecurrenceType
+                Case Outlook.OlRecurrenceType.olRecursYearly
+                    lblRecurrence.Text = "Yearly"
+            End Select
+
 
         Else
             dttnPckTaskDate.Enabled = True
