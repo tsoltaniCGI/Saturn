@@ -212,4 +212,16 @@ Public Class frmAddReminder
     Private Sub lblTaskTime_Click(sender As Object, e As EventArgs) Handles lblTaskTime.Click
 
     End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
+
+    Private Sub dttnPckTaskDate_ValueChanged(sender As Object, e As EventArgs) Handles dttnPckTaskDate.ValueChanged
+
+    End Sub
 End Class

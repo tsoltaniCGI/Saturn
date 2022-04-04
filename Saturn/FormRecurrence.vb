@@ -3,6 +3,8 @@ Imports Outlook = Microsoft.Office.Interop.Outlook
 Imports System
 Public Class FormAddRecurrence
     Dim oTask As Outlook.TaskItem
+    Dim oNS As Outlook.NameSpace
+
     Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
 
     End Sub
@@ -608,5 +610,12 @@ Public Class FormAddRecurrence
             ckFriday.Enabled = False
             ckSaturday.Enabled = False
         End If
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        oNS = Nothing
+        oTask = Nothing
+
+        Me.Close()
     End Sub
 End Class

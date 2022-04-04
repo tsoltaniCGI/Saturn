@@ -530,6 +530,7 @@ Partial Class FormMain
         Me.lvNonCGI.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.lvNonCGI.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10})
         Me.lvNonCGI.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.lvNonCGI.FullRowSelect = True
         Me.lvNonCGI.GridLines = True
         Me.lvNonCGI.HideSelection = False
         Me.lvNonCGI.Location = New System.Drawing.Point(883, 707)
@@ -847,12 +848,16 @@ Partial Class FormMain
         '
         'btnCreateReminder
         '
-        Me.btnCreateReminder.Location = New System.Drawing.Point(381, 59)
+        Me.btnCreateReminder.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.btnCreateReminder.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.btnCreateReminder.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnCreateReminder.Location = New System.Drawing.Point(1640, 13)
         Me.btnCreateReminder.Name = "btnCreateReminder"
-        Me.btnCreateReminder.Size = New System.Drawing.Size(122, 23)
+        Me.btnCreateReminder.Size = New System.Drawing.Size(115, 23)
         Me.btnCreateReminder.TabIndex = 107
-        Me.btnCreateReminder.Text = "C&reate Reminder..."
-        Me.btnCreateReminder.UseVisualStyleBackColor = True
+        Me.btnCreateReminder.Text = "Create a Reminder"
+        Me.btnCreateReminder.TextAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.btnCreateReminder.UseVisualStyleBackColor = False
         '
         'FormMain
         '
