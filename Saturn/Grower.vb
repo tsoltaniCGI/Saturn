@@ -23,11 +23,60 @@
 End Class
 
 
+Public Class FarmViewVendor
+    Public Property FarmViewVendorID As Integer
+    Public Property FarmViewAgtechVendorID As String
+    Public Property FarmViewVendorName As String
+    Public Property FarmViewGrowers As New Collection
+    Public Property FarmViewNotes As New Collection
+
+End Class
+
+Public Class FarmViewNotes
+    Public Property frviNoteID As Integer
+
+    Public Property frviNoteDate As Date
+    Public Property frviNoteSubject As String
+    Public Property frviNoteText As String
+
+    Public Property frviNoteCreator As String
+
+End Class
 
 
-'Public Sub New()
+Public Class FarmGrower
+    Public Property FarmGrowerID As Integer
+    Public Property FarmGrowerFirstName As String
+    Public Property FarmGrowerLastName As String
+End Class
 
-'End Sub
+
+Public Class VendGrowNoteUser
+    Public Property FrmViVendorID As Integer
+    Public Property FrmViAgtechVendorID As String
+    Public Property FrmViVendorName As String
+
+    Public Property FrmViGrowerID As Integer
+    Public Property FrmViGrowerFirstName As String
+    Public Property FrmViGrowerLastName As String
+
+    Public Property FrmViUserId As Integer
+    Public Property FrmViUserLogin As String
+
+
+    Public Property FrmViNoteId As Integer
+    Public Property FrmViNoteDate As DateTime
+    Public Property FrmViNoteSubject As String
+    Public Property FrmViNoteText As String
+
+End Class
+
+Public Class FarmViewGrower
+    Public Property FrmViGrowerId As Integer
+    Public Property FrmViGrowerFirstName As String
+    Public Property FrmViGrowerLastName As String
+    Public Property FarmViewNotes As New Collection
+End Class
 
 
 Public Class GrowVendCom
@@ -76,6 +125,20 @@ End Class
 Public Class IndexedVendorListItem
     Public Property VendorCollectionIndex As Integer
     Public Property VendorName As String
+End Class
+
+Public Class fmIndexedVendor
+    'Public Property FMVendorCollectionIndex As Integer
+    Public Property FMVendorName As String
+    Public Property FMGrowerName As String
+
+    Public Property oCollGrowerNames As New Collection
+    Public Property oGrowerIDs As New Collection
+End Class
+
+Public Class fmIndexedGrower
+    Public Property FMGrowerCollectionIndex As Integer
+    Public Property FMGrowerName As String
 End Class
 
 Public Class Commodity

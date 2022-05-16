@@ -3,18 +3,10 @@ Imports System.Data.SqlClient
 
 
 
-
-
 Public Class FormMain
 
 
     Inherits System.Windows.Forms.Form
-
-
-
-
-
-
 
 
     Dim oConn As New SqlConnection
@@ -1524,6 +1516,17 @@ Public Class FormMain
 
         GlobalVariables.CurrentTasks.Clear()
 
+    End Sub
+
+    Private Sub lvCommoditySales_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvCommoditySales.SelectedIndexChanged
+
+    End Sub
+
+
+
+    Private Sub btnFarmView_Click(sender As Object, e As EventArgs) Handles btnFarmView.Click
+        Dim oFarmViewMain As New FarmViewMain
+        oFarmViewMain.ShowDialog()
     End Sub
 
 
