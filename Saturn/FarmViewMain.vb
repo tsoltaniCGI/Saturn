@@ -118,7 +118,7 @@ Public Class FarmViewMain
                     ofGrower.FarmGrowerID = oCollVendorGrower(iCnt).FrmViGrowerID
                     ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
                     ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
-                    'oCollVendors.Add(of)
+
 
                     Do While iVendorId = oCollVendorGrower(iCnt).FrmViVendorID And iGrowerID = oCollVendorGrower(iCnt).FrmViGrowerID
 
@@ -128,18 +128,19 @@ Public Class FarmViewMain
                         ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
                         ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
                         ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
-                        'oCollVendors.Add(ofNote)
+
                         iCnt = iCnt + 1
 
                         If iCnt > iMax Then
                             Exit Do
                         End If
+                        ofGrower.oFarmGrowerNotes.Add(ofNote)
                     Loop
-
                     iCnt = iCnt + 1
                     If iCnt > iMax Then
                         Exit Do
                     End If
+                    oFrmViVendor.FarmViewGrowers.Add(ofGrower)
                 Loop
                 oCollVendors.Add(oFrmViVendor)
 
@@ -153,17 +154,36 @@ Public Class FarmViewMain
         lvVendors.View = View.Details
         lvVendors.Items.Clear()
 
+
         For Each oCurVendor In oCollVendors
             Dim oLVV As New ListViewItem
             oLVV.SubItems(0).Text = oCurVendor.FarmViewVendorName
-            oLVV.SubItems.Add(oCurVendor.FarmViewAgtechVendorID)
+            'oLVV.SubItems.Add(oCurVendor.FarmViewAgtechVendorID)
             lvVendors.Items.Add(oLVV)
         Next
 
         lvVendors.Columns(0).Text = "Vendor Name"
-        lvVendors.Columns(1).Text = "AgTech ID"
+        'lvVendors.Columns(1).Text = "AgTech ID"
 
 
+
+
+        'lvNotes.View = View.Details
+        'lvNotes.Items.Clear()
+
+        'For Each oCurNote In oCollVendors
+        '    Dim oLVN As New ListViewItem
+        '    oLVN.SubItems(0).Text = oCurNote.frviNoteSubject
+        '    oLVN.SubItems.Add(oCurNote.frviNoteDate)
+        '    oLVN.SubItems.Add(oCurNote.frviNoteText)
+        '    oLVN.SubItems.Add(oCurNote.frviNoteCreator)
+        '    lvNotes.Items.Add(oLVN)
+        'Next
+
+        'lvVendors.Columns(0).Text = "Note Subject"
+        'lvVendors.Columns(1).Text = "Note Date"
+        'lvVendors.Columns(2).Text = "Note Text"
+        'lvVendors.Columns(3).Text = "Note Creator"
 
     End Sub
 
@@ -175,15 +195,16 @@ Public Class FarmViewMain
 
 
 
-        'If lvVendors.SelectedIndices.Count >= 1 Then
-        '    iMax = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers.Count
-        '    iCnt = 1
-        '    lbGrowers.Items.Clear()
-        '    Do While iCnt <= iMax
-        '        lbGrowers.Items.Add(oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).GrowerName)
-        '        iCnt = iCnt + 1
-        '    Loop
-        'End If
+        If lvVendors.SelectedIndices.Count >= 1 Then
+            iMax = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers.Count
+            iCnt = 1
+            lbGrower.Items.Clear()
+            Do While iCnt <= iMax
+                lbGrower.Items.Add(oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerLastName)
+
+                iCnt = iCnt + 1
+            Loop
+        End If
 
         ckGrower1.CheckState = CheckState.Unchecked
         ckGrower1.Visible = False
@@ -210,29 +231,39 @@ Public Class FarmViewMain
             Select Case iCnt
                 Case 1
                     ckGrower1.Visible = True
-                    ckGrower1.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).GrowerName
+                    ckGrower1.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower1.Checked = True
                 Case 2
                     ckGrower2.Visible = True
-                    ckGrower2.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).GrowerName
+                    ckGrower2.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower2.Checked = True
                 Case 3
                     ckGrower3.Visible = True
-                    ckGrower3.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).GrowerName
+                    ckGrower3.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower3.Checked = True
                 Case 4
                     ckGrower4.Visible = True
-                    ckGrower4.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).GrowerName
+                    ckGrower4.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower4.Checked = True
                 Case 5
                     ckGrower5.Visible = True
-                    ckGrower5.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).GrowerName
+                    ckGrower5.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower5.Checked = True
                 Case 6
+                    ckGrower6.Visible = True
+                    ckGrower6.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
+                    ckGrower6.Checked = True
             End Select
             iCnt = iCnt + 1
         Loop
+        'lvNotes.Clear()
+
+
+
+
     End Sub
+
+
 
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click

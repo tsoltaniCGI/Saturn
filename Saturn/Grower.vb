@@ -28,7 +28,7 @@ Public Class FarmViewVendor
     Public Property FarmViewAgtechVendorID As String
     Public Property FarmViewVendorName As String
     Public Property FarmViewGrowers As New Collection
-    Public Property FarmViewNotes As New Collection
+
 
 End Class
 
@@ -48,6 +48,8 @@ Public Class FarmGrower
     Public Property FarmGrowerID As Integer
     Public Property FarmGrowerFirstName As String
     Public Property FarmGrowerLastName As String
+
+    Public Property oFarmGrowerNotes As New Collection
 End Class
 
 

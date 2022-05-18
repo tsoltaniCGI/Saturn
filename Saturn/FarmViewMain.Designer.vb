@@ -24,7 +24,6 @@ Partial Class FarmViewMain
     Private Sub InitializeComponent()
         Me.lvVendors = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
-        Me.ColumnHeader2 = New System.Windows.Forms.ColumnHeader()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lvNotes = New System.Windows.Forms.ListView()
@@ -40,13 +39,14 @@ Partial Class FarmViewMain
         Me.ckGrower5 = New System.Windows.Forms.CheckBox()
         Me.ckGrower6 = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.lbGrower = New System.Windows.Forms.ListBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvVendors
         '
         Me.lvVendors.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lvVendors.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
+        Me.lvVendors.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1})
         Me.lvVendors.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         Me.lvVendors.HideSelection = False
         Me.lvVendors.Location = New System.Drawing.Point(26, 76)
@@ -59,10 +59,6 @@ Partial Class FarmViewMain
         '
         Me.ColumnHeader1.Text = "Vendor Name"
         Me.ColumnHeader1.Width = 100
-        '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "AgTech ID"
         '
         'Label1
         '
@@ -179,11 +175,21 @@ Partial Class FarmViewMain
         Me.Label2.TabIndex = 11
         Me.Label2.Text = "Notes"
         '
+        'lbGrower
+        '
+        Me.lbGrower.FormattingEnabled = True
+        Me.lbGrower.ItemHeight = 15
+        Me.lbGrower.Location = New System.Drawing.Point(821, 25)
+        Me.lbGrower.Name = "lbGrower"
+        Me.lbGrower.Size = New System.Drawing.Size(252, 139)
+        Me.lbGrower.TabIndex = 12
+        '
         'FarmViewMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1109, 752)
+        Me.Controls.Add(Me.lbGrower)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ckGrower6)
         Me.Controls.Add(Me.ckGrower5)
@@ -220,5 +226,5 @@ Partial Class FarmViewMain
     Friend WithEvents ckGrower6 As CheckBox
     Friend WithEvents Label2 As Label
     Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents lbGrower As ListBox
 End Class
