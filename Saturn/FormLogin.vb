@@ -39,6 +39,7 @@
             sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, ISNULL(user_role,0) As user_role "
             sSql = sSql & "FROM users, facilities, users_facilities "
             sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
+            'sSql = sSql & "WHERE user_login = 'NHAGEN' "
             'sSql = sSql & "WHERE user_login = 'ROSBORNE' "
             sSql = sSql & "AND users_facilities.user_id = users.user_id "
             sSql = sSql & "AND users_facilities.facility_id = facilities.facility_id"
@@ -60,6 +61,7 @@
                         iUserId = oReader.GetInt32(0)
                         GlobalVariables.UserId = iUserId
                         GlobalVariables.CurrentUserLogin = GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper()))
+                        'GlobalVariables.CurrentUserLogin = "NHAGEN"
                         GlobalVariables.UserFirstName = oReader.GetString(1)
                         GlobalVariables.UserLastName = oReader.GetString(2)
                         GlobalVariables.CurrentUVDID = oReader.GetInt32(5)
@@ -75,11 +77,11 @@
                 Label4.Text = "Validated"
 
                 If GlobalVariables.CurrentUserRole = 1 Then
-                    If MessageBox.Show("Do you want to impersonate?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                    If MessageBox.Show("Do you want To impersonate?", " ", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
                         frmImpersonate.ShowDialog()
                         If GlobalVariables.ImpLogin <> "" Then
                             oReader.Close()
-                            sSql = "SELECT users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, user_role "
+                            sSql = "Select users.user_id, user_first_name, user_last_name, facility_name, facilities.facility_id, dummy_vendor_id, user_role "
                             sSql = sSql & "FROM users, facilities, users_facilities "
                             'sSql = sSql & "WHERE user_login = '" & GlobalVariables.DQuot(Trim(txtUserName.Text.ToString().ToUpper())) & "' "
                             sSql = sSql & "WHERE user_login = '" & GlobalVariables.ImpLogin & "' "

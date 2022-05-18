@@ -196,14 +196,17 @@ Public Class FarmViewMain
 
 
         If lvVendors.SelectedIndices.Count >= 1 Then
-            iMax = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers.Count
+
+            'iMax = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers.Count
+            iMax = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers.Count
             iCnt = 1
             lbGrower.Items.Clear()
             Do While iCnt <= iMax
-                lbGrower.Items.Add(oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerLastName)
+                lbGrower.Items.Add(oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerLastName)
 
                 iCnt = iCnt + 1
             Loop
+            iCnt = iCnt - 1
         End If
 
         ckGrower1.CheckState = CheckState.Unchecked
@@ -231,27 +234,27 @@ Public Class FarmViewMain
             Select Case iCnt
                 Case 1
                     ckGrower1.Visible = True
-                    ckGrower1.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
+                    ckGrower1.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower1.Checked = True
                 Case 2
                     ckGrower2.Visible = True
-                    ckGrower2.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
+                    ckGrower2.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower2.Checked = True
                 Case 3
                     ckGrower3.Visible = True
-                    ckGrower3.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
+                    ckGrower3.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower3.Checked = True
                 Case 4
                     ckGrower4.Visible = True
-                    ckGrower4.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
+                    ckGrower4.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower4.Checked = True
                 Case 5
                     ckGrower5.Visible = True
-                    ckGrower5.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
+                    ckGrower5.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower5.Checked = True
                 Case 6
                     ckGrower6.Visible = True
-                    ckGrower6.Text = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers(iCnt).FarmGrowerFirstName
+                    ckGrower6.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
                     ckGrower6.Checked = True
             End Select
             iCnt = iCnt + 1
@@ -267,6 +270,10 @@ Public Class FarmViewMain
 
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
     End Sub
 End Class
