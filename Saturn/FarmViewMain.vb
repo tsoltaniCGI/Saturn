@@ -7,6 +7,7 @@ Public Class FarmViewMain
     Inherits System.Windows.Forms.Form
     Dim oConn As New SqlConnection
     Dim oCollVendors As New Collection
+
     Private Sub FarmViewMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sTestProd As String
         sTestProd = "P"
@@ -25,7 +26,9 @@ Public Class FarmViewMain
         Dim iGrowerID As Integer
         Dim iMax As Integer
         Dim iCnt As Integer
-        Dim sGrowerName As String
+
+
+        'Dim sGrowerName As String
 
         'sSql = "SELECT DISTINCT vendors.vendor_id, vendors.agtech_vendor_ID, vendors.vendor_name, ISNULL(growers_vendors.grower_id, 0), ISNULL(users.user_id, 0), "
         'sSql = sSql & "ISNULL(growers.grower_first_name, '') AS [Grower First Name],  ISNULL(growers.grower_last_name, '') AS [GROWER LAST NAME], "
@@ -44,7 +47,7 @@ Public Class FarmViewMain
         'sSql = sSql & "ORDER BY vendors.vendor_name "
 
 
-        sSql = "SELECT DISTINCT vendors.vendor_id, coalesce(vendors.agtech_vendor_ID, ''), vendors.vendor_name, coalesce(growers.grower_id, 0),  coalesce(a.user_id, 0), "
+        sSql = "SELECT DISTINCT vendors.vendor_id, coalesce(vendors.agtech_vendor_ID, ''), vendors.vendor_name, coalesce(growers.grower_id, 0) AS [Grower ID],  coalesce(a.user_id, 0), "
         sSql = sSql & "coalesce(grower_first_name, '') AS [Grower First Name], coalesce(grower_last_name, '') AS [GROWER LAST NAME], "
         sSql = sSql & "coalesce(grower_note_creation_date, '') AS [Creation Date], coalesce(grower_note_id, 0) AS [NoteID], "
         sSql = sSql & "coalesce(grower_note_subject, '') AS [Note Subject], coalesce(grower_note_text, '') AS [Note Text], "
@@ -61,7 +64,8 @@ Public Class FarmViewMain
         sSql = sSql & "AND a.user_id = " & GlobalVariables.UserId.ToString() & " "
         sSql = sSql & "   ) "
         sSql = sSql & "AND vendors.vendor_dummy = 'N'"
-        sSql = sSql & "ORDER BY vendors.vendor_name, [GROWER LAST NAME], [Creation Date] "
+        'sSql = sSql & "ORDER BY vendors.vendor_name, [GROWER LAST NAME], [Creation Date] "
+        sSql = sSql & "ORDER BY vendors.vendor_id, [Grower ID]"
 
 
         mycmd.CommandText = sSql
@@ -88,7 +92,8 @@ Public Class FarmViewMain
                 oFRMV.FrmViUserLogin = oReader.GetString(11)
 
 
-                oCollVendorGrower.Add(oFRMV, oFRMV.FrmViVendorID.ToString() & oFRMV.FrmViGrowerID.ToString() & oFRMV.FrmViNoteId.ToString() & iNum.ToString())
+                'oCollVendorGrower.Add(oFRMV, oFRMV.FrmViVendorID.ToString() & oFRMV.FrmViGrowerID.ToString() & oFRMV.FrmViNoteId.ToString() & iNum.ToString())
+                oCollVendorGrower.Add(oFRMV)
                 iNum = iNum + 1
             Loop
         End If
@@ -104,11 +109,12 @@ Public Class FarmViewMain
             If oCollVendorGrower(iCnt).FrmViVendorID <> iVendorId Then
                 iVendorId = oCollVendorGrower(iCnt).FrmViVendorID
 
-                Dim oFrmViVendor As New FarmViewVendor
-                oFrmViVendor.FarmViewAgtechVendorID = oCollVendorGrower(iCnt).FrmViAgtechVendorID
-                oFrmViVendor.FarmViewVendorName = oCollVendorGrower(iCnt).FrmViVendorName
+                Dim oCurrentVendor As New FarmViewVendor
+                oCurrentVendor.FarmViewAgtechVendorID = oCollVendorGrower(iCnt).FrmViAgtechVendorID
+                oCurrentVendor.FarmViewVendorName = oCollVendorGrower(iCnt).FrmViVendorName
 
                 Do While iVendorId = oCollVendorGrower(iCnt).FrmViVendorID
+
                     'Dim oGrowerListItem As New fmIndexedGrower
                     'sGrowerName = Trim(oCollVendorGrower(iCnt).GrowerFirstName & " " & oCollVendorGrower(iCnt).GrowerLastName)
                     'oGrowerListItem.FMGrowerName = sGrowerName
@@ -120,6 +126,7 @@ Public Class FarmViewMain
                     ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
 
 
+                    iGrowerID = ofGrower.FarmGrowerID
                     Do While iVendorId = oCollVendorGrower(iCnt).FrmViVendorID And iGrowerID = oCollVendorGrower(iCnt).FrmViGrowerID
 
                         Dim ofNote As New FarmViewNotes
@@ -135,14 +142,16 @@ Public Class FarmViewMain
                             Exit Do
                         End If
                         ofGrower.oFarmGrowerNotes.Add(ofNote)
+                        iCnt = iCnt + 1
+                        If iCnt > iMax Then Exit Do
                     Loop
-                    iCnt = iCnt + 1
+                    'iCnt = iCnt + 1
                     If iCnt > iMax Then
                         Exit Do
                     End If
-                    oFrmViVendor.FarmViewGrowers.Add(ofGrower)
+                    oCurrentVendor.FarmViewGrowers.Add(ofGrower)
                 Loop
-                oCollVendors.Add(oFrmViVendor)
+                oCollVendors.Add(oCurrentVendor, oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID)
 
                 If iCnt > iMax Then
                     Exit Do
@@ -153,16 +162,21 @@ Public Class FarmViewMain
 
         lvVendors.View = View.Details
         lvVendors.Items.Clear()
-
+        lvVendors.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
+        lvVendors.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
+        lvVendors.Sorting = SortOrder.Ascending
 
         For Each oCurVendor In oCollVendors
             Dim oLVV As New ListViewItem
-            oLVV.SubItems(0).Text = oCurVendor.FarmViewVendorName
+            oLVV.SubItems(0).Text = oCurVendor.FarmViewVendorName & " - " & oCurVendor.FarmViewAgtechVendorID
             'oLVV.SubItems.Add(oCurVendor.FarmViewAgtechVendorID)
             lvVendors.Items.Add(oLVV)
         Next
 
         lvVendors.Columns(0).Text = "Vendor Name"
+        If lvVendors.Items.Count >= 1 Then
+            lvVendors.Items(0).Selected = True
+        End If
         'lvVendors.Columns(1).Text = "AgTech ID"
 
 
@@ -191,76 +205,84 @@ Public Class FarmViewMain
         Dim iCnt As Integer
         Dim iMax As Integer
         'Dim rowIndex As Integer = lvVendors.FocusedItem.Index
-        Dim iCurIndex As Integer = lvVendors.FocusedItem.Index
-
+        'Dim iCurIndex As Integer = lvVendors.FocusedItem.Index
+        Dim oSelVendor As FarmViewVendor
 
 
         If lvVendors.SelectedIndices.Count >= 1 Then
 
             'iMax = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers.Count
-            iMax = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers.Count
+            oSelVendor = oCollVendors(Replace(lvVendors.SelectedItems(0).Text, " - ", ""))
+            iMax = oSelVendor.FarmViewGrowers.Count
+            'iMax = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers.Count
             iCnt = 1
-            lbGrower.Items.Clear()
-            Do While iCnt <= iMax
-                lbGrower.Items.Add(oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerLastName)
+            'lbGrower.Items.Clear()
+            'Do While iCnt <= iMax
+            ' lbGrower.Items.Add(oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerLastName)
+            '
+            'iCnt = iCnt + 1
+            'Loop
+            'iCnt = iCnt - 1
 
+
+            'ckGrower1.CheckState = CheckState.Unchecked
+            ckGrower1.Checked = False
+            ckGrower1.Visible = False
+
+            'ckGrower2.CheckState = CheckState.Unchecked
+            ckGrower2.Checked = False
+            ckGrower2.Visible = False
+
+            'ckGrower3.CheckState = CheckState.Unchecked
+            ckGrower3.Checked = False
+            ckGrower3.Visible = False
+
+            'ckGrower4.CheckState = CheckState.Unchecked
+            ckGrower4.Checked = False
+            ckGrower4.Visible = False
+
+            'ckGrower5.CheckState = CheckState.Unchecked
+            ckGrower5.Checked = False
+            ckGrower5.Visible = False
+
+            'ckGrower6.CheckState = CheckState.Unchecked
+            ckGrower6.Checked = False
+            ckGrower6.Visible = False
+
+
+
+            Do While iCnt <= iMax
+                If iCnt > 6 Then Exit Do
+                Select Case iCnt
+                    Case 1
+                        ckGrower1.Visible = True
+                        ckGrower1.Text = oSelVendor.FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oSelVendor.FarmViewGrowers(iCnt).FarmGrowerLastName
+                        ckGrower1.Checked = True
+                    Case 2
+                        ckGrower2.Visible = True
+                        ckGrower2.Text = oSelVendor.FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oSelVendor.FarmViewGrowers(iCnt).FarmGrowerLastName
+                        ckGrower2.Checked = True
+                    Case 3
+                        ckGrower3.Visible = True
+                        ckGrower3.Text = oSelVendor.FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oSelVendor.FarmViewGrowers(iCnt).FarmGrowerLastName
+                        ckGrower3.Checked = True
+                    Case 4
+                        ckGrower4.Visible = True
+                        ckGrower4.Text = oSelVendor.FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oSelVendor.FarmViewGrowers(iCnt).FarmGrowerLastName
+                        ckGrower4.Checked = True
+                    Case 5
+                        ckGrower5.Visible = True
+                        ckGrower5.Text = oSelVendor.FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oSelVendor.FarmViewGrowers(iCnt).FarmGrowerLastName
+                        ckGrower5.Checked = True
+                    Case 6
+                        ckGrower6.Visible = True
+                        ckGrower6.Text = oSelVendor.FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oSelVendor.FarmViewGrowers(iCnt).FarmGrowerLastName
+                        ckGrower6.Checked = True
+                End Select
                 iCnt = iCnt + 1
             Loop
-            iCnt = iCnt - 1
+            'lvNotes.Clear()
         End If
-
-        ckGrower1.CheckState = CheckState.Unchecked
-        ckGrower1.Visible = False
-
-        ckGrower2.CheckState = CheckState.Unchecked
-        ckGrower2.Visible = False
-
-        ckGrower3.CheckState = CheckState.Unchecked
-        ckGrower3.Visible = False
-
-        ckGrower4.CheckState = CheckState.Unchecked
-        ckGrower4.Visible = False
-
-        ckGrower5.CheckState = CheckState.Unchecked
-        ckGrower5.Visible = False
-
-        ckGrower6.CheckState = CheckState.Unchecked
-        ckGrower6.Visible = False
-
-
-
-        Do While iCnt <= iMax
-            If iCnt > 6 Then Exit Do
-            Select Case iCnt
-                Case 1
-                    ckGrower1.Visible = True
-                    ckGrower1.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
-                    ckGrower1.Checked = True
-                Case 2
-                    ckGrower2.Visible = True
-                    ckGrower2.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
-                    ckGrower2.Checked = True
-                Case 3
-                    ckGrower3.Visible = True
-                    ckGrower3.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
-                    ckGrower3.Checked = True
-                Case 4
-                    ckGrower4.Visible = True
-                    ckGrower4.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
-                    ckGrower4.Checked = True
-                Case 5
-                    ckGrower5.Visible = True
-                    ckGrower5.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
-                    ckGrower5.Checked = True
-                Case 6
-                    ckGrower6.Visible = True
-                    ckGrower6.Text = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName
-                    ckGrower6.Checked = True
-            End Select
-            iCnt = iCnt + 1
-        Loop
-        'lvNotes.Clear()
-
 
 
 
@@ -275,5 +297,693 @@ Public Class FarmViewMain
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
+    End Sub
+
+    Private Sub ckGrower1_CheckStateChanged(sender As Object, e As EventArgs) Handles ckGrower1.CheckStateChanged
+        dgvNotes.Rows.Clear()
+
+        'oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim osVendor As FarmViewVendor
+        Dim osNote As FarmViewNotes
+
+        osVendor = oCollVendors(Replace(lvVendors.SelectedItems(0).Text, " - ", ""))
+
+
+        iCnt = 1
+        If ckGrower1.Checked = True And osVendor.FarmViewGrowers.Count >= 1 Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(1).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(1).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(1).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(1).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower2.Checked = True And osVendor.FarmViewGrowers.Count >= 2 Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(2).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(2).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(2).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(2).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower3.Checked = True And osVendor.FarmViewGrowers.Count >= 3 Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(3).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(3).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(3).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(3).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower4.Checked = True And osVendor.FarmViewGrowers.Count >= 4 Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(4).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(4).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(4).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(4).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower5.Checked = True And osVendor.FarmViewGrowers.Count >= 5 Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(5).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(5).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(5).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(5).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower6.Checked = True And osVendor.FarmViewGrowers.Count >= 6 Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(6).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(6).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(6).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(6).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        dgvNotes.Sort(dgvNotes.Columns(1), SortDirection.Descending)
+        'Columns("Creation Date"), SortDirection.Descending)
+        dgvNotes.Refresh()
+    End Sub
+
+    Private Sub ckGrower2_CheckStateChanged(sender As Object, e As EventArgs) Handles ckGrower2.CheckStateChanged
+        dgvNotes.Rows.Clear()
+
+        'oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim osVendor As FarmViewVendor
+        Dim osNote As FarmViewNotes
+
+        osVendor = oCollVendors(Replace(lvVendors.SelectedItems(0).Text, " - ", ""))
+
+
+        iCnt = 1
+        If ckGrower1.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(1).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(1).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(1).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(1).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower2.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(2).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(2).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(2).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(2).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower3.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(3).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(3).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(3).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(3).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower4.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(4).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(4).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(4).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(4).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower5.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(5).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(5).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(5).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(5).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower6.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(6).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(6).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(6).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(6).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        dgvNotes.Sort(dgvNotes.Columns(1), SortDirection.Descending)
+        dgvNotes.Refresh()
+
+    End Sub
+
+    Private Sub ckGrower3_CheckStateChanged(sender As Object, e As EventArgs) Handles ckGrower3.CheckStateChanged
+        dgvNotes.Rows.Clear()
+
+        'oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim osVendor As FarmViewVendor
+        Dim osNote As FarmViewNotes
+
+        osVendor = oCollVendors(Replace(lvVendors.SelectedItems(0).Text, " - ", ""))
+
+
+        iCnt = 1
+        If ckGrower1.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(1).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(1).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(1).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(1).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower2.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(2).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(2).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(2).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(2).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower3.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(3).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(3).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(3).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(3).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower4.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(4).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(4).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(4).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(4).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower5.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(5).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(5).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(5).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(5).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower6.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(6).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(6).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(6).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(6).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        dgvNotes.Sort(dgvNotes.Columns(1), SortDirection.Descending)
+        dgvNotes.Refresh()
+
+    End Sub
+
+    Private Sub ckGrower4_CheckStateChanged(sender As Object, e As EventArgs) Handles ckGrower4.CheckStateChanged
+        dgvNotes.Rows.Clear()
+
+        'oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim osVendor As FarmViewVendor
+        Dim osNote As FarmViewNotes
+
+        osVendor = oCollVendors(Replace(lvVendors.SelectedItems(0).Text, " - ", ""))
+
+
+        iCnt = 1
+        If ckGrower1.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(1).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(1).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(1).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(1).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower2.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(2).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(2).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(2).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(2).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower3.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(3).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(3).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(3).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(3).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower4.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(4).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(4).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(4).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(4).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower5.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(5).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(5).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(5).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(5).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower6.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(6).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(6).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(6).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(6).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        dgvNotes.Sort(dgvNotes.Columns(1), SortDirection.Descending)
+        dgvNotes.Refresh()
+
+    End Sub
+
+    Private Sub ckGrower5_CheckStateChanged(sender As Object, e As EventArgs) Handles ckGrower5.CheckStateChanged
+        dgvNotes.Rows.Clear()
+
+        'oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim osVendor As FarmViewVendor
+        Dim osNote As FarmViewNotes
+
+        osVendor = oCollVendors(Replace(lvVendors.SelectedItems(0).Text, " - ", ""))
+
+
+        iCnt = 1
+        If ckGrower1.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(1).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(1).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(1).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(1).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower2.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(2).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(2).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(2).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(2).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower3.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(3).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(3).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(3).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(3).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower4.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(4).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(4).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(4).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(4).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower5.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(5).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(5).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(5).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(5).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower6.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(6).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(6).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(6).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(6).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        dgvNotes.Sort(dgvNotes.Columns(1), SortDirection.Descending)
+        dgvNotes.Refresh()
+
+    End Sub
+
+    Private Sub ckGrower6_CheckStateChanged(sender As Object, e As EventArgs) Handles ckGrower6.CheckStateChanged
+        dgvNotes.Rows.Clear()
+
+        'oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim osVendor As FarmViewVendor
+        Dim osNote As FarmViewNotes
+
+        osVendor = oCollVendors(Replace(lvVendors.SelectedItems(0).Text, " - ", ""))
+
+
+        iCnt = 1
+        If ckGrower1.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(1).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(1).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(1).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(1).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower2.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(2).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(2).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(2).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(2).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower3.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(3).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(3).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(3).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(3).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower4.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(4).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(4).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(4).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(4).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower5.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(5).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(5).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(5).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(5).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        If ckGrower6.Checked = True Then
+            iCnt = 1
+            iMax = osVendor.FarmViewGrowers(6).oFarmGrowerNotes.Count
+            Do While iCnt <= iMax
+                'ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                'ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                'ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                'ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+                'ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                'ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                osNote = osVendor.FarmViewGrowers(6).oFarmGrowerNotes(iCnt)
+
+                dgvNotes.Rows.Add("Subject: " & osNote.frviNoteSubject & vbCrLf & vbCrLf & osNote.frviNoteText, osNote.frviNoteDate, osNote.frviNoteCreator, osVendor.FarmViewGrowers(6).FarmGrowerFirstName & " " & osVendor.FarmViewGrowers(6).FarmGrowerLastName)
+                iCnt = iCnt + 1
+            Loop
+        End If
+        dgvNotes.Sort(dgvNotes.Columns(1), SortDirection.Descending)
+        dgvNotes.Refresh()
+
+    End Sub
+
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
     End Sub
 End Class

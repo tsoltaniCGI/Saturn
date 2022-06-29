@@ -24,7 +24,7 @@
 
         Label4.Visible = False
         bValidated = False
-        If ValidateActiveDirectoryLogin("columbiagrain.com", txtUserName.Text.ToString(), txtPassword.Text.ToString()) Then
+        If ValidateActiveDirectoryLogin("internal.columbiagrain.com", txtUserName.Text.ToString(), txtPassword.Text.ToString()) Then
 
             Dim sTestProd As String
             sTestProd = "P"

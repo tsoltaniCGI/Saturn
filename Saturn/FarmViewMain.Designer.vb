@@ -22,16 +22,12 @@ Partial Class FarmViewMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lvVendors = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.lvNotes = New System.Windows.Forms.ListView()
-        Me.GrowerName = New System.Windows.Forms.ColumnHeader()
-        Me.CreatedDate = New System.Windows.Forms.ColumnHeader()
-        Me.Subject = New System.Windows.Forms.ColumnHeader()
-        Me.CreatedBy = New System.Windows.Forms.ColumnHeader()
-        Me.Note = New System.Windows.Forms.ColumnHeader()
         Me.ckGrower1 = New System.Windows.Forms.CheckBox()
         Me.ckGrower2 = New System.Windows.Forms.CheckBox()
         Me.ckGrower3 = New System.Windows.Forms.CheckBox()
@@ -39,8 +35,14 @@ Partial Class FarmViewMain
         Me.ckGrower5 = New System.Windows.Forms.CheckBox()
         Me.ckGrower6 = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.lbGrower = New System.Windows.Forms.ListBox()
+        Me.dgvNotes = New System.Windows.Forms.DataGridView()
+        Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Author = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Grower = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnClose = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvNotes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvVendors
@@ -50,6 +52,7 @@ Partial Class FarmViewMain
         Me.lvVendors.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         Me.lvVendors.HideSelection = False
         Me.lvVendors.Location = New System.Drawing.Point(26, 76)
+        Me.lvVendors.MultiSelect = False
         Me.lvVendors.Name = "lvVendors"
         Me.lvVendors.Size = New System.Drawing.Size(240, 630)
         Me.lvVendors.TabIndex = 0
@@ -80,16 +83,6 @@ Partial Class FarmViewMain
         Me.PictureBox1.Size = New System.Drawing.Size(1078, 728)
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
-        '
-        'lvNotes
-        '
-        Me.lvNotes.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.GrowerName, Me.CreatedDate, Me.Subject, Me.CreatedBy, Me.Note})
-        Me.lvNotes.HideSelection = False
-        Me.lvNotes.Location = New System.Drawing.Point(335, 210)
-        Me.lvNotes.Name = "lvNotes"
-        Me.lvNotes.Size = New System.Drawing.Size(709, 496)
-        Me.lvNotes.TabIndex = 4
-        Me.lvNotes.UseCompatibleStateImageBehavior = False
         '
         'ckGrower1
         '
@@ -175,21 +168,71 @@ Partial Class FarmViewMain
         Me.Label2.TabIndex = 11
         Me.Label2.Text = "Notes"
         '
-        'lbGrower
+        'dgvNotes
         '
-        Me.lbGrower.FormattingEnabled = True
-        Me.lbGrower.ItemHeight = 15
-        Me.lbGrower.Location = New System.Drawing.Point(821, 25)
-        Me.lbGrower.Name = "lbGrower"
-        Me.lbGrower.Size = New System.Drawing.Size(252, 139)
-        Me.lbGrower.TabIndex = 12
+        Me.dgvNotes.AllowUserToAddRows = False
+        Me.dgvNotes.AllowUserToDeleteRows = False
+        Me.dgvNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvNotes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Note, Me.DataGridViewTextBoxColumn1, Me.Author, Me.Grower})
+        Me.dgvNotes.Location = New System.Drawing.Point(335, 202)
+        Me.dgvNotes.Name = "dgvNotes"
+        Me.dgvNotes.ReadOnly = True
+        Me.dgvNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvNotes.RowHeadersVisible = False
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvNotes.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvNotes.RowTemplate.Height = 25
+        Me.dgvNotes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvNotes.Size = New System.Drawing.Size(725, 434)
+        Me.dgvNotes.TabIndex = 13
+        '
+        'Note
+        '
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Note.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Note.Frozen = True
+        Me.Note.HeaderText = "Note"
+        Me.Note.Name = "Note"
+        Me.Note.ReadOnly = True
+        Me.Note.Width = 350
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.Frozen = True
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Creation Date"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'Author
+        '
+        Me.Author.HeaderText = "Author"
+        Me.Author.Name = "Author"
+        Me.Author.ReadOnly = True
+        '
+        'Grower
+        '
+        Me.Grower.HeaderText = "Grower"
+        Me.Grower.Name = "Grower"
+        Me.Grower.ReadOnly = True
+        Me.Grower.Width = 200
+        '
+        'btnClose
+        '
+        Me.btnClose.Location = New System.Drawing.Point(517, 689)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(75, 23)
+        Me.btnClose.TabIndex = 15
+        Me.btnClose.Text = "&Close"
+        Me.btnClose.UseVisualStyleBackColor = True
         '
         'FarmViewMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1109, 752)
-        Me.Controls.Add(Me.lbGrower)
+        Me.Controls.Add(Me.btnClose)
+        Me.Controls.Add(Me.dgvNotes)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ckGrower6)
         Me.Controls.Add(Me.ckGrower5)
@@ -197,13 +240,13 @@ Partial Class FarmViewMain
         Me.Controls.Add(Me.ckGrower3)
         Me.Controls.Add(Me.ckGrower2)
         Me.Controls.Add(Me.ckGrower1)
-        Me.Controls.Add(Me.lvNotes)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lvVendors)
         Me.Controls.Add(Me.PictureBox1)
         Me.Name = "FarmViewMain"
         Me.Text = "FarmViewMain"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvNotes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -212,12 +255,6 @@ Partial Class FarmViewMain
     Friend WithEvents lvVendors As ListView
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents lvNotes As ListView
-    Friend WithEvents GrowerName As ColumnHeader
-    Friend WithEvents CreatedDate As ColumnHeader
-    Friend WithEvents Subject As ColumnHeader
-    Friend WithEvents CreatedBy As ColumnHeader
-    Friend WithEvents Note As ColumnHeader
     Friend WithEvents ckGrower1 As CheckBox
     Friend WithEvents ckGrower2 As CheckBox
     Friend WithEvents ckGrower3 As CheckBox
@@ -226,5 +263,10 @@ Partial Class FarmViewMain
     Friend WithEvents ckGrower6 As CheckBox
     Friend WithEvents Label2 As Label
     Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents lbGrower As ListBox
+    Friend WithEvents dgvNotes As DataGridView
+    Friend WithEvents Note As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents Author As DataGridViewTextBoxColumn
+    Friend WithEvents Grower As DataGridViewTextBoxColumn
+    Friend WithEvents btnClose As Button
 End Class

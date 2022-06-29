@@ -162,7 +162,7 @@ Partial Class FormMain
         Me.ListBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(-70, 180)
+        Me.ListBox1.Location = New System.Drawing.Point(200, 156)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(329, 782)
         Me.ListBox1.TabIndex = 32
@@ -390,7 +390,7 @@ Partial Class FormMain
         Me.TestDataGrid.ColumnHeadersVisible = False
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1376, 188)
+        Me.TestDataGrid.Location = New System.Drawing.Point(1646, 164)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
@@ -500,7 +500,7 @@ Partial Class FormMain
         Me.PictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(1347, 43)
+        Me.PictureBox6.Location = New System.Drawing.Point(1617, 19)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(439, 914)
         Me.PictureBox6.TabIndex = 60
@@ -622,7 +622,7 @@ Partial Class FormMain
         '
         Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(-70, 36)
+        Me.PictureBox1.Location = New System.Drawing.Point(200, 12)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(329, 926)
         Me.PictureBox1.TabIndex = 81
@@ -655,7 +655,7 @@ Partial Class FormMain
         '
         Me.PictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox10.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox10.Location = New System.Drawing.Point(-70, 36)
+        Me.PictureBox10.Location = New System.Drawing.Point(82, 28)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(1856, 925)
         Me.PictureBox10.TabIndex = 84
@@ -871,9 +871,10 @@ Partial Class FormMain
         '
         'FormMain
         '
-        Me.AcceptButton = Me.btnSearch
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        Me.AutoScroll = True
+        Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None

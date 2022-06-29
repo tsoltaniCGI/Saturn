@@ -51,15 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MetroFramework">
-      <HintPath>\\columbiagrain.com\dfs\Administration\IT Services\SW Dev\SaturnRestored\Saturn\Saturn\bin\Debug\netcoreapp3.1\MetroFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="MetroFramework.Design">
-      <HintPath>\\columbiagrain.com\dfs\Administration\IT Services\SW Dev\SaturnRestored\Saturn\Saturn\bin\Debug\netcoreapp3.1\MetroFramework.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="MetroFramework.Fonts">
-      <HintPath>\\columbiagrain.com\dfs\Administration\IT Services\SW Dev\SaturnRestored\Saturn\Saturn\bin\Debug\netcoreapp3.1\MetroFramework.Fonts.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.Shared.Base">
       <HintPath>..\..\..\..\..\..\Program Files\Microsoft Office\root\vfs\ProgramFilesX86\Microsoft Office\Office16\DCF\SyncFusion.Shared.Base.dll</HintPath>
     </Reference>
