@@ -190,6 +190,7 @@ Public Class FarmViewMain
     Private Sub lvVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvVendors.SelectedIndexChanged
         Dim iCnt As Integer
         Dim iMax As Integer
+        Dim sName As String
         'Dim rowIndex As Integer = lvVendors.FocusedItem.Index
         Dim iCurIndex As Integer = lvVendors.FocusedItem.Index
 
@@ -200,10 +201,18 @@ Public Class FarmViewMain
             'iMax = oCollVendors(lvVendors.SelectedIndices(0) + 1).FarmViewGrowers.Count
             iMax = oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers.Count
             iCnt = 1
-            lbGrower.Items.Clear()
+            lvNotes.Items.Clear()
             Do While iCnt <= iMax
-                lbGrower.Items.Add(oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerLastName)
-
+                lvNotes.Items.Add(oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerLastName)
+                'lvNotes.SunItems(0).Text = Add(oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerLastName)
+                'For Each oCurNote In oCollVendors.
+                '    Dim oLVN As New ListViewItem
+                '    oLVN.SubItems(0).Text = oCurNote.frviNoteSubject
+                '    oLVN.SubItems.Add(oCurNote.frviNoteDate)
+                '    oLVN.SubItems.Add(oCurNote.frviNoteText)
+                '    oLVN.SubItems.Add(oCurNote.frviNoteCreator)
+                '    lvNotes.Items.Add(oLVN)
+                'Next
                 iCnt = iCnt + 1
             Loop
             iCnt = iCnt - 1
@@ -231,6 +240,8 @@ Public Class FarmViewMain
 
         Do While iCnt <= iMax
             If iCnt > 6 Then Exit Do
+            'sName = Trim(oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerFirstName & " " & oCollVendors(lvVendors.SelectedIndices(0)).FarmViewGrowers(iCnt).FarmGrowerLastName)
+
             Select Case iCnt
                 Case 1
                     ckGrower1.Visible = True
@@ -276,4 +287,13 @@ Public Class FarmViewMain
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
     End Sub
+
+    'Private Sub ckGrower1_CheckedChanged(sender As Object, e As EventArgs) Handles ckGrower1.CheckedChanged
+    '    Dim oSelItem As IndexedGrowerListItem = Me.lvVendors.SelectedIndices(0)
+    '    If oGrowerColl(oSelItem.CollectionIndex).GrowerProspect = "N" Then
+    '        BuildCommodityList(oSelItem.CollectionIndex)
+    '    Else
+    '        lvCommoditySales.Items.Clear()
+    '    End If
+    'End Sub
 End Class

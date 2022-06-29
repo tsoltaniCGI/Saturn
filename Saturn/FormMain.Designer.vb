@@ -83,7 +83,6 @@ Partial Class FormMain
         Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.PictureBox11 = New System.Windows.Forms.PictureBox()
         Me.lblWorkPhone = New System.Windows.Forms.MaskedTextBox()
-        Me.lblLastName = New System.Windows.Forms.Label()
         Me.lblCellPhone = New System.Windows.Forms.MaskedTextBox()
         Me.lblFax = New System.Windows.Forms.MaskedTextBox()
         Me.lblAddress2 = New System.Windows.Forms.Label()
@@ -162,7 +161,7 @@ Partial Class FormMain
         Me.ListBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(-70, 180)
+        Me.ListBox1.Location = New System.Drawing.Point(-8, 180)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(329, 782)
         Me.ListBox1.TabIndex = 32
@@ -254,13 +253,12 @@ Partial Class FormMain
         '
         'lblName
         '
-        Me.lblName.AutoSize = True
         Me.lblName.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.lblName.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.lblName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
         Me.lblName.Location = New System.Drawing.Point(629, 208)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(137, 16)
+        Me.lblName.Size = New System.Drawing.Size(253, 21)
         Me.lblName.TabIndex = 43
         Me.lblName.Text = "GrowerFirstName"
         '
@@ -390,7 +388,7 @@ Partial Class FormMain
         Me.TestDataGrid.ColumnHeadersVisible = False
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1376, 188)
+        Me.TestDataGrid.Location = New System.Drawing.Point(1438, 188)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
@@ -500,7 +498,7 @@ Partial Class FormMain
         Me.PictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(1347, 43)
+        Me.PictureBox6.Location = New System.Drawing.Point(1409, 43)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(439, 914)
         Me.PictureBox6.TabIndex = 60
@@ -622,7 +620,7 @@ Partial Class FormMain
         '
         Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(-70, 36)
+        Me.PictureBox1.Location = New System.Drawing.Point(-8, 36)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(329, 926)
         Me.PictureBox1.TabIndex = 81
@@ -655,7 +653,7 @@ Partial Class FormMain
         '
         Me.PictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox10.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox10.Location = New System.Drawing.Point(-70, 36)
+        Me.PictureBox10.Location = New System.Drawing.Point(-8, 36)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(1856, 925)
         Me.PictureBox10.TabIndex = 84
@@ -704,18 +702,6 @@ Partial Class FormMain
         Me.lblWorkPhone.Size = New System.Drawing.Size(100, 16)
         Me.lblWorkPhone.TabIndex = 88
         '
-        'lblLastName
-        '
-        Me.lblLastName.AutoSize = True
-        Me.lblLastName.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lblLastName.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.lblLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(82, Byte), Integer))
-        Me.lblLastName.Location = New System.Drawing.Point(748, 208)
-        Me.lblLastName.Name = "lblLastName"
-        Me.lblLastName.Size = New System.Drawing.Size(134, 16)
-        Me.lblLastName.TabIndex = 89
-        Me.lblLastName.Text = "GrowerLastName"
-        '
         'lblCellPhone
         '
         Me.lblCellPhone.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
@@ -751,7 +737,7 @@ Partial Class FormMain
         '
         Me.btnLogOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnLogOut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnLogOut.Location = New System.Drawing.Point(1816, 13)
+        Me.btnLogOut.Location = New System.Drawing.Point(1814, 13)
         Me.btnLogOut.Name = "btnLogOut"
         Me.btnLogOut.Size = New System.Drawing.Size(75, 23)
         Me.btnLogOut.TabIndex = 95
@@ -852,7 +838,7 @@ Partial Class FormMain
         Me.btnCreateReminder.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnCreateReminder.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         Me.btnCreateReminder.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnCreateReminder.Location = New System.Drawing.Point(1640, 13)
+        Me.btnCreateReminder.Location = New System.Drawing.Point(1667, 13)
         Me.btnCreateReminder.Name = "btnCreateReminder"
         Me.btnCreateReminder.Size = New System.Drawing.Size(115, 23)
         Me.btnCreateReminder.TabIndex = 107
@@ -862,12 +848,14 @@ Partial Class FormMain
         '
         'btnFarmView
         '
-        Me.btnFarmView.Location = New System.Drawing.Point(1545, 13)
+        Me.btnFarmView.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.btnFarmView.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        Me.btnFarmView.Location = New System.Drawing.Point(1520, 13)
         Me.btnFarmView.Name = "btnFarmView"
-        Me.btnFarmView.Size = New System.Drawing.Size(75, 23)
+        Me.btnFarmView.Size = New System.Drawing.Size(115, 23)
         Me.btnFarmView.TabIndex = 108
         Me.btnFarmView.Text = "Farm View"
-        Me.btnFarmView.UseVisualStyleBackColor = True
+        Me.btnFarmView.UseVisualStyleBackColor = False
         '
         'FormMain
         '
@@ -877,7 +865,7 @@ Partial Class FormMain
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(131, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(1710, 997)
+        Me.ClientSize = New System.Drawing.Size(1834, 997)
         Me.Controls.Add(Me.btnFarmView)
         Me.Controls.Add(Me.btnCreateReminder)
         Me.Controls.Add(Me.lblEmail)
@@ -896,7 +884,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.lblAddress2)
         Me.Controls.Add(Me.lblFax)
         Me.Controls.Add(Me.lblCellPhone)
-        Me.Controls.Add(Me.lblLastName)
         Me.Controls.Add(Me.lblWorkPhone)
         Me.Controls.Add(Me.PictureBox11)
         Me.Controls.Add(Me.PictureBox8)
@@ -1017,7 +1004,6 @@ Partial Class FormMain
     Friend WithEvents PictureBox8 As PictureBox
     Friend WithEvents PictureBox11 As PictureBox
     Friend WithEvents lblWorkPhone As MaskedTextBox
-    Friend WithEvents lblLastName As Label
     Friend WithEvents lblCellPhone As MaskedTextBox
     Friend WithEvents lblFax As MaskedTextBox
     Friend WithEvents lblAddress2 As Label
