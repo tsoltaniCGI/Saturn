@@ -60,8 +60,8 @@ Partial Class FarmViewMain
         '
         'ColumnHeader1
         '
-        Me.ColumnHeader1.Text = "Vendor Name"
-        Me.ColumnHeader1.Width = 100
+        Me.ColumnHeader1.Text = ""
+        Me.ColumnHeader1.Width = 250
         '
         'Label1
         '

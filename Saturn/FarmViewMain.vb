@@ -204,6 +204,7 @@ Public Class FarmViewMain
     Private Sub lvVendors_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvVendors.SelectedIndexChanged
         Dim iCnt As Integer
         Dim iMax As Integer
+        Dim sName As String
         'Dim rowIndex As Integer = lvVendors.FocusedItem.Index
         'Dim iCurIndex As Integer = lvVendors.FocusedItem.Index
         Dim oSelVendor As FarmViewVendor
@@ -986,4 +987,13 @@ Public Class FarmViewMain
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
+
+    'Private Sub ckGrower1_CheckedChanged(sender As Object, e As EventArgs) Handles ckGrower1.CheckedChanged
+    '    Dim oSelItem As IndexedGrowerListItem = Me.lvVendors.SelectedIndices(0)
+    '    If oGrowerColl(oSelItem.CollectionIndex).GrowerProspect = "N" Then
+    '        BuildCommodityList(oSelItem.CollectionIndex)
+    '    Else
+    '        lvCommoditySales.Items.Clear()
+    '    End If
+    'End Sub
 End Class

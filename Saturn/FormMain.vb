@@ -4,7 +4,7 @@ Imports System.Data.SqlClient
 
 
 Public Class FormMain
-
+    'making this comment for Jack
 
     Inherits System.Windows.Forms.Form
 
@@ -922,8 +922,8 @@ Public Class FormMain
 
         If ListBox1.SelectedIndex >= 0 Then
 
-            lblName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerFirstName.ToString()
-            lblLastName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
+            lblName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerFirstName.ToString() & " " & oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
+            'lblLastName.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerLastName.ToString()
             lblAddress.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerAddress1.ToString()
             lblGrowerCity.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerCity.ToString()
             lblGrowerState.Text = oGrowerColl(oSelItem.CollectionIndex).GrowerState.ToString()
