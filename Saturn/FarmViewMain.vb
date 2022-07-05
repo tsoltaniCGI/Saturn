@@ -16,6 +16,7 @@ Public Class FarmViewMain
         Else
             oConn = New System.Data.SqlClient.SqlConnection("Server=pdx-sql16;Database=SATURN_DEV;UID=saturndba;PWD=saturndba")
         End If
+        'This is a very informative comment.  It tells you everything you need to know!
 
         Dim mycmd = oConn.CreateCommand
         Dim oReader As SqlDataReader

@@ -75,6 +75,7 @@ Public Class frmAddReminder
 
             ' Save the task to outlook
             oTask.Save()
+            MessageBox.Show("Reminder Created.")
 
             ' Send the task
             'oAppt1.Send()
