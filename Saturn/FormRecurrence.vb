@@ -429,7 +429,7 @@ Public Class FormAddRecurrence
         iMultMon = 32
         iMultSun = 64
         iTotal = 0
-        'I am so sick of this error!!!!!
+        'I am so sick of this error!!!
         bValidated = True
         oPattern = oTask.GetRecurrencePattern()
 
