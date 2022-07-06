@@ -174,7 +174,7 @@ Public Class FarmViewMain
             lvVendors.Items.Add(oLVV)
         Next
 
-        lvVendors.Columns(0).Text = "Vendor Name"
+        lvVendors.Columns(0).Text = "Farm Name_AgTech ID"
         If lvVendors.Items.Count >= 1 Then
             lvVendors.Items(0).Selected = True
         End If
@@ -988,6 +988,8 @@ Public Class FarmViewMain
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
     End Sub
+
+
 
     'Private Sub ckGrower1_CheckedChanged(sender As Object, e As EventArgs) Handles ckGrower1.CheckedChanged
     '    Dim oSelItem As IndexedGrowerListItem = Me.lvVendors.SelectedIndices(0)
