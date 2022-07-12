@@ -28,8 +28,9 @@ Partial Class FarmViewMain
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.lvVendors = New System.Windows.Forms.ListView()
-        Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ckGrower1 = New System.Windows.Forms.CheckBox()
@@ -40,32 +41,19 @@ Partial Class FarmViewMain
         Me.ckGrower6 = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dgvNotes = New System.Windows.Forms.DataGridView()
-        Me.btnClose = New System.Windows.Forms.Button()
         Me.Note = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreationDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Author = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Grower = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnClose = New System.Windows.Forms.Button()
+        Me.dgvVendors = New System.Windows.Forms.DataGridView()
+        Me.FarmName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AgTechID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvNotes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvVendors, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'lvVendors
-        '
-        Me.lvVendors.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.lvVendors.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1})
-        Me.lvVendors.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.lvVendors.HideSelection = False
-        Me.lvVendors.Location = New System.Drawing.Point(26, 76)
-        Me.lvVendors.MultiSelect = False
-        Me.lvVendors.Name = "lvVendors"
-        Me.lvVendors.Size = New System.Drawing.Size(357, 630)
-        Me.lvVendors.TabIndex = 0
-        Me.lvVendors.UseCompatibleStateImageBehavior = False
-        '
-        'ColumnHeader1
-        '
-        Me.ColumnHeader1.Text = "Farm Names"
-        Me.ColumnHeader1.Width = 250
         '
         'Label1
         '
@@ -73,7 +61,7 @@ Partial Class FarmViewMain
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.Label1.Font = New System.Drawing.Font("Georgia", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(26, 38)
+        Me.Label1.Location = New System.Drawing.Point(39, 38)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(82, 25)
         Me.Label1.TabIndex = 2
@@ -206,19 +194,10 @@ Partial Class FarmViewMain
         Me.dgvNotes.Size = New System.Drawing.Size(733, 504)
         Me.dgvNotes.TabIndex = 13
         '
-        'btnClose
-        '
-        Me.btnClose.Location = New System.Drawing.Point(1057, 25)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(75, 23)
-        Me.btnClose.TabIndex = 15
-        Me.btnClose.Text = "&Close"
-        Me.btnClose.UseVisualStyleBackColor = True
-        '
         'Note
         '
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Note.DefaultCellStyle = DataGridViewCellStyle2
@@ -231,7 +210,7 @@ Partial Class FarmViewMain
         'CreationDate
         '
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.CreationDate.DefaultCellStyle = DataGridViewCellStyle3
@@ -244,7 +223,7 @@ Partial Class FarmViewMain
         'Author
         '
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Author.DefaultCellStyle = DataGridViewCellStyle4
@@ -256,7 +235,7 @@ Partial Class FarmViewMain
         'Grower
         '
         DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue
         DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Grower.DefaultCellStyle = DataGridViewCellStyle5
@@ -266,11 +245,76 @@ Partial Class FarmViewMain
         Me.Grower.ReadOnly = True
         Me.Grower.Width = 200
         '
+        'btnClose
+        '
+        Me.btnClose.Location = New System.Drawing.Point(1057, 25)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(75, 23)
+        Me.btnClose.TabIndex = 15
+        Me.btnClose.Text = "&Close"
+        Me.btnClose.UseVisualStyleBackColor = True
+        '
+        'dgvVendors
+        '
+        Me.dgvVendors.AllowUserToAddRows = False
+        Me.dgvVendors.AllowUserToDeleteRows = False
+        Me.dgvVendors.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvVendors.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        Me.dgvVendors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvVendors.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FarmName, Me.AgTechID})
+        Me.dgvVendors.Location = New System.Drawing.Point(37, 87)
+        Me.dgvVendors.Name = "dgvVendors"
+        Me.dgvVendors.ReadOnly = True
+        Me.dgvVendors.RowHeadersVisible = False
+        Me.dgvVendors.RowTemplate.Height = 25
+        Me.dgvVendors.Size = New System.Drawing.Size(304, 619)
+        Me.dgvVendors.TabIndex = 16
+        '
+        'FarmName
+        '
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue
+        Me.FarmName.DefaultCellStyle = DataGridViewCellStyle8
+        Me.FarmName.Frozen = True
+        Me.FarmName.HeaderText = "Farm Name"
+        Me.FarmName.Name = "FarmName"
+        Me.FarmName.ReadOnly = True
+        Me.FarmName.Width = 200
+        '
+        'AgTechID
+        '
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SteelBlue
+        Me.AgTechID.DefaultCellStyle = DataGridViewCellStyle9
+        Me.AgTechID.Frozen = True
+        Me.AgTechID.HeaderText = "AGTech ID"
+        Me.AgTechID.Name = "AgTechID"
+        Me.AgTechID.ReadOnly = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        Me.Label3.Font = New System.Drawing.Font("Georgia", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(405, 38)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(105, 25)
+        Me.Label3.TabIndex = 17
+        Me.Label3.Text = "Growers"
+        '
         'FarmViewMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1189, 752)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.dgvVendors)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.dgvNotes)
         Me.Controls.Add(Me.Label2)
@@ -281,18 +325,16 @@ Partial Class FarmViewMain
         Me.Controls.Add(Me.ckGrower2)
         Me.Controls.Add(Me.ckGrower1)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.lvVendors)
         Me.Controls.Add(Me.PictureBox1)
         Me.Name = "FarmViewMain"
         Me.Text = "Farm View"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvNotes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvVendors, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents lvVendors As ListView
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ckGrower1 As CheckBox
@@ -302,11 +344,14 @@ Partial Class FarmViewMain
     Friend WithEvents ckGrower5 As CheckBox
     Friend WithEvents ckGrower6 As CheckBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents dgvNotes As DataGridView
     Friend WithEvents btnClose As Button
+    Friend WithEvents dgvVendors As DataGridView
     Friend WithEvents Note As DataGridViewTextBoxColumn
     Friend WithEvents CreationDate As DataGridViewTextBoxColumn
     Friend WithEvents Author As DataGridViewTextBoxColumn
     Friend WithEvents Grower As DataGridViewTextBoxColumn
+    Friend WithEvents FarmName As DataGridViewTextBoxColumn
+    Friend WithEvents AgTechID As DataGridViewTextBoxColumn
+    Friend WithEvents Label3 As Label
 End Class
