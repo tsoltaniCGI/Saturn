@@ -197,12 +197,12 @@ Partial Class FarmViewMain
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.CreationDate.DefaultCellStyle = DataGridViewCellStyle3
-        Me.CreationDate.Frozen = True
-        Me.CreationDate.HeaderText = "Creation Date"
-        Me.CreationDate.Name = "CreationDate"
-        Me.CreationDate.ReadOnly = True
-        Me.CreationDate.Width = 150
+        'Me.CreationDate.DefaultCellStyle = DataGridViewCellStyle3
+        'Me.CreationDate.Frozen = True
+        'Me.CreationDate.HeaderText = "Creation Date"
+        'Me.CreationDate.Name = "CreationDate"
+        'Me.CreationDate.ReadOnly = True
+        'Me.CreationDate.Width = 150
         '
         'Author
         '
