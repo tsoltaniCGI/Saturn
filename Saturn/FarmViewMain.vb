@@ -1019,13 +1019,6 @@ Public Class FarmViewMain
         Me.Close()
     End Sub
 
-    Private Sub dgvVendors_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvVendors.CellContentClick
-
-    End Sub
-
-    Private Sub dgvVendors_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvVendors.CellContentClick
-
-    End Sub
 
     Private Sub dgvVendors_SelectionChanged(sender As Object, e As EventArgs) Handles dgvVendors.SelectionChanged
         Dim iCnt As Integer
@@ -1118,9 +1111,9 @@ Public Class FarmViewMain
 
     End Sub
 
-End Class
 
-End Sub
+
+End Class
 
 'Private Sub ckGrower1_CheckedChanged(sender As Object, e As EventArgs) Handles ckGrower1.CheckedChanged
 '    Dim oSelItem As IndexedGrowerListItem = Me.lvVendors.SelectedIndices(0)
