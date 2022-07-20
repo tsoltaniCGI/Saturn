@@ -111,7 +111,9 @@ Public Class FarmViewMain
         Do While iCnt <= iMax
             If oCollVendorGrower(iCnt).FrmViVendorID <> iVendorId Then
                 iVendorId = oCollVendorGrower(iCnt).FrmViVendorID
-
+                'If iVendorId = 78849 Then
+                'MessageBox.Show("Found it")
+                'End If
                 Dim oCurrentVendor As New FarmViewVendor
                 oCurrentVendor.FarmViewAgtechVendorID = oCollVendorGrower(iCnt).FrmViAgtechVendorID
                 oCurrentVendor.FarmViewVendorName = oCollVendorGrower(iCnt).FrmViVendorName
@@ -139,11 +141,11 @@ Public Class FarmViewMain
                         ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
                         ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
 
-                        iCnt = iCnt + 1
+                        'iCnt = iCnt + 1
 
-                        If iCnt > iMax Then
-                            Exit Do
-                        End If
+                        'If iCnt > iMax Then
+                        'Exit Do
+                        'End If
                         ofGrower.oFarmGrowerNotes.Add(ofNote)
                         iCnt = iCnt + 1
                         If iCnt > iMax Then Exit Do

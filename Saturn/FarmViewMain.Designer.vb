@@ -69,9 +69,9 @@ Partial Class FarmViewMain
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(39, 38)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(104, 25)
+        Me.Label1.Size = New System.Drawing.Size(82, 25)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Vendors"
+        Me.Label1.Text = "Farms"
         '
         'PictureBox1
         '
