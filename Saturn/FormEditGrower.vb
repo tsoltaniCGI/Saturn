@@ -191,11 +191,11 @@ Public Class FormEditGrower
         Dim sDate As String
         Dim bDataValidated As Boolean
         Dim sProspect As String
-        Dim sConfirmMsg As String
+        'Dim sConfirmMsg As String
         Dim sCurCountry As String
         Dim loCurrentGrower As Grower
         Dim sCollIndex As String
-        Dim iDummyVendorId As Integer
+        'Dim iDummyVendorId As Integer
         Dim oConn As SqlConnection
 
 

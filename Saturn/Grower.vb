@@ -20,6 +20,7 @@
     Public Property Vendors As New Collection
     Public Property Notes As New Collection
     Public Property OtherCrops As New Collection
+
 End Class
 
 
@@ -31,7 +32,16 @@ Public Class FarmViewVendor
 
 
 End Class
+Public Class GrowerFilter
+    Public Property FirstName As String
+    Public Property LastName As String
+    Public Property City As String
+    Public Property County As String
+    Public Property CommodityID As String
+    Public Property Prospect As Boolean
+    Public Property HasNotes As Boolean
 
+End Class
 Public Class FarmViewNotes
     Public Property frviNoteID As Integer
 
@@ -164,6 +174,7 @@ Public Class NonCGI
     Public Property NonCGICropID As Integer
     Public Property UpdatedDate As Date
     Public Property NonCGICommodity As String
+    Public Property NonCGICommID As String
     Public Property Status As String
     Public Property SoldTo As String
     Public Property Volume As Integer
@@ -224,6 +235,7 @@ Public Class NonCGIRec
     Public Property GrowerID As Integer
     Public Property nonCGIcrop_id As Integer
     Public Property CommodityID As String
+    Public Property AgCommID As String
     Public Property Status As String
     Public Property Volume As Integer
     Public Property SoldTo As String
@@ -303,6 +315,8 @@ Public Class GlobalVariables
     Public Shared sEnv As String
     Public Shared MainLoaded As Boolean
     Public Shared CurrentTasks As New Collection
+    Public Shared CurrentFilters As New GrowerFilter
+    Public Shared AddedGrower As New Grower
     Public Shared Function DQuot(lsConvStr As String) As String
         Dim lsRetStr As String
 

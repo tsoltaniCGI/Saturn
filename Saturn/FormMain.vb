@@ -115,13 +115,264 @@ Public Class FormMain
     Private Sub RebuildPage()
         Form1_Load(Me, EventArgs.Empty)
     End Sub
-    Private Sub BuildNonCGIList(iIndex As Integer)
+    Private Sub ClearFilters()
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim sLastName As String
+        Dim sFirstName As String
+        Dim sProspect As String
+        Dim sAddress As String
+        Dim sCity As String
+        Dim sState As String
+        Dim sCounty As String
+        Dim sZip As String
+        Dim sCountry As String
+        Dim sWorkPhone As String
+        Dim sCellPhone As String
+        Dim sFax As String
+        Dim sEmail As String
+        Dim sComment As String
+        Dim sGrowerID As String
+        Dim sAddress2 As String
+
+
+        dgvGrowers.Rows.Clear()
+        GlobalVariables.CurrentFilters.FirstName = ""
+        GlobalVariables.CurrentFilters.LastName = ""
+        GlobalVariables.CurrentFilters.City = ""
+        GlobalVariables.CurrentFilters.County = ""
+        GlobalVariables.CurrentFilters.CommodityID = ""
+        GlobalVariables.CurrentFilters.Prospect = False
+        GlobalVariables.CurrentFilters.HasNotes = False
+        iCnt = 1
+        iMax = oGrowerColl.Count
+
+        Do While iCnt <= iMax
+
+            sLastName = oGrowerColl(iCnt).GrowerLastName
+            sFirstName = oGrowerColl(iCnt).GrowerFirstName
+            sProspect = oGrowerColl(iCnt).GrowerProspect
+            If sProspect = "Y" Then
+                sProspect = "P"
+            Else
+                sProspect = " "
+            End If
+            sAddress = oGrowerColl(iCnt).GrowerAddress1
+            sAddress2 = Trim(oGrowerColl(iCnt).GrowerAddress2)
+            If Len(sAddress2) > 0 Then
+                sAddress = sAddress & vbCrLf & sAddress2
+            End If
+            sCity = oGrowerColl(iCnt).GrowerCity
+            sState = oGrowerColl(iCnt).GrowerState
+            sCounty = oGrowerColl(iCnt).GrowerCounty
+            sZip = oGrowerColl(iCnt).GrowerZip
+            sCountry = oGrowerColl(iCnt).GrowerCountry
+            sWorkPhone = oGrowerColl(iCnt).GrowerPhone1
+            sCellPhone = oGrowerColl(iCnt).GrowerPhone2
+            sFax = oGrowerColl(iCnt).GrowerFax
+            sEmail = oGrowerColl(iCnt).GrowerEmail
+            sComment = oGrowerColl(iCnt).GrowerComment
+            sGrowerID = oGrowerColl(iCnt).GrowerID.ToString()
+
+            dgvGrowers.Rows.Add(sLastName, sFirstName, sProspect, sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, sGrowerID)
+
+
+            iCnt = iCnt + 1
+
+        Loop
+
+    End Sub
+    Private Sub RefreshDataGrid()
+        Dim sFilterFirstName As String
+        Dim sFilterLastName As String
+        Dim sFilterCity As String
+        Dim sFilterCounty As String
+        Dim sFilterCommodityID As String
+        Dim iCnt As Integer
+        Dim iMax As Integer
+        Dim iCnt2 As Integer
+        Dim iMax2 As Integer
+        Dim bFirstNameFilter As Boolean
+        Dim bLastNameFilter As Boolean
+        Dim bCityFilter As Boolean
+        Dim bCountyFilter As Boolean
+        Dim bCommodityIDFilter As Boolean
+        Dim bAddGrower As Boolean
+        Dim sLastName As String
+        Dim sFirstName As String
+        Dim sProspect As String
+        Dim sAddress As String
+        Dim sCity As String
+        Dim sState As String
+        Dim sCounty As String
+        Dim sZip As String
+        Dim sCountry As String
+        Dim sWorkPhone As String
+        Dim sCellPhone As String
+        Dim sFax As String
+        Dim sEmail As String
+        Dim sComment As String
+        Dim sGrowerID As String
+        Dim sAddress2 As String
+        Dim bCommFound As Boolean
+        Dim bProspect As Boolean
+        Dim bHasNotes As Boolean
+
+
+        bFirstNameFilter = False
+        bLastNameFilter = False
+        bCityFilter = False
+        bCountyFilter = False
+        bCommodityIDFilter = False
+
+
+
+
+
+        dgvGrowers.Rows.Clear()
+        sFilterFirstName = Trim(GlobalVariables.CurrentFilters.FirstName)
+        sFilterLastName = Trim(GlobalVariables.CurrentFilters.LastName)
+        sFilterCity = Trim(GlobalVariables.CurrentFilters.City)
+        sFilterCounty = Trim(GlobalVariables.CurrentFilters.County)
+        sFilterCommodityID = Trim(GlobalVariables.CurrentFilters.CommodityID)
+
+        If Len(sFilterFirstName) > 0 Then bFirstNameFilter = True
+        If Len(sFilterLastName) > 0 Then bLastNameFilter = True
+        If Len(sFilterCity) > 0 Then bCityFilter = True
+        If Len(sFilterCounty) > 0 Then bCountyFilter = True
+        If Len(sFilterCommodityID) > 0 Then bCommodityIDFilter = True
+        bProspect = GlobalVariables.CurrentFilters.Prospect
+        bHasNotes = GlobalVariables.CurrentFilters.HasNotes
+
+
+        iCnt = 1
+        iMax = oGrowerColl.Count
+
+        Do While iCnt <= iMax
+
+            bAddGrower = True
+            'If oGrowerColl(iCnt).GrowerFirstName = "Don" And oGrowerColl(iCnt).GrowerLastName = "Conley" Then
+            ' MessageBox.Show("Don COnley Found!")
+            'End If
+            If bFirstNameFilter Then
+                If oGrowerColl(iCnt).GrowerFirstName.Contains(sFilterFirstName) Then
+                    'Do Nothing
+                Else
+                    bAddGrower = False
+                End If
+            End If
+
+            If bLastNameFilter Then
+                If oGrowerColl(iCnt).GrowerLastName.Contains(sFilterLastName) Then
+                    'Do Nothing
+                Else
+                    bAddGrower = False
+                End If
+            End If
+
+            If bCityFilter Then
+                If oGrowerColl(iCnt).GrowerCity.Contains(sFilterCity) Then
+                    'Do Nothing
+                Else
+                    bAddGrower = False
+                End If
+            End If
+
+            If bCountyFilter Then
+                If oGrowerColl(iCnt).GrowerCounty.Contains(sFilterCounty) Then
+                    'Do Nothing
+                Else
+                    bAddGrower = False
+                End If
+            End If
+
+            If bCommodityIDFilter Then
+                iCnt2 = 1
+                iMax2 = oGrowerColl(iCnt).OtherCrops.Count
+                bCommFound = False
+                Do While iCnt2 <= iMax2
+                    If oGrowerColl(iCnt).OtherCrops(iCnt2).NonCGICommID = sFilterCommodityID Then
+                        bCommFound = True
+                        Exit Do
+                    End If
+                    iCnt2 = iCnt2 + 1
+                Loop
+                If bCommFound Then
+                    'Do Nothing
+                Else
+                    bAddGrower = False
+                End If
+            End If
+
+            If bProspect Then
+                If oGrowerColl(iCnt).GrowerProspect = "Y" Then
+                    'Do Nothing
+                Else
+                    bAddGrower = False
+                End If
+            End If
+
+            If bHasNotes Then
+                If oGrowerColl(iCnt).Notes.Count >= 1 Then
+                    'Do Nothing
+                Else
+                    bAddGrower = False
+                End If
+
+            End If
+
+            If bAddGrower Then
+                sLastName = oGrowerColl(iCnt).GrowerLastName
+                sFirstName = oGrowerColl(iCnt).GrowerFirstName
+                sProspect = oGrowerColl(iCnt).GrowerProspect
+                If sProspect = "Y" Then
+                    sProspect = "P"
+                Else
+                    sProspect = " "
+                End If
+                sAddress = oGrowerColl(iCnt).GrowerAddress1
+                sAddress2 = Trim(oGrowerColl(iCnt).GrowerAddress2)
+                If Len(sAddress2) > 0 Then
+                    sAddress = sAddress & vbCrLf & sAddress2
+                End If
+                sCity = oGrowerColl(iCnt).GrowerCity
+                sState = oGrowerColl(iCnt).GrowerState
+                sCounty = oGrowerColl(iCnt).GrowerCounty
+                sZip = oGrowerColl(iCnt).GrowerZip
+                sCountry = oGrowerColl(iCnt).GrowerCountry
+                sWorkPhone = oGrowerColl(iCnt).GrowerPhone1
+                sCellPhone = oGrowerColl(iCnt).GrowerPhone2
+                sFax = oGrowerColl(iCnt).GrowerFax
+                sEmail = oGrowerColl(iCnt).GrowerEmail
+                sComment = oGrowerColl(iCnt).GrowerComment
+                sGrowerID = oGrowerColl(iCnt).GrowerID.ToString()
+
+                dgvGrowers.Rows.Add(sLastName, sFirstName, sProspect, sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, sGrowerID)
+            End If
+
+            iCnt = iCnt + 1
+
+        Loop
+
+        If dgvGrowers.Rows.Count = 0 Then
+            Dim result As DialogResult = MessageBox.Show("No Growers Found matching your filter criteria.  Clear Filters?", "No Growers Found", MessageBoxButtons.YesNo)
+
+            If result = DialogResult.Yes Then
+                ClearFilters()
+            End If
+            'If MsgBox("No Growers Found matching your filter criteria.  Clear Filters?", MsgBoxStyle.YesNo, "No Growers Found") = MsgBoxResult.Yes Then
+
+        End If
+
+
+    End Sub
+    Private Sub BuildNonCGIList(lsKey As String)
         If Not GlobalVariables.BuildNonCGI Then Exit Sub
         lvNonCGI.View = View.Details
         lvNonCGI.Items.Clear()
         oNonCgiCropIDs.Clear()
 
-        For Each oCurCrop In oGrowerColl(iIndex).OtherCrops
+        For Each oCurCrop In oGrowerColl(lsKey).OtherCrops
             Dim oCurlvi As New ListViewItem
             oCurlvi.SubItems(0).Text = oCurCrop.NonCGICommodity
             oCurlvi.SubItems.Add(oCurCrop.UpdatedDate.ToString())
@@ -136,7 +387,7 @@ Public Class FormMain
             lvNonCGI.Items(0).Selected = True
         End If
     End Sub
-    Private Sub BuildCommodityList(iIndex As Integer)
+    Private Sub BuildCommodityList(lsKey As String)
         Dim liIndex As Integer
         Dim loCollCommList As New Collection
         Dim loCurComm As Commodity
@@ -175,13 +426,13 @@ Public Class FormMain
 
         For Each liIndex In loCollCheckedIndices
             liCommCnt = 1
-            liCommMax = oGrowerColl(iIndex).Vendors(liIndex).CollCommodities.Count
+            liCommMax = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities.Count
             Do While liCommCnt <= liCommMax
-                lsCurCommId = oGrowerColl(iIndex).Vendors(liIndex).CollCommodities(liCommCnt).CommId
-                lsCurCommName = oGrowerColl(iIndex).Vendors(liIndex).CollCommodities(liCommCnt).CommName
-                lsCurCropYear = oGrowerColl(iIndex).Vendors(liIndex).CollCommodities(liCommCnt).CurrentCropYear.ToString()
-                lsPrevCropYear = oGrowerColl(iIndex).Vendors(liIndex).CollCommodities(liCommCnt).PreviousCropYear.ToString()
-                lsPrev2CropYear = oGrowerColl(iIndex).Vendors(liIndex).CollCommodities(liCommCnt).Previous2CropYear.ToString()
+                lsCurCommId = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).CommId
+                lsCurCommName = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).CommName
+                lsCurCropYear = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).CurrentCropYear.ToString()
+                lsPrevCropYear = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).PreviousCropYear.ToString()
+                lsPrev2CropYear = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).Previous2CropYear.ToString()
                 'If Not loCollCommList.Contains(lsCurCommId) Then
                 Dim loNewComm As New Commodity
                 loNewComm.CommID = lsCurCommId
@@ -564,6 +815,10 @@ Public Class FormMain
                                 oComm.PreviousCropYear = oCollGrowVendComm(iCnt).PreviousCropYear
                                 oComm.Previous2CropYear = oCollGrowVendComm(iCnt).Previous2CropYear
                                 oVendor.CollCommodities.Add(oComm, oComm.CommID)
+                            Else
+                                oVendor.CollCommodities(sCommID).CurrentCropYear = oVendor.CollCommodities(sCommID).CurrentCropYear + oCollGrowVendComm(iCnt).CurrentCropYear
+                                oVendor.CollCommodities(sCommID).PreviousCropYear = oVendor.CollCommodities(sCommID).PreviousCropYear + oCollGrowVendComm(iCnt).PreviousCropYear
+                                oVendor.CollCommodities(sCommID).Previous2CropYear = oVendor.CollCommodities(sCommID).Previous2CropYear + oCollGrowVendComm(iCnt).PreviousCropYear
                             End If
                             iCnt = iCnt + 1
                             If iCnt >= iMax Then
@@ -580,7 +835,7 @@ Public Class FormMain
                     If iCnt >= iMax Then
                         If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                             oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                            dgvGrowers.Rows.Add(sLastName, sFirstName, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrowerColl.Count)
+                            dgvGrowers.Rows.Add(sLastName, sFirstName, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrower.GrowerID.ToString())
 
                             'oGrowerListItem.CollectionIndex = oGrowerColl.Count
                             'ListBox1.Items.Add(oGrowerListItem)
@@ -592,7 +847,7 @@ Public Class FormMain
                     If iGrowerID <> oCollGrowVendComm(iCnt).GrowerId Then
                         If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                             oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                            dgvGrowers.Rows.Add(sLastName, sFirstName, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrowerColl.Count)
+                            dgvGrowers.Rows.Add(sLastName, sFirstName, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrower.GrowerID.ToString())
 
                             'oGrowerListItem.CollectionIndex = oGrowerColl.Count
 
@@ -733,8 +988,8 @@ Public Class FormMain
                 oGrower.GrowerEmail = oProspectRecs(iCnt).GrowerEmail
                 oGrower.GrowerComment = oProspectRecs(iCnt).GrowerComment
                 oGrower.GrowerProspect = "Y"
-                sLastName = oCollGrowVendComm(iCnt).GrowerLastName
-                sFirstName = oCollGrowVendComm(iCnt).GrowerFirstName
+                sLastName = oGrower.GrowerLastName
+                sFirstName = oGrower.GrowerFirstName
                 sProspFlag = " "
                 sAddress = oGrower.GrowerAddress1
                 If Len(oGrower.GrowerAddress2) > 0 Then
@@ -766,7 +1021,7 @@ Public Class FormMain
 
                     If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                         oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                        dgvGrowers.Rows.Add(sLastName, sFirstName, "P", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrowerColl.Count)
+                        dgvGrowers.Rows.Add(sLastName, sFirstName, "P", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrower.GrowerID.ToString())
 
                         'oGrowerListItem.CollectionIndex = oGrowerColl.Count
                         'ListBox1.Items.Add(oGrowerListItem)
@@ -778,11 +1033,16 @@ Public Class FormMain
                     If iGrowerID <> oProspectRecs(iCnt).GrowerID Then
                         iCnt = iCnt - 1
                     End If
+
+                    'iCnt = iCnt + 1
+                    If iCnt > iMax Then Exit Do
+                    'End If
+                    iCnt = iCnt + 1
                 End If
-                iCnt = iCnt + 1
-                If iCnt > iMax Then Exit Do
+
             Else
                 iCnt = iCnt + 1
+                If iCnt > iMax Then Exit Do
             End If
         Loop
 
@@ -854,7 +1114,7 @@ Public Class FormMain
 
         iGrowerID = -1
         sSql = "SELECT DISTINCT growers.grower_id, ISNULL(commodity_name, '') As CommName, ISNULL(status, '') As Status , ISNULL(sold_to, ''), volume_bu, updated_date, ISNULL(location, ''), "
-        sSql = sSql & "nonCGIcrop_id "
+        sSql = sSql & "nonCGIcrop_id, ISNULL(commodities.commodity_id, '') "
         sSql = sSql & "FROM commodities, nonCGIcrop, users, facilities, users_facilities, vendors, vendors_facilities, growers, growers_vendors "
         sSql = sSql & "WHERE nonCGIcrop.commodity_id = commodities.commodity_id "
         sSql = sSql & "AND users_facilities.user_id = users.user_id "
@@ -881,6 +1141,7 @@ Public Class FormMain
                 oNonCGIRec.UpdatedDate = oReader.GetDateTime(5)
                 oNonCGIRec.Location = oReader.GetString(6)
                 oNonCGIRec.nonCGIcrop_id = oReader.GetInt32(7)
+                oNonCGIRec.AgCommID = oReader.GetString(8)
                 oOtherCropsRec.Add(oNonCGIRec)
 
             Loop
@@ -902,6 +1163,7 @@ Public Class FormMain
                     oNonCGI.Volume = oOtherCropsRec(iCnt).Volume
                     oNonCGI.Location = oOtherCropsRec(iCnt).Location
                     oNonCGI.NonCGICropID = oOtherCropsRec(iCnt).nonCGIcrop_id
+                    oNonCGI.NonCGICommID = oOtherCropsRec(iCnt).AgCommID
                     oGrowerColl(iGrowerID.ToString()).OtherCrops.Add(oNonCGI, oNonCGI.NonCGICropID.ToString())
                     iCnt = iCnt + 1
                     If iCnt > iMax Then Exit Do
@@ -1139,11 +1401,11 @@ Public Class FormMain
 
     Private Sub ckVendor2_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor2.CheckedChanged
         'Dim oSelItem As IndexedGrowerListItem = Me.ListBox1.SelectedItem
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
@@ -1151,77 +1413,77 @@ Public Class FormMain
 
     Private Sub ckVendor6_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor6.CheckedChanged
         'Dim oSelItem As IndexedGrowerListItem = Me.ListBox1.SelectedItem
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
     End Sub
 
     Private Sub ckVendor1_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor1.CheckedChanged
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
     End Sub
 
     Private Sub ckVendor3_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor3.CheckedChanged
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
     End Sub
 
     Private Sub ckVendor4_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor4.CheckedChanged
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
     End Sub
 
     Private Sub ckVendor5_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor5.CheckedChanged
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
     End Sub
 
     Private Sub ckVendor7_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor7.CheckedChanged
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
     End Sub
 
     Private Sub ckVendor8_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor8.CheckedChanged
-        Dim iIndex As Integer
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         Else
             lvCommoditySales.Items.Clear()
         End If
@@ -1233,19 +1495,20 @@ Public Class FormMain
         Me.TopMost = False
         Dim frmNote = New FormNote
         Dim iIndex As Integer
+        Dim sKey As String
 
         'Dim sDate As String
         Dim dDate As DateTime
         'Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        GlobalVariables.CurrentGrower = oGrowerColl(iIndex)
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        GlobalVariables.CurrentGrower = oGrowerColl(sKey)
         frmNote.ShowDialog()
         'frmNote.TopMost = True
-        GlobalVariables.CurrentGrowerID = oGrowerColl(iIndex).GrowerID
-        GlobalVariables.GrowerFirstName = oGrowerColl(iIndex).GrowerFirstName
-        GlobalVariables.GrowerAddress1 = oGrowerColl(iIndex).GrowerAddress1
-        GlobalVariables.GrowerCity = oGrowerColl(iIndex).GrowerCity
-        GlobalVariables.GrowerState = oGrowerColl(iIndex).GrowerState
+        GlobalVariables.CurrentGrowerID = oGrowerColl(sKey).GrowerID
+        GlobalVariables.GrowerFirstName = oGrowerColl(sKey).GrowerFirstName
+        GlobalVariables.GrowerAddress1 = oGrowerColl(sKey).GrowerAddress1
+        GlobalVariables.GrowerCity = oGrowerColl(sKey).GrowerCity
+        GlobalVariables.GrowerState = oGrowerColl(sKey).GrowerState
         If GlobalVariables.ResetNote Then
             Dim sTestProd As String
             sTestProd = GlobalVariables.sEnv
@@ -1291,13 +1554,14 @@ Public Class FormMain
         Dim iRet As Integer
 
         iCnt = 0
-        iRet = 0
+        iRet = -1
         iMax = dgvGrowers.Rows.Count - 1
         Do While iCnt <= iMax
             If dgvGrowers.Rows(iCnt).Cells(0).Value.ToString() = lsLastName And dgvGrowers.Rows(iCnt).Cells(1).Value.ToString() = lsFirstName Then
                 iRet = iCnt
                 Exit Do
             End If
+            iCnt = iCnt + 1
         Loop
 
         FindName = iRet
@@ -1316,9 +1580,11 @@ Public Class FormMain
         Me.TopMost = False
         GlobalVariables.ResetGrower = False
         frmAddGrower.ShowDialog()
-        Me.TopMost = True
+        'Me.TopMost = True
         If GlobalVariables.ResetGrower Then
-            RebuildPage()
+            'RebuildPage()
+            oGrowerColl.Add(GlobalVariables.AddedGrower, GlobalVariables.AddedGrower.GrowerID.ToString())
+            RefreshDataGrid()
             sLastName = oGrowerColl(GlobalVariables.iAddedGrowerID.ToString()).GrowerLastName
             sFirstname = oGrowerColl(GlobalVariables.iAddedGrowerID.ToString()).GrowerFirstName
             'sCurName = oGrowerColl(GlobalVariables.iAddedGrowerID.ToString()).GrowerFirstName
@@ -1328,7 +1594,13 @@ Public Class FormMain
             'iIndex = ListBox1.FindString(sCurName)
             iIndex = FindName(sLastName, sFirstname)
             If dgvGrowers.Rows.Count >= 1 Then
-                dgvGrowers.Rows(iIndex).Selected = True
+                If iIndex >= 0 Then
+                    dgvGrowers.Rows(iIndex).Selected = True
+                    dgvGrowers.FirstDisplayedScrollingRowIndex = iIndex
+                Else
+                    dgvGrowers.Rows(0).Selected = True
+                End If
+
             End If
         End If
 
@@ -1347,7 +1619,7 @@ Public Class FormMain
         Dim sPFlag As String
         Dim sLastName As String
         Dim sFirstName As String
-        Dim sProspFlag As String
+        'Dim sProspFlag As String
         Dim sAddress As String
         Dim sCity As String
         Dim sState As String
@@ -1359,14 +1631,15 @@ Public Class FormMain
         Dim sEmail As String
         Dim sComment As String
         Dim sCountry As String
+        Dim sKey As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
 
         Me.TopMost = False
         'iCurIndex = ListBox1.SelectedIndex
-        iCurIndex = dgvGrowers.SelectedRows(0).Index
+        'iCurIndex = dgvGrowers.SelectedRows(0).Index
 
-        GlobalVariables.CurrentGrower = oGrowerColl(iIndex)
+        GlobalVariables.CurrentGrower = oGrowerColl(sKey)
 
         Dim frmEditGrower = New FormEditGrower
         GlobalVariables.ResetGrower = False
@@ -1374,53 +1647,61 @@ Public Class FormMain
         'oSelItem.GrowerName = sCurGrowerName
         Me.TopMost = False
         If GlobalVariables.ResetGrower Then
-            RebuildPage()
-            sCurGrowerName = GlobalVariables.CurrentGrower.GrowerFirstName & " " & GlobalVariables.CurrentGrower.GrowerLastName
-            icnt = 1
-            iMax = oGrowerColl.Count
-            dgvGrowers.Rows.Clear()
-            'ListBox1.Items.Clear()
-            sLastName = ""
-            sFirstName = ""
-            Do While icnt <= iMax
-                'Dim oNewGrowerListItem As New IndexedGrowerListItem
-                'oNewGrowerListItem.GrowerName = oGrowerColl(icnt).GrowerFirstName & " " & oGrowerColl(icnt).GrowerLastName
-                If oGrowerColl(icnt).GrowerProspect = "Y" Then
-                    sPFlag = "P"
-                    'oNewGrowerListItem.GrowerName = oNewGrowerListItem.GrowerName & " - PROSPECT"
-                Else
-                    sPFlag = " "
-                End If
-                'oNewGrowerListItem.CollectionIndex = icnt
-                sLastName = oGrowerColl(icnt).GrowerLastName
-                sFirstName = oGrowerColl(icnt).GrowerFirstName
-                'sPFlag = " "
-                sAddress = oGrowerColl(icnt).GrowerAddress1
-                If Len(oGrowerColl(icnt).GrowerAddress2) > 0 Then
-                    sAddress = sAddress & vbCrLf & oGrowerColl(icnt).GrowerAddress2
-                End If
-                sCity = oGrowerColl(icnt).GrowerCity
-                sState = oGrowerColl(icnt).GrowerState
-                sCounty = oGrowerColl(icnt).GrowerCounty
-                sZip = oGrowerColl(icnt).GrowerZip
-                sCountry = oGrowerColl(icnt).GrowerCountry
-                sWorkPhone = oGrowerColl(icnt).GrowerPhone1
-                sCellPhone = oGrowerColl(icnt).GrowerPhone2
-                sFax = oGrowerColl(icnt).GrowerFax
-                sEmail = oGrowerColl(icnt).GrowerEmail
-                sComment = oGrowerColl(icnt).GrowerComment
-
-                dgvGrowers.Rows.Add(sLastName, sFirstName, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrowerColl.Count)
-
-                'ListBox1.Items.Add(oNewGrowerListItem)
-                icnt = icnt + 1
-            Loop
+            'RebuildPage()
+            RefreshDataGrid()
+            'sCurGrowerName = GlobalVariables.CurrentGrower.GrowerFirstName & " " & GlobalVariables.CurrentGrower.GrowerLastName
+            'icnt = 1
+            'iMax = oGrowerColl.Count
+            'dgvGrowers.Rows.Clear()
+            ''ListBox1.Items.Clear()
+            'sLastName = ""
+            'sFirstName = ""
+            'Do While icnt <= iMax
+            ' 'Dim oNewGrowerListItem As New IndexedGrowerListItem
+            ' 'oNewGrowerListItem.GrowerName = oGrowerColl(icnt).GrowerFirstName & " " & oGrowerColl(icnt).GrowerLastName
+            ' If oGrowerColl(icnt).GrowerProspect = "Y" Then
+            ' sPFlag = "P"
+            ' 'oNewGrowerListItem.GrowerName = oNewGrowerListItem.GrowerName & " - PROSPECT"
+            'Els 'e
+            ' sPFlag = " "
+            'End If
+            'oNewGrowerListItem.CollectionIndex = icnt
+            'sLastName = oGrowerColl(icnt).GrowerLastName
+            ' sFirstName = oGrowerColl(icnt).GrowerFirstName
+            ' 'sPFlag = " "
+            ' sAddress = oGrowerColl(icnt).GrowerAddress1
+            ' If Len(oGrowerColl(icnt).GrowerAddress2) > 0 Then
+            ' sAddress = sAddress & vbCrLf & oGrowerColl(icnt).GrowerAddress2
+            ' End If
+            '     sCity = oGrowerColl(icnt).GrowerCity
+            '     sState = oGrowerColl(icnt).GrowerState
+            '     sCounty = oGrowerColl(icnt).GrowerCounty
+            '     sZip = oGrowerColl(icnt).GrowerZip
+            '     sCountry = oGrowerColl(icnt).GrowerCountry
+            '     sWorkPhone = oGrowerColl(icnt).GrowerPhone1
+            '     sCellPhone = oGrowerColl(icnt).GrowerPhone2
+            '     sFax = oGrowerColl(icnt).GrowerFax
+            '     sEmail = oGrowerColl(icnt).GrowerEmail
+            '     sComment = oGrowerColl(icnt).GrowerComment
+            '
+            '            dgvGrowers.Rows.Add(sLastName, sFirstName, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrowerColl(icnt).GrowerID.ToString())'
+            '
+            'ListBox1.Items.Add(oNewGrowerListItem)
+            '           icnt = icnt + 1
+            '          Loop
             'iCurIndex = ListBox1.FindString(sCurGrowerName)
-            iCurIndex = 0
+            'iCurIndex = 0
+            sLastName = GlobalVariables.CurrentGrower.GrowerLastName
+            sFirstName = GlobalVariables.CurrentGrower.GrowerFirstName
             iCurIndex = FindName(sLastName, sFirstName)
             If dgvGrowers.Rows.Count >= 1 Then
                 dgvGrowers.Rows(iCurIndex).Selected = True
+            Else
+                iCurIndex = 0
+                dgvGrowers.Rows(iCurIndex).Selected = True
+
             End If
+            dgvGrowers.FirstDisplayedScrollingRowIndex = iCurIndex
         End If
     End Sub
 
@@ -1444,20 +1725,22 @@ Public Class FormMain
         Me.TopMost = False
         Dim frmNonCGI = New FormNonCGI
         'Dim iCurIndex As Integer
-        Dim iIndex As Integer
+        'Dim iIndex As Integer
+        Dim sKey As String
 
 
-        iIndex = "-1"
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        'iIndex = "-1"
+        'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
 
 
         GlobalVariables.BuildNonCGI = False
-        GlobalVariables.CurrentGrower = oGrowerColl(iIndex)
+        GlobalVariables.CurrentGrower = oGrowerColl(sKey)
         Me.TopMost = False
         frmNonCGI.ShowDialog()
         Me.TopMost = True
         If GlobalVariables.BuildNonCGI Then
-            BuildNonCGIList(iIndex)
+            BuildNonCGIList(sKey)
             'RebuildPage()
             GlobalVariables.BuildNonCGI = False
             'iCurIndex = ListBox1.SelectedIndex
@@ -1480,23 +1763,25 @@ Public Class FormMain
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnEditNonCGI.Click
         'Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
         'Dim icurindex As Integer
-        Dim iIndex As Integer
+        'Dim iIndex As Integer
+        Dim sKey As String
 
 
-        iIndex = "-1"
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        'iIndex = "-1"
+        'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
 
         If lvNonCGI.SelectedItems.Count < 1 Then
             MessageBox.Show("No Item is Selected")
         Else
-            GlobalVariables.CurrentGrower = oGrowerColl(iIndex)
+            GlobalVariables.CurrentGrower = oGrowerColl(sKey)
             GlobalVariables.CurrentNonCGIID = oNonCgiCropIDs(lvNonCGI.SelectedIndices(0) + 1)
             Dim oFrmEditnonCGI As New FormEditNonCGI
             Me.TopMost = False
             oFrmEditnonCGI.ShowDialog()
             Me.TopMost = True
             If GlobalVariables.BuildNonCGI Then
-                BuildNonCGIList(iIndex)
+                BuildNonCGIList(sKey)
                 'RebuildPage()
                 GlobalVariables.BuildNonCGI = False
                 'icurindex = ListBox1.SelectedIndex
@@ -1581,16 +1866,18 @@ Public Class FormMain
         Dim oDelCMd As New SqlCommand
         'Dim iCurIndex As Integer
         Dim sSql As String
-        Dim iIndex As Integer
+        'Dim iIndex As Integer
+        Dim sKey As String
 
 
-        iIndex = "-1"
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        'iIndex = "-1"
+        'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
 
         If lvNonCGI.SelectedItems.Count < 1 Then
             MessageBox.Show("No Item is Selected")
         Else
-            GlobalVariables.CurrentGrower = oGrowerColl(iIndex)
+            GlobalVariables.CurrentGrower = oGrowerColl(sKey)
             GlobalVariables.CurrentNonCGIID = oNonCgiCropIDs(lvNonCGI.SelectedIndices(0) + 1)
             sMessage = "Delete " & lvNonCGI.SelectedItems(0).SubItems(0).Text
             sMessage = sMessage & " " & lvNonCGI.SelectedItems(0).SubItems(4).Text & "?"
@@ -1613,7 +1900,7 @@ Public Class FormMain
                 GlobalVariables.CurrentGrower.OtherCrops.Remove(lvNonCGI.SelectedIndices(0) + 1)
                 'oDelcmd.Dispose()
                 lvNonCGI.Items.RemoveAt(lvNonCGI.SelectedIndices(0))
-                BuildNonCGIList(iIndex)
+                BuildNonCGIList(sKey)
                 'iCurIndex = ListBox1.SelectedIndex
                 'ListBox1.SetSelected(iCurIndex, False)
                 'ListBox1_SelectedIndexChanged(Me, EventArgs.Empty)
@@ -1664,12 +1951,15 @@ Public Class FormMain
         Dim iMax As Integer
         Dim sNote As String
         Dim sBuildDate As String
-        Dim iIndex As Integer
+        Dim sKey As String
 
 
-        iIndex = -1
+        'iIndex = -1
+        If dgvGrowers.SelectedRows.Count = 0 Then Exit Sub
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
         If dgvGrowers.SelectedRows.Count > 0 Then
-            iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+            'sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+            'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
 
             iCnt = 1
             If Not GlobalVariables.EditedGrower Then
@@ -1677,7 +1967,7 @@ Public Class FormMain
             End If
             GlobalVariables.BuildNonCGI = False
 
-            iMax = oGrowerColl(iIndex).Vendors.Count
+            iMax = oGrowerColl(sKey).Vendors.Count
             'ckVendor1.Checked = False
             ckVendor1.CheckState = CheckState.Unchecked
             ckVendor1.Visible = False
@@ -1709,42 +1999,42 @@ Public Class FormMain
             'ckVendor8.Checked = False
             ckVendor8.CheckState = CheckState.Unchecked
             ckVendor8.Visible = False
-            If oGrowerColl(iIndex).Vendors(1).VendorDummy = "N" Then
+            If oGrowerColl(sKey).Vendors(1).VendorDummy = "N" Then
                 Do While iCnt <= iMax
 
                     If iCnt > 8 Then Exit Do 'There are only 8 checkboxes
                     Select Case iCnt
                         Case 1
                             ckVendor1.Visible = True
-                            ckVendor1.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor1.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor1.Checked = True
                         Case 2
                             ckVendor2.Visible = True
-                            ckVendor2.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor2.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor2.Checked = True
                         Case 3
                             ckVendor3.Visible = True
-                            ckVendor3.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor3.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor3.Checked = True
                         Case 4
                             ckVendor4.Visible = True
-                            ckVendor4.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor4.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor4.Checked = True
                         Case 5
                             ckVendor5.Visible = True
-                            ckVendor5.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor5.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor5.Checked = True
                         Case 6
                             ckVendor6.Visible = True
-                            ckVendor6.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor6.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor6.Checked = True
                         Case 7
                             ckVendor7.Visible = True
-                            ckVendor7.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor7.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor7.Checked = True
                         Case 8
                             ckVendor8.Visible = True
-                            ckVendor8.Text = oGrowerColl(iIndex).Vendors(iCnt).VendorName
+                            ckVendor8.Text = oGrowerColl(sKey).Vendors(iCnt).VendorName
                             ckVendor8.Checked = True
                     End Select
 
@@ -1759,7 +2049,7 @@ Public Class FormMain
             TestDataGrid.Rows.Clear()
             Dim oDict As New List(Of String)
             Dim oNoteRows As New Collection
-            For Each oNote In oGrowerColl(iIndex).Notes
+            For Each oNote In oGrowerColl(sKey).Notes
                 sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
                 sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
                 sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
@@ -1791,12 +2081,31 @@ Public Class FormMain
             oDict = Nothing
             oNoteRows = Nothing
         End If
-        If oGrowerColl(iIndex).GrowerProspect = "N" Then
-            BuildCommodityList(iIndex)
+        If oGrowerColl(sKey).GrowerProspect = "N" Then
+            BuildCommodityList(sKey)
         End If
 
-        BuildNonCGIList(iIndex)
+        BuildNonCGIList(sKey)
 
+    End Sub
+
+    Private Sub FilterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FilterToolStripMenuItem.Click
+        Dim oFilterForm As New FormFilterGrowers
+        Me.TopMost = False
+        oFilterForm.ShowDialog()
+        Me.TopMost = True
+        RefreshDataGrid()
+    End Sub
+
+    Private Sub ClearFilterStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ClearFilterStripMenuItem1.Click
+        GlobalVariables.CurrentFilters.FirstName = ""
+        GlobalVariables.CurrentFilters.LastName = ""
+        GlobalVariables.CurrentFilters.City = ""
+        GlobalVariables.CurrentFilters.County = ""
+        GlobalVariables.CurrentFilters.CommodityID = ""
+        GlobalVariables.CurrentFilters.Prospect = False
+        GlobalVariables.CurrentFilters.HasNotes = False
+        RefreshDataGrid()
     End Sub
 
 

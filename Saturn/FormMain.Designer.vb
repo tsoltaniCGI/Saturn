@@ -24,7 +24,7 @@ Partial Class FormMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
@@ -35,7 +35,6 @@ Partial Class FormMain
         Me.lblGrowerCity = New System.Windows.Forms.Label()
         Me.lblGrowerCountry = New System.Windows.Forms.Label()
         Me.lblGrowerPhone1 = New System.Windows.Forms.Label()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ckVendor1 = New System.Windows.Forms.CheckBox()
         Me.ckVendor2 = New System.Windows.Forms.CheckBox()
         Me.ckVendor3 = New System.Windows.Forms.CheckBox()
@@ -77,9 +76,6 @@ Partial Class FormMain
         Me.btnCreateReminder = New System.Windows.Forms.Button()
         Me.btnFarmView = New System.Windows.Forms.Button()
         Me.dgvGrowers = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FirstName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Address = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LastName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PFlag = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -95,12 +91,19 @@ Partial Class FormMain
         Me.Email = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Comment = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CollIndex = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.FilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FirstName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Address = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClearFilterStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvGrowers, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
         'lvCommoditySales
@@ -172,11 +175,6 @@ Partial Class FormMain
         Me.lblGrowerPhone1.Size = New System.Drawing.Size(107, 14)
         Me.lblGrowerPhone1.TabIndex = 38
         Me.lblGrowerPhone1.Text = "GrowerPhone1"
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
         'ckVendor1
         '
@@ -313,12 +311,12 @@ Partial Class FormMain
         '
         'Column1
         '
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
         Me.Column1.HeaderText = ""
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
@@ -613,7 +611,9 @@ Partial Class FormMain
         Me.dgvGrowers.AllowUserToDeleteRows = False
         Me.dgvGrowers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvGrowers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LastName, Me.DataGridViewTextBoxColumn2, Me.PFlag, Me.DataGridViewTextBoxColumn3, Me.City, Me.State, Me.County, Me.Zip, Me.Country, Me.WorkPhone, Me.CellPhone, Me.Fax, Me.Email, Me.Comment, Me.CollIndex})
+        Me.dgvGrowers.ContextMenuStrip = Me.ContextMenuStrip3
         Me.dgvGrowers.Location = New System.Drawing.Point(45, 47)
+        Me.dgvGrowers.MultiSelect = False
         Me.dgvGrowers.Name = "dgvGrowers"
         Me.dgvGrowers.ReadOnly = True
         Me.dgvGrowers.RowHeadersVisible = False
@@ -621,24 +621,6 @@ Partial Class FormMain
         Me.dgvGrowers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvGrowers.Size = New System.Drawing.Size(1051, 483)
         Me.dgvGrowers.TabIndex = 110
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Last Name"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        '
-        'FirstName
-        '
-        Me.FirstName.HeaderText = "First Name"
-        Me.FirstName.Name = "FirstName"
-        Me.FirstName.ReadOnly = True
-        '
-        'Address
-        '
-        Me.Address.HeaderText = "Address"
-        Me.Address.Name = "Address"
-        Me.Address.ReadOnly = True
         '
         'LastName
         '
@@ -732,6 +714,42 @@ Partial Class FormMain
         Me.CollIndex.ReadOnly = True
         Me.CollIndex.Visible = False
         '
+        'ContextMenuStrip3
+        '
+        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FilterToolStripMenuItem, Me.ClearFilterStripMenuItem1})
+        Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(181, 70)
+        '
+        'FilterToolStripMenuItem
+        '
+        Me.FilterToolStripMenuItem.Name = "FilterToolStripMenuItem"
+        Me.FilterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.FilterToolStripMenuItem.Text = "Filter..."
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Last Name"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'FirstName
+        '
+        Me.FirstName.HeaderText = "First Name"
+        Me.FirstName.Name = "FirstName"
+        Me.FirstName.ReadOnly = True
+        '
+        'Address
+        '
+        Me.Address.HeaderText = "Address"
+        Me.Address.Name = "Address"
+        Me.Address.ReadOnly = True
+        '
+        'ClearFilterStripMenuItem1
+        '
+        Me.ClearFilterStripMenuItem1.Name = "ClearFilterStripMenuItem1"
+        Me.ClearFilterStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ClearFilterStripMenuItem1.Text = "Clear Filters"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -789,6 +807,7 @@ Partial Class FormMain
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvGrowers, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -798,7 +817,6 @@ Partial Class FormMain
     Friend WithEvents lblGrowerCity As Label
     Friend WithEvents lblGrowerCountry As Label
     Friend WithEvents lblGrowerPhone1 As Label
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents lvCommoditySales As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
@@ -863,4 +881,7 @@ Partial Class FormMain
     Friend WithEvents Email As DataGridViewTextBoxColumn
     Friend WithEvents Comment As DataGridViewTextBoxColumn
     Friend WithEvents CollIndex As DataGridViewTextBoxColumn
+    Friend WithEvents ContextMenuStrip3 As ContextMenuStrip
+    Friend WithEvents FilterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ClearFilterStripMenuItem1 As ToolStripMenuItem
 End Class

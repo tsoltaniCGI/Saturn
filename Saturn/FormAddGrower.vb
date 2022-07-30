@@ -152,6 +152,8 @@ Public Class FormAddGrower
         Dim sProspect As String
         Dim sCurCountryCode As String
         Dim oConn As SqlConnection
+        Dim sCommID As String
+        Dim oReader As SqlDataReader
         'Dim sProsVendorName As String
 
         sCurCountryCode = "US"
@@ -259,6 +261,23 @@ Public Class FormAddGrower
             'myCmd.CommandText = sSql
             'oReader = myCmd.ExecuteReader()
             'iGrowerID = oReader.GetInt32(0)
+            GlobalVariables.AddedGrower.GrowerFirstName = txtFirstName.Text
+            GlobalVariables.AddedGrower.GrowerLastName = txtLastName.Text
+            GlobalVariables.AddedGrower.GrowerID = GlobalVariables.iAddedGrowerID
+            GlobalVariables.AddedGrower.GrowerAddress1 = txtAddress1.Text
+            GlobalVariables.AddedGrower.GrowerAddress2 = txtAddress2.Text
+            GlobalVariables.AddedGrower.GrowerCity = txtCity.Text
+            GlobalVariables.AddedGrower.GrowerCounty = txtCounty.Text
+            GlobalVariables.AddedGrower.GrowerState = cmbState.SelectedItem.ToString()
+            GlobalVariables.AddedGrower.GrowerCountry = sCurCountryCode
+            GlobalVariables.AddedGrower.GrowerZip = txtZip.Text
+            GlobalVariables.AddedGrower.GrowerPhone1 = txtWorkPhone.Text
+            GlobalVariables.AddedGrower.GrowerPhone2 = txtCellPhone.Text
+            GlobalVariables.AddedGrower.GrowerFax = txtFax.Text
+            GlobalVariables.AddedGrower.GrowerEmail = txtEmail.Text
+            GlobalVariables.AddedGrower.GrowerComment = txtComment.Text
+            GlobalVariables.AddedGrower.GrowerProspect = sProspect
+            GlobalVariables.AddedGrower.Vendors.Clear()
 
             If ckProspect.Checked Then
                 'For Each FacID In GlobalVariables.UserFacilityIDs
@@ -273,14 +292,77 @@ Public Class FormAddGrower
                 sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & iVendorID.ToString() & ")"
                 myCmd.CommandText = sSql
                 myCmd.ExecuteNonQuery()
+                Dim oAddedVendor As New Vendor
+                oAddedVendor.VendorDummy = "Y"
+                GlobalVariables.AddedGrower.Vendors.Add(oAddedVendor)
             Else
                 For Each iIndex In lstVendors.SelectedIndices
+                    Dim oNewVendor As New Vendor
+                    oNewVendor.VendorDummy = "N"
+
+                    'GlobalVariables.AddedGrower.Vendors.Add(oNewVendor, oVendIDs(iIndex.ToString()).ToString())
                     sSql = "INSERT INTO growers_vendors (grower_id, vendor_id) "
                     sSql = sSql & "VALUES (" & iGrowerID.ToString() & ", " & oVendIDs(iIndex.ToString()).ToString() & ")"
                     myCmd.CommandText = sSql
                     myCmd.ExecuteNonQuery()
+
+                    sSql = "SELECT DISTINCT VENDORS.VENDOR_ID, VENDORS.VENDOR_NAME, VENDORS.AGTECH_VENDOR_ID, "
+                    sSql = sSql & "COMMODITIES.COMMODITY_ID, COMMODITIES.COMMODITY_NAME, "
+                    sSql = sSql & "COALESCE(VENDOR_SALES_VOLUME.CURRENT_CROP_YEAR_VOLUME, 0), "
+                    sSql = sSql & "COALESCE(VENDOR_SALES_VOLUME.PREVIOUS_CROP_YEAR_VOLUME, 0), "
+                    sSql = sSql & "COALESCE(VENDOR_SALES_VOLUME.PREVIOUS2_CROP_YEAR_VOLUME, 0) "
+                    sSql = sSql & "From VENDORS "
+                    sSql = sSql & "Left OUTER JOIN ( "
+                    sSql = sSql & "VENDOR_SALES_VOLUME "
+                    sSql = sSql & "Right OUTER JOIN COMMODITIES "
+                    sSql = sSql & "On VENDOR_SALES_VOLUME.COMMODITY_ID = COMMODITIES.COMMODITY_ID "
+                    sSql = sSql & ") "
+                    sSql = sSql & "On VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
+                    sSql = sSql & "Left OUTER JOIN ( "
+                    sSql = sSql & "VENDORS_COMMODITIES "
+                    sSql = sSql & "Right OUTER JOIN COMMODITIES Comm "
+                    sSql = sSql & "On VENDORS_COMMODITIES.COMMODITY_ID = Comm.COMMODITY_ID "
+                    sSql = sSql & ") "
+                    sSql = sSql & "On VENDORS_COMMODITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+                    sSql = sSql & "WHERE vendors.vendor_id = " & oVendIDs(iIndex.ToString()).ToString() & " "
+                    sSql = sSql & "ORDER BY COMMODITIES.COMMODITY_ID"
+
+                    myCmd.CommandText = sSql
+                    oReader = myCmd.ExecuteReader()
+
+                    oNewVendor.CollCommodities.Clear()
+
+
+                    If oReader.HasRows Then
+                        Do While oReader.Read()
+
+                            sCommID = oReader.GetString(3)
+
+                            If Not oNewVendor.CollCommodities.Contains(sCommID) Then
+                                Dim oComm As New Commodity
+                                oComm.CommID = sCommID
+                                oComm.CommName = oReader.GetString(4)
+                                oComm.CurrentCropYear = oReader.GetDecimal(5)
+                                oComm.PreviousCropYear = oReader.GetDecimal(6)
+                                oComm.Previous2CropYear = oReader.GetDecimal(7)
+                                oNewVendor.CollCommodities.Add(oComm, oComm.CommID)
+                            Else
+                                oNewVendor.CollCommodities(sCommID).CurrentCropYear = oNewVendor.CollCommodities(sCommID).CurrentCropYear + oReader.GetInt32(5)
+                                oNewVendor.CollCommodities(sCommID).PreviousCropYear = oNewVendor.CollCommodities(sCommID).PreviousCropYear + oReader.GetInt32(6)
+                                oNewVendor.CollCommodities(sCommID).Previous2CropYear = oNewVendor.CollCommodities(sCommID).Previous2CropYear + oReader.GetInt32(7)
+                            End If
+
+                        Loop
+
+                    End If
+
+                    If Not GlobalVariables.AddedGrower.Vendors.Contains(oVendIDs(iIndex.ToString()).ToString()) Then
+                        GlobalVariables.AddedGrower.Vendors.Add(oNewVendor, oVendIDs(iIndex.ToString()).ToString())
+                    End If
+                    oReader.Close()
                 Next
             End If
+
             Me.Close()
         End If
 
@@ -296,17 +378,9 @@ Public Class FormAddGrower
         End If
     End Sub
 
-    Private Sub txtCounty_TextChanged(sender As Object, e As EventArgs) Handles txtCounty.TextChanged
 
-    End Sub
 
-    Private Sub txtAddress1_TextChanged(sender As Object, e As EventArgs) Handles txtAddress1.TextChanged
 
-    End Sub
-
-    Private Sub txtFirstName_TextChanged(sender As Object, e As EventArgs) Handles txtFirstName.TextChanged
-
-    End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
