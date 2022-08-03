@@ -29,8 +29,19 @@ Public Class FarmViewMain
         Dim iGrowerID As Integer
         Dim iMax As Integer
         Dim iCnt As Integer
+        'Dim oUsers As New Collection
 
+        'sSql = "SELECT user_id, user_login FROM users"
+        'mycmd.CommandText = sSql
+        oConn.Open()
+        'oReader = mycmd.ExecuteReader()
 
+        'If oReader.HasRows Then
+        'Do While oReader.Read()
+        'oUsers.Add(oReader.GetString(1), oReader.GetInt32(0).ToString())
+        'Loop
+        'End If
+        'oReader.Close()
         'Dim sGrowerName As String
 
         'sSql = "SELECT DISTINCT vendors.vendor_id, vendors.agtech_vendor_ID, vendors.vendor_name, ISNULL(growers_vendors.grower_id, 0), ISNULL(users.user_id, 0), "
@@ -50,29 +61,74 @@ Public Class FarmViewMain
         'sSql = sSql & "ORDER BY vendors.vendor_name "
 
 
-        sSql = "SELECT DISTINCT vendors.vendor_id, coalesce(vendors.agtech_vendor_ID, ''), vendors.vendor_name, coalesce(growers.grower_id, 0) AS [Grower ID],  coalesce(a.user_id, 0), "
-        sSql = sSql & "coalesce(grower_first_name, '') AS [Grower First Name], coalesce(grower_last_name, '') AS [GROWER LAST NAME], "
-        sSql = sSql & "coalesce(grower_note_creation_date, '') AS [Creation Date], coalesce(grower_note_id, 0) AS [NoteID], "
-        sSql = sSql & "coalesce(grower_note_subject, '') AS [Note Subject], coalesce(grower_note_text, '') AS [Note Text], "
-        sSql = sSql & "coalesce(b.user_login, '') AS [Creator] "
-        sSql = sSql & "FROM vendors "
-        sSql = sSql & "JOIN vendors_facilities ON vendors_facilities.vendor_id   = vendors.vendor_id "
-        sSql = sSql & "CROSS JOIN (users a      JOIN users_facilities   ON users_facilities.user_id = a.user_id) "
-        sSql = sSql & "CROSS JOIN (users b      JOIN  (grower_notes RIGHT OUTER JOIN growers ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
-        sSql = sSql & "right outer join GROWERS_VENDORS growers_vendors on GROWERS.GROWER_ID = GROWERS_VENDORS.GROWER_ID) "
-        sSql = sSql & "on B.USER_ID = GROWER_NOTES.grower_note_created_by) "
-        sSql = sSql & "WHERE (VENDORS_FACILITIES.FACILITY_ID = USERS_FACILITIES.FACILITY_ID "
-        sSql = sSql & "AND GROWERS_VENDORS.VENDOR_ID = VENDORS.VENDOR_ID "
-        'sSql = sSql & "AND a.user_id = 367) "
-        sSql = sSql & "AND a.user_id = " & GlobalVariables.UserId.ToString() & " "
-        sSql = sSql & "   ) "
-        sSql = sSql & "AND vendors.vendor_dummy = 'N'"
-        'sSql = sSql & "ORDER BY vendors.vendor_name, [GROWER LAST NAME], [Creation Date] "
-        sSql = sSql & "ORDER BY vendors.vendor_id, [Grower ID]"
+        'sSql = "SELECT DISTINCT vendors.vendor_id, coalesce(vendors.agtech_vendor_ID, ''), vendors.vendor_name, coalesce(growers.grower_id, 0) AS [Grower ID],  coalesce(a.user_id, 0), "
+        'sSql = sSql & "coalesce(grower_first_name, '') AS [Grower First Name], coalesce(grower_last_name, '') AS [GROWER LAST NAME], "
+        'sSql = sSql & "coalesce(grower_note_creation_date, '') AS [Creation Date], coalesce(grower_note_id, 0) AS [NoteID], "
+        'sSql = sSql & "coalesce(grower_note_subject, '') AS [Note Subject], coalesce(grower_note_text, '') AS [Note Text], "
+        'sSql = sSql & "coalesce(b.user_login, '') AS [Creator] "
+        'sSql = sSql & "FROM vendors "
+        'sSql = sSql & "JOIN vendors_facilities ON vendors_facilities.vendor_id   = vendors.vendor_id "
+        'sSql = sSql & "CROSS JOIN (users a      JOIN users_facilities   ON users_facilities.user_id = a.user_id) "
+        'sSql = sSql & "CROSS JOIN (users b      JOIN  (grower_notes RIGHT OUTER JOIN growers ON GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
+        'sSql = sSql & "right outer join GROWERS_VENDORS growers_vendors on GROWERS.GROWER_ID = GROWERS_VENDORS.GROWER_ID) "
+        'sSql = sSql & "on B.USER_ID = GROWER_NOTES.grower_note_created_by) "
+        'sSql = sSql & "WHERE (VENDORS_FACILITIES.FACILITY_ID = USERS_FACILITIES.FACILITY_ID "
+        'sSql = sSql & "AND GROWERS_VENDORS.VENDOR_ID = VENDORS.VENDOR_ID "
+        ''sSql = sSql & "AND a.user_id = 367) "
+        'sSql = sSql & "AND a.user_id = " & GlobalVariables.UserId.ToString() & " "
+        'sSql = sSql & "   ) "
+        'sSql = sSql & "AND vendors.vendor_dummy = 'N'"
+        ''sSql = sSql & "ORDER BY vendors.vendor_name, [GROWER LAST NAME], [Creation Date] "
+        'sSql = sSql & "ORDER BY vendors.vendor_id, [Grower ID]"
 
-
+        sSql = "SELECT Z.VENDOR_ID, ISNULL(Z.AGTECH_VENDOR_ID, ''), ISNULL(Z.VENDOR_NAME, ''), "
+        sSql = sSql & "ISNULL(W.GROWER_ID, 0), X.USER_ID, ISNULL(W.GROWER_FIRST_NAME, ''), "
+        sSql = sSql & "ISNULL(W.GROWER_LAST_NAME, ''), ISNULL(W.GROWER_NOTE_CREATION_DATE, ''), "
+        sSql = sSql & "ISNULL(W.GROWER_NOTE_ID, 0), ISNULL(W.GROWER_NOTE_SUBJECT, ''), "
+        sSql = sSql & "ISNULL(W.GROWER_NOTE_TEXT, ''), ISNULL(W.USER_LOGIN, '') "
+        sSql = sSql & "FROM ( "
+        sSql = sSql & "SELECT A.USER_ID, B.FACILITY_ID, C.FACILITY_NAME "
+        sSql = sSql & "FROM USERS A "
+        sSql = sSql & "JOIN USERS_FACILITIES B "
+        sSql = sSql & "ON A.USER_ID = B.USER_ID "
+        sSql = sSql & "JOIN FACILITIES C "
+        sSql = sSql & "ON B.FACILITY_ID = C.FACILITY_ID "
+        sSql = sSql & "WHERE A.USER_ID = 233 "
+        sSql = sSql & ") X "
+        sSql = sSql & "JOIN ( "
+        sSql = sSql & "SELECT A.FACILITY_ID, A.FACILITY_NAME, B.VENDOR_ID "
+        sSql = sSql & "FROM FACILITIES A "
+        sSql = sSql & "JOIN VENDORS_FACILITIES B "
+        sSql = sSql & "ON A.FACILITY_ID = B.FACILITY_ID "
+        sSql = sSql & ") Y "
+        sSql = sSql & "ON X.FACILITY_ID = Y.FACILITY_ID "
+        sSql = sSql & "JOIN ( "
+        sSql = sSql & "( "
+        sSql = sSql & "SELECT A.VENDOR_ID, A.AGTECH_VENDOR_ID, A.VENDOR_NAME, "
+        sSql = sSql & "B.GROWER_ID, C.GROWER_LAST_NAME "
+        sSql = sSql & "FROM VENDORS A "
+        sSql = sSql & "JOIN GROWERS_VENDORS B "
+        sSql = sSql & "ON A.VENDOR_ID = B.VENDOR_ID "
+        sSql = sSql & "JOIN GROWERS C "
+        sSql = sSql & "ON B.GROWER_ID = C.GROWER_ID "
+        sSql = sSql & "WHERE A.VENDOR_DUMMY = 'N' "
+        sSql = sSql & ") Z "
+        sSql = sSql & "LEFT OUTER JOIN ( "
+        sSql = sSql & "SELECT B.GROWER_ID, B.GROWER_FIRST_NAME, B.GROWER_LAST_NAME, "
+        sSql = sSql & "A.GROWER_NOTE_ID, A.GROWER_NOTE_CREATION_DATE, "
+        sSql = sSql & "A.GROWER_NOTE_SUBJECT, A.GROWER_NOTE_TEXT, C.USER_LOGIN "
+        sSql = sSql & "FROM GROWER_NOTES A "
+        sSql = sSql & "JOIN GROWERS B "
+        sSql = sSql & "ON A.GROWER_ID = B.GROWER_ID "
+        sSql = sSql & "JOIN USERS C "
+        sSql = sSql & "ON C.USER_ID = A.GROWER_NOTE_CREATED_BY "
+        sSql = sSql & ") W "
+        sSql = sSql & "ON W.GROWER_ID = Z.GROWER_ID "
+        sSql = sSql & ") "
+        sSql = sSql & "ON Y.VENDOR_ID = Z.VENDOR_ID "
+        sSql = sSql & "ORDER BY Z.VENDOR_ID, W.grower_id"
         mycmd.CommandText = sSql
-        oConn.Open()
+        'oConn.Open()
         oReader = mycmd.ExecuteReader()
         oCollVendorGrower.Clear()
 
@@ -108,7 +164,9 @@ Public Class FarmViewMain
         iVendorId = -1
         oCollVendors.Clear()
         iGrowerID = -1
+        Dim bInnerLoop As Boolean
         Do While iCnt <= iMax
+            bInnerLoop = False
             If oCollVendorGrower(iCnt).FrmViVendorID <> iVendorId Then
                 iVendorId = oCollVendorGrower(iCnt).FrmViVendorID
                 'If iVendorId = 78849 Then
@@ -119,45 +177,55 @@ Public Class FarmViewMain
                 oCurrentVendor.FarmViewVendorName = oCollVendorGrower(iCnt).FrmViVendorName
 
                 Do While iVendorId = oCollVendorGrower(iCnt).FrmViVendorID
+                    bInnerLoop = True
 
                     'Dim oGrowerListItem As New fmIndexedGrower
                     'sGrowerName = Trim(oCollVendorGrower(iCnt).GrowerFirstName & " " & oCollVendorGrower(iCnt).GrowerLastName)
                     'oGrowerListItem.FMGrowerName = sGrowerName
-
-                    Dim ofGrower As New FarmGrower
-
-                    ofGrower.FarmGrowerID = oCollVendorGrower(iCnt).FrmViGrowerID
-                    ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
-                    ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
+                    If oCollVendorGrower(iCnt).FrmViGrowerID <> 0 Then
 
 
-                    iGrowerID = ofGrower.FarmGrowerID
-                    Do While iVendorId = oCollVendorGrower(iCnt).FrmViVendorID And iGrowerID = oCollVendorGrower(iCnt).FrmViGrowerID
+                        Dim ofGrower As New FarmGrower
 
-                        Dim ofNote As New FarmViewNotes
+                        ofGrower.FarmGrowerID = oCollVendorGrower(iCnt).FrmViGrowerID
+                        ofGrower.FarmGrowerFirstName = oCollVendorGrower(iCnt).FrmViGrowerFirstName
+                        ofGrower.FarmGrowerLastName = oCollVendorGrower(iCnt).FrmViGrowerLastName
 
-                        ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
-                        ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
-                        ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
-                        ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
 
+                        iGrowerID = ofGrower.FarmGrowerID
+                        Do While iVendorId = oCollVendorGrower(iCnt).FrmViVendorID And iGrowerID = oCollVendorGrower(iCnt).FrmViGrowerID
+
+                            Dim ofNote As New FarmViewNotes
+
+                            ofNote.frviNoteDate = oCollVendorGrower(iCnt).FrmViNoteDate
+                            ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
+                            ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
+                            ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
+
+                            'iCnt = iCnt + 1
+
+                            'If iCnt > iMax Then
+                            'Exit Do
+                            'End If
+                            ofGrower.oFarmGrowerNotes.Add(ofNote)
+                            iCnt = iCnt + 1
+                            If iCnt > iMax Then Exit Do
+                        Loop
                         'iCnt = iCnt + 1
-
-                        'If iCnt > iMax Then
-                        'Exit Do
-                        'End If
-                        ofGrower.oFarmGrowerNotes.Add(ofNote)
+                        If iCnt > iMax Then
+                            Exit Do
+                        End If
+                        oCurrentVendor.FarmViewGrowers.Add(ofGrower)
+                    Else
                         iCnt = iCnt + 1
-                        If iCnt > iMax Then Exit Do
-                    Loop
-                    'iCnt = iCnt + 1
-                    If iCnt > iMax Then
-                        Exit Do
                     End If
-                    oCurrentVendor.FarmViewGrowers.Add(ofGrower)
                 Loop
                 oCollVendors.Add(oCurrentVendor, oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID)
-
+                If bInnerLoop Then
+                    'Do Nothing
+                Else
+                    iCnt = iCnt + 1
+                End If
                 If iCnt > iMax Then
                     Exit Do
                 End If
