@@ -93,7 +93,7 @@ Public Class FarmViewMain
         sSql = sSql & "ON A.USER_ID = B.USER_ID "
         sSql = sSql & "JOIN FACILITIES C "
         sSql = sSql & "ON B.FACILITY_ID = C.FACILITY_ID "
-        sSql = sSql & "WHERE A.USER_ID = 233 "
+        sSql = sSql & "WHERE A.USER_ID = " & GlobalVariables.UserId.ToString() & " "
         sSql = sSql & ") X "
         sSql = sSql & "JOIN ( "
         sSql = sSql & "SELECT A.FACILITY_ID, A.FACILITY_NAME, B.VENDOR_ID "
