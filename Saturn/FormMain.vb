@@ -2142,6 +2142,8 @@ Public Class FormMain
         GlobalVariables.CurrentFilters.City = ""
         GlobalVariables.CurrentFilters.County = ""
         GlobalVariables.CurrentFilters.CommodityID = ""
+        GlobalVariables.CurrentFilters.NoteSubject = ""
+        GlobalVariables.CurrentFilters.NoteKeyword = ""
         GlobalVariables.CurrentFilters.Prospect = False
         GlobalVariables.CurrentFilters.HasNotes = False
         RefreshDataGrid()
