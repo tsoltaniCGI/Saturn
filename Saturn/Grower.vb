@@ -40,6 +40,9 @@ Public Class GrowerFilter
     Public Property CommodityID As String
     Public Property Prospect As Boolean
     Public Property HasNotes As Boolean
+    Public Property NoteSubject As String
+    Public Property NoteKeyword As String
+
 
 End Class
 Public Class FarmViewNotes

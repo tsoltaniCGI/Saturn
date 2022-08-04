@@ -144,6 +144,8 @@ Public Class FormMain
         GlobalVariables.CurrentFilters.CommodityID = ""
         GlobalVariables.CurrentFilters.Prospect = False
         GlobalVariables.CurrentFilters.HasNotes = False
+        GlobalVariables.CurrentFilters.NoteSubject = ""
+        GlobalVariables.CurrentFilters.NoteKeyword = ""
         iCnt = 1
         iMax = oGrowerColl.Count
 
@@ -191,7 +193,11 @@ Public Class FormMain
         Dim iCnt As Integer
         Dim iMax As Integer
         Dim iCnt2 As Integer
+        Dim iCnt3 As Integer
+        Dim iMax3 As Integer
         Dim iMax2 As Integer
+        Dim iCnt4 As Integer
+        Dim iMax4 As Integer
         Dim bFirstNameFilter As Boolean
         Dim bLastNameFilter As Boolean
         Dim bCityFilter As Boolean
@@ -217,6 +223,10 @@ Public Class FormMain
         Dim bCommFound As Boolean
         Dim bProspect As Boolean
         Dim bHasNotes As Boolean
+        Dim bNoteSubjFilter As Boolean
+        Dim bNoteKeyFilter As Boolean
+        Dim sFilterNoteSubject As String
+        Dim sFilterNoteKeyword As String
 
 
         bFirstNameFilter = False
@@ -224,7 +234,8 @@ Public Class FormMain
         bCityFilter = False
         bCountyFilter = False
         bCommodityIDFilter = False
-
+        bNoteSubjFilter = False
+        bNoteKeyFilter = False
 
 
 
@@ -235,12 +246,16 @@ Public Class FormMain
         sFilterCity = Trim(GlobalVariables.CurrentFilters.City)
         sFilterCounty = Trim(GlobalVariables.CurrentFilters.County)
         sFilterCommodityID = Trim(GlobalVariables.CurrentFilters.CommodityID)
+        sFilterNoteSubject = Trim(GlobalVariables.CurrentFilters.NoteSubject)
+        sFilterNoteKeyword = Trim(GlobalVariables.CurrentFilters.NoteKeyword)
 
         If Len(sFilterFirstName) > 0 Then bFirstNameFilter = True
         If Len(sFilterLastName) > 0 Then bLastNameFilter = True
         If Len(sFilterCity) > 0 Then bCityFilter = True
         If Len(sFilterCounty) > 0 Then bCountyFilter = True
         If Len(sFilterCommodityID) > 0 Then bCommodityIDFilter = True
+        If Len(sFilterNoteSubject) > 0 Then bNoteSubjFilter = True
+        If Len(sFilterNoteKeyword) > 0 Then bNoteKeyFilter = True
         bProspect = GlobalVariables.CurrentFilters.Prospect
         bHasNotes = GlobalVariables.CurrentFilters.HasNotes
 
@@ -319,6 +334,30 @@ Public Class FormMain
                     bAddGrower = False
                 End If
 
+            End If
+
+            If bNoteSubjFilter Then
+                iCnt3 = 1
+                iMax3 = oGrowerColl(iCnt).Notes.Count
+                bAddGrower = False
+                Do While iCnt3 <= iMax3
+                    If oGrowerColl(iCnt).Notes(iCnt3).GrowerNoteSubject.Contains(sFilterNoteSubject) Then
+                        bAddGrower = True
+                    End If
+                    iCnt3 = iCnt3 + 1
+                Loop
+            End If
+
+            If bNoteKeyFilter Then
+                iCnt4 = 1
+                iMax4 = oGrowerColl(iCnt).Notes.Count
+                bAddGrower = False
+                Do While iCnt4 <= iMax4
+                    If oGrowerColl(iCnt).Notes(iCnt4).GrowerNoteText.Contains(sFilterNoteKeyword) Then
+                        bAddGrower = True
+                    End If
+                    iCnt4 = iCnt4 + 1
+                Loop
             End If
 
             If bAddGrower Then
@@ -2093,7 +2132,7 @@ Public Class FormMain
         Dim oFilterForm As New FormFilterGrowers
         Me.TopMost = False
         oFilterForm.ShowDialog()
-        Me.TopMost = True
+        'Me.TopMost = True
         RefreshDataGrid()
     End Sub
 

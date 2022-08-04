@@ -45,6 +45,8 @@ Public Class FormFilterGrowers
         txtLastName.Text = GlobalVariables.CurrentFilters.LastName
         txtCity.Text = GlobalVariables.CurrentFilters.City
         txtCounty.Text = GlobalVariables.CurrentFilters.County
+        txtSubject.Text = GlobalVariables.CurrentFilters.NoteSubject
+        txtKeyword.Text = GlobalVariables.CurrentFilters.NoteKeyword
         chkProspect.Checked = GlobalVariables.CurrentFilters.Prospect
         chkHasNotes.Checked = GlobalVariables.CurrentFilters.HasNotes
 
@@ -77,6 +79,8 @@ Public Class FormFilterGrowers
         End If
         GlobalVariables.CurrentFilters.Prospect = chkProspect.Checked
         GlobalVariables.CurrentFilters.HasNotes = chkHasNotes.Checked
+        GlobalVariables.CurrentFilters.NoteSubject = txtSubject.Text
+        GlobalVariables.CurrentFilters.NoteKeyword = txtKeyword.Text
         'MessageBox.Show(GlobalVariables.CurrentFilters.CommodityID)
         Me.Close()
     End Sub
@@ -93,5 +97,28 @@ Public Class FormFilterGrowers
         cmbCommodity.SelectedIndex = -1
         chkProspect.Checked = False
         chkHasNotes.Checked = False
+        txtSubject.Text = ""
+        txtKeyword.Text = ""
+
+    End Sub
+
+    Private Sub txtSubject_TextChanged(sender As Object, e As EventArgs) Handles txtSubject.TextChanged
+        If Len(txtSubject.Text) > 0 Or Len(txtKeyword.Text) > 0 Then
+            chkHasNotes.Checked = True
+            chkHasNotes.Enabled = False
+        Else
+            chkHasNotes.Enabled = True
+            chkHasNotes.Checked = False
+        End If
+    End Sub
+
+    Private Sub txtKeyword_TextChanged(sender As Object, e As EventArgs) Handles txtKeyword.TextChanged
+        If Len(txtSubject.Text) > 0 Or Len(txtKeyword.Text) > 0 Then
+            chkHasNotes.Checked = True
+            chkHasNotes.Enabled = False
+        Else
+            chkHasNotes.Enabled = True
+            chkHasNotes.Checked = False
+        End If
     End Sub
 End Class
