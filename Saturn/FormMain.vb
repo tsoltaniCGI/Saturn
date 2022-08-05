@@ -2149,6 +2149,14 @@ Public Class FormMain
         RefreshDataGrid()
     End Sub
 
+    Private Sub dgvGrowers_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvGrowers.CellContentClick
+
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+    End Sub
+
 
     'Private Sub txtSearchNote_TextChanged(sender As Object, e As EventArgs)
     'Dim iCnt As Integer
