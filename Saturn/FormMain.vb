@@ -2157,6 +2157,10 @@ Public Class FormMain
 
     End Sub
 
+    Private Sub txtNotes_TextChanged(sender As Object, e As EventArgs) Handles txtNotes.TextChanged
+
+    End Sub
+
 
     'Private Sub txtSearchNote_TextChanged(sender As Object, e As EventArgs)
     'Dim iCnt As Integer
