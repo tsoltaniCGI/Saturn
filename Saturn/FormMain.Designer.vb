@@ -116,6 +116,7 @@ Partial Class FormMain
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(Me.TestDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +125,7 @@ Partial Class FormMain
         Me.ContextMenuStrip3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lvCommoditySales
@@ -135,18 +137,18 @@ Partial Class FormMain
         Me.lvCommoditySales.ForeColor = System.Drawing.SystemColors.WindowFrame
         Me.lvCommoditySales.GridLines = True
         Me.lvCommoditySales.HideSelection = False
-        Me.lvCommoditySales.Location = New System.Drawing.Point(1157, 311)
+        Me.lvCommoditySales.Location = New System.Drawing.Point(1147, 778)
         Me.lvCommoditySales.Margin = New System.Windows.Forms.Padding(7)
         Me.lvCommoditySales.Name = "lvCommoditySales"
         Me.lvCommoditySales.Scrollable = False
-        Me.lvCommoditySales.Size = New System.Drawing.Size(558, 176)
+        Me.lvCommoditySales.Size = New System.Drawing.Size(654, 173)
         Me.lvCommoditySales.TabIndex = 20
         Me.lvCommoditySales.UseCompatibleStateImageBehavior = False
         '
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "Commodity"
-        Me.ColumnHeader1.Width = 250
+        Me.ColumnHeader1.Width = 320
         '
         'ColumnHeader2
         '
@@ -202,7 +204,7 @@ Partial Class FormMain
         Me.ckVendor1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor1.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor1.Location = New System.Drawing.Point(1154, 160)
+        Me.ckVendor1.Location = New System.Drawing.Point(1160, 609)
         Me.ckVendor1.Name = "ckVendor1"
         Me.ckVendor1.Size = New System.Drawing.Size(97, 22)
         Me.ckVendor1.TabIndex = 44
@@ -215,7 +217,7 @@ Partial Class FormMain
         Me.ckVendor2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor2.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor2.Location = New System.Drawing.Point(1154, 188)
+        Me.ckVendor2.Location = New System.Drawing.Point(1160, 637)
         Me.ckVendor2.Name = "ckVendor2"
         Me.ckVendor2.Size = New System.Drawing.Size(98, 22)
         Me.ckVendor2.TabIndex = 45
@@ -228,7 +230,7 @@ Partial Class FormMain
         Me.ckVendor3.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor3.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor3.Location = New System.Drawing.Point(1154, 216)
+        Me.ckVendor3.Location = New System.Drawing.Point(1160, 665)
         Me.ckVendor3.Name = "ckVendor3"
         Me.ckVendor3.Size = New System.Drawing.Size(98, 22)
         Me.ckVendor3.TabIndex = 46
@@ -241,7 +243,7 @@ Partial Class FormMain
         Me.ckVendor4.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor4.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor4.Location = New System.Drawing.Point(1408, 160)
+        Me.ckVendor4.Location = New System.Drawing.Point(1418, 609)
         Me.ckVendor4.Name = "ckVendor4"
         Me.ckVendor4.Size = New System.Drawing.Size(99, 22)
         Me.ckVendor4.TabIndex = 47
@@ -254,7 +256,7 @@ Partial Class FormMain
         Me.ckVendor5.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor5.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor5.Location = New System.Drawing.Point(1408, 188)
+        Me.ckVendor5.Location = New System.Drawing.Point(1418, 637)
         Me.ckVendor5.Name = "ckVendor5"
         Me.ckVendor5.Size = New System.Drawing.Size(98, 22)
         Me.ckVendor5.TabIndex = 48
@@ -267,7 +269,7 @@ Partial Class FormMain
         Me.ckVendor6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor6.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor6.Location = New System.Drawing.Point(1408, 216)
+        Me.ckVendor6.Location = New System.Drawing.Point(1418, 665)
         Me.ckVendor6.Name = "ckVendor6"
         Me.ckVendor6.Size = New System.Drawing.Size(98, 22)
         Me.ckVendor6.TabIndex = 49
@@ -280,7 +282,7 @@ Partial Class FormMain
         Me.ckVendor7.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor7.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor7.Location = New System.Drawing.Point(1643, 160)
+        Me.ckVendor7.Location = New System.Drawing.Point(1653, 609)
         Me.ckVendor7.Name = "ckVendor7"
         Me.ckVendor7.Size = New System.Drawing.Size(98, 22)
         Me.ckVendor7.TabIndex = 50
@@ -293,7 +295,7 @@ Partial Class FormMain
         Me.ckVendor8.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.ckVendor8.Font = New System.Drawing.Font("Georgia", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.ckVendor8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.ckVendor8.Location = New System.Drawing.Point(1643, 188)
+        Me.ckVendor8.Location = New System.Drawing.Point(1653, 637)
         Me.ckVendor8.Name = "ckVendor8"
         Me.ckVendor8.Size = New System.Drawing.Size(98, 22)
         Me.ckVendor8.TabIndex = 51
@@ -305,7 +307,7 @@ Partial Class FormMain
         Me.btnAddNote.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddNote.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.btnAddNote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddNote.Location = New System.Drawing.Point(1638, 631)
+        Me.btnAddNote.Location = New System.Drawing.Point(917, 631)
         Me.btnAddNote.Name = "btnAddNote"
         Me.btnAddNote.Size = New System.Drawing.Size(85, 23)
         Me.btnAddNote.TabIndex = 53
@@ -322,11 +324,11 @@ Partial Class FormMain
         Me.TestDataGrid.ColumnHeadersVisible = False
         Me.TestDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
         Me.TestDataGrid.GridColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        Me.TestDataGrid.Location = New System.Drawing.Point(1150, 678)
+        Me.TestDataGrid.Location = New System.Drawing.Point(57, 665)
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
-        Me.TestDataGrid.Size = New System.Drawing.Size(622, 218)
+        Me.TestDataGrid.Size = New System.Drawing.Size(975, 228)
         Me.TestDataGrid.TabIndex = 54
         '
         'Column1
@@ -341,7 +343,7 @@ Partial Class FormMain
         Me.Column1.HeaderText = ""
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
-        Me.Column1.Width = 620
+        Me.Column1.Width = 972
         '
         'btnMissingButton
         '
@@ -357,7 +359,7 @@ Partial Class FormMain
         Me.btnEditGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnEditGrower.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnEditGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnEditGrower.Location = New System.Drawing.Point(865, 119)
+        Me.btnEditGrower.Location = New System.Drawing.Point(859, 119)
         Me.btnEditGrower.Name = "btnEditGrower"
         Me.btnEditGrower.Size = New System.Drawing.Size(85, 23)
         Me.btnEditGrower.TabIndex = 70
@@ -368,7 +370,7 @@ Partial Class FormMain
         '
         Me.btnAddGrower.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddGrower.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddGrower.Location = New System.Drawing.Point(956, 119)
+        Me.btnAddGrower.Location = New System.Drawing.Point(950, 119)
         Me.btnAddGrower.Name = "btnAddGrower"
         Me.btnAddGrower.Size = New System.Drawing.Size(85, 23)
         Me.btnAddGrower.TabIndex = 71
@@ -389,9 +391,9 @@ Partial Class FormMain
         Me.PictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(1116, 557)
+        Me.PictureBox6.Location = New System.Drawing.Point(1086, 62)
         Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(702, 402)
+        Me.PictureBox6.Size = New System.Drawing.Size(700, 432)
         Me.PictureBox6.TabIndex = 60
         Me.PictureBox6.TabStop = False
         '
@@ -399,9 +401,9 @@ Partial Class FormMain
         '
         Me.PictureBox7.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox7.Image = CType(resources.GetObject("PictureBox7.Image"), System.Drawing.Image)
-        Me.PictureBox7.Location = New System.Drawing.Point(1150, 251)
+        Me.PictureBox7.Location = New System.Drawing.Point(1141, 721)
         Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(589, 275)
+        Me.PictureBox7.Size = New System.Drawing.Size(687, 268)
         Me.PictureBox7.TabIndex = 73
         Me.PictureBox7.TabStop = False
         '
@@ -413,43 +415,43 @@ Partial Class FormMain
         Me.lvNonCGI.FullRowSelect = True
         Me.lvNonCGI.GridLines = True
         Me.lvNonCGI.HideSelection = False
-        Me.lvNonCGI.Location = New System.Drawing.Point(99, 678)
+        Me.lvNonCGI.Location = New System.Drawing.Point(1159, 181)
         Me.lvNonCGI.MultiSelect = False
         Me.lvNonCGI.Name = "lvNonCGI"
         Me.lvNonCGI.ShowItemToolTips = True
-        Me.lvNonCGI.Size = New System.Drawing.Size(978, 218)
+        Me.lvNonCGI.Size = New System.Drawing.Size(627, 249)
         Me.lvNonCGI.TabIndex = 76
         Me.lvNonCGI.UseCompatibleStateImageBehavior = False
         '
         'ColumnHeader5
         '
         Me.ColumnHeader5.Text = "Commodity"
-        Me.ColumnHeader5.Width = 200
+        Me.ColumnHeader5.Width = 150
         '
         'ColumnHeader6
         '
         Me.ColumnHeader6.Text = "Last Update"
-        Me.ColumnHeader6.Width = 150
+        Me.ColumnHeader6.Width = 108
         '
         'ColumnHeader7
         '
         Me.ColumnHeader7.Text = "Status"
-        Me.ColumnHeader7.Width = 120
+        Me.ColumnHeader7.Width = 80
         '
         'ColumnHeader8
         '
         Me.ColumnHeader8.Text = "Sold To"
-        Me.ColumnHeader8.Width = 130
+        Me.ColumnHeader8.Width = 90
         '
         'ColumnHeader9
         '
         Me.ColumnHeader9.Text = "Volume"
-        Me.ColumnHeader9.Width = 150
+        Me.ColumnHeader9.Width = 100
         '
         'ColumnHeader10
         '
         Me.ColumnHeader10.Text = "Location"
-        Me.ColumnHeader10.Width = 400
+        Me.ColumnHeader10.Width = 96
         '
         'txtSale
         '
@@ -457,7 +459,7 @@ Partial Class FormMain
         Me.txtSale.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSale.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtSale.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtSale.Location = New System.Drawing.Point(1174, 279)
+        Me.txtSale.Location = New System.Drawing.Point(1174, 734)
         Me.txtSale.Name = "txtSale"
         Me.txtSale.Size = New System.Drawing.Size(86, 22)
         Me.txtSale.TabIndex = 77
@@ -469,7 +471,7 @@ Partial Class FormMain
         Me.txtvendors.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtvendors.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtvendors.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtvendors.Location = New System.Drawing.Point(1151, 119)
+        Me.txtvendors.Location = New System.Drawing.Point(1174, 577)
         Me.txtvendors.Name = "txtvendors"
         Me.txtvendors.Size = New System.Drawing.Size(132, 22)
         Me.txtvendors.TabIndex = 78
@@ -481,7 +483,7 @@ Partial Class FormMain
         Me.txtProspect.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtProspect.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtProspect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtProspect.Location = New System.Drawing.Point(131, 631)
+        Me.txtProspect.Location = New System.Drawing.Point(1188, 123)
         Me.txtProspect.Name = "txtProspect"
         Me.txtProspect.Size = New System.Drawing.Size(235, 22)
         Me.txtProspect.TabIndex = 79
@@ -493,7 +495,7 @@ Partial Class FormMain
         Me.txtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNotes.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.txtNotes.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.txtNotes.Location = New System.Drawing.Point(1174, 631)
+        Me.txtNotes.Location = New System.Drawing.Point(140, 628)
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(161, 22)
         Me.txtNotes.TabIndex = 80
@@ -503,7 +505,7 @@ Partial Class FormMain
         '
         Me.btnAddNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnAddNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnAddNonCGI.Location = New System.Drawing.Point(770, 631)
+        Me.btnAddNonCGI.Location = New System.Drawing.Point(1494, 122)
         Me.btnAddNonCGI.Name = "btnAddNonCGI"
         Me.btnAddNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnAddNonCGI.TabIndex = 83
@@ -514,9 +516,9 @@ Partial Class FormMain
         '
         Me.PictureBox10.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PictureBox10.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
-        Me.PictureBox10.Location = New System.Drawing.Point(20, 23)
+        Me.PictureBox10.Location = New System.Drawing.Point(12, 30)
         Me.PictureBox10.Name = "PictureBox10"
-        Me.PictureBox10.Size = New System.Drawing.Size(1810, 954)
+        Me.PictureBox10.Size = New System.Drawing.Size(1818, 964)
         Me.PictureBox10.TabIndex = 84
         Me.PictureBox10.TabStop = False
         '
@@ -524,7 +526,7 @@ Partial Class FormMain
         '
         Me.btnEditNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnEditNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnEditNonCGI.Location = New System.Drawing.Point(857, 631)
+        Me.btnEditNonCGI.Location = New System.Drawing.Point(1581, 122)
         Me.btnEditNonCGI.Name = "btnEditNonCGI"
         Me.btnEditNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnEditNonCGI.TabIndex = 85
@@ -587,7 +589,7 @@ Partial Class FormMain
         '
         Me.btnDeleteNonCGI.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnDeleteNonCGI.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.btnDeleteNonCGI.Location = New System.Drawing.Point(944, 631)
+        Me.btnDeleteNonCGI.Location = New System.Drawing.Point(1668, 122)
         Me.btnDeleteNonCGI.Name = "btnDeleteNonCGI"
         Me.btnDeleteNonCGI.Size = New System.Drawing.Size(85, 23)
         Me.btnDeleteNonCGI.TabIndex = 103
@@ -643,7 +645,7 @@ Partial Class FormMain
         DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvGrowers.DefaultCellStyle = DataGridViewCellStyle18
-        Me.dgvGrowers.Location = New System.Drawing.Point(89, 176)
+        Me.dgvGrowers.Location = New System.Drawing.Point(92, 176)
         Me.dgvGrowers.MultiSelect = False
         Me.dgvGrowers.Name = "dgvGrowers"
         Me.dgvGrowers.ReadOnly = True
@@ -862,7 +864,7 @@ Partial Class FormMain
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Georgia", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
         Me.TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.TextBox1.Location = New System.Drawing.Point(131, 119)
+        Me.TextBox1.Location = New System.Drawing.Point(125, 119)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(132, 22)
         Me.TextBox1.TabIndex = 111
@@ -872,9 +874,9 @@ Partial Class FormMain
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(84, 85)
+        Me.PictureBox1.Location = New System.Drawing.Point(87, 88)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1014, 462)
+        Me.PictureBox1.Size = New System.Drawing.Size(1011, 462)
         Me.PictureBox1.TabIndex = 112
         Me.PictureBox1.TabStop = False
         '
@@ -882,11 +884,21 @@ Partial Class FormMain
         '
         Me.PictureBox9.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
-        Me.PictureBox9.Location = New System.Drawing.Point(63, 561)
+        Me.PictureBox9.Location = New System.Drawing.Point(61, 564)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(1055, 402)
         Me.PictureBox9.TabIndex = 75
         Me.PictureBox9.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(1143, 564)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(672, 151)
+        Me.PictureBox2.TabIndex = 113
+        Me.PictureBox2.TabStop = False
         '
         'FormMain
         '
@@ -898,6 +910,24 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1834, 997)
+        Me.Controls.Add(Me.txtSale)
+        Me.Controls.Add(Me.lvCommoditySales)
+        Me.Controls.Add(Me.PictureBox7)
+        Me.Controls.Add(Me.txtvendors)
+        Me.Controls.Add(Me.ckVendor8)
+        Me.Controls.Add(Me.ckVendor6)
+        Me.Controls.Add(Me.ckVendor7)
+        Me.Controls.Add(Me.ckVendor5)
+        Me.Controls.Add(Me.ckVendor4)
+        Me.Controls.Add(Me.ckVendor3)
+        Me.Controls.Add(Me.ckVendor2)
+        Me.Controls.Add(Me.ckVendor1)
+        Me.Controls.Add(Me.PictureBox2)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.btnAddGrower)
+        Me.Controls.Add(Me.btnEditGrower)
+        Me.Controls.Add(Me.dgvGrowers)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lvNonCGI)
         Me.Controls.Add(Me.btnDeleteNonCGI)
         Me.Controls.Add(Me.btnEditNonCGI)
@@ -908,20 +938,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.PictureBox6)
         Me.Controls.Add(Me.PictureBox9)
-        Me.Controls.Add(Me.txtvendors)
-        Me.Controls.Add(Me.ckVendor8)
-        Me.Controls.Add(Me.ckVendor6)
-        Me.Controls.Add(Me.ckVendor7)
-        Me.Controls.Add(Me.ckVendor5)
-        Me.Controls.Add(Me.ckVendor4)
-        Me.Controls.Add(Me.ckVendor3)
-        Me.Controls.Add(Me.ckVendor2)
-        Me.Controls.Add(Me.ckVendor1)
-        Me.Controls.Add(Me.btnAddGrower)
-        Me.Controls.Add(Me.btnEditGrower)
-        Me.Controls.Add(Me.dgvGrowers)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btnFarmView)
         Me.Controls.Add(Me.btnCreateReminder)
         Me.Controls.Add(Me.btnLogOut)
@@ -929,9 +945,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.lblFax)
         Me.Controls.Add(Me.lblCellPhone)
         Me.Controls.Add(Me.lblWorkPhone)
-        Me.Controls.Add(Me.txtSale)
-        Me.Controls.Add(Me.lvCommoditySales)
-        Me.Controls.Add(Me.PictureBox7)
         Me.Controls.Add(Me.lblGrowerCountry)
         Me.Controls.Add(Me.lblGrowerCity)
         Me.Controls.Add(Me.PictureBox10)
@@ -949,6 +962,7 @@ Partial Class FormMain
         Me.ContextMenuStrip3.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1027,4 +1041,5 @@ Partial Class FormMain
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox9 As PictureBox
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents PictureBox2 As PictureBox
 End Class
