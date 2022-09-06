@@ -5,8 +5,7 @@ Imports System.Data.SqlClient
 
 Public Class FormMain
 
-    'making this comment for jack again
-
+    'again
     Inherits System.Windows.Forms.Form
 
 
