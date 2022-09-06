@@ -485,9 +485,9 @@ Partial Class FormMain
         Me.txtProspect.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         Me.txtProspect.Location = New System.Drawing.Point(1188, 123)
         Me.txtProspect.Name = "txtProspect"
-        Me.txtProspect.Size = New System.Drawing.Size(235, 22)
+        Me.txtProspect.Size = New System.Drawing.Size(213, 22)
         Me.txtProspect.TabIndex = 79
-        Me.txtProspect.Text = "Prospective Business"
+        Me.txtProspect.Text = "Prospective Business 123"
         '
         'txtNotes
         '
