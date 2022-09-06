@@ -50,10 +50,11 @@ Public Class FormMain
     Private Sub ReloadNotes()
         Dim sNote As String
 
-        Dim iIndex As Integer
+        'Dim iIndex As Integer
+        Dim sKey As String
         Dim sBuildDate As String
-
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
         'Me.TestDataGrid.Rows.Clear()
         'For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
         ' 'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " " & oNote.GrowerNoteCreationDate.ToString("yyyy-MM-dd hh:mm:ss")
@@ -71,7 +72,7 @@ Public Class FormMain
         Dim oDict As New List(Of String)
         Dim oNoteRows As New Collection
         TestDataGrid.Rows.Clear()
-        For Each oNote In oGrowerColl(iIndex).Notes
+        For Each oNote In oGrowerColl(sKey).Notes
             sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
             sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
             sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
@@ -270,7 +271,7 @@ Public Class FormMain
             ' MessageBox.Show("Don COnley Found!")
             'End If
             If bFirstNameFilter Then
-                If oGrowerColl(iCnt).GrowerFirstName.Contains(sFilterFirstName) Then
+                If UCase(oGrowerColl(iCnt).GrowerFirstName).ToString().Contains(UCase(sFilterFirstName)) Then
                     'Do Nothing
                 Else
                     bAddGrower = False
@@ -278,7 +279,7 @@ Public Class FormMain
             End If
 
             If bLastNameFilter Then
-                If oGrowerColl(iCnt).GrowerLastName.Contains(sFilterLastName) Then
+                If UCase(oGrowerColl(iCnt).GrowerLastName).ToString().Contains(UCase(sFilterLastName)) Then
                     'Do Nothing
                 Else
                     bAddGrower = False
@@ -286,7 +287,7 @@ Public Class FormMain
             End If
 
             If bCityFilter Then
-                If oGrowerColl(iCnt).GrowerCity.Contains(sFilterCity) Then
+                If UCase(oGrowerColl(iCnt).GrowerCity).ToString().Contains(UCase(sFilterCity)) Then
                     'Do Nothing
                 Else
                     bAddGrower = False
@@ -294,7 +295,7 @@ Public Class FormMain
             End If
 
             If bCountyFilter Then
-                If oGrowerColl(iCnt).GrowerCounty.Contains(sFilterCounty) Then
+                If UCase(oGrowerColl(iCnt).GrowerCounty).ToString().Contains(UCase(sFilterCounty)) Then
                     'Do Nothing
                 Else
                     bAddGrower = False
@@ -341,7 +342,7 @@ Public Class FormMain
                 iMax3 = oGrowerColl(iCnt).Notes.Count
                 bAddGrower = False
                 Do While iCnt3 <= iMax3
-                    If oGrowerColl(iCnt).Notes(iCnt3).GrowerNoteSubject.Contains(sFilterNoteSubject) Then
+                    If UCase(oGrowerColl(iCnt).Notes(iCnt3).GrowerNoteSubject).ToString().Contains(UCase(sFilterNoteSubject)) Then
                         bAddGrower = True
                     End If
                     iCnt3 = iCnt3 + 1
@@ -353,7 +354,7 @@ Public Class FormMain
                 iMax4 = oGrowerColl(iCnt).Notes.Count
                 bAddGrower = False
                 Do While iCnt4 <= iMax4
-                    If oGrowerColl(iCnt).Notes(iCnt4).GrowerNoteText.Contains(sFilterNoteKeyword) Then
+                    If UCase(oGrowerColl(iCnt).Notes(iCnt4).GrowerNoteText).ToString().Contains(UCase(sFilterNoteKeyword)) Then
                         bAddGrower = True
                     End If
                     iCnt4 = iCnt4 + 1
@@ -1582,7 +1583,7 @@ Public Class FormMain
             oNewNote.GrowerNoteCreationDate = dDate
             oNewNote.GrowerNoteCreatedBy = GlobalVariables.UserId
             oNewNote.GrowerNoteCreatedByLogin = GlobalVariables.CurrentUserLogin
-            oGrowerColl(iIndex).Notes.Add(oNewNote)
+            oGrowerColl(sKey).Notes.Add(oNewNote)
             ReloadNotes()
             GlobalVariables.ResetNote = False
         End If
@@ -2007,6 +2008,21 @@ Public Class FormMain
             GlobalVariables.BuildNonCGI = False
 
             iMax = oGrowerColl(sKey).Vendors.Count
+            If iMax = 0 Then
+                FarmBox.Visible = False
+                FarmBox.Enabled = False
+                txtvendors.Visible = False
+            Else
+                If oGrowerColl(sKey).GrowerProspect <> "Y" Then
+                    FarmBox.Visible = True
+                    FarmBox.Enabled = True
+                    txtvendors.Visible = True
+                Else
+                    FarmBox.Visible = False
+                    FarmBox.Enabled = False
+                    txtvendors.Visible = False
+                End If
+            End If
             'ckVendor1.Checked = False
             ckVendor1.CheckState = CheckState.Unchecked
             ckVendor1.Visible = False
