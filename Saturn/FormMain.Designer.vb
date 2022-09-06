@@ -28,21 +28,6 @@ Partial Class FormMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FontDialog1 = New System.Windows.Forms.FontDialog()
         Me.lvCommoditySales = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
@@ -92,6 +77,21 @@ Partial Class FormMain
         Me.btnCreateReminder = New System.Windows.Forms.Button()
         Me.btnFarmView = New System.Windows.Forms.Button()
         Me.dgvGrowers = New System.Windows.Forms.DataGridView()
+        Me.LastName2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FirstName2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PFlag2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Address2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.City2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.State2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.County2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Zip2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Country2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.WorkPhone2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CellPhone2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fax2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Email2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Comment2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CollIndex2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.FilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearFilterStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -624,6 +624,7 @@ Partial Class FormMain
         '
         Me.dgvGrowers.AllowUserToAddRows = False
         Me.dgvGrowers.AllowUserToDeleteRows = False
+        Me.dgvGrowers.AllowUserToOrderColumns = True
         Me.dgvGrowers.BackgroundColor = System.Drawing.Color.White
         Me.dgvGrowers.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -635,6 +636,7 @@ Partial Class FormMain
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvGrowers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvGrowers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvGrowers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LastName2, Me.FirstName2, Me.PFlag2, Me.Address2, Me.City2, Me.State2, Me.County2, Me.Zip2, Me.Country2, Me.WorkPhone2, Me.CellPhone2, Me.Fax2, Me.Email2, Me.Comment2, Me.CollIndex2})
         Me.dgvGrowers.ContextMenuStrip = Me.ContextMenuStrip3
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
@@ -653,6 +655,97 @@ Partial Class FormMain
         Me.dgvGrowers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvGrowers.Size = New System.Drawing.Size(994, 298)
         Me.dgvGrowers.TabIndex = 110
+        '
+        'LastName2
+        '
+        Me.LastName2.HeaderText = "Last Name"
+        Me.LastName2.Name = "LastName2"
+        Me.LastName2.ReadOnly = True
+        '
+        'FirstName2
+        '
+        Me.FirstName2.HeaderText = "First Name"
+        Me.FirstName2.Name = "FirstName2"
+        Me.FirstName2.ReadOnly = True
+        '
+        'PFlag2
+        '
+        Me.PFlag2.HeaderText = "P"
+        Me.PFlag2.Name = "PFlag2"
+        Me.PFlag2.ReadOnly = True
+        '
+        'Address2
+        '
+        Me.Address2.HeaderText = "Address"
+        Me.Address2.Name = "Address2"
+        Me.Address2.ReadOnly = True
+        '
+        'City2
+        '
+        Me.City2.HeaderText = "City"
+        Me.City2.Name = "City2"
+        Me.City2.ReadOnly = True
+        '
+        'State2
+        '
+        Me.State2.HeaderText = "State"
+        Me.State2.Name = "State2"
+        Me.State2.ReadOnly = True
+        '
+        'County2
+        '
+        Me.County2.HeaderText = "County"
+        Me.County2.Name = "County2"
+        Me.County2.ReadOnly = True
+        '
+        'Zip2
+        '
+        Me.Zip2.HeaderText = "Zip"
+        Me.Zip2.Name = "Zip2"
+        Me.Zip2.ReadOnly = True
+        '
+        'Country2
+        '
+        Me.Country2.HeaderText = "Country"
+        Me.Country2.Name = "Country2"
+        Me.Country2.ReadOnly = True
+        '
+        'WorkPhone2
+        '
+        Me.WorkPhone2.HeaderText = "Work Phone"
+        Me.WorkPhone2.Name = "WorkPhone2"
+        Me.WorkPhone2.ReadOnly = True
+        '
+        'CellPhone2
+        '
+        Me.CellPhone2.HeaderText = "Cell Phone"
+        Me.CellPhone2.Name = "CellPhone2"
+        Me.CellPhone2.ReadOnly = True
+        '
+        'Fax2
+        '
+        Me.Fax2.HeaderText = "Fax"
+        Me.Fax2.Name = "Fax2"
+        Me.Fax2.ReadOnly = True
+        '
+        'Email2
+        '
+        Me.Email2.HeaderText = "Email"
+        Me.Email2.Name = "Email2"
+        Me.Email2.ReadOnly = True
+        '
+        'Comment2
+        '
+        Me.Comment2.HeaderText = "Comment"
+        Me.Comment2.Name = "Comment2"
+        Me.Comment2.ReadOnly = True
+        '
+        'CollIndex2
+        '
+        Me.CollIndex2.HeaderText = "CollIndex"
+        Me.CollIndex2.Name = "CollIndex2"
+        Me.CollIndex2.ReadOnly = True
+        Me.CollIndex2.Visible = False
         '
         'ContextMenuStrip3
         '
@@ -734,155 +827,63 @@ Partial Class FormMain
         '
         'LastName
         '
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.LastName.DefaultCellStyle = DataGridViewCellStyle4
-        Me.LastName.HeaderText = "Last Name"
         Me.LastName.Name = "LastName"
         '
         'DataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle5
-        Me.DataGridViewTextBoxColumn2.HeaderText = "First Name"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         '
         'PFlag
         '
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.PFlag.DefaultCellStyle = DataGridViewCellStyle6
-        Me.PFlag.HeaderText = "P"
         Me.PFlag.Name = "PFlag"
-        Me.PFlag.Width = 20
         '
         'DataGridViewTextBoxColumn3
         '
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle7
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Address"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         '
         'City
         '
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.City.DefaultCellStyle = DataGridViewCellStyle8
-        Me.City.HeaderText = "City"
         Me.City.Name = "City"
         '
         'State
         '
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.State.DefaultCellStyle = DataGridViewCellStyle9
-        Me.State.HeaderText = "State"
         Me.State.Name = "State"
         '
         'County
         '
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.County.DefaultCellStyle = DataGridViewCellStyle10
-        Me.County.HeaderText = "County"
         Me.County.Name = "County"
         '
         'Zip
         '
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Zip.DefaultCellStyle = DataGridViewCellStyle11
-        Me.Zip.HeaderText = "Zip"
         Me.Zip.Name = "Zip"
         '
         'Country
         '
-        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(105, Byte), Integer))
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Country.DefaultCellStyle = DataGridViewCellStyle12
-        Me.Country.HeaderText = "Country"
         Me.Country.Name = "Country"
         '
         'WorkPhone
         '
-        DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.WorkPhone.DefaultCellStyle = DataGridViewCellStyle13
-        Me.WorkPhone.HeaderText = "Work Phone"
         Me.WorkPhone.Name = "WorkPhone"
         '
         'CellPhone
         '
-        DataGridViewCellStyle14.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.CellPhone.DefaultCellStyle = DataGridViewCellStyle14
-        Me.CellPhone.HeaderText = "CellPhone"
         Me.CellPhone.Name = "CellPhone"
         '
         'Fax
         '
-        DataGridViewCellStyle15.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Fax.DefaultCellStyle = DataGridViewCellStyle15
-        Me.Fax.HeaderText = "Fax"
         Me.Fax.Name = "Fax"
         '
         'Email
         '
-        DataGridViewCellStyle16.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Email.DefaultCellStyle = DataGridViewCellStyle16
-        Me.Email.HeaderText = "Email"
         Me.Email.Name = "Email"
         '
         'Comment
         '
-        DataGridViewCellStyle17.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Comment.DefaultCellStyle = DataGridViewCellStyle17
-        Me.Comment.HeaderText = "Comment"
         Me.Comment.Name = "Comment"
         '
         'CollIndex
         '
-        DataGridViewCellStyle18.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.CollIndex.DefaultCellStyle = DataGridViewCellStyle18
-        Me.CollIndex.HeaderText = "CollIndex"
         Me.CollIndex.Name = "CollIndex"
-        Me.CollIndex.Visible = False
         '
         'FormMain
         '
@@ -1026,4 +1027,19 @@ Partial Class FormMain
     Friend WithEvents Email As DataGridViewTextBoxColumn
     Friend WithEvents Comment As DataGridViewTextBoxColumn
     Friend WithEvents CollIndex As DataGridViewTextBoxColumn
+    Friend WithEvents LastName2 As DataGridViewTextBoxColumn
+    Friend WithEvents FirstName2 As DataGridViewTextBoxColumn
+    Friend WithEvents PFlag2 As DataGridViewTextBoxColumn
+    Friend WithEvents Address2 As DataGridViewTextBoxColumn
+    Friend WithEvents City2 As DataGridViewTextBoxColumn
+    Friend WithEvents State2 As DataGridViewTextBoxColumn
+    Friend WithEvents County2 As DataGridViewTextBoxColumn
+    Friend WithEvents Zip2 As DataGridViewTextBoxColumn
+    Friend WithEvents Country2 As DataGridViewTextBoxColumn
+    Friend WithEvents WorkPhone2 As DataGridViewTextBoxColumn
+    Friend WithEvents CellPhone2 As DataGridViewTextBoxColumn
+    Friend WithEvents Fax2 As DataGridViewTextBoxColumn
+    Friend WithEvents Email2 As DataGridViewTextBoxColumn
+    Friend WithEvents Comment2 As DataGridViewTextBoxColumn
+    Friend WithEvents CollIndex2 As DataGridViewTextBoxColumn
 End Class

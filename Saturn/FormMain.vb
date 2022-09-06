@@ -53,7 +53,7 @@ Public Class FormMain
         'Dim iIndex As Integer
         Dim sKey As String
         Dim sBuildDate As String
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
         'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
         'Me.TestDataGrid.Rows.Clear()
         'For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
@@ -1444,7 +1444,7 @@ Public Class FormMain
         'Dim oSelItem As IndexedGrowerListItem = Me.ListBox1.SelectedItem
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1456,7 +1456,7 @@ Public Class FormMain
         'Dim oSelItem As IndexedGrowerListItem = Me.ListBox1.SelectedItem
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1467,7 +1467,8 @@ Public Class FormMain
     Private Sub ckVendor1_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor1.CheckedChanged
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
+        'sKey = dgvGrowers.SelectedRows(0).Cells(14).Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1478,7 +1479,8 @@ Public Class FormMain
     Private Sub ckVendor3_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor3.CheckedChanged
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
+        'sKey = dgvGrowers.SelectedRows(0).Cells(14).Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1489,7 +1491,8 @@ Public Class FormMain
     Private Sub ckVendor4_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor4.CheckedChanged
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
+        'sKey = dgvGrowers.SelectedRows(0).Cells(14).Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1500,7 +1503,8 @@ Public Class FormMain
     Private Sub ckVendor5_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor5.CheckedChanged
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
+        'sKey = dgvGrowers.SelectedRows(0).Cells(14).Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1511,7 +1515,8 @@ Public Class FormMain
     Private Sub ckVendor7_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor7.CheckedChanged
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
+        'sKey = dgvGrowers.SelectedRows(0).Cells(14).Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1522,7 +1527,8 @@ Public Class FormMain
     Private Sub ckVendor8_CheckedChanged(sender As Object, e As EventArgs) Handles ckVendor8.CheckedChanged
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
+        'sKey = dgvGrowers.SelectedRows(0).Cells(14).Value.ToString()
         If oGrowerColl(sKey).GrowerProspect = "N" Then
             BuildCommodityList(sKey)
         Else
@@ -1541,7 +1547,7 @@ Public Class FormMain
         'Dim sDate As String
         Dim dDate As DateTime
         'Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
         GlobalVariables.CurrentGrower = oGrowerColl(sKey)
         frmNote.ShowDialog()
         'frmNote.TopMost = True
@@ -1674,7 +1680,7 @@ Public Class FormMain
         Dim sCountry As String
         Dim sKey As String
 
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
 
         Me.TopMost = False
         'iCurIndex = ListBox1.SelectedIndex
@@ -1772,7 +1778,7 @@ Public Class FormMain
 
         'iIndex = "-1"
         'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
 
 
         GlobalVariables.BuildNonCGI = False
@@ -1810,7 +1816,7 @@ Public Class FormMain
 
         'iIndex = "-1"
         'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
 
         If lvNonCGI.SelectedItems.Count < 1 Then
             MessageBox.Show("No Item is Selected")
@@ -1913,7 +1919,7 @@ Public Class FormMain
 
         'iIndex = "-1"
         'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
 
         If lvNonCGI.SelectedItems.Count < 1 Then
             MessageBox.Show("No Item is Selected")
@@ -1997,7 +2003,8 @@ Public Class FormMain
 
         'iIndex = -1
         If dgvGrowers.SelectedRows.Count = 0 Then Exit Sub
-        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex2").Value.ToString()
+        'sKey = dgvGrowers.SelectedRows(0).Cells(14).Value.ToString()
         If dgvGrowers.SelectedRows.Count > 0 Then
             'sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
             'iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
