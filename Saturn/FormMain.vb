@@ -260,6 +260,7 @@ Public Class FormMain
         bProspect = GlobalVariables.CurrentFilters.Prospect
         bHasNotes = GlobalVariables.CurrentFilters.HasNotes
 
+        'just adding a comment
 
         iCnt = 1
         iMax = oGrowerColl.Count
