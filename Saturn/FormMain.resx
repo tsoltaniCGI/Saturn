@@ -63,9 +63,6 @@
   <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="PictureBox6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -290,7 +287,7 @@
   <data name="PictureBox7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAApgAAAEECAYAAACMfURsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAy
-        uAAAMrgBKPMmiQAADp1JREFUeF7t3T+QlOUdwHGKlCktUlikSGGRwsLC0iKFhUUKS4sUKSxSOOOE24Xd
+        tgAAMrYBjHpqdwAADp1JREFUeF7t3T+QlOUdwHGKlCktUlikSGGRwsLC0iKFhUUKS4sUKSxSOOOE24Xd
         cxmGYRwMu8flQjSMIWoCmaiIaHQAvcRxgIiDDA6eGAMocTBiQOOfEy+weX/vPQuHQWDlh3Dc5zPziLvv
         7t67W33nfd/neRddSxZ31tzYaI3d3mj3flaN8UZ7bFv172Q1Ds0ZfcMwDMMwjAU25rZQ1UZ1I61ttrv3
         1O3U6X6/5BTNzvhN1Q90d7Pd21D9SEercb4f1DAMwzAMw7j4ODrbVFVbVY1VcmthiKOUI+2xRvUjTH3l
@@ -395,6 +392,9 @@
     <value>True</value>
   </metadata>
   <metadata name="CollIndex.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="LastUpdate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="ContextMenuStrip3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -787,7 +787,7 @@
   <data name="PictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAApgAAACSCAYAAADhNbqGAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAy
-        uAAAMrgBKPMmiQAACLFJREFUeF7t3b2PVWUewPFbWFhYWFhYWGyxf8iWFhZbbkFpaWFi9N7Be4ezLgkF
+        tgAAMrYBjHpqdwAACLFJREFUeF7t3b2PVWUewPFbWFhYWFhYWGyxf8iWFhZbbkFpaWFi9N7Be4ezLgkF
         xHvvrLz4OiEQRXyjQHYTAkN2kZewCAJCdBQcJjjCGEbDGk0m8ex5zpyjgGe8QH6uvHye5BPmDOdtum+e
         89aKGlk2eX+nO3y0M97POr3BxnZv8F5nfHCw+PlcIQcA4LZwLjVa2WpFs6V2G+sOHkstV2Xd7zueytY9
         VJzcinZv+FZxgleuOnEAAO4s3y9FZ//x1HhV7v3/Rpb1HyxOoJ9OpD6plePDfMOm1/P3d+7ND+w/kh8/
