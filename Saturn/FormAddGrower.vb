@@ -146,6 +146,7 @@ Public Class FormAddGrower
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         Dim sSql As String
         Dim sDate As String
+        Dim dDate As DateTime
         Dim iGrowerID As Integer
         Dim iVendorID As Integer
         Dim bDataValidated As Boolean
@@ -241,16 +242,18 @@ Public Class FormAddGrower
                 GlobalVariables.iAddedVendorID = iVendorID
                 sProspect = "Y"
             End If
-            sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
+            dDate = Now()
+            sDate = dDate.ToString("yyyy-MM-dd HH:mm:ss")
 
             sSql = "INSERT INTO growers (grower_prospect, grower_first_name, grower_last_name, grower_address_line_1, grower_address_line_2, "
             sSql = sSql & "grower_city, grower_county, grower_state, grower_zip, grower_country, grower_phone1, grower_phone2, grower_fax, "
-            sSql = sSql & "grower_email, grower_date_created, grower_created_by, grower_comment) "
+            sSql = sSql & "grower_email, grower_date_created, grower_created_by, grower_comment, dt_last_update) "
             sSql = sSql & "VALUES ('" & sProspect & "', '" & GlobalVariables.DQuot(txtFirstName.Text) & "', '" & GlobalVariables.DQuot(txtLastName.Text) & "', '" & GlobalVariables.DQuot(txtAddress1.Text) & "', '" & GlobalVariables.DQuot(txtAddress2.Text) & "', '"
             'sSql = sSql & txtCity.Text & "', '" & txtCounty.Text & "', '" & txtState.Text & "', '" & txtZip.Text & "', '" & "US" & "', '" & txtWorkPhone.Text & "', '"
             sSql = sSql & GlobalVariables.DQuot(txtCity.Text) & "', '" & GlobalVariables.DQuot(txtCounty.Text) & "', '" & cmbState.SelectedItem.ToString() & "', '" & GlobalVariables.DQuot(txtZip.Text) & "', '" & GlobalVariables.DQuot(sCurCountryCode) & "', '" & GlobalVariables.DQuot(txtWorkPhone.Text) & "', '"
             sSql = sSql & GlobalVariables.DQuot(txtCellPhone.Text) & "', '" & GlobalVariables.DQuot(txtFax.Text) & "', '" & GlobalVariables.DQuot(txtEmail.Text) & "', '" & sDate & "', " & GlobalVariables.UserId.ToString() & ", "
-            sSql = sSql & "'" & GlobalVariables.DQuot(txtComment.Text) & "'"
+            sSql = sSql & "'" & GlobalVariables.DQuot(txtComment.Text) & "', "
+            sSql = sSql & "CONVERT(datetime, '" & sDate & "') "
             sSql = sSql & "); SELECT SCOPE_IDENTITY()"
             '"INSERT INTO table (Databasevalue) VALUES ('" + formvalue + "'); SELECT SCOPE_IDENTITY()"
             myCmd.CommandText = sSql
@@ -277,6 +280,7 @@ Public Class FormAddGrower
             GlobalVariables.AddedGrower.GrowerEmail = txtEmail.Text
             GlobalVariables.AddedGrower.GrowerComment = txtComment.Text
             GlobalVariables.AddedGrower.GrowerProspect = sProspect
+            GlobalVariables.AddedGrower.GrowerLastUpdate = dDate
             GlobalVariables.AddedGrower.Vendors.Clear()
 
             If ckProspect.Checked Then
