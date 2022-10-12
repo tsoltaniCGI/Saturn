@@ -50,7 +50,6 @@ Public Class FormFilterGrowers
         chkProspect.Checked = GlobalVariables.CurrentFilters.Prospect
         chkHasNotes.Checked = GlobalVariables.CurrentFilters.HasNotes
 
-
         iCnt = 0
         For Each sCommId In oCommIds
             If sCommId = GlobalVariables.CurrentFilters.CommodityID Then
@@ -61,6 +60,16 @@ Public Class FormFilterGrowers
         Next
         If iIndex <> -1 Then
             cmbCommodity.SelectedIndex = iIndex
+            ckFarmStorage.Visible = True
+            ckFarmStorage.Enabled = True
+            If GlobalVariables.CurrentFilters.FarmStorage = "Y" Then
+                ckFarmStorage.Checked = True
+            Else
+                ckFarmStorage.Checked = False
+            End If
+        Else
+            ckFarmStorage.Enabled = False
+            ckFarmStorage.Visible = False
         End If
 
 
@@ -81,6 +90,11 @@ Public Class FormFilterGrowers
         GlobalVariables.CurrentFilters.HasNotes = chkHasNotes.Checked
         GlobalVariables.CurrentFilters.NoteSubject = txtSubject.Text
         GlobalVariables.CurrentFilters.NoteKeyword = txtKeyword.Text
+        If ckFarmStorage.Checked = True Then
+            GlobalVariables.CurrentFilters.FarmStorage = "Y"
+        Else
+            GlobalVariables.CurrentFilters.FarmStorage = "N"
+        End If
         'MessageBox.Show(GlobalVariables.CurrentFilters.CommodityID)
         Me.Close()
     End Sub
@@ -119,6 +133,17 @@ Public Class FormFilterGrowers
         Else
             chkHasNotes.Enabled = True
             chkHasNotes.Checked = False
+        End If
+    End Sub
+
+    Private Sub cmbCommodity_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCommodity.SelectedIndexChanged
+        If cmbCommodity.SelectedIndex > -1 Then
+            ckFarmStorage.Visible = True
+            ckFarmStorage.Enabled = True
+        Else
+            ckFarmStorage.Visible = False
+            ckFarmStorage.Enabled = False
+            ckFarmStorage.Checked = False
         End If
     End Sub
 End Class

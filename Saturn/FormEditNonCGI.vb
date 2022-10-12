@@ -4,8 +4,10 @@ Public Class FormEditNonCGI
     Dim oConn As SqlConnection
     Dim oCommIDS As New Collection
     Dim iGrowerID As Integer
+    Dim sFarmStorage As String
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sSql As String
+
         Dim oReader As SqlDataReader
         Dim myCmd As SqlCommand
 
@@ -42,7 +44,8 @@ Public Class FormEditNonCGI
         cmbStatus.Items.Add("SOLD")
         cmbStatus.Items.Add("UNSOLD")
 
-        sSql = "SELECT grower_id, commodities.commodity_id, commodity_name, status, volume_bu, ISNULL(sold_to, ''), ISNULL(location, '') "
+        sSql = "SELECT grower_id, commodities.commodity_id, commodity_name, status, volume_bu, ISNULL(sold_to, ''), ISNULL(location, ''), "
+        sSql = sSql & "ISNULL(farmstorage, 'N') "
         sSql = sSql & "FROM noncgicrop, commodities "
         sSql = sSql & "WHERE commodities.commodity_id = noncgicrop.commodity_id "
         sSql = sSql & "AND nonCGICrop_id = " & GlobalVariables.CurrentNonCGIID.ToString()
@@ -58,6 +61,21 @@ Public Class FormEditNonCGI
             cmbStatus.SelectedIndex = cmbStatus.FindString(oReader.GetString(3))
             txtSoldTo.Text = oReader.GetString(5)
             txtLocation.Text = oReader.GetString(6)
+            sFarmStorage = oReader.GetString(7)
+            ckFarmStorage.Checked = False
+            If cmbStatus.SelectedItem = "UNSOLD" Then
+                ckFarmStorage.Visible = True
+                ckFarmStorage.Enabled = True
+                If sFarmStorage = "Y" Then
+                    ckFarmStorage.Checked = True
+                Else
+                    ckFarmStorage.Checked = False
+                End If
+            Else
+                ckFarmStorage.Checked = False
+                ckFarmStorage.Enabled = False
+                ckFarmStorage.Visible = False
+            End If
         End If
     End Sub
 
@@ -112,6 +130,11 @@ Public Class FormEditNonCGI
         End If
 
         If bValidated Then
+            If ckFarmStorage.Checked = True Then
+                sFarmStorage = "Y"
+            Else
+                sFarmStorage = "N"
+            End If
             myCmd = oConn.CreateCommand
 
             dDate = Now()
@@ -126,7 +149,8 @@ Public Class FormEditNonCGI
             sSql = sSql & "sold_to = '" & GlobalVariables.DQuot(txtSoldTo.Text.ToString()) & "', "
             sSql = sSql & "updated_date = Convert(DateTime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
             sSql = sSql & "location = '" & GlobalVariables.DQuot(txtLocation.Text.ToString()) & "', "
-            sSql = sSql & "grower_id = " & iGrowerID.ToString() & " "
+            sSql = sSql & "grower_id = " & iGrowerID.ToString() & ", "
+            sSql = sSql & "farmstorage = " & sFarmStorage & " "
             sSql = sSql & "WHERE nonCGIcrop_id = " & GlobalVariables.CurrentNonCGIID.ToString()
 
             oConn.Open()
@@ -144,6 +168,7 @@ Public Class FormEditNonCGI
             oNewNonCGI.Volume = txtVolume.Text
             oNewNonCGI.SoldTo = txtSoldTo.Text
             oNewNonCGI.Location = txtLocation.Text
+            oNewNonCGI.FarmStorage = sFarmStorage
             ' GlobalVariables.CurrentGrower.OtherCrops.Add(oNewNonCGI)
             'oGrowerColl(oSelItem.CollectionIndex).Notes.Add(oNewNonCGI)
 
@@ -175,6 +200,22 @@ Public Class FormEditNonCGI
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    Private Sub ckFarmStorage_CheckedChanged(sender As Object, e As EventArgs) Handles ckFarmStorage.CheckedChanged
+
+    End Sub
+
+    Private Sub cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStatus.SelectedIndexChanged
+        If cmbStatus.SelectedItem = "UNSOLD" Then
+            ckFarmStorage.Visible = True
+            ckFarmStorage.Enabled = True
+        Else
+            ckFarmStorage.Visible = False
+            ckFarmStorage.Enabled = False
+            ckFarmStorage.Checked = False
+        End If
 
     End Sub
 End Class

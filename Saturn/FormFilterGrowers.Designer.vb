@@ -41,6 +41,7 @@ Partial Class FormFilterGrowers
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtKeyword = New System.Windows.Forms.TextBox()
+        Me.ckFarmStorage = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'lblLastName
@@ -127,7 +128,7 @@ Partial Class FormFilterGrowers
         '
         'btnOK
         '
-        Me.btnOK.Location = New System.Drawing.Point(11, 363)
+        Me.btnOK.Location = New System.Drawing.Point(11, 394)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(75, 23)
         Me.btnOK.TabIndex = 13
@@ -136,7 +137,7 @@ Partial Class FormFilterGrowers
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(110, 362)
+        Me.btnCancel.Location = New System.Drawing.Point(110, 393)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 14
@@ -145,7 +146,7 @@ Partial Class FormFilterGrowers
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(56, 328)
+        Me.btnClear.Location = New System.Drawing.Point(56, 359)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(94, 23)
         Me.btnClear.TabIndex = 15
@@ -155,7 +156,7 @@ Partial Class FormFilterGrowers
         'chkProspect
         '
         Me.chkProspect.AutoSize = True
-        Me.chkProspect.Location = New System.Drawing.Point(84, 210)
+        Me.chkProspect.Location = New System.Drawing.Point(84, 241)
         Me.chkProspect.Name = "chkProspect"
         Me.chkProspect.Size = New System.Drawing.Size(72, 19)
         Me.chkProspect.TabIndex = 16
@@ -165,7 +166,7 @@ Partial Class FormFilterGrowers
         'chkHasNotes
         '
         Me.chkHasNotes.AutoSize = True
-        Me.chkHasNotes.Location = New System.Drawing.Point(84, 230)
+        Me.chkHasNotes.Location = New System.Drawing.Point(84, 261)
         Me.chkHasNotes.Name = "chkHasNotes"
         Me.chkHasNotes.Size = New System.Drawing.Size(80, 19)
         Me.chkHasNotes.TabIndex = 17
@@ -174,7 +175,7 @@ Partial Class FormFilterGrowers
         '
         'txtSubject
         '
-        Me.txtSubject.Location = New System.Drawing.Point(90, 256)
+        Me.txtSubject.Location = New System.Drawing.Point(90, 287)
         Me.txtSubject.Name = "txtSubject"
         Me.txtSubject.Size = New System.Drawing.Size(100, 23)
         Me.txtSubject.TabIndex = 18
@@ -182,7 +183,7 @@ Partial Class FormFilterGrowers
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 258)
+        Me.Label1.Location = New System.Drawing.Point(3, 289)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(75, 15)
         Me.Label1.TabIndex = 19
@@ -191,7 +192,7 @@ Partial Class FormFilterGrowers
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(1, 287)
+        Me.Label2.Location = New System.Drawing.Point(1, 318)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(82, 15)
         Me.Label2.TabIndex = 21
@@ -199,17 +200,28 @@ Partial Class FormFilterGrowers
         '
         'txtKeyword
         '
-        Me.txtKeyword.Location = New System.Drawing.Point(92, 286)
+        Me.txtKeyword.Location = New System.Drawing.Point(92, 317)
         Me.txtKeyword.Name = "txtKeyword"
         Me.txtKeyword.Size = New System.Drawing.Size(100, 23)
         Me.txtKeyword.TabIndex = 20
+        '
+        'ckFarmStorage
+        '
+        Me.ckFarmStorage.AutoSize = True
+        Me.ckFarmStorage.Location = New System.Drawing.Point(86, 193)
+        Me.ckFarmStorage.Name = "ckFarmStorage"
+        Me.ckFarmStorage.Size = New System.Drawing.Size(133, 19)
+        Me.ckFarmStorage.TabIndex = 82
+        Me.ckFarmStorage.Text = "Farm Storage (Y/N)?"
+        Me.ckFarmStorage.UseVisualStyleBackColor = True
         '
         'FormFilterGrowers
         '
         Me.AcceptButton = Me.btnOK
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(247, 400)
+        Me.ClientSize = New System.Drawing.Size(246, 441)
+        Me.Controls.Add(Me.ckFarmStorage)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtKeyword)
         Me.Controls.Add(Me.Label1)
@@ -256,4 +268,5 @@ Partial Class FormFilterGrowers
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtKeyword As TextBox
+    Friend WithEvents ckFarmStorage As CheckBox
 End Class

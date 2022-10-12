@@ -39,6 +39,8 @@ Public Class GrowerFilter
     Public Property City As String
     Public Property County As String
     Public Property CommodityID As String
+    Public Property FarmStorage As String
+
     Public Property Prospect As Boolean
     Public Property HasNotes As Boolean
     Public Property NoteSubject As String
@@ -165,6 +167,7 @@ Public Class Commodity
     Public Property PreviousCropYear As Decimal
 
     Public Property Previous2CropYear As Decimal
+    Public Property VendorID As Integer
 
 End Class
 Public Class Vendor
@@ -183,6 +186,7 @@ Public Class NonCGI
     Public Property Status As String
     Public Property SoldTo As String
     Public Property Volume As Integer
+    Public Property FarmStorage As String
     Public Property Location As String
 
 End Class
@@ -245,6 +249,7 @@ Public Class NonCGIRec
     Public Property Status As String
     Public Property Volume As Integer
     Public Property SoldTo As String
+    Public Property FarmStorage As String
     Public Property UpdatedDate As Date
     Public Property Location As String
 End Class

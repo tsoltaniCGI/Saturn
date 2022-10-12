@@ -43,6 +43,7 @@ Partial Class FormNonCGI
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtVolume = New System.Windows.Forms.MaskedTextBox()
         Me.lblNonCGIGrowerLastName = New System.Windows.Forms.Label()
+        Me.ckFarmStorage = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -262,11 +263,22 @@ Partial Class FormNonCGI
         Me.lblNonCGIGrowerLastName.TabIndex = 61
         Me.lblNonCGIGrowerLastName.Text = "Grower Last Name"
         '
+        'ckFarmStorage
+        '
+        Me.ckFarmStorage.AutoSize = True
+        Me.ckFarmStorage.Location = New System.Drawing.Point(381, 226)
+        Me.ckFarmStorage.Name = "ckFarmStorage"
+        Me.ckFarmStorage.Size = New System.Drawing.Size(133, 19)
+        Me.ckFarmStorage.TabIndex = 63
+        Me.ckFarmStorage.Text = "Farm Storage (Y/N)?"
+        Me.ckFarmStorage.UseVisualStyleBackColor = True
+        '
         'FormNonCGI
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(558, 502)
+        Me.Controls.Add(Me.ckFarmStorage)
         Me.Controls.Add(Me.lblNonCGIGrowerLastName)
         Me.Controls.Add(Me.txtVolume)
         Me.Controls.Add(Me.Label1)
@@ -321,4 +333,5 @@ Partial Class FormNonCGI
     Friend WithEvents Label1 As Label
     Friend WithEvents txtVolume As MaskedTextBox
     Friend WithEvents lblNonCGIGrowerLastName As Label
+    Friend WithEvents ckFarmStorage As CheckBox
 End Class

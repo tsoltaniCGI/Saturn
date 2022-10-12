@@ -19,6 +19,9 @@ Public Class FormNonCGI
         Dim oReader As SqlDataReader
 
         GlobalVariables.ResetNote = False
+        'ckFarmStorage.Checked = False
+        'ckFarmStorage.Enabled = False
+        'ckFarmStorage.Visible = False
 
         Me.lblNonCGIGrowerFirstName.Text = GlobalVariables.CurrentGrower.GrowerFirstName
         Me.lblNonCGIGrowerLastName.Text = GlobalVariables.CurrentGrower.GrowerLastName
@@ -61,7 +64,14 @@ Public Class FormNonCGI
     End Sub
 
     Private Sub cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStatus.SelectedIndexChanged
-
+        If cmbStatus.SelectedItem = "UNSOLD" Then
+            ckFarmStorage.Visible = True
+            ckFarmStorage.Enabled = True
+        Else
+            ckFarmStorage.Visible = False
+            ckFarmStorage.Enabled = False
+            ckFarmStorage.Checked = False
+        End If
     End Sub
 
     Private Sub txtSoldTo_TextChanged(sender As Object, e As EventArgs) Handles txtSoldTo.TextChanged
@@ -83,7 +93,7 @@ Public Class FormNonCGI
         Dim dDate As Date
         Dim bValidated As Boolean
         Dim inonCGIID As Integer
-
+        Dim sFarmStor As String
         bValidated = True
 
         If cmbCommodity.SelectedIndex = -1 Then
@@ -120,12 +130,17 @@ Public Class FormNonCGI
         End If
 
         If bValidated Then
+            If ckFarmStorage.Checked = True Then
+                sFarmStor = "Y"
+            Else
+                sFarmStor = "N"
+            End If
             myCmd = oConn.CreateCommand
 
             dDate = Now()
 
             sSql = "INSERT INTO nonCGIcrop "
-            sSql = sSql & "(commodity_id, status, volume_bu, sold_to, updated_date, location, grower_id) "
+            sSql = sSql & "(commodity_id, status, volume_bu, sold_to, updated_date, location, grower_id, farmstorage) "
             sSql = sSql & "VALUES ('"
             sSql = sSql & oCommIds(iCommIndex + 1).ToString() & "', "
             sSql = sSql & "'" & cmbStatus.SelectedItem.ToString() & "', "
@@ -133,7 +148,9 @@ Public Class FormNonCGI
             sSql = sSql & "'" & GlobalVariables.DQuot(txtSoldTo.Text.ToString()) & "', "
             sSql = sSql & "Convert(DateTime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
             sSql = sSql & "'" & GlobalVariables.DQuot(txtLocation.Text.ToString()) & "', "
-            sSql = sSql & GlobalVariables.CurrentGrower.GrowerID.ToString() & "); SELECT SCOPE_IDENTITY()"
+            sSql = sSql & GlobalVariables.CurrentGrower.GrowerID.ToString() & ", "
+            sSql = sSql & "'" & sFarmStor & "'"
+            sSql = sSql & "); SELECT SCOPE_IDENTITY()"
 
             oConn.Open()
             myCmd.CommandText = sSql

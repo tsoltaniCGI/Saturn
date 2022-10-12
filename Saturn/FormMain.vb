@@ -7,7 +7,25 @@ Public Class FormMain
 
     'again
     Inherits System.Windows.Forms.Form
-
+    Class CommoditySorter
+        Implements IComparer
+        Public Function CompareTo(ByVal o1 As Object,
+            ByVal o2 As Object) As Integer _
+            Implements System.Collections.IComparer.Compare
+            Dim item1, item2 As ListViewItem
+            item1 = CType(o1, ListViewItem)
+            item2 = CType(o2, ListViewItem)
+            If item1.ToString.ToUpper > item2.ToString.ToUpper Then
+                Return 1
+            Else
+                If item1.ToString.ToUpper < item2.ToString.ToUpper Then
+                    Return -1
+                Else
+                    Return 0
+                End If
+            End If
+        End Function
+    End Class
 
     Dim oConn As New SqlConnection
     Dim myCmd As SqlCommand
@@ -177,7 +195,7 @@ Public Class FormMain
             sGrowerID = oGrowerColl(iCnt).GrowerID.ToString()
             sLastUpdate = oGrowerColl(iCnt).GrowerLastUpdate.ToString()
 
-            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, sGrowerID)
+            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, sGrowerID)
 
 
             iCnt = iCnt + 1
@@ -205,6 +223,7 @@ Public Class FormMain
         Dim bCountyFilter As Boolean
         Dim bCommodityIDFilter As Boolean
         Dim bAddGrower As Boolean
+        Dim bFarmStorage As Boolean
         Dim sLastName As String
         Dim sFirstName As String
         Dim sProspect As String
@@ -229,8 +248,13 @@ Public Class FormMain
         Dim bNoteKeyFilter As Boolean
         Dim sFilterNoteSubject As String
         Dim sFilterNoteKeyword As String
+        Dim sHour As String
 
-
+        If GlobalVariables.CurrentFilters.FarmStorage = "Y" Then
+            bFarmStorage = True
+        Else
+            bFarmStorage = False
+        End If
         bFirstNameFilter = False
         bLastNameFilter = False
         bCityFilter = False
@@ -310,6 +334,14 @@ Public Class FormMain
                 bCommFound = False
                 Do While iCnt2 <= iMax2
                     If oGrowerColl(iCnt).OtherCrops(iCnt2).NonCGICommID = sFilterCommodityID Then
+                        If bFarmStorage Then
+                            If oGrowerColl(iCnt).OtherCrops(iCnt2).FarmStorage <> "Y" Then
+                                'If the Farm Storage Filter is on and the commoditiy is not on the farm
+                                'It is like we never found it and move on
+                                bCommFound = False
+                                Exit Do
+                            End If
+                        End If
                         bCommFound = True
                         Exit Do
                     End If
@@ -388,9 +420,22 @@ Public Class FormMain
                 sEmail = oGrowerColl(iCnt).GrowerEmail
                 sComment = oGrowerColl(iCnt).GrowerComment
                 sGrowerID = oGrowerColl(iCnt).GrowerID.ToString()
-                sLastUpdate = oGrowerColl(iCnt).GrowerLastUpdate.ToString()
-
-                dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, sGrowerID)
+                'sLastUpdate = oGrowerColl(iCnt).GrowerLastUpdate.ToString("yyyy-MM-dd hh:mm:ss")
+                sLastUpdate = Year(oGrowerColl(iCnt).GrowerLastUpdate).ToString() & "-"
+                If Month(oGrowerColl(iCnt).GrowerLastUpdate) < 10 Then sLastUpdate = sLastUpdate & "0"
+                sLastUpdate = sLastUpdate & Month(oGrowerColl(iCnt).GrowerLastUpdate).ToString() & "-"
+                If Microsoft.VisualBasic.DateAndTime.Day(oGrowerColl(iCnt).GrowerLastUpdate) < 10 Then sLastUpdate = sLastUpdate & "0"
+                sLastUpdate = sLastUpdate & Microsoft.VisualBasic.DateAndTime.Day(oGrowerColl(iCnt).GrowerLastUpdate).ToString() & " "
+                sHour = Hour(oGrowerColl(iCnt).GrowerLastUpdate).ToString()
+                If Hour(oGrowerColl(iCnt).GrowerLastUpdate) < 10 Then sHour = "0" & sHour
+                'If sHour = "00" And oGrowerColl(iCnt).GrowerLastUpdate.ToString("tt") = "PM" Then sHour = "12"
+                'If Hour(oGrowerColl(iCnt).GrowerLastUpdate) < 10 Then sLastUpdate = sLastUpdate & "0"
+                sLastUpdate = sLastUpdate & sHour & ":"
+                If Minute(oGrowerColl(iCnt).GrowerLastUpdate) < 10 Then sLastUpdate = sLastUpdate & "0"
+                sLastUpdate = sLastUpdate & Minute(oGrowerColl(iCnt).GrowerLastUpdate).ToString() & ":"
+                If Second(oGrowerColl(iCnt).GrowerLastUpdate) < 10 Then sLastUpdate = sLastUpdate & "0"
+                sLastUpdate = sLastUpdate & Second(oGrowerColl(iCnt).GrowerLastUpdate).ToString
+                dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, sGrowerID)
             End If
 
             iCnt = iCnt + 1
@@ -422,6 +467,7 @@ Public Class FormMain
             oCurlvi.SubItems.Add(oCurCrop.Status)
             oCurlvi.SubItems.Add(oCurCrop.SoldTo)
             oCurlvi.SubItems.Add(oCurCrop.Volume.ToString())
+            oCurlvi.SubItems.Add(oCurCrop.FarmStorage)
             oCurlvi.SubItems.Add(oCurCrop.Location)
             lvNonCGI.Items.Add(oCurlvi)
             oNonCgiCropIDs.Add(oCurCrop.nonCGIcropID)
@@ -433,12 +479,18 @@ Public Class FormMain
     Private Sub BuildCommodityList(lsKey As String)
         Dim liIndex As Integer
         Dim loCollCommList As New Collection
+        'Dim loCollSalesList As New Collection
         Dim loCurComm As Commodity
+        Dim liCurVendorID As Integer
         Dim liCnt As Integer
+        'Dim lsCommKey As String
         Dim liCommCnt As Integer
         Dim liCommMax As Integer
+        Dim liSLCnt As Integer
+        Dim liSLMax As Integer
         'Dim liMax As Integer
         Dim lbCommFound As Boolean
+        Dim lbDuplicate As Boolean
         Dim lsCurCommId As String
         Dim lsCurCommName As String
         Dim lsCurCropYear As String
@@ -472,6 +524,7 @@ Public Class FormMain
             liCommMax = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities.Count
             Do While liCommCnt <= liCommMax
                 lsCurCommId = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).CommId
+                liCurVendorID = oGrowerColl(lsKey).Vendors(liIndex).VendorId
                 lsCurCommName = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).CommName
                 lsCurCropYear = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).CurrentCropYear.ToString()
                 lsPrevCropYear = oGrowerColl(lsKey).Vendors(liIndex).CollCommodities(liCommCnt).PreviousCropYear.ToString()
@@ -480,12 +533,46 @@ Public Class FormMain
                 Dim loNewComm As New Commodity
                 loNewComm.CommID = lsCurCommId
                 loNewComm.CommName = lsCurCommName
+                loNewComm.VendorID = liCurVendorID
                 loNewComm.CurrentCropYear = lsCurCropYear
                 loNewComm.PreviousCropYear = lsPrevCropYear
                 loNewComm.Previous2CropYear = lsPrev2CropYear
                 'loCollCommList.Add(loNewComm, loNewComm.CommID)
-                loCollCommList.Add(loNewComm)
-                'End If
+                'lsCommKey = lsCurCommId & ":" & lsCurVendorID
+                If Not loCollCommList.Contains(lsCurCommId) Then
+                    loCollCommList.Add(loNewComm, lsCurCommId)
+                    'loCollSalesList.Add(lsCurCommId, lsCurCommId)
+                    loCollCommList(lsCurCommId).CurrentCropYear = CStr(CDbl(loCollCommList(lsCurCommId).CurrentCropYear))
+                    loCollCommList(lsCurCommId).PreviousCropYear = CStr(CDbl(loCollCommList(lsCurCommId).PreviousCropYear))
+                    loCollCommList(lsCurCommId).Previous2CropYear = CStr(CDbl(loCollCommList(lsCurCommId).Previous2CropYear))
+                    'loCollCommList(lsCommKey).CurrentCropYear = CStr(CDbl(loCollCommList(lsCommKey).CurrentCropYear))
+                    'loCollCommList(lsCommKey).PreviousCropYear = CStr(CDbl(loCollCommList(lsCommKey).PreviousCropYear))
+                    'loCollCommList(lsCommKey).Previous2CropYear = CStr(CDbl(loCollCommList(lsCommKey).Previous2CropYear))
+
+                Else
+                    liSLCnt = 1
+                    liSLMax = loCollCommList.Count
+                    lbDuplicate = False
+                    Do While liSLCnt <= liSLMax
+                        If ((loCollCommList(liSLCnt).CommID = lsCurCommId) And (loCollCommList(liSLCnt).VendorID = liCurVendorID)) Then
+                            lbDuplicate = True
+                            Exit Do
+                        End If
+                        liSLCnt = liSLCnt + 1
+                    Loop
+                    If lbDuplicate Then
+                        'Do Nothing
+                    Else
+                        loCollCommList(lsCurCommId).CurrentCropYear = CStr(CDbl(loCollCommList(lsCurCommId).CurrentCropYear + CDbl(lsCurCropYear)))
+                        loCollCommList(lsCurCommId).PreviousCropYear = CStr(CDbl(loCollCommList(lsCurCommId).PreviousCropYear + CDbl(lsPrevCropYear)))
+                        loCollCommList(lsCurCommId).Previous2CropYear = CStr(CDbl(loCollCommList(lsCurCommId).Previous2CropYear + CDbl(lsPrev2CropYear)))
+                        'loCollCommList(lsCommKey).CurrentCropYear = CStr(CDbl(loCollCommList(lsCommKey).CurrentCropYear + CDbl(lsCurCropYear)))
+                        'loCollCommList(lsCommKey).PreviousCropYear = CStr(CDbl(loCollCommList(lsCommKey).PreviousCropYear + CDbl(lsPrevCropYear)))
+                        'loCollCommList(lsCommKey).Previous2CropYear = CStr(CDbl(loCollCommList(lsCommKey).Previous2CropYear + CDbl(lsPrev2CropYear)))
+
+                    End If
+
+                End If
                 liCommCnt = liCommCnt + 1
             Loop
         Next
@@ -494,6 +581,7 @@ Public Class FormMain
         '
         lvCommoditySales.View = View.Details
         lvCommoditySales.Items.Clear()
+        lvCommoditySales.Sorting = SortOrder.Ascending
         For Each loCurComm In loCollCommList
             Dim oLVI As New ListViewItem
             oLVI.SubItems(0).Text = loCurComm.CommName
@@ -537,6 +625,9 @@ Public Class FormMain
         oProspectNoteRecs.Clear()
         oOtherCropsRec.Clear()
         'oGrowerColl.Clear()
+        lvCommoditySales.ListViewItemSorter = New CommoditySorter
+        lvCommoditySales.Sorting = SortOrder.Ascending
+        dgvGrowers.Columns("LastUpdate").DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss"
         If Not GlobalVariables.bGrowerAdd Then
             dgvGrowers.Rows.Clear()
         End If
@@ -548,6 +639,9 @@ Public Class FormMain
         Dim bAddNote As Boolean
         Dim sCaption As String
         Dim sName As String
+        Dim bDupComm As Boolean
+        Dim iCommCnt As Integer
+        Dim iCommMax As Integer
         Dim oReader As SqlClient.SqlDataReader
         'Dim slGrowers As New SortedList
         'no fdg
@@ -678,53 +772,97 @@ Public Class FormMain
         ''sSql = sSql & "AND growers.grower_id = 173"
         'sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
         '
+        'sSql = "SELECT DISTINCT "
+        'sSql = sSql & "GROWERS.GROWER_ID,  VENDORS.VENDOR_ID,  coalesce(GROWER_FIRST_NAME, '') as [First Name], "
+        'sSql = sSql & "coalesce(GROWER_ADDRESS_LINE_1, '') as ADDRESS, coalesce(GROWER_CITY, '') as CITY, "
+        'sSql = sSql & "coalesce(GROWER_COUNTY, '') as COUNTY, coalesce(GROWER_STATE, '') as STATE, coalesce(GROWER_ZIP, '') as [Zip Code], "
+        'sSql = sSql & "coalesce(GROWER_COUNTRY, '') as COUNTRY, coalesce(GROWER_PHONE1, '') as [Work Phone], coalesce(VENDOR_NAME, '') as [Vendor Name], "
+        'sSql = sSql & "coalesce(COM.COMMODITY_ID, '') as COMMID, coalesce(COM.COMMODITY_NAME, '') as COMMODITY, coalesce(CURRENT_CROP_YEAR_VOLUME, 0) as [CCY Volume], "
+        'sSql = sSql & "coalesce(PREVIOUS_CROP_YEAR_VOLUME, 0) as [PCY Volume], coalesce(PREVIOUS2_CROP_YEAR_VOLUME, 0) as [P2CY Volume], "
+        'sSql = sSql & "coalesce(GROWER_NOTE_ID, 0) as NOTEID, coalesce(GROWER_NOTE_SUBJECT, '') as [Note Subject], coalesce(GROWER_NOTE_METHOD_ID, 0) as [Note Method ID], "
+        'sSql = sSql & "coalesce(GROWER_NOTE_TEXT, '') as [Note Text], coalesce(GROWER_NOTE_CREATION_DATE, '') as [Note Creation Date], "
+        'sSql = sSql & "coalesce(GROWER_NOTE_CREATED_BY, 0) as [Note Creator], coalesce(VENDOR_DUMMY, 'N') as [Dummy (Y/N)?], "
+        'sSql = sSql & "coalesce(GROWER_LAST_NAME, '') as [Last Name], coalesce(GROWER_FAX, '') as FAX, coalesce(GROWER_EMAIL, '') as EMAIL, "
+        'sSql = sSql & "coalesce(GROWER_PHONE2, '') as [Cell Phone], coalesce(GROWER_ADDRESS_LINE_2, '') as [Address 2], coalesce(GROWER_COMMENT, '') as [Comment], "
+        'sSql = sSql & "coalesce(dt_last_update, GETDATE()) "
+        'sSql = sSql & "FROM GROWERS "
+        'sSql = sSql & "inner join GROWERS_VENDORS "
+        'sSql = sSql & " On GROWERS.GROWER_ID = GROWERS_VENDORS.GROWER_ID "
+        'sSql = sSql & " inner join ( "
+        'sSql = sSql & "    VENDORS "
+        'sSql = sSql & "    left outer join ( "
+        'sSql = sSql & "     VENDORS_COMMODITIES "
+        'sSql = sSql & "      inner join COMMODITIES As com "
+        'sSql = sSql & "         On VENDORS_COMMODITIES.COMMODITY_ID = COM.COMMODITY_ID "
+        'sSql = sSql & "     ) "
+        'sSql = sSql & "        On VENDORS_COMMODITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        'sSql = sSql & "      left outer join VENDOR_SALES_VOLUME "
+        'sSql = sSql & "        On VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
+        'sSql = sSql & " ) "
+        'sSql = sSql & "   On VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID "
+        'sSql = sSql & " inner join ( "
+        'sSql = sSql & "   VENDORS_FACILITIES "
+        'sSql = sSql & "     inner join FACILITIES "
+        'sSql = sSql & "       On VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        'sSql = sSql & "     inner join USERS_FACILITIES "
+        'sSql = sSql & "       On USERS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        'sSql = sSql & "     inner join USERS "
+        'sSql = sSql & "       On USERS_FACILITIES.USER_ID = USERS.USER_ID "
+        'sSql = sSql & " ) "
+        'sSql = sSql & "   On ( "
+        'sSql = sSql & "     VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        'sSql = sSql & "     And VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        'sSql = sSql & "   ) "
+        'sSql = sSql & " left outer join GROWER_NOTES "
+        'sSql = sSql & "   On GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
+        'sSql = sSql & " cross join GROWERS_VENDORS As g_v "
+        'sSql = sSql & "WHERE VENDOR_SALES_VOLUME.COMMODITY_ID = com.commodity_id "
+        'sSql = sSql & "And Users.User_id = " & GlobalVariables.UserId.ToString() & " "
+        'sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
+        '
         sSql = "SELECT DISTINCT "
-        sSql = sSql & "GROWERS.GROWER_ID,  VENDORS.VENDOR_ID,  coalesce(GROWER_FIRST_NAME, '') as [First Name], "
-        sSql = sSql & "coalesce(GROWER_ADDRESS_LINE_1, '') as ADDRESS, coalesce(GROWER_CITY, '') as CITY, "
-        sSql = sSql & "coalesce(GROWER_COUNTY, '') as COUNTY, coalesce(GROWER_STATE, '') as STATE, coalesce(GROWER_ZIP, '') as [Zip Code], "
-        sSql = sSql & "coalesce(GROWER_COUNTRY, '') as COUNTRY, coalesce(GROWER_PHONE1, '') as [Work Phone], coalesce(VENDOR_NAME, '') as [Vendor Name], "
-        sSql = sSql & "coalesce(COM.COMMODITY_ID, '') as COMMID, coalesce(COM.COMMODITY_NAME, '') as COMMODITY, coalesce(CURRENT_CROP_YEAR_VOLUME, 0) as [CCY Volume], "
-        sSql = sSql & "coalesce(PREVIOUS_CROP_YEAR_VOLUME, 0) as [PCY Volume], coalesce(PREVIOUS2_CROP_YEAR_VOLUME, 0) as [P2CY Volume], "
-        sSql = sSql & "coalesce(GROWER_NOTE_ID, 0) as NOTEID, coalesce(GROWER_NOTE_SUBJECT, '') as [Note Subject], coalesce(GROWER_NOTE_METHOD_ID, 0) as [Note Method ID], "
-        sSql = sSql & "coalesce(GROWER_NOTE_TEXT, '') as [Note Text], coalesce(GROWER_NOTE_CREATION_DATE, '') as [Note Creation Date], "
-        sSql = sSql & "coalesce(GROWER_NOTE_CREATED_BY, 0) as [Note Creator], coalesce(VENDOR_DUMMY, 'N') as [Dummy (Y/N)?], "
-        sSql = sSql & "coalesce(GROWER_LAST_NAME, '') as [Last Name], coalesce(GROWER_FAX, '') as FAX, coalesce(GROWER_EMAIL, '') as EMAIL, "
-        sSql = sSql & "coalesce(GROWER_PHONE2, '') as [Cell Phone], coalesce(GROWER_ADDRESS_LINE_2, '') as [Address 2], coalesce(GROWER_COMMENT, '') as [Comment], "
-        sSql = sSql & "coalesce(dt_last_update, GETDATE()) "
-        sSql = sSql & "FROM GROWERS "
-        sSql = sSql & "inner join GROWERS_VENDORS "
-        sSql = sSql & " On GROWERS.GROWER_ID = GROWERS_VENDORS.GROWER_ID "
-        sSql = sSql & " inner join ( "
+        sSql = sSql & "GROWERS.GROWER_ID, VENDORS.VENDOR_ID, coalesce(GROWER_FIRST_NAME, '') [First Name], "
+        sSql = sSql & "coalesce(GROWER_ADDRESS_LINE_1, '') ADDRESS, coalesce(GROWER_CITY, '') CITY, "
+        sSql = sSql & "coalesce(GROWER_COUNTY, '') COUNTY, coalesce(GROWER_STATE, '') STATE, "
+        sSql = sSql & "coalesce(GROWER_ZIP, '') [Zip Code], coalesce(GROWER_COUNTRY, '') COUNTRY, "
+        sSql = sSql & "coalesce(GROWER_PHONE1, '') [Work Phone], coalesce(VENDOR_NAME, '') [Vendor Name], "
+        sSql = sSql & "coalesce(COMMODITIES.COMMODITY_ID, '') COMMID, "
+        sSql = sSql & "coalesce(COMMODITIES.COMMODITY_NAME, '') COMMODITY, coalesce(CURRENT_CROP_YEAR_VOLUME, 0) [CCY Volume], "
+        sSql = sSql & "coalesce(PREVIOUS_CROP_YEAR_VOLUME, 0) [PCY Volume], coalesce(PREVIOUS2_CROP_YEAR_VOLUME, 0) [P2CY Volume], "
+        sSql = sSql & "coalesce(GROWER_NOTE_ID, 0) NOTEID, coalesce(GROWER_NOTE_SUBJECT, '') [Note Subject], "
+        sSql = sSql & "coalesce(GROWER_NOTE_METHOD_ID, 0) [Note Method ID], coalesce(GROWER_NOTE_TEXT, '') [Note Text], "
+        sSql = sSql & "coalesce(GROWER_NOTE_CREATION_DATE, '') [Note Creation Date], coalesce(GROWER_NOTE_CREATED_BY, 0) [Note Creator], "
+        sSql = sSql & "coalesce(VENDOR_DUMMY, 'N') [Dummy (Y/N)?], coalesce(GROWER_LAST_NAME, '') [Last Name], "
+        sSql = sSql & "coalesce(GROWER_FAX, '') FAX, coalesce(GROWER_EMAIL, '') EMAIL, coalesce(GROWER_PHONE2, '') [Cell Phone], "
+        sSql = sSql & "coalesce(GROWER_ADDRESS_LINE_2, '') [Address 2], coalesce(GROWER_COMMENT, ''), "
+        sSql = sSql & "coalesce(DT_LAST_UPDATE, CONVERT(DATETIME,'01/01/1926',103)) "
+        sSql = sSql & "FROM USERS "
+        sSql = sSql & "  join USERS_FACILITIES "
+        sSql = sSql & "    on USERS.USER_ID = USERS_FACILITIES.USER_ID "
+        sSql = sSql & "  join FACILITIES "
+        sSql = sSql & "    on FACILITIES.FACILITY_ID = USERS_FACILITIES.FACILITY_ID "
+        sSql = sSql & "  join VENDORS_FACILITIES "
+        sSql = sSql & "    on VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
+        sSql = sSql & "  join ( "
         sSql = sSql & "    VENDORS "
-        sSql = sSql & "    left outer join ( "
-        sSql = sSql & "     VENDORS_COMMODITIES "
-        sSql = sSql & "      inner join COMMODITIES As com "
-        sSql = sSql & "         On VENDORS_COMMODITIES.COMMODITY_ID = COM.COMMODITY_ID "
-        sSql = sSql & "     ) "
-        sSql = sSql & "        On VENDORS_COMMODITIES.VENDOR_ID = VENDORS.VENDOR_ID "
-        sSql = sSql & "      left outer join VENDOR_SALES_VOLUME "
-        sSql = sSql & "        On VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
-        sSql = sSql & " ) "
-        sSql = sSql & "   On VENDORS.VENDOR_ID = GROWERS_VENDORS.VENDOR_ID "
-        sSql = sSql & " inner join ( "
-        sSql = sSql & "   VENDORS_FACILITIES "
-        sSql = sSql & "     inner join FACILITIES "
-        sSql = sSql & "       On VENDORS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
-        sSql = sSql & "     inner join USERS_FACILITIES "
-        sSql = sSql & "       On USERS_FACILITIES.FACILITY_ID = FACILITIES.FACILITY_ID "
-        sSql = sSql & "     inner join USERS "
-        sSql = sSql & "       On USERS_FACILITIES.USER_ID = USERS.USER_ID "
-        sSql = sSql & " ) "
-        sSql = sSql & "   On ( "
-        sSql = sSql & "     VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
-        sSql = sSql & "     And VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
-        sSql = sSql & "   ) "
-        sSql = sSql & " left outer join GROWER_NOTES "
-        sSql = sSql & "   On GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
-        sSql = sSql & " cross join GROWERS_VENDORS As g_v "
-        sSql = sSql & "WHERE VENDOR_SALES_VOLUME.COMMODITY_ID = com.commodity_id "
-        sSql = sSql & "And Users.User_id = " & GlobalVariables.UserId.ToString() & " "
-        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, CommID, 'Note Creation Date'"
+        sSql = sSql & "      join GROWERS_VENDORS "
+        sSql = sSql & "        on GROWERS_VENDORS.VENDOR_ID = VENDORS.VENDOR_ID "
+        sSql = sSql & "      join ( "
+        sSql = sSql & "        GROWERS "
+        sSql = sSql & "          left outer join GROWER_NOTES "
+        sSql = sSql & "            on GROWER_NOTES.GROWER_ID = GROWERS.GROWER_ID "
+        sSql = sSql & "      ) "
+        sSql = sSql & "        on GROWERS_VENDORS.GROWER_ID = GROWERS.GROWER_ID "
+        sSql = sSql & "      left outer join ( "
+        sSql = sSql & "        VENDOR_SALES_VOLUME "
+        sSql = sSql & "          join COMMODITIES "
+        sSql = sSql & "            on VENDOR_SALES_VOLUME.COMMODITY_ID = COMMODITIES.COMMODITY_ID "
+        sSql = sSql & "      ) "
+        sSql = sSql & "        on VENDOR_SALES_VOLUME.AGTECH_VENDOR_ID = VENDORS.AGTECH_VENDOR_ID "
+        sSql = sSql & "  ) "
+        sSql = sSql & "    on VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
+        sSql = sSql & "WHERE Users.User_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, COMMID, [Note Creation Date]"
 
         myCmd.CommandText = sSql
         'oConn.Open()
@@ -802,12 +940,14 @@ Public Class FormMain
 
 
                 iGrowerID = oCollGrowVendComm(iCnt).GrowerId
+
                 Dim oGrower As New Grower()
                 oGrower.GrowerFirstName = oCollGrowVendComm(iCnt).GrowerFirstName
                 oGrower.GrowerLastName = oCollGrowVendComm(iCnt).GrowerLastName
                 oGrower.GrowerID = oCollGrowVendComm(iCnt).GrowerId
                 oGrower.GrowerAddress1 = oCollGrowVendComm(iCnt).GrowerAddress1
                 oGrower.GrowerCity = oCollGrowVendComm(iCnt).GrowerCity
+                oGrower.GrowerCounty = oCollGrowVendComm(iCnt).GrowerCounty
                 oGrower.GrowerState = oCollGrowVendComm(iCnt).GrowerState
                 oGrower.GrowerCountry = oCollGrowVendComm(iCnt).GrowerCountry
                 oGrower.GrowerZip = oCollGrowVendComm(iCnt).GrowerZip
@@ -836,7 +976,8 @@ Public Class FormMain
                 sFax = oGrower.GrowerFax
                 sEmail = oGrower.GrowerEmail
                 sComment = oGrower.GrowerComment
-                sLastUpdate = oGrower.GrowerLastUpdate.ToString()
+                sLastUpdate = oGrower.GrowerLastUpdate.ToString("yyyy-MM-dd HH:mm:ss")
+
 
                 iVendorID = -1
                 Do While iGrowerID = oCollGrowVendComm(iCnt).GrowerId
@@ -854,18 +995,34 @@ Public Class FormMain
                         Do While iVendorID = oCollGrowVendComm(iCnt).VendorID And iGrowerID = oCollGrowVendComm(iCnt).GrowerId
 
                             sCommID = oCollGrowVendComm(iCnt).CommID
+                            Dim oComm As New Commodity
+                            oComm.CommID = sCommID
                             If Not oVendor.CollCommodities.Contains(sCommID) Then
-                                Dim oComm As New Commodity
-                                oComm.CommID = sCommID
+                                oComm.VendorID = iVendorID
                                 oComm.CommName = oCollGrowVendComm(iCnt).CommName
                                 oComm.CurrentCropYear = oCollGrowVendComm(iCnt).CurrentCropYear
                                 oComm.PreviousCropYear = oCollGrowVendComm(iCnt).PreviousCropYear
                                 oComm.Previous2CropYear = oCollGrowVendComm(iCnt).Previous2CropYear
                                 oVendor.CollCommodities.Add(oComm, oComm.CommID)
                             Else
-                                oVendor.CollCommodities(sCommID).CurrentCropYear = oVendor.CollCommodities(sCommID).CurrentCropYear + oCollGrowVendComm(iCnt).CurrentCropYear
-                                oVendor.CollCommodities(sCommID).PreviousCropYear = oVendor.CollCommodities(sCommID).PreviousCropYear + oCollGrowVendComm(iCnt).PreviousCropYear
-                                oVendor.CollCommodities(sCommID).Previous2CropYear = oVendor.CollCommodities(sCommID).Previous2CropYear + oCollGrowVendComm(iCnt).PreviousCropYear
+                                bDupComm = False
+                                iCommCnt = 1
+                                iCommMax = oVendor.CollCommodities.Count
+                                Do While iCommCnt <= iCommMax
+                                    If ((oVendor.CollCommodities(iCommCnt).Vendorid = iVendorID) And (oVendor.CollCommodities(iCommCnt).CommID = sCommID)) Then
+                                        bDupComm = True
+                                        Exit Do
+                                    End If
+                                    iCommCnt = iCommCnt + 1
+                                Loop
+                                If bDupComm Then
+                                    'Do Nothing
+                                Else
+                                    oVendor.CollCommodities(sCommID).CurrentCropYear = oVendor.CollCommodities(sCommID).CurrentCropYear + oCollGrowVendComm(iCnt).CurrentCropYear
+                                    oVendor.CollCommodities(sCommID).PreviousCropYear = oVendor.CollCommodities(sCommID).PreviousCropYear + oCollGrowVendComm(iCnt).PreviousCropYear
+                                    oVendor.CollCommodities(sCommID).Previous2CropYear = oVendor.CollCommodities(sCommID).Previous2CropYear + oCollGrowVendComm(iCnt).PreviousCropYear
+
+                                End If
                             End If
                             iCnt = iCnt + 1
                             If iCnt >= iMax Then
@@ -882,8 +1039,7 @@ Public Class FormMain
                     If iCnt >= iMax Then
                         If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                             oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrower.GrowerID.ToString())
-
+                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
                             'oGrowerListItem.CollectionIndex = oGrowerColl.Count
                             'ListBox1.Items.Add(oGrowerListItem)
                         End If
@@ -894,7 +1050,7 @@ Public Class FormMain
                     If iGrowerID <> oCollGrowVendComm(iCnt).GrowerId Then
                         If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                             oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrower.GrowerID.ToString())
+                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
 
                             'oGrowerListItem.CollectionIndex = oGrowerColl.Count
 
@@ -926,6 +1082,7 @@ Public Class FormMain
         Do While iCnt <= iMax
             If oCollGrowVendComm(iCnt).GrowerId <> iGrowerID Then
                 iGrowerID = oCollGrowVendComm(iCnt).GrowerId
+                'If iGrowerID = 1183 Then MessageBox.Show("Found Mr. Rostad")
                 Do While iGrowerID = oCollGrowVendComm(iCnt).GrowerId
                     Dim oNote As New Note
                     bAddNote = False
@@ -971,7 +1128,7 @@ Public Class FormMain
         sSql = sSql & "ISNULL(GROWER_EMAIL, '') AS Email, "
         sSql = sSql & "ISNULL(VENDOR_DUMMY, 'N') AS 'Dummy (Y/N)?', ISNULL(GROWER_LAST_NAME, '') AS 'Last Name', "
         sSql = sSql & "ISNULL(GROWER_ADDRESS_LINE_2, '') As 'Address 2', ISNULL(GROWER_COMMENT, '') As 'Comment', "
-        sSql = sSql & "dt_last_update "
+        sSql = sSql & "ISNULL(dt_last_update, GETDATE()) "
         sSql = sSql & "FROM growers, growers_vendors, vendors, users, facilities, users_facilities, vendors_facilities "
         sSql = sSql & "WHERE growers_vendors.grower_id = growers.grower_id "
         sSql = sSql & "AND growers_vendors.vendor_id = vendors.vendor_id "
@@ -1072,7 +1229,8 @@ Public Class FormMain
 
                     If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                         oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                        dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, "P", sAddress, sCity, sState, sCounty, sZip, sCountry, sWorkPhone, sCellPhone, sFax, sEmail, sComment, oGrower.GrowerID.ToString())
+
+                        dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, "P", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
 
                         'oGrowerListItem.CollectionIndex = oGrowerColl.Count
                         'ListBox1.Items.Add(oGrowerListItem)
@@ -1165,7 +1323,7 @@ Public Class FormMain
 
         iGrowerID = -1
         sSql = "SELECT DISTINCT growers.grower_id, ISNULL(commodity_name, '') As CommName, ISNULL(status, '') As Status , ISNULL(sold_to, ''), volume_bu, updated_date, ISNULL(location, ''), "
-        sSql = sSql & "nonCGIcrop_id, ISNULL(commodities.commodity_id, '') "
+        sSql = sSql & "nonCGIcrop_id, ISNULL(commodities.commodity_id, ''), ISNULL(farmstorage, 'N') "
         sSql = sSql & "FROM commodities, nonCGIcrop, users, facilities, users_facilities, vendors, vendors_facilities, growers, growers_vendors "
         sSql = sSql & "WHERE nonCGIcrop.commodity_id = commodities.commodity_id "
         sSql = sSql & "AND users_facilities.user_id = users.user_id "
@@ -1193,6 +1351,7 @@ Public Class FormMain
                 oNonCGIRec.Location = oReader.GetString(6)
                 oNonCGIRec.nonCGIcrop_id = oReader.GetInt32(7)
                 oNonCGIRec.AgCommID = oReader.GetString(8)
+                oNonCGIRec.FarmStorage = oReader.GetString(9)
                 oOtherCropsRec.Add(oNonCGIRec)
 
             Loop
@@ -1215,6 +1374,7 @@ Public Class FormMain
                     oNonCGI.Location = oOtherCropsRec(iCnt).Location
                     oNonCGI.NonCGICropID = oOtherCropsRec(iCnt).nonCGIcrop_id
                     oNonCGI.NonCGICommID = oOtherCropsRec(iCnt).AgCommID
+                    oNonCGI.FarmStorage = oOtherCropsRec(iCnt).FarmStorage
                     oGrowerColl(iGrowerID.ToString()).OtherCrops.Add(oNonCGI, oNonCGI.NonCGICropID.ToString())
                     iCnt = iCnt + 1
                     If iCnt > iMax Then Exit Do
@@ -1552,6 +1712,7 @@ Public Class FormMain
         Dim dDate As DateTime
         'Dim oSelItem As IndexedGrowerListItem = ListBox1.SelectedItem
         sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
+        iIndex = dgvGrowers.SelectedRows(0).Index
         GlobalVariables.CurrentGrower = oGrowerColl(sKey)
         frmNote.ShowDialog()
         'frmNote.TopMost = True
@@ -1600,7 +1761,11 @@ Public Class FormMain
             oNewNote.GrowerNoteCreatedBy = GlobalVariables.UserId
             oNewNote.GrowerNoteCreatedByLogin = GlobalVariables.CurrentUserLogin
             oGrowerColl(sKey).Notes.Add(oNewNote)
+            oGrowerColl(sKey).GrowerLastUpdate = dDate
+            RefreshDataGrid()
             ReloadNotes()
+            dgvGrowers.Rows(iIndex).Selected = True
+            dgvGrowers.FirstDisplayedScrollingRowIndex = dgvGrowers.SelectedRows(0).Index
             GlobalVariables.ResetNote = False
         End If
     End Sub
@@ -1668,25 +1833,25 @@ Public Class FormMain
 
     Private Sub btnEditGrower_Click(sender As Object, e As EventArgs) Handles btnEditGrower.Click
         Dim iCurIndex As Integer
-        Dim icnt As Integer
-        Dim iMax As Integer
-        Dim sCurGrowerName As String
-        Dim iIndex As Integer
-        Dim sPFlag As String
+        'Dim icnt As Integer
+        'Dim iMax As Integer
+        'Dim sCurGrowerName As String
+        'Dim iIndex As Integer
+        'Dim sPFlag As String
         Dim sLastName As String
         Dim sFirstName As String
         'Dim sProspFlag As String
-        Dim sAddress As String
-        Dim sCity As String
-        Dim sState As String
-        Dim sZip As String
-        Dim sCounty As String
-        Dim sWorkPhone As String
-        Dim sCellPhone As String
-        Dim sFax As String
-        Dim sEmail As String
-        Dim sComment As String
-        Dim sCountry As String
+        'Dim sAddress As String
+        'Dim sCity As String
+        'Dim sState As String
+        'Dim sZip As String
+        'Dim sCounty As String
+        'Dim sWorkPhone As String
+        'Dim sCellPhone As String
+        'Dim sFax As String
+        'Dim sEmail As String
+        'Dim sComment As String
+        'Dim sCountry As String
         Dim sKey As String
 
         sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
@@ -1757,6 +1922,7 @@ Public Class FormMain
                 dgvGrowers.Rows(iCurIndex).Selected = True
 
             End If
+            'dgvGrowers.Rows(iCurIndex).Selected = True
             dgvGrowers.FirstDisplayedScrollingRowIndex = iCurIndex
         End If
     End Sub
