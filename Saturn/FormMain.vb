@@ -68,10 +68,11 @@ Public Class FormMain
     Private Sub ReloadNotes()
         Dim sNote As String
 
-        Dim iIndex As Integer
+        'Dim iIndex As Integer
+        Dim sKey As String
         Dim sBuildDate As String
 
-        iIndex = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value
+        sKey = dgvGrowers.SelectedRows(0).Cells("CollIndex").Value.ToString()
         'Me.TestDataGrid.Rows.Clear()
         'For Each oNote In oGrowerColl(oSelItem.CollectionIndex).Notes
         ' 'sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & "     " & "Created By: " & oNote.GrowerNoteCreatedByLogin & " " & oNote.GrowerNoteCreationDate.ToString("yyyy-MM-dd hh:mm:ss")
@@ -89,7 +90,7 @@ Public Class FormMain
         Dim oDict As New List(Of String)
         Dim oNoteRows As New Collection
         TestDataGrid.Rows.Clear()
-        For Each oNote In oGrowerColl(iIndex).Notes
+        For Each oNote In oGrowerColl(sKey).Notes
             sNote = "Subject: " & oNote.GrowerNoteSubject & vbCrLf & vbCrLf & vbCrLf & oNote.GrowerNoteText & vbCrLf & vbCrLf & "Method: " & oNote.GrowerNoteMethodText & vbCrLf & vbCrLf & "Created By: " & oNote.GrowerNoteCreatedByLogin & " "
             sNote = sNote & Month(oNote.GrowerNoteCreationDate).ToString() & "/"
             sNote = sNote & Microsoft.VisualBasic.DateAndTime.Day(oNote.GrowerNoteCreationDate).ToString() & "/"
@@ -862,6 +863,7 @@ Public Class FormMain
         sSql = sSql & "  ) "
         sSql = sSql & "    on VENDORS_FACILITIES.VENDOR_ID = VENDORS.VENDOR_ID "
         sSql = sSql & "WHERE Users.User_id = " & GlobalVariables.UserId.ToString() & " "
+        sSql = sSql & "AND GROWERS.GROWER_PROSPECT <> 'Y' "
         sSql = sSql & "ORDER BY GROWERS.GROWER_ID, VENDORS.VENDOR_ID, COMMID, [Note Creation Date]"
 
         myCmd.CommandText = sSql
@@ -879,6 +881,7 @@ Public Class FormMain
             Do While oReader.Read()
                 Dim oGVC As New GrowVendCom
                 oGVC.GrowerID = oReader.GetInt32(0)
+                'If oGVC.GrowerID = 1182 Then MessageBox.Show("Found Keith Rice!")
                 oGVC.VendorId = oReader.GetInt32(1)
 
                 oGVC.GrowerFirstName = oReader.GetString(2)
@@ -1079,47 +1082,67 @@ Public Class FormMain
                 GlobalVariables.UserList.Add(oReader.GetString(1), oReader.GetInt32(0).ToString())
             Loop
         End If
-        Do While iCnt <= iMax
-            If oCollGrowVendComm(iCnt).GrowerId <> iGrowerID Then
-                iGrowerID = oCollGrowVendComm(iCnt).GrowerId
-                'If iGrowerID = 1183 Then MessageBox.Show("Found Mr. Rostad")
-                Do While iGrowerID = oCollGrowVendComm(iCnt).GrowerId
-                    Dim oNote As New Note
-                    bAddNote = False
-                    If oCollGrowVendComm(iCnt).GrowerNoteId <> 0 Then
-                        '                    iNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
-                        If Not oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Contains(oCollGrowVendComm(iCnt).GrowerNoteId.ToString()) Then
-                            bAddNote = True
-                            oNote.GrowerNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
-                            oNote.GrowerNoteCreationDate = oCollGrowVendComm(iCnt).GrowerNoteCreationDate
-                            oNote.GrowerNoteCreatedBy = oCollGrowVendComm(iCnt).GrowerNoteCreatedBy
-                            'oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oNote.GrowerNoteCreatedBy)
-                            oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oCollGrowVendComm(iCnt).GrowerNoteCreatedBy.ToString())
-                            oNote.GrowerNoteSubject = oCollGrowVendComm(iCnt).GrowerNoteSubject
-                            oNote.GrowerNoteMethod = oCollGrowVendComm(iCnt).GrowerNoteMethod
-                            oNote.GrowerNoteMethodText = oNoteMethods(oNote.GrowerNoteMethod.ToString())
-                            oNote.GrowerNoteText = oCollGrowVendComm(iCnt).GrowerNoteText
-                            oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+        'Do While iCnt <= iMax
+        For Each oQueryRec In oCollGrowVendComm
+            'If oCollGrowVendComm(iCnt).GrowerId = 1157 Then MessageBox.Show("Found Mr. Rice")
+            'If oQueryRec.GrowerId = 1157 Then MessageBox.Show("Found Mr. Rice!")
+            'If oCollGrowVendComm(iCnt).GrowerId <> iGrowerID Then
+            'If oQueryRec.GrowerId <> iGrowerID Then
+            'iGrowerID = oCollGrowVendComm(iCnt).GrowerId
+            iGrowerID = oQueryRec.GrowerId
+            'End If
+            'If iGrowerID = 852 Then MessageBox.Show("Weinmann")
+            'Do While iGrowerID = oCollGrowVendComm(iCnt).GrowerId
+            'Do While iGrowerID = oQueryRec.GrowerId
+            Dim oNote As New Note
+            bAddNote = False
+            'If oCollGrowVendComm(iCnt).GrowerNoteId <> 0 Then
+            If oQueryRec.GrowerNoteId <> 0 Then
+                '                    iNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
+                'If Not oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Contains(oCollGrowVendComm(iCnt).GrowerNoteId.ToString()) Then
+                If Not oGrowerColl(oQueryRec.GrowerId.ToString()).Notes.Contains(oQueryRec.GrowerNoteId.ToString()) Then
+                    bAddNote = True
+                    'oNote.GrowerNoteId = oCollGrowVendComm(iCnt).GrowerNoteId
+                    oNote.GrowerNoteId = oQueryRec.GrowerNoteId
+                    'oNote.GrowerNoteCreationDate = oCollGrowVendComm(iCnt).GrowerNoteCreationDate
+                    oNote.GrowerNoteCreationDate = oQueryRec.GrowerNoteCreationDate
+                    'oNote.GrowerNoteCreatedBy = oCollGrowVendComm(iCnt).GrowerNoteCreatedBy
+                    oNote.GrowerNoteCreatedBy = oQueryRec.GrowerNoteCreatedBy
 
-                        End If
-                    End If
-                    iCnt = iCnt + 1
-                    If iCnt > iMax Then
-                        If bAddNote Then
-                            If Not oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Contains(oNote.GrowerNoteId.ToString()) Then
+                    'oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oCollGrowVendComm(iCnt).GrowerNoteCreatedBy.ToString())
+                    oNote.GrowerNoteCreatedByLogin = GlobalVariables.UserList(oQueryRec.GrowerNoteCreatedBy.ToString())
+                    'oNote.GrowerNoteSubject = oCollGrowVendComm(iCnt).GrowerNoteSubject
+                    oNote.GrowerNoteSubject = oQueryRec.GrowerNoteSubject
+                    'oNote.GrowerNoteMethod = oCollGrowVendComm(iCnt).GrowerNoteMethod
+                    oNote.GrowerNoteMethod = oQueryRec.GrowerNoteMethod
+                    oNote.GrowerNoteMethodText = oNoteMethods(oNote.GrowerNoteMethod.ToString())
 
-                                oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
-                            End If
-                            Exit Do
-
-                        End If
-
-                    End If
-                    If iCnt > iMax Then Exit Do
-                Loop
+                    'oNote.GrowerNoteText = oCollGrowVendComm(iCnt).GrowerNoteText
+                    oNote.GrowerNoteText = oQueryRec.GrowerNoteText
+                    'oGrowerColl(oCollGrowVendComm(iCnt).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+                    oGrowerColl(oQueryRec.GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+                End If
             End If
-            iCnt = iCnt + 1
-        Loop
+
+            '        iCnt = iCnt + 1
+            'Continue For
+            'If iCnt > iMax Then
+            'If bAddNote Then
+            'If Not oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Contains(oNote.GrowerNoteId.ToString()) Then
+
+            'oGrowerColl(oCollGrowVendComm(iMax).GrowerId.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+            'End If
+            'Exit Do
+
+            'End If
+
+            'End If
+            'If iCnt > iMax Then Exit Do
+            '    Loop
+            'End If
+            'iCnt = iCnt + 1
+            'Loop
+        Next
 
         sSql = "SELECT DISTINCT GROWERS.GROWER_ID, VENDORS.VENDOR_ID, ISNULL(GROWER_FIRST_NAME, '') AS 'First Name', ISNULL(GROWER_ADDRESS_LINE_1, '') AS Address, "
         sSql = sSql & "ISNULL(GROWER_CITY, '') AS City, ISNULL(GROWER_COUNTY, '') AS County, ISNULL(GROWER_STATE, '') AS State, "
@@ -1171,89 +1194,91 @@ Public Class FormMain
         iMax = oProspectRecs.Count
         iGrowerID = -1
         iVendorID = -1
-        Do While iCnt <= iMax
-            If iGrowerID <> oProspectRecs(iCnt).GrowerID Then
-                iGrowerID = oProspectRecs(iCnt).GrowerID
-                Dim oGrower As New Grower
-                'Dim oGrowerListItem As New IndexedGrowerListItem
-                sName = Trim(oProspectRecs(iCnt).GrowerFirstName & " " & oProspectRecs(iCnt).GrowerLastName)
+        For Each oCurProspect In oProspectRecs
+            'Do While iCnt <= iMax
+            'If iGrowerID <> oProspectRecs(iCnt).GrowerID Then
+            iGrowerID = oCurProspect.GrowerID
+            Dim oGrower As New Grower
+            'Dim oGrowerListItem As New IndexedGrowerListItem
+            sName = Trim(oCurProspect.GrowerFirstName & " " & oCurProspect.GrowerLastName)
 
-                'oGrowerListItem.GrowerName = sName & " - PROSPECT"
-                oGrower.GrowerFirstName = oProspectRecs(iCnt).GrowerFirstName
-                oGrower.GrowerLastName = oProspectRecs(iCnt).GrowerLastName
-                oGrower.GrowerID = iGrowerID
-                oGrower.GrowerAddress1 = oProspectRecs(iCnt).GrowerAddress
-                oGrower.GrowerAddress2 = oProspectRecs(iCnt).GrowerAddress2
-                oGrower.GrowerCity = oProspectRecs(iCnt).GrowerCity
-                oGrower.GrowerState = oProspectRecs(iCnt).GrowerState
-                oGrower.GrowerCountry = oProspectRecs(iCnt).GrowerCountry
-                oGrower.GrowerZip = oProspectRecs(iCnt).GrowerZip
-                oGrower.GrowerPhone1 = oProspectRecs(iCnt).GrowerPhone1
-                oGrower.GrowerPhone2 = oProspectRecs(iCnt).GrowerPhone2
-                oGrower.GrowerFax = oProspectRecs(iCnt).GrowerFax
-                oGrower.GrowerEmail = oProspectRecs(iCnt).GrowerEmail
-                oGrower.GrowerComment = oProspectRecs(iCnt).GrowerComment
-                oGrower.GrowerProspect = "Y"
-                oGrower.GrowerLastUpdate = oProspectRecs(iCnt).GrowerLastUpdate
-                sLastName = oGrower.GrowerLastName
-                sFirstName = oGrower.GrowerFirstName
-                sProspFlag = " "
-                sAddress = oGrower.GrowerAddress1
-                If Len(oGrower.GrowerAddress2) > 0 Then
-                    sAddress = sAddress & vbCrLf & oGrower.GrowerAddress2
-                End If
-                sCity = oGrower.GrowerCity
-                sState = oGrower.GrowerState
-                sCounty = oGrower.GrowerCounty
-                sZip = oGrower.GrowerZip
-                sCountry = oGrower.GrowerCountry
-                sWorkPhone = oGrower.GrowerPhone1
-                sCellPhone = oGrower.GrowerPhone2
-                sFax = oGrower.GrowerFax
-                sEmail = oGrower.GrowerEmail
-                sComment = oGrower.GrowerComment
-                sLastUpdate = oGrower.GrowerLastUpdate.ToString()
-
-                Do While iGrowerID = oProspectRecs(iCnt).GrowerID
-                    'If iVendorID <> oProspectRecs(iCnt).VendorID Then
-                    'Dim oVendor As New Vendor
-                    oVendor = GlobalVariables.VendorList(oProspectRecs(iCnt).VendorID.ToString())
-                    iVendorID = oProspectRecs(iCnt).VendorID
-                    oVendor.VendorID = iVendorID
-                    iVendorID = oProspectRecs(iCnt).VendorID
-                    oVendor.VendorName = oProspectRecs(iCnt).VendorName
-                    oVendor.VendorDummy = oProspectRecs(iCnt).VendorDummy
-                    oGrower.Vendors.Add(oVendor)
-                    'End If
-
-
-                    If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
-                        oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-
-                        dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, "P", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
-
-                        'oGrowerListItem.CollectionIndex = oGrowerColl.Count
-                        'ListBox1.Items.Add(oGrowerListItem)
-                    End If
-                    iCnt = iCnt + 1
-                    If iCnt > iMax Then Exit Do
-                Loop
-                If iCnt <= iMax Then
-                    If iGrowerID <> oProspectRecs(iCnt).GrowerID Then
-                        iCnt = iCnt - 1
-                    End If
-
-                    'iCnt = iCnt + 1
-                    If iCnt > iMax Then Exit Do
-                    'End If
-                    iCnt = iCnt + 1
-                End If
-
-            Else
-                iCnt = iCnt + 1
-                If iCnt > iMax Then Exit Do
+            'oGrowerListItem.GrowerName = sName & " - PROSPECT"
+            oGrower.GrowerFirstName = oCurProspect.GrowerFirstName
+            oGrower.GrowerLastName = oCurProspect.GrowerLastName
+            oGrower.GrowerID = iGrowerID
+            oGrower.GrowerAddress1 = oCurProspect.GrowerAddress
+            oGrower.GrowerAddress2 = oCurProspect.GrowerAddress2
+            oGrower.GrowerCity = oCurProspect.GrowerCity
+            oGrower.GrowerState = oCurProspect.GrowerState
+            oGrower.GrowerCountry = oCurProspect.GrowerCountry
+            oGrower.GrowerZip = oCurProspect.GrowerZip
+            oGrower.GrowerPhone1 = oCurProspect.GrowerPhone1
+            oGrower.GrowerPhone2 = oCurProspect.GrowerPhone2
+            oGrower.GrowerFax = oCurProspect.GrowerFax
+            oGrower.GrowerEmail = oCurProspect.GrowerEmail
+            oGrower.GrowerComment = oCurProspect.GrowerComment
+            oGrower.GrowerProspect = "Y"
+            oGrower.GrowerLastUpdate = oCurProspect.GrowerLastUpdate
+            sLastName = oGrower.GrowerLastName
+            sFirstName = oGrower.GrowerFirstName
+            sProspFlag = "P"
+            sAddress = oGrower.GrowerAddress1
+            If Len(oGrower.GrowerAddress2) > 0 Then
+                sAddress = sAddress & vbCrLf & oGrower.GrowerAddress2
             End If
-        Loop
+            sCity = oGrower.GrowerCity
+            sState = oGrower.GrowerState
+            sCounty = oGrower.GrowerCounty
+            sZip = oGrower.GrowerZip
+            sCountry = oGrower.GrowerCountry
+            sWorkPhone = oGrower.GrowerPhone1
+            sCellPhone = oGrower.GrowerPhone2
+            sFax = oGrower.GrowerFax
+            sEmail = oGrower.GrowerEmail
+            sComment = oGrower.GrowerComment
+            sLastUpdate = oGrower.GrowerLastUpdate.ToString()
+
+            '    Do While iGrowerID = oProspectRecs(iCnt).GrowerID
+            'If iVendorID <> oProspectRecs(iCnt).VendorID Then
+            'Dim oVendor As New Vendor
+            oVendor = GlobalVariables.VendorList(oCurProspect.VendorID.ToString())
+            iVendorID = oCurProspect.VendorID
+            oVendor.VendorID = iVendorID
+            iVendorID = oCurProspect.VendorID
+            oVendor.VendorName = oCurProspect.VendorName
+            oVendor.VendorDummy = oCurProspect.VendorDummy
+            oGrower.Vendors.Add(oVendor)
+            'End If
+
+
+            If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
+                oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
+
+                dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, "P", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
+
+                'oGrowerListItem.CollectionIndex = oGrowerColl.Count
+                'ListBox1.Items.Add(oGrowerListItem)
+            End If
+            iCnt = iCnt + 1
+            '                    If iCnt > iMax Then Exit Do
+            '           Loop
+            '          If iCnt <= iMax Then
+            '         If iGrowerID <> oProspectRecs(iCnt).GrowerID Then
+            '        iCnt = iCnt - 1
+            '       End If
+
+            'iCnt = iCnt + 1
+            '       If iCnt > iMax Then Exit Do
+            'End If
+            '      iCnt = iCnt + 1
+            '     End If
+
+            '     Else
+            '    iCnt = iCnt + 1
+            '   If iCnt > iMax Then Exit Do
+            '  End If
+            'Loop
+        Next
 
         sSql = "SELECT growers.grower_id, ISNULL(GROWER_NOTE_SUBJECT, '') AS 'Note Subject', ISNULL(GROWER_NOTES.GROWER_NOTE_METHOD_ID, 0) AS 'Note Method ID', "
         sSql = sSql & "ISNULL(GROWER_NOTE_TEXT, '') AS 'Note Text', ISNULL(GROWER_NOTE_CREATION_DATE, '') AS 'Note Creation Date', ISNULL(GROWER_NOTE_CREATED_BY, 0) AS 'Grower Created By ID', "
@@ -1297,29 +1322,32 @@ Public Class FormMain
         iCnt = 1
         iMax = oProspectNoteRecs.Count
         iGrowerID = -1
-        Do While iCnt <= iMax
-            If iGrowerID <> oProspectNoteRecs(iCnt).GrowerID Then
-                iGrowerID = oProspectNoteRecs(iCnt).GrowerID
-                oGrowerColl(oProspectNoteRecs(iCnt).GrowerID.ToString()).Notes.Clear()
-                Do While iGrowerID = oProspectNoteRecs(iCnt).GrowerID
-                    Dim oNote As New Note
-                    oNote.GrowerId = oProspectNoteRecs(iCnt).GrowerID
-                    oNote.GrowerNoteSubject = oProspectNoteRecs(iCnt).GrowerNoteSubject
-                    oNote.GrowerNoteMethodText = oProspectNoteRecs(iCnt).GrowerNoteMethodText
-                    oNote.GrowerNoteText = oProspectNoteRecs(iCnt).GrowerNoteText
-                    oNote.GrowerNoteCreationDate = oProspectNoteRecs(iCnt).GrowerNoteCreationDate
-                    oNote.GrowerNoteCreatedByLogin = oProspectNoteRecs(iCnt).GrowerNoteCreatedByLogin
-                    oNote.GrowerNoteId = oProspectNoteRecs(iCnt).GrowerNoteID
-                    If Not oGrowerColl(oProspectNoteRecs(iCnt).GrowerID.ToString()).Notes.Contains(oNote.GrowerNoteId.ToString()) Then
-                        oGrowerColl(oProspectNoteRecs(iCnt).GrowerID.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
-                    End If
-                    iCnt = iCnt + 1
-                    If iCnt > iMax Then Exit Do
-                Loop
+        For Each oPNRec In oProspectNoteRecs
+            'Do While iCnt <= iMax
+            If iGrowerID <> oPNRec.GrowerID Then
+                iGrowerID = oPNRec.GrowerID
+                oGrowerColl(oPNRec.GrowerID.ToString()).Notes.Clear()
             End If
+            'Do While iGrowerID = oPNRec.GrowerID
+            Dim oNote As New Note
+            oNote.GrowerId = oPNRec.GrowerID
+            oNote.GrowerNoteSubject = oPNRec.GrowerNoteSubject
+            oNote.GrowerNoteMethodText = oPNRec.GrowerNoteMethodText
+            oNote.GrowerNoteText = oPNRec.GrowerNoteText
+            oNote.GrowerNoteCreationDate = oPNRec.GrowerNoteCreationDate
+            oNote.GrowerNoteCreatedByLogin = oPNRec.GrowerNoteCreatedByLogin
+            oNote.GrowerNoteId = oPNRec.GrowerNoteID
+            If Not oGrowerColl(oPNRec.GrowerID.ToString()).Notes.Contains(oNote.GrowerNoteId.ToString()) Then
+                oGrowerColl(oPNRec.GrowerID.ToString()).Notes.Add(oNote, oNote.GrowerNoteId.ToString())
+            End If
+            'iCnt = iCnt + 1
+            'If iCnt > iMax Then Exit Do
+            'Loop
+            'End If
 
 
-        Loop
+            'Loop
+        Next
 
         iGrowerID = -1
         sSql = "SELECT DISTINCT growers.grower_id, ISNULL(commodity_name, '') As CommName, ISNULL(status, '') As Status , ISNULL(sold_to, ''), volume_bu, updated_date, ISNULL(location, ''), "
@@ -1428,7 +1456,9 @@ Public Class FormMain
         lvCommoditySales.Columns(1).Text = "C.C.Year"
         lvCommoditySales.Columns(2).Text = "P.C.Year"
         lvCommoditySales.Columns(3).Text = "P2.C.Year"
-
+        dgvGrowers.Rows(0).Selected = True
+        'Form1_Load(Me, EventArgs.Empty)
+        dgvGrowers_SelectionChanged(Me, EventArgs.Empty)
     End Sub
 
 
@@ -1749,6 +1779,7 @@ Public Class FormMain
             sSql = "UPDATE growers "
             sSql = sSql & "SET dt_last_update = CONVERT(datetime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "') "
             sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrowerID.ToString()
+            myCmd.CommandText = sSql
             myCmd.ExecuteNonQuery()
             oConn.Close()
 
@@ -1762,10 +1793,12 @@ Public Class FormMain
             oNewNote.GrowerNoteCreatedByLogin = GlobalVariables.CurrentUserLogin
             oGrowerColl(sKey).Notes.Add(oNewNote)
             oGrowerColl(sKey).GrowerLastUpdate = dDate
-            RefreshDataGrid()
+            'RefreshDataGrid()
+            dgvGrowers.Rows(iIndex).Cells(2).Value = dDate.ToString("yyyy-MM-dd HH:mm:ss")
             ReloadNotes()
-            dgvGrowers.Rows(iIndex).Selected = True
-            dgvGrowers.FirstDisplayedScrollingRowIndex = dgvGrowers.SelectedRows(0).Index
+            'dgvGrowers.Rows(iIndex).Selected = True
+
+            'dgvGrowers.FirstDisplayedScrollingRowIndex = dgvGrowers.SelectedRows(0).Index
             GlobalVariables.ResetNote = False
         End If
     End Sub

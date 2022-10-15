@@ -12,6 +12,7 @@ Public Class FormNote
         GlobalVariables.ResetNote = False
 
         Me.lblName.Text = GlobalVariables.CurrentGrower.GrowerFirstName
+        Me.lblName.Text = Me.lblName.Text & " " & GlobalVariables.CurrentGrower.GrowerLastName
         Me.lblAddress.Text = GlobalVariables.CurrentGrower.GrowerAddress1
         Me.lblAddress2.Text = GlobalVariables.CurrentGrower.GrowerAddress2
         Me.lblGrowerCity.Text = GlobalVariables.CurrentGrower.GrowerCity
