@@ -16,6 +16,7 @@
     Public Property GrowerEmail As String
     Public Property GrowerProspect As String
     Public Property GrowerComment As String
+    Public Property GrowerLastUpdate As DateTime
 
     Public Property Vendors As New Collection
     Public Property Notes As New Collection
@@ -38,6 +39,8 @@ Public Class GrowerFilter
     Public Property City As String
     Public Property County As String
     Public Property CommodityID As String
+    Public Property FarmStorage As String
+
     Public Property Prospect As Boolean
     Public Property HasNotes As Boolean
     Public Property NoteSubject As String
@@ -111,6 +114,7 @@ Public Class GrowVendCom
     Public Property GrowerFax As String
     Public Property GrowerEmail As String
     Public Property GrowerComment As String
+    Public Property GrowerLastUpdate As DateTime
     Public Property VendorName As String
     Public Property VendorDummy As String
     Public Property CommID As String
@@ -163,6 +167,7 @@ Public Class Commodity
     Public Property PreviousCropYear As Decimal
 
     Public Property Previous2CropYear As Decimal
+    Public Property VendorID As Integer
 
 End Class
 Public Class Vendor
@@ -181,6 +186,7 @@ Public Class NonCGI
     Public Property Status As String
     Public Property SoldTo As String
     Public Property Volume As Integer
+    Public Property FarmStorage As String
     Public Property Location As String
 
 End Class
@@ -218,6 +224,7 @@ Public Class ProspectRec
     Public Property GrowerFax As String
     Public Property GrowerEmail As String
     Public Property GrowerComment As String
+    Public Property GrowerLastUpdate As DateTime
     Public Property VendorName As String
     Public Property GrowerNoteID As Integer
 
@@ -242,6 +249,7 @@ Public Class NonCGIRec
     Public Property Status As String
     Public Property Volume As Integer
     Public Property SoldTo As String
+    Public Property FarmStorage As String
     Public Property UpdatedDate As Date
     Public Property Location As String
 End Class

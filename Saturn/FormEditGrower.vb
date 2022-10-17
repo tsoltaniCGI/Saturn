@@ -169,6 +169,7 @@ Public Class FormEditGrower
         txtZip.Text = loCurrentGrower.GrowerZip
         txtWorkPhone.Text = loCurrentGrower.GrowerPhone1
         txtCellPhone.Text = loCurrentGrower.GrowerPhone2
+        txtFax.Text = loCurrentGrower.GrowerFax
         txtComment.Text = loCurrentGrower.GrowerComment
         For Each oCurrentVendor In loCurrentGrower.Vendors
             iCnt = 0
@@ -246,7 +247,7 @@ Public Class FormEditGrower
         End If
 
         If bDataValidated Then
-            sDate = Now().ToString("yyyy-MM-dd HH:mm:ss")
+            sDate = Now().ToString("yyyy-MM-dd hh:mm:ss")
             sCurCountry = "US"
             If rbUSA.Checked Then
                 sCurCountry = "US"
@@ -272,7 +273,8 @@ Public Class FormEditGrower
             sSql = sSql & "grower_phone2 = '" & GlobalVariables.DQuot(txtCellPhone.Text.ToString()) & "', "
             sSql = sSql & "grower_fax = '" & GlobalVariables.DQuot(txtFax.Text.ToString()) & "', "
             sSql = sSql & "grower_email = '" & GlobalVariables.DQuot(txtEmail.Text.ToString()) & "', "
-            sSql = sSql & "grower_comment = '" & GlobalVariables.DQuot(txtComment.Text.ToString()) & "' "
+            sSql = sSql & "grower_comment = '" & GlobalVariables.DQuot(txtComment.Text.ToString()) & "', "
+            sSql = sSql & "dt_last_update = CONVERT(datetime, '" & sDate & "') "
             sSql = sSql & "WHERE grower_id = " & GlobalVariables.CurrentGrower.GrowerID.ToString()
 
 
@@ -294,6 +296,8 @@ Public Class FormEditGrower
             GlobalVariables.CurrentGrower.GrowerFax = txtFax.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerEmail = txtEmail.Text.ToString()
             GlobalVariables.CurrentGrower.GrowerComment = txtComment.Text.ToString()
+            'Date.ParseExact(edate, "dd/MM/yyyy", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+            GlobalVariables.CurrentGrower.GrowerLastUpdate = Date.ParseExact(sDate, "yyyy-MM-dd hh:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo)
 
             If ckProspect.Checked = False Then
                 sSql = "DELETE FROM growers_vendors "

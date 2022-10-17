@@ -7,6 +7,52 @@ Public Class FarmViewMain
     Inherits System.Windows.Forms.Form
     Dim oConn As New SqlConnection
     Dim oCollVendors As New Collection
+    Private Sub RefreshVendors(lsFilter As String)
+        Dim bClear As Boolean
+
+        bClear = False
+        If Len(lsFilter) > 0 Then
+            bClear = False
+        Else
+            bClear = True
+        End If
+
+        dgvVendors.Rows.Clear()
+
+        If bClear Then
+            For Each oCurVendor In oCollVendors
+                If oCurVendor.FarmViewGrowers.Count > 0 Then
+                    dgvVendors.Rows.Add(oCurVendor.FarmViewVendorName, oCurVendor.FarmViewAgtechVendorID)
+                End If
+            Next
+        Else
+            For Each oCurVendor In oCollVendors
+                If oCurVendor.FarmViewGrowers.Count > 0 Then
+                    If UCase(oCurVendor.FarmViewVendorName).ToString().Contains(UCase(lsFilter)) Then
+                        dgvVendors.Rows.Add(oCurVendor.FarmViewVendorName, oCurVendor.FarmViewAgtechVendorID)
+                    End If
+                End If
+            Next
+
+        End If
+        '        For Each oCurVendor In oCollVendors
+        '        If oCurVendor.FarmViewGrowers.Count > 0 Then
+        '        If UCase(oCurVendor.FarmViewVendorName).ToString().Contains(UCase(lsFilter)) Then
+        '        dgvVendors.Rows.Add(oCurVendor.FarmViewVendorName, oCurVendor.FarmViewAgtechVendorID)
+        '        End If
+        '        End If
+        '        Next
+
+        If dgvVendors.RowCount >= 1 Then
+            dgvVendors.Rows(0).Selected = True
+        End If
+
+        If dgvVendors.RowCount >= 1 Then
+            dgvVendors.Rows(0).Selected = True
+        End If
+
+    End Sub
+
 
     Private Sub FarmViewMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sTestProd As String
@@ -201,13 +247,15 @@ Public Class FarmViewMain
                             ofNote.frviNoteSubject = oCollVendorGrower(iCnt).FrmViNoteSubject
                             ofNote.frviNoteText = oCollVendorGrower(iCnt).FrmViNoteText
                             ofNote.frviNoteCreator = oCollVendorGrower(iCnt).FrmViUserLogin
-
+                            ofNote.frviNoteID = oCollVendorGrower(iCnt).FrmViNoteID
                             'iCnt = iCnt + 1
 
                             'If iCnt > iMax Then
                             'Exit Do
                             'End If
-                            ofGrower.oFarmGrowerNotes.Add(ofNote)
+                            If Not ofGrower.oFarmGrowerNotes.Contains(ofNote.frviNoteID.ToString()) Then
+                                ofGrower.oFarmGrowerNotes.Add(ofNote, ofNote.frviNoteID.ToString())
+                            End If
                             iCnt = iCnt + 1
                             If iCnt > iMax Then Exit Do
                         Loop
@@ -245,7 +293,9 @@ Public Class FarmViewMain
             'oLVV.SubItems(0).Text = oCurVendor.FarmViewVendorName & " - " & oCurVendor.FarmViewAgtechVendorID
             'oLVV.SubItems.Add(oCurVendor.FarmViewAgtechVendorID)
             'lvVendors.Items.Add(oLVV)
-            dgvVendors.Rows.Add(oCurVendor.FarmViewVendorName, oCurVendor.FarmViewAgtechVendorID)
+            If oCurVendor.FarmViewGrowers.Count > 0 Then
+                dgvVendors.Rows.Add(oCurVendor.FarmViewVendorName, oCurVendor.FarmViewAgtechVendorID)
+            End If
         Next
 
         'lvVendors.Columns(0).Text = "Farm Name_AgTech ID"
@@ -1181,8 +1231,18 @@ Public Class FarmViewMain
 
     End Sub
 
+    Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
+        Dim sFilter As String
 
+        sFilter = Trim(txtFilter.Text)
+        If Len(sFilter) > 0 Then
+            RefreshVendors(sFilter)
+        End If
+    End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnClearFilter.Click
+        RefreshVendors("")
+    End Sub
 End Class
 
 'Private Sub ckGrower1_CheckedChanged(sender As Object, e As EventArgs) Handles ckGrower1.CheckedChanged
@@ -1193,3 +1253,4 @@ End Class
 '        lvCommoditySales.Items.Clear()
 '    End If
 'End Sub
+

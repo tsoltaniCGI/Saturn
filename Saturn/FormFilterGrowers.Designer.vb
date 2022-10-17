@@ -41,87 +41,79 @@ Partial Class FormFilterGrowers
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtKeyword = New System.Windows.Forms.TextBox()
+        Me.ckFarmStorage = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'lblLastName
         '
         Me.lblLastName.AutoSize = True
-        Me.lblLastName.Location = New System.Drawing.Point(17, 92)
-        Me.lblLastName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLastName.Location = New System.Drawing.Point(12, 55)
         Me.lblLastName.Name = "lblLastName"
-        Me.lblLastName.Size = New System.Drawing.Size(95, 25)
+        Me.lblLastName.Size = New System.Drawing.Size(63, 15)
         Me.lblLastName.TabIndex = 2
         Me.lblLastName.Text = "Last Name"
         '
         'lblFirstName
         '
         Me.lblFirstName.AutoSize = True
-        Me.lblFirstName.Location = New System.Drawing.Point(17, 32)
-        Me.lblFirstName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFirstName.Location = New System.Drawing.Point(12, 19)
         Me.lblFirstName.Name = "lblFirstName"
-        Me.lblFirstName.Size = New System.Drawing.Size(97, 25)
+        Me.lblFirstName.Size = New System.Drawing.Size(64, 15)
         Me.lblFirstName.TabIndex = 4
         Me.lblFirstName.Text = "First Name"
         '
         'txtFirstName
         '
-        Me.txtFirstName.Location = New System.Drawing.Point(126, 25)
-        Me.txtFirstName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtFirstName.Location = New System.Drawing.Point(88, 15)
         Me.txtFirstName.Name = "txtFirstName"
-        Me.txtFirstName.Size = New System.Drawing.Size(141, 31)
+        Me.txtFirstName.Size = New System.Drawing.Size(100, 23)
         Me.txtFirstName.TabIndex = 5
         '
         'txtLastName
         '
-        Me.txtLastName.Location = New System.Drawing.Point(124, 85)
-        Me.txtLastName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtLastName.Location = New System.Drawing.Point(87, 51)
         Me.txtLastName.Name = "txtLastName"
-        Me.txtLastName.Size = New System.Drawing.Size(141, 31)
+        Me.txtLastName.Size = New System.Drawing.Size(100, 23)
         Me.txtLastName.TabIndex = 6
         '
         'txtCity
         '
-        Me.txtCity.Location = New System.Drawing.Point(121, 148)
-        Me.txtCity.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtCity.Location = New System.Drawing.Point(85, 89)
         Me.txtCity.Name = "txtCity"
-        Me.txtCity.Size = New System.Drawing.Size(141, 31)
+        Me.txtCity.Size = New System.Drawing.Size(100, 23)
         Me.txtCity.TabIndex = 8
         '
         'lblCity
         '
         Me.lblCity.AutoSize = True
-        Me.lblCity.Location = New System.Drawing.Point(14, 155)
-        Me.lblCity.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCity.Location = New System.Drawing.Point(10, 93)
         Me.lblCity.Name = "lblCity"
-        Me.lblCity.Size = New System.Drawing.Size(42, 25)
+        Me.lblCity.Size = New System.Drawing.Size(28, 15)
         Me.lblCity.TabIndex = 7
         Me.lblCity.Text = "City"
         '
         'txtCounty
         '
-        Me.txtCounty.Location = New System.Drawing.Point(120, 212)
-        Me.txtCounty.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtCounty.Location = New System.Drawing.Point(84, 127)
         Me.txtCounty.Name = "txtCounty"
-        Me.txtCounty.Size = New System.Drawing.Size(141, 31)
+        Me.txtCounty.Size = New System.Drawing.Size(100, 23)
         Me.txtCounty.TabIndex = 10
         '
         'lblCounty
         '
         Me.lblCounty.AutoSize = True
-        Me.lblCounty.Location = New System.Drawing.Point(17, 218)
-        Me.lblCounty.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCounty.Location = New System.Drawing.Point(12, 131)
         Me.lblCounty.Name = "lblCounty"
-        Me.lblCounty.Size = New System.Drawing.Size(69, 25)
+        Me.lblCounty.Size = New System.Drawing.Size(46, 15)
         Me.lblCounty.TabIndex = 9
         Me.lblCounty.Text = "County"
         '
         'lblCommodity
         '
         Me.lblCommodity.AutoSize = True
-        Me.lblCommodity.Location = New System.Drawing.Point(11, 290)
-        Me.lblCommodity.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCommodity.Location = New System.Drawing.Point(8, 174)
         Me.lblCommodity.Name = "lblCommodity"
-        Me.lblCommodity.Size = New System.Drawing.Size(107, 25)
+        Me.lblCommodity.Size = New System.Drawing.Size(71, 15)
         Me.lblCommodity.TabIndex = 11
         Me.lblCommodity.Text = "Commodity"
         '
@@ -129,38 +121,34 @@ Partial Class FormFilterGrowers
         '
         Me.cmbCommodity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCommodity.FormattingEnabled = True
-        Me.cmbCommodity.Location = New System.Drawing.Point(119, 282)
-        Me.cmbCommodity.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.cmbCommodity.Location = New System.Drawing.Point(83, 169)
         Me.cmbCommodity.Name = "cmbCommodity"
-        Me.cmbCommodity.Size = New System.Drawing.Size(215, 33)
+        Me.cmbCommodity.Size = New System.Drawing.Size(152, 23)
         Me.cmbCommodity.TabIndex = 12
         '
         'btnOK
         '
-        Me.btnOK.Location = New System.Drawing.Point(16, 605)
-        Me.btnOK.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnOK.Location = New System.Drawing.Point(11, 394)
         Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(107, 38)
+        Me.btnOK.Size = New System.Drawing.Size(75, 23)
         Me.btnOK.TabIndex = 13
         Me.btnOK.Text = "&OK"
         Me.btnOK.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(157, 603)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnCancel.Location = New System.Drawing.Point(110, 393)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(107, 38)
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 14
         Me.btnCancel.Text = "&Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(80, 546)
-        Me.btnClear.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.btnClear.Location = New System.Drawing.Point(56, 359)
         Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(134, 38)
+        Me.btnClear.Size = New System.Drawing.Size(94, 23)
         Me.btnClear.TabIndex = 15
         Me.btnClear.Text = "C&lear Filters"
         Me.btnClear.UseVisualStyleBackColor = True
@@ -168,10 +156,9 @@ Partial Class FormFilterGrowers
         'chkProspect
         '
         Me.chkProspect.AutoSize = True
-        Me.chkProspect.Location = New System.Drawing.Point(120, 350)
-        Me.chkProspect.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkProspect.Location = New System.Drawing.Point(84, 241)
         Me.chkProspect.Name = "chkProspect"
-        Me.chkProspect.Size = New System.Drawing.Size(107, 29)
+        Me.chkProspect.Size = New System.Drawing.Size(72, 19)
         Me.chkProspect.TabIndex = 16
         Me.chkProspect.Text = "Prospect"
         Me.chkProspect.UseVisualStyleBackColor = True
@@ -179,55 +166,62 @@ Partial Class FormFilterGrowers
         'chkHasNotes
         '
         Me.chkHasNotes.AutoSize = True
-        Me.chkHasNotes.Location = New System.Drawing.Point(120, 384)
-        Me.chkHasNotes.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.chkHasNotes.Location = New System.Drawing.Point(84, 261)
         Me.chkHasNotes.Name = "chkHasNotes"
-        Me.chkHasNotes.Size = New System.Drawing.Size(120, 29)
+        Me.chkHasNotes.Size = New System.Drawing.Size(80, 19)
         Me.chkHasNotes.TabIndex = 17
         Me.chkHasNotes.Text = "Has Notes"
         Me.chkHasNotes.UseVisualStyleBackColor = True
         '
         'txtSubject
         '
-        Me.txtSubject.Location = New System.Drawing.Point(129, 427)
-        Me.txtSubject.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtSubject.Location = New System.Drawing.Point(90, 287)
         Me.txtSubject.Name = "txtSubject"
-        Me.txtSubject.Size = New System.Drawing.Size(141, 31)
+        Me.txtSubject.Size = New System.Drawing.Size(100, 23)
         Me.txtSubject.TabIndex = 18
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(4, 430)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(3, 289)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(114, 25)
+        Me.Label1.Size = New System.Drawing.Size(75, 15)
         Me.Label1.TabIndex = 19
         Me.Label1.Text = "Note Subject"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(1, 479)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(1, 318)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(125, 25)
+        Me.Label2.Size = New System.Drawing.Size(82, 15)
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "Note Keyword"
         '
         'txtKeyword
         '
-        Me.txtKeyword.Location = New System.Drawing.Point(131, 476)
-        Me.txtKeyword.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtKeyword.Location = New System.Drawing.Point(92, 317)
         Me.txtKeyword.Name = "txtKeyword"
-        Me.txtKeyword.Size = New System.Drawing.Size(141, 31)
+        Me.txtKeyword.Size = New System.Drawing.Size(100, 23)
         Me.txtKeyword.TabIndex = 20
+        '
+        'ckFarmStorage
+        '
+        Me.ckFarmStorage.AutoSize = True
+        Me.ckFarmStorage.Location = New System.Drawing.Point(86, 193)
+        Me.ckFarmStorage.Name = "ckFarmStorage"
+        Me.ckFarmStorage.Size = New System.Drawing.Size(133, 19)
+        Me.ckFarmStorage.TabIndex = 82
+        Me.ckFarmStorage.Text = "Farm Storage (Y/N)?"
+        Me.ckFarmStorage.UseVisualStyleBackColor = True
         '
         'FormFilterGrowers
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 25.0!)
+        Me.AcceptButton = Me.btnOK
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(353, 667)
+        Me.ClientSize = New System.Drawing.Size(246, 441)
+        Me.Controls.Add(Me.ckFarmStorage)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtKeyword)
         Me.Controls.Add(Me.Label1)
@@ -247,7 +241,6 @@ Partial Class FormFilterGrowers
         Me.Controls.Add(Me.txtFirstName)
         Me.Controls.Add(Me.lblFirstName)
         Me.Controls.Add(Me.lblLastName)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFilterGrowers"
@@ -275,4 +268,5 @@ Partial Class FormFilterGrowers
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtKeyword As TextBox
+    Friend WithEvents ckFarmStorage As CheckBox
 End Class

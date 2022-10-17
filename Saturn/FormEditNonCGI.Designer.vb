@@ -43,6 +43,7 @@ Partial Class FormEditNonCGI
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.lblNonCGIGrowerLastName = New System.Windows.Forms.Label()
+        Me.ckFarmStorage = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,7 +192,7 @@ Partial Class FormEditNonCGI
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox2.Location = New System.Drawing.Point(213, 41)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(301, 396)
+        Me.PictureBox2.Size = New System.Drawing.Size(315, 396)
         Me.PictureBox2.TabIndex = 73
         Me.PictureBox2.TabStop = False
         '
@@ -253,11 +254,22 @@ Partial Class FormEditNonCGI
         Me.lblNonCGIGrowerLastName.TabIndex = 80
         Me.lblNonCGIGrowerLastName.Text = "Grower Last Name"
         '
+        'ckFarmStorage
+        '
+        Me.ckFarmStorage.AutoSize = True
+        Me.ckFarmStorage.Location = New System.Drawing.Point(386, 198)
+        Me.ckFarmStorage.Name = "ckFarmStorage"
+        Me.ckFarmStorage.Size = New System.Drawing.Size(133, 19)
+        Me.ckFarmStorage.TabIndex = 81
+        Me.ckFarmStorage.Text = "Farm Storage (Y/N)?"
+        Me.ckFarmStorage.UseVisualStyleBackColor = True
+        '
         'FormEditNonCGI
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(545, 466)
+        Me.Controls.Add(Me.ckFarmStorage)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblNonCGIGrowerLastName)
         Me.Controls.Add(Me.PictureBox6)
@@ -309,4 +321,5 @@ Partial Class FormEditNonCGI
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox6 As PictureBox
     Friend WithEvents lblNonCGIGrowerLastName As Label
+    Friend WithEvents ckFarmStorage As CheckBox
 End Class
