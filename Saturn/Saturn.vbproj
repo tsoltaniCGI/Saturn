@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Saturn</RootNamespace>
-    <StartupObject>Saturn.FormLoader</StartupObject>
+    <StartupObject>Saturn.SaturnBackground</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <OptionStrict>On</OptionStrict>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
