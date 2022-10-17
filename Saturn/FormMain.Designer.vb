@@ -331,7 +331,7 @@ Partial Class FormMain
         Me.TestDataGrid.Name = "TestDataGrid"
         Me.TestDataGrid.RowHeadersVisible = False
         Me.TestDataGrid.RowTemplate.Height = 25
-        Me.TestDataGrid.Size = New System.Drawing.Size(975, 228)
+        Me.TestDataGrid.Size = New System.Drawing.Size(975, 286)
         Me.TestDataGrid.TabIndex = 54
         '
         'Column1
@@ -898,9 +898,9 @@ Partial Class FormMain
         '
         Me.PictureBox9.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(239, Byte), Integer))
         Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
-        Me.PictureBox9.Location = New System.Drawing.Point(61, 564)
+        Me.PictureBox9.Location = New System.Drawing.Point(61, 536)
         Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(1055, 402)
+        Me.PictureBox9.Size = New System.Drawing.Size(1055, 453)
         Me.PictureBox9.TabIndex = 75
         Me.PictureBox9.TabStop = False
         '
