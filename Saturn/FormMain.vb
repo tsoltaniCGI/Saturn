@@ -1241,7 +1241,8 @@ Public Class FormMain
             sFax = oGrower.GrowerFax
             sEmail = oGrower.GrowerEmail
             sComment = oGrower.GrowerComment
-            sLastUpdate = oGrower.GrowerLastUpdate.ToString()
+            'sLastUpdate = oGrower.GrowerLastUpdate.ToString()
+            sLastUpdate = oGrower.GrowerLastUpdate.ToString("yyyy-MM-dd HH:mm:ss")
 
             '    Do While iGrowerID = oProspectRecs(iCnt).GrowerID
             'If iVendorID <> oProspectRecs(iCnt).VendorID Then
