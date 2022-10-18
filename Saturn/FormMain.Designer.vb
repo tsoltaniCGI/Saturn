@@ -900,7 +900,7 @@ Partial Class FormMain
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(87, 88)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1011, 462)
+        Me.PictureBox1.Size = New System.Drawing.Size(1011, 440)
         Me.PictureBox1.TabIndex = 112
         Me.PictureBox1.TabStop = False
         '
@@ -910,7 +910,7 @@ Partial Class FormMain
         Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
         Me.PictureBox9.Location = New System.Drawing.Point(61, 534)
         Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(1055, 456)
+        Me.PictureBox9.Size = New System.Drawing.Size(1055, 460)
         Me.PictureBox9.TabIndex = 75
         Me.PictureBox9.TabStop = False
         '
@@ -934,6 +934,7 @@ Partial Class FormMain
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1834, 997)
+        Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.txtSale)
         Me.Controls.Add(Me.lvCommoditySales)
         Me.Controls.Add(Me.PictureBox7)
@@ -959,7 +960,6 @@ Partial Class FormMain
         Me.Controls.Add(Me.txtProspect)
         Me.Controls.Add(Me.btnAddNote)
         Me.Controls.Add(Me.txtNotes)
-        Me.Controls.Add(Me.TestDataGrid)
         Me.Controls.Add(Me.PictureBox6)
         Me.Controls.Add(Me.PictureBox9)
         Me.Controls.Add(Me.btnFarmView)
