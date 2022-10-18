@@ -103,9 +103,9 @@ Partial Class FormMain
         Me.State = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.County = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CellPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Email = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Comment = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Zip = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WorkPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Fax = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -643,7 +643,7 @@ Partial Class FormMain
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvGrowers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvGrowers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvGrowers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LastName, Me.DataGridViewTextBoxColumn2, Me.LastUpdate, Me.PFlag, Me.City, Me.State, Me.County, Me.CellPhone, Me.DataGridViewTextBoxColumn3, Me.Email, Me.Comment, Me.Zip, Me.WorkPhone, Me.Fax, Me.Country, Me.CollIndex})
+        Me.dgvGrowers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LastName, Me.DataGridViewTextBoxColumn2, Me.LastUpdate, Me.PFlag, Me.City, Me.State, Me.County, Me.CellPhone, Me.Email, Me.Comment, Me.DataGridViewTextBoxColumn3, Me.Zip, Me.WorkPhone, Me.Fax, Me.Country, Me.CollIndex})
         Me.dgvGrowers.ContextMenuStrip = Me.ContextMenuStrip3
         DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window
@@ -673,6 +673,7 @@ Partial Class FormMain
         Me.LastName.HeaderText = "Last Name"
         Me.LastName.Name = "LastName"
         Me.LastName.ReadOnly = True
+        Me.LastName.Width = 65
         '
         'DataGridViewTextBoxColumn2
         '
@@ -684,6 +685,7 @@ Partial Class FormMain
         Me.DataGridViewTextBoxColumn2.HeaderText = "First Name"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.Width = 60
         '
         'LastUpdate
         '
@@ -718,6 +720,7 @@ Partial Class FormMain
         Me.City.HeaderText = "City"
         Me.City.Name = "City"
         Me.City.ReadOnly = True
+        Me.City.Width = 54
         '
         'State
         '
@@ -740,6 +743,7 @@ Partial Class FormMain
         Me.County.HeaderText = "County"
         Me.County.Name = "County"
         Me.County.ReadOnly = True
+        Me.County.Width = 60
         '
         'CellPhone
         '
@@ -748,42 +752,43 @@ Partial Class FormMain
         DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.CellPhone.DefaultCellStyle = DataGridViewCellStyle10
-        Me.CellPhone.HeaderText = "CellPhone"
+        Me.CellPhone.HeaderText = "Cell Phone"
         Me.CellPhone.Name = "CellPhone"
         Me.CellPhone.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn3
+        'Email
         '
         DataGridViewCellStyle11.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle11
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Address"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        '
-        'Email
-        '
-        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Email.DefaultCellStyle = DataGridViewCellStyle12
+        Me.Email.DefaultCellStyle = DataGridViewCellStyle11
         Me.Email.HeaderText = "Email"
         Me.Email.Name = "Email"
         Me.Email.ReadOnly = True
         '
         'Comment
         '
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
+        Me.Comment.DefaultCellStyle = DataGridViewCellStyle12
+        Me.Comment.HeaderText = "Comment"
+        Me.Comment.Name = "Comment"
+        Me.Comment.ReadOnly = True
+        Me.Comment.Width = 360
+        '
+        'DataGridViewTextBoxColumn3
+        '
         DataGridViewCellStyle13.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(97, Byte), Integer), CType(CType(110, Byte), Integer))
         DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(81, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(109, Byte), Integer))
         DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(243, Byte), Integer))
-        Me.Comment.DefaultCellStyle = DataGridViewCellStyle13
-        Me.Comment.HeaderText = "Comment"
-        Me.Comment.Name = "Comment"
-        Me.Comment.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle13
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Address"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
         '
         'Zip
         '
@@ -1055,9 +1060,9 @@ Partial Class FormMain
     Friend WithEvents State As DataGridViewTextBoxColumn
     Friend WithEvents County As DataGridViewTextBoxColumn
     Friend WithEvents CellPhone As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents Email As DataGridViewTextBoxColumn
     Friend WithEvents Comment As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents Zip As DataGridViewTextBoxColumn
     Friend WithEvents WorkPhone As DataGridViewTextBoxColumn
     Friend WithEvents Fax As DataGridViewTextBoxColumn
