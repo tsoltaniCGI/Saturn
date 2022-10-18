@@ -196,7 +196,7 @@ Public Class FormMain
             sGrowerID = oGrowerColl(iCnt).GrowerID.ToString()
             sLastUpdate = oGrowerColl(iCnt).GrowerLastUpdate.ToString()
 
-            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, sGrowerID)
+            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sCity, sState, sCounty, sCellPhone, sEmail, sComment, sAddress, sZip, sWorkPhone, sFax, sCountry, sGrowerID)
 
 
             iCnt = iCnt + 1
@@ -436,7 +436,9 @@ Public Class FormMain
                 sLastUpdate = sLastUpdate & Minute(oGrowerColl(iCnt).GrowerLastUpdate).ToString() & ":"
                 If Second(oGrowerColl(iCnt).GrowerLastUpdate) < 10 Then sLastUpdate = sLastUpdate & "0"
                 sLastUpdate = sLastUpdate & Second(oGrowerColl(iCnt).GrowerLastUpdate).ToString
-                dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, sGrowerID)
+                'dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, sGrowerID)
+                dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, sProspect, sCity, sState, sCounty, sCellPhone, sEmail, sComment, sAddress, sZip, sWorkPhone, sFax, sCountry, sGrowerID)
+
             End If
 
             iCnt = iCnt + 1
@@ -1042,7 +1044,9 @@ Public Class FormMain
                     If iCnt >= iMax Then
                         If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                             oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
+                            'dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
+                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sCity, sState, sCounty, sCellPhone, sEmail, sComment, sAddress, sZip, sWorkPhone, sFax, sCountry, oGrower.GrowerID.ToString())
+
                             'oGrowerListItem.CollectionIndex = oGrowerColl.Count
                             'ListBox1.Items.Add(oGrowerListItem)
                         End If
@@ -1053,7 +1057,8 @@ Public Class FormMain
                     If iGrowerID <> oCollGrowVendComm(iCnt).GrowerId Then
                         If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                             oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
-                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
+                            'dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
+                            dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, " ", sCity, sState, sCounty, sCellPhone, sEmail, sComment, sAddress, sZip, sWorkPhone, sFax, sCountry, oGrower.GrowerID.ToString())
 
                             'oGrowerListItem.CollectionIndex = oGrowerColl.Count
 
@@ -1254,7 +1259,8 @@ Public Class FormMain
             If Not oGrowerColl.Contains(oGrower.GrowerID.ToString()) Then
                 oGrowerColl.Add(oGrower, oGrower.GrowerID.ToString())
 
-                dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, "P", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
+                'dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, "P", sAddress, sCity, sState, sCounty, sZip, sCellPhone, sWorkPhone, sFax, sEmail, sComment, sCountry, oGrower.GrowerID.ToString())
+                dgvGrowers.Rows.Add(sLastName, sFirstName, sLastUpdate, "P", sCity, sState, sCounty, sCellPhone, sEmail, sComment, sAddress, sZip, sWorkPhone, sFax, sCountry, oGrower.GrowerID.ToString())
 
                 'oGrowerListItem.CollectionIndex = oGrowerColl.Count
                 'ListBox1.Items.Add(oGrowerListItem)
