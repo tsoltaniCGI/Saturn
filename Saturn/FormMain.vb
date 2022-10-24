@@ -1,5 +1,7 @@
 ﻿Option Strict Off
+Imports System.ComponentModel
 Imports System.Data.SqlClient
+'Imports ComponentModel
 
 
 
@@ -26,7 +28,60 @@ Public Class FormMain
             End If
         End Function
     End Class
+    Private bgw As New BackgroundWorker
+    Public Sub showLoading()
+        bgw.WorkerSupportsCancellation = True
 
+        AddHandler bgw.DoWork, AddressOf bgw_doWork
+        AddHandler bgw.RunWorkerCompleted, AddressOf bgw_Complete
+
+        If Not bgw.IsBusy = True Then
+            bgw.RunWorkerAsync()
+        End If
+    End Sub
+
+    Public Sub closeLoading()
+        If bgw.WorkerSupportsCancellation = True Then
+            bgw.CancelAsync()
+        End If
+    End Sub
+
+    Private Sub bgw_doWork(ByVal sender As Object, ByVal e As DoWorkEventArgs)
+        Dim worker As BackgroundWorker = CType(sender, BackgroundWorker)
+        Dim loadingScreen As New frmLoading
+
+        loadingScreen.Show()
+
+        While True
+            If Not bgw.CancellationPending Then
+                Threading.Thread.Sleep(50)
+            Else
+                e.Cancel = True
+                Exit While
+            End If
+        End While
+    End Sub
+
+    Private Sub bgw_Complete(ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs)
+        'Dim iCnt As Integer
+        'Dim lstFrm As New List(Of frmLoading)
+        '        lstFrm = Application.OpenForms.OfType(Of frmLoading)()
+
+        'If lstFrm.Count > 0 Then
+        'For Each frm As frmLoading In lstFrm
+        'frm.Close()
+        'Next
+        'End If
+        'loadingScreen.Close()
+        'iCnt = 1
+        For Each oCurForm In Application.OpenForms
+            If oCurForm.Name = "frmLoading" Then
+                'MessageBox.Show(iCnt.ToString() & " Open FOrms. - " & oCurForm.Name)
+                'iCnt = iCnt + 1
+                oCurForm.Close()
+            End If
+        Next
+    End Sub
     Dim oConn As New SqlConnection
     Dim myCmd As SqlCommand
     Dim oGrwoerCmd As SqlCommand
@@ -56,7 +111,7 @@ Public Class FormMain
     'Dim oVendorNameColl As New Collection
     'Dim oVendorIDColl As New Collection
     'Dim Params As New List(Of SqlParameter)
-
+    'Dim loadingScreen As New frmLoading
 
 
     Dim oGrowerColl As New Collection
@@ -622,6 +677,7 @@ Public Class FormMain
         Dim sCountry As String
         Dim sLastUpdate As String
 
+        'showLoading()
         oCollGrowVendComm.Clear()
         oNoteMethods.Clear()
         oProspectRecs.Clear()
@@ -1463,6 +1519,7 @@ Public Class FormMain
         lvCommoditySales.Columns(1).Text = "C.C.Year"
         lvCommoditySales.Columns(2).Text = "P.C.Year"
         lvCommoditySales.Columns(3).Text = "P2.C.Year"
+        'closeLoading()
         dgvGrowers.Rows(0).Selected = True
         'Form1_Load(Me, EventArgs.Empty)
         dgvGrowers_SelectionChanged(Me, EventArgs.Empty)

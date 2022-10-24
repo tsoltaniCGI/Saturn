@@ -221,7 +221,7 @@ Public Class FarmViewMain
                 Dim oCurrentVendor As New FarmViewVendor
                 oCurrentVendor.FarmViewAgtechVendorID = oCollVendorGrower(iCnt).FrmViAgtechVendorID
                 oCurrentVendor.FarmViewVendorName = oCollVendorGrower(iCnt).FrmViVendorName
-
+                If iCnt > iMax Then Exit Do
                 Do While iVendorId = oCollVendorGrower(iCnt).FrmViVendorID
                     bInnerLoop = True
 
@@ -267,6 +267,7 @@ Public Class FarmViewMain
                     Else
                         iCnt = iCnt + 1
                     End If
+                    If iCnt > iMax Then Exit Do
                 Loop
                 oCollVendors.Add(oCurrentVendor, oCurrentVendor.FarmViewVendorName & oCurrentVendor.FarmViewAgtechVendorID)
                 If bInnerLoop Then

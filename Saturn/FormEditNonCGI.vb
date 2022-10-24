@@ -150,7 +150,7 @@ Public Class FormEditNonCGI
             sSql = sSql & "updated_date = Convert(DateTime, '" & dDate.ToString("yyyy-MM-dd HH:mm:ss") & "'), "
             sSql = sSql & "location = '" & GlobalVariables.DQuot(txtLocation.Text.ToString()) & "', "
             sSql = sSql & "grower_id = " & iGrowerID.ToString() & ", "
-            sSql = sSql & "farmstorage = " & sFarmStorage & " "
+            sSql = sSql & "farmstorage = '" & sFarmStorage & "' "
             sSql = sSql & "WHERE nonCGIcrop_id = " & GlobalVariables.CurrentNonCGIID.ToString()
 
             oConn.Open()

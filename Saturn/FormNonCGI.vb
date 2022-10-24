@@ -168,6 +168,7 @@ Public Class FormNonCGI
             oNewNonCGI.SoldTo = txtSoldTo.Text
             oNewNonCGI.Location = txtLocation.Text
             oNewNonCGI.NonCGICropID = inonCGIID
+            oNewNonCGI.FarmStorage = sFarmStor
             GlobalVariables.CurrentGrower.OtherCrops.Add(oNewNonCGI)
             'oGrowerColl(oSelItem.CollectionIndex).Notes.Add(oNewNonCGI)
 
