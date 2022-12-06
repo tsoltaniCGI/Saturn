@@ -1,7 +1,10 @@
-﻿Imports System.Data.SqlClient
+﻿Option Strict Off
+Imports System.Data.SqlClient
 Imports System.Net.Mail
+
 Public Class FormNote
     Dim oConn As SqlConnection
+    Dim oCollMethodIds As New Collection
     Private Sub FormNote_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sSql As String
         Dim oReader As SqlDataReader
@@ -50,6 +53,7 @@ Public Class FormNote
                 Else
                     cmbMethod.Items.Add("")
                 End If
+                oCollMethodIds.Add(oReader.GetInt32(0))
             Loop
         End If
 
@@ -86,7 +90,13 @@ Public Class FormNote
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         GlobalVariables.ResetNote = True
         GlobalVariables.CurrentNoteText = txtNote.Text
-        GlobalVariables.CurrentNoteMethod = cmbMethod.SelectedIndex
+        'GlobalVariables.CurrentNoteMethod = cmbMethod.SelectedIndex
+        If cmbMethod.SelectedIndex = -1 Then
+            GlobalVariables.CurrentNoteMethod = 0
+        Else
+            GlobalVariables.CurrentNoteMethod = oCollMethodIds(cmbMethod.SelectedIndex)
+        End If
+
         If GlobalVariables.CurrentNoteMethod = -1 Then
             GlobalVariables.CurrentNoteMethod = 0
         End If
@@ -122,5 +132,9 @@ Public Class FormNote
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.Close()
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+
     End Sub
 End Class

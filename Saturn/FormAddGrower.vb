@@ -155,6 +155,7 @@ Public Class FormAddGrower
         Dim oConn As SqlConnection
         Dim sCommID As String
         Dim oReader As SqlDataReader
+        Dim oNewGrower As New Grower
         'Dim sProsVendorName As String
 
         sCurCountryCode = "US"
@@ -264,24 +265,43 @@ Public Class FormAddGrower
             'myCmd.CommandText = sSql
             'oReader = myCmd.ExecuteReader()
             'iGrowerID = oReader.GetInt32(0)
-            GlobalVariables.AddedGrower.GrowerFirstName = txtFirstName.Text
-            GlobalVariables.AddedGrower.GrowerLastName = txtLastName.Text
-            GlobalVariables.AddedGrower.GrowerID = GlobalVariables.iAddedGrowerID
-            GlobalVariables.AddedGrower.GrowerAddress1 = txtAddress1.Text
-            GlobalVariables.AddedGrower.GrowerAddress2 = txtAddress2.Text
-            GlobalVariables.AddedGrower.GrowerCity = txtCity.Text
-            GlobalVariables.AddedGrower.GrowerCounty = txtCounty.Text
-            GlobalVariables.AddedGrower.GrowerState = cmbState.SelectedItem.ToString()
-            GlobalVariables.AddedGrower.GrowerCountry = sCurCountryCode
-            GlobalVariables.AddedGrower.GrowerZip = txtZip.Text
-            GlobalVariables.AddedGrower.GrowerPhone1 = txtWorkPhone.Text
-            GlobalVariables.AddedGrower.GrowerPhone2 = txtCellPhone.Text
-            GlobalVariables.AddedGrower.GrowerFax = txtFax.Text
-            GlobalVariables.AddedGrower.GrowerEmail = txtEmail.Text
-            GlobalVariables.AddedGrower.GrowerComment = txtComment.Text
-            GlobalVariables.AddedGrower.GrowerProspect = sProspect
-            GlobalVariables.AddedGrower.GrowerLastUpdate = dDate
-            GlobalVariables.AddedGrower.Vendors.Clear()
+            'GlobalVariables.AddedGrower.GrowerFirstName = txtFirstName.Text
+            'GlobalVariables.AddedGrower.GrowerLastName = txtLastName.Text
+            'GlobalVariables.AddedGrower.GrowerID = GlobalVariables.iAddedGrowerID
+            'GlobalVariables.AddedGrower.GrowerAddress1 = txtAddress1.Text
+            'GlobalVariables.AddedGrower.GrowerAddress2 = txtAddress2.Text
+            'GlobalVariables.AddedGrower.GrowerCity = txtCity.Text
+            'GlobalVariables.AddedGrower.GrowerCounty = txtCounty.Text
+            'GlobalVariables.AddedGrower.GrowerState = cmbState.SelectedItem.ToString()
+            'GlobalVariables.AddedGrower.GrowerCountry = sCurCountryCode
+            'GlobalVariables.AddedGrower.GrowerZip = txtZip.Text
+            'GlobalVariables.AddedGrower.GrowerPhone1 = txtWorkPhone.Text
+            'GlobalVariables.AddedGrower.GrowerPhone2 = txtCellPhone.Text
+            'GlobalVariables.AddedGrower.GrowerFax = txtFax.Text
+            'GlobalVariables.AddedGrower.GrowerEmail = txtEmail.Text
+            'GlobalVariables.AddedGrower.GrowerComment = txtComment.Text
+            'GlobalVariables.AddedGrower.GrowerProspect = sProspect
+            'GlobalVariables.AddedGrower.GrowerLastUpdate = dDate
+            'GlobalVariables.AddedGrower.Vendors.Clear()
+
+            oNewGrower.GrowerFirstName = txtFirstName.Text
+            oNewGrower.GrowerLastName = txtLastName.Text
+            oNewGrower.GrowerID = GlobalVariables.iAddedGrowerID
+            oNewGrower.GrowerAddress1 = txtAddress1.Text
+            oNewGrower.GrowerAddress2 = txtAddress2.Text
+            oNewGrower.GrowerCity = txtCity.Text
+            oNewGrower.GrowerCounty = txtCounty.Text
+            oNewGrower.GrowerState = cmbState.SelectedItem.ToString()
+            oNewGrower.GrowerCountry = sCurCountryCode
+            oNewGrower.GrowerZip = txtZip.Text
+            oNewGrower.GrowerPhone1 = txtWorkPhone.Text
+            oNewGrower.GrowerPhone2 = txtCellPhone.Text
+            oNewGrower.GrowerFax = txtFax.Text
+            oNewGrower.GrowerEmail = txtEmail.Text
+            oNewGrower.GrowerComment = txtComment.Text
+            oNewGrower.GrowerProspect = sProspect
+            oNewGrower.GrowerLastUpdate = dDate
+            oNewGrower.Vendors.Clear()
 
             If ckProspect.Checked Then
                 'For Each FacID In GlobalVariables.UserFacilityIDs
@@ -298,7 +318,8 @@ Public Class FormAddGrower
                 myCmd.ExecuteNonQuery()
                 Dim oAddedVendor As New Vendor
                 oAddedVendor.VendorDummy = "Y"
-                GlobalVariables.AddedGrower.Vendors.Add(oAddedVendor)
+                'GlobalVariables.AddedGrower.Vendors.Add(oAddedVendor)
+                oNewGrower.Vendors.Add(oAddedVendor)
             Else
                 For Each iIndex In lstVendors.SelectedIndices
                     Dim oNewVendor As New Vendor
@@ -339,7 +360,8 @@ Public Class FormAddGrower
 
                     If oReader.HasRows Then
                         Do While oReader.Read()
-
+                            oNewVendor.VendorName = oReader.GetString(1)
+                            oNewVendor.VendorID = oReader.GetInt32(0)
                             sCommID = oReader.GetString(3)
 
                             If Not oNewVendor.CollCommodities.Contains(sCommID) Then
@@ -360,13 +382,18 @@ Public Class FormAddGrower
 
                     End If
 
-                    If Not GlobalVariables.AddedGrower.Vendors.Contains(oVendIDs(iIndex.ToString()).ToString()) Then
-                        GlobalVariables.AddedGrower.Vendors.Add(oNewVendor, oVendIDs(iIndex.ToString()).ToString())
+                    'If Not GlobalVariables.AddedGrower.Vendors.Contains(oVendIDs(iIndex.ToString()).ToString()) Then
+                    'GlobalVariables.AddedGrower.Vendors.Add(oNewVendor, oVendIDs(iIndex.ToString()).ToString())
+                    'End If
+                    If Not oNewGrower.Vendors.Contains(oVendIDs(iIndex.ToString()).ToString()) Then
+                        oNewGrower.Vendors.Add(oNewVendor, oVendIDs(iIndex.ToString()).ToString())
                     End If
+
                     oReader.Close()
                 Next
-            End If
 
+            End If
+            GlobalVariables.AddedGrower = oNewGrower
             Me.Close()
         End If
 

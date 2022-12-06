@@ -157,6 +157,7 @@ Public Class FormNonCGI
 
             'myCmd.ExecuteNonQuery()
             inonCGIID = myCmd.ExecuteScalar()
+
             oConn.Close()
             Dim oNewNonCGI As New NonCGI
 

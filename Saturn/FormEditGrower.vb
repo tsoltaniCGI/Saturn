@@ -6,10 +6,11 @@ Public Class FormEditGrower
     Dim oProvinces As New Collection
     Dim oCountries As New Collection
     Dim sOrigProspect As String
+    Dim loCurrentGrower As New Grower
 
 
     Private Sub FormEditGrower_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim loCurrentGrower As Grower
+
         Dim oCurrentVendor As Vendor
         Dim sTestProd As String
         Dim oConn As SqlConnection
@@ -137,6 +138,7 @@ Public Class FormEditGrower
         txtAddress2.Text = loCurrentGrower.GrowerAddress2
         txtCity.Text = loCurrentGrower.GrowerCity
         txtCounty.Text = loCurrentGrower.GrowerCounty
+        txtEmail.Text = loCurrentGrower.GrowerEmail
         sCurCountry = "US"
 
         If loCurrentGrower.GrowerCountry = "US" Then
